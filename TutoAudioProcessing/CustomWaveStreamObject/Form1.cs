@@ -69,26 +69,26 @@ namespace CustomWaveStreamObject
                 this.amplitude = a;
             }
 
-            //must be override
+            //must override
             public override long Position
             {
                 get;
                 set;
             }
 
-            //must be override
+            //must override
             public override long Length
             {
                 get { return long.MaxValue; }
             }
 
-            //must be override
+            //must override
             public override WaveFormat WaveFormat
             {
                 get { return new WaveFormat(44100, 16, 1); } // (samples per sec , bits per sample, number of channels)
             }
 
-            //must be override
+            //must override
             public override int Read(byte[] buffer, int offset, int count)
             {
                 int samples = count / 2; // divide by 2 (bytes) because we have 16 bits per sec
