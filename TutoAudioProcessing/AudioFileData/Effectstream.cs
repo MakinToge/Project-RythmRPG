@@ -58,6 +58,8 @@ namespace AudioFileData
 
                 sample = sample * 0.5f; // effect, reduce volume
 
+                //Console.WriteLine("{0}", sample); // Project -> AudioFileData porperties -> output type -> console application
+
                 byte[] bytes = BitConverter.GetBytes(sample);
 
                 //bytes.CopyTo(buffer,i * 4); // volume is indeed divide by 2, but this method is too slow
