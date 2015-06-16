@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 
 namespace RythmRPG.Pages {
-    class Page {
+    public class Page {
         public Page() {
 
         }
@@ -18,7 +18,7 @@ namespace RythmRPG.Pages {
         public virtual void LoadContent(ContentManager content) {
         }
 
-        protected virtual void UnloadContent() {
+        public virtual void UnloadContent() {
         }
   
         public virtual void HandleInput(KeyboardState previousKeyboardState, KeyboardState currentKeyboardState, MouseState previousMouseState, MouseState currentMouseState) {

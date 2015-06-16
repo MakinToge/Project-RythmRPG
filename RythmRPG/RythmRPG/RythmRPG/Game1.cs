@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using RythmRPG.Pages;
 
 namespace RythmRPG {
     /// <summary>
@@ -19,13 +20,34 @@ namespace RythmRPG {
 
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
+        public static GameState GameState;
+        static public int Width;
+        static public int Height;
+        public static int UnitX;
+        public static int UnitY;
+        public static int ButtonWidth;
+        public static int ButtonHeight;
 
+        public MouseState CurrentMouseState { get; set; }
+        public MouseState PreviousMouseState { get; set; }
+        public KeyboardState CurrentKeyBoardState { get; set; }
+        public KeyboardState PreviousKeyBoardState { get; set; }
+        public StartMenu StartMenu { get; set; }
+        public Options Options { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = DEFAULT_WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = DEFAULT_WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
+
+            Width = DEFAULT_WINDOWS_WIDTH;
+            Height = DEFAULT_WINDOWS_HEIGHT;
+
+            UnitX = Game1.Width / 32;
+            UnitY = Game1.Height / 18;
+            ButtonWidth = 8 * Game1.Width / 32;
+            ButtonHeight = 1 * Game1.Height / 18;
         }
 
         /// <summary>
@@ -37,9 +59,12 @@ namespace RythmRPG {
         protected override void Initialize() {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
-            
+            GameState = RythmRPG.GameState.StartMenu;
 
-
+            this.StartMenu = new StartMenu();
+            this.StartMenu.Initialize();
+            this.Options = new Options();
+            this.Options.Initialize();
             base.Initialize();
         }
 
@@ -52,6 +77,14 @@ namespace RythmRPG {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            this.StartMenu.LoadContent(this.Content);
+            this.Options.LoadContent(this.Content);
+
+            //Inputs
+            this.CurrentKeyBoardState = Keyboard.GetState();
+            this.PreviousKeyBoardState = this.CurrentKeyBoardState;
+            this.CurrentMouseState = Mouse.GetState();
+            this.PreviousMouseState = this.CurrentMouseState;
         }
 
         /// <summary>
@@ -72,7 +105,21 @@ namespace RythmRPG {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            //Inputs
+            this.PreviousMouseState = this.CurrentMouseState;
+            this.CurrentMouseState = Mouse.GetState();
+            this.PreviousKeyBoardState = this.CurrentKeyBoardState;
+            this.CurrentKeyBoardState = Keyboard.GetState();
+
             // TODO: Add your update logic here
+            switch (GameState) {
+                case GameState.StartMenu:
+                    this.StartMenu.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.Options:
+                    this.Options.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+            };
 
             base.Update(gameTime);
         }
@@ -82,9 +129,17 @@ namespace RythmRPG {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
+            switch (GameState) {
+                case GameState.StartMenu:
+                    this.StartMenu.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.Options:
+                    this.Options.Draw(spriteBatch, gameTime);
+                    break;
+            };
 
             base.Draw(gameTime);
         }
