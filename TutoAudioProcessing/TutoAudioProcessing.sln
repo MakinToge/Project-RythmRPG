@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomWaveStreamObject", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioFileData", "AudioFileData\AudioFileData.csproj", "{29D6A40A-35CD-403E-AE47-F0BFB3C207DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDesign", "GameDesign\GameDesign.csproj", "{7B2A011A-4F8E-4311-B689-6989C332295D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rythm", "Rythm\Rythm\Rythm.csproj", "{B51DFB10-782C-4FD7-9B46-A5580B71DE07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RythmContent", "Rythm\RythmContent\RythmContent.contentproj", "{B0CDA0D6-9953-4341-A169-FCAF6EB29949}"
@@ -67,6 +69,14 @@ Global
 		{29D6A40A-35CD-403E-AE47-F0BFB3C207DE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{29D6A40A-35CD-403E-AE47-F0BFB3C207DE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{29D6A40A-35CD-403E-AE47-F0BFB3C207DE}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7B2A011A-4F8E-4311-B689-6989C332295D}.Release|x86.ActiveCfg = Release|Any CPU
 		{B51DFB10-782C-4FD7-9B46-A5580B71DE07}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{B51DFB10-782C-4FD7-9B46-A5580B71DE07}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{B51DFB10-782C-4FD7-9B46-A5580B71DE07}.Debug|Mixed Platforms.Build.0 = Debug|x86
