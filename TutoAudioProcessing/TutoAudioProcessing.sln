@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioFileData", "AudioFileD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rythm", "Rythm\Rythm\Rythm.csproj", "{B51DFB10-782C-4FD7-9B46-A5580B71DE07}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "RythmContent", "Rythm\RythmContent\RythmContent.contentproj", "{B0CDA0D6-9953-4341-A169-FCAF6EB29949}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RythmContent", "Rythm\RythmContent\RythmContent.contentproj", "{B0CDA0D6-9953-4341-A169-FCAF6EB29949}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beatDetectionAlgo", "beatDetectionAlgo\beatDetectionAlgo.csproj", "{C3714DB6-DF43-4AE9-B79A-3392506D5B47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,16 @@ Global
 		{B0CDA0D6-9953-4341-A169-FCAF6EB29949}.Release|Any CPU.ActiveCfg = Release|x86
 		{B0CDA0D6-9953-4341-A169-FCAF6EB29949}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{B0CDA0D6-9953-4341-A169-FCAF6EB29949}.Release|x86.ActiveCfg = Release|x86
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C3714DB6-DF43-4AE9-B79A-3392506D5B47}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
