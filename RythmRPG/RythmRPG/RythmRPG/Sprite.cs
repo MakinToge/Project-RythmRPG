@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 
 namespace RythmRPG {
-    class Sprite {
+    public class Sprite {
 
         public Texture2D Texture { get; set; }
 
@@ -33,6 +33,12 @@ namespace RythmRPG {
         public Sprite(Vector2 position)
             : this(position, Vector2.Zero, Vector2.Zero, 0) {
             this.Position = position;
+        }
+
+        public Sprite(float positionX, float positionY, int width, int height)
+            : this(Vector2.Zero, Vector2.Zero, Vector2.Zero, 0) {
+                this.Position = new Vector2(positionX, positionY);
+                this.Size = new Vector2(width, height);
         }
 
         public Sprite(Vector2 position, Vector2 size, Vector2 direction, float speed) {
