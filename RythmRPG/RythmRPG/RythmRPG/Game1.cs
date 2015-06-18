@@ -40,6 +40,8 @@ namespace RythmRPG {
         public StartMenu StartMenu { get; set; }
         public Options Options { get; set; }
         public GameMenu GameMenu { get; set; }
+        public SingleMusic SingleMusic { get; set; }
+        public PlaylistChallenge PlaylistChallenge { get; set; }
         public CharacterManagement CharacterManagement { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -78,6 +80,10 @@ namespace RythmRPG {
             this.GameMenu.Initialize();
             this.CharacterManagement = new CharacterManagement();
             this.CharacterManagement.Initialize();
+            this.SingleMusic = new SingleMusic();
+            this.SingleMusic.Initialize();
+            this.PlaylistChallenge = new PlaylistChallenge();
+            this.PlaylistChallenge.Initialize();
 
             base.Initialize();
         }
@@ -94,7 +100,9 @@ namespace RythmRPG {
             this.StartMenu.LoadContent(this.Content);
             this.Options.LoadContent(this.Content);
             this.GameMenu.LoadContent(this.Content);
-            this.CharacterManagement.LoadContent(this.Content);         
+            this.CharacterManagement.LoadContent(this.Content);
+            this.SingleMusic.LoadContent(this.Content);
+            this.PlaylistChallenge.LoadContent(this.Content);
 
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
@@ -141,6 +149,12 @@ namespace RythmRPG {
                 case RythmRPG.GameState.CharacterManagement:
                     this.CharacterManagement.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
+                case RythmRPG.GameState.SingleMusic:
+                    this.SingleMusic.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.PlaylistChallenge:
+                    this.PlaylistChallenge.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
             };
 
             base.Update(gameTime);
@@ -166,6 +180,12 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.CharacterManagement:
                     this.CharacterManagement.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.SingleMusic:
+                    this.SingleMusic.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.PlaylistChallenge:
+                    this.PlaylistChallenge.Draw(spriteBatch, gameTime);
                     break;
             };
 
