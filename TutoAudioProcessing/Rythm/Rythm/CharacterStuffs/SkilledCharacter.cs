@@ -36,6 +36,7 @@ namespace Rythm
         public override bool attack(Character character)
         {
             int damageDealt = this.strength;
+            int endurance;
 
             if (this.skills.Contains(Skills.StrengthBoost))
             {
@@ -43,15 +44,27 @@ namespace Rythm
                 damageDealt = (int)Math.Floor(tmp);
             }
 
-            if (character.skills.Contains(Skills.EnduranceBoost))
+            try
             {
-                double tmp = character.endurance * 1.5;
-                damageDealt -= (int)Math.Floor(tmp);
+                SkilledCharacter tmpCharacter = (SkilledCharacter)character;
+
+                if (tmpCharacter.skills.Contains(Skills.EnduranceBoost))
+                {
+                    double tmp = character.endurance * 1.5;
+                    endurance = (int)Math.Floor(tmp);
+                }
+                else
+                {
+                    endurance = character.endurance;
+                }
             }
-            else
+            catch (InvalidCastException e)  // Character doesn't have skills, ie it's a mob
             {
-                damageDealt -= character.endurance;
+                endurance = character.endurance;
             }
+
+            damageDealt -= endurance;
+            
             // TODO : Find a better way to deal damage
 
             // In case the attacked character endurance is bigger than the strength of the attacking one
