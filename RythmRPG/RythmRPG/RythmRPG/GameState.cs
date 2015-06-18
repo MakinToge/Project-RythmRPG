@@ -12,9 +12,12 @@ namespace RythmRPG {
         Commands,
         SingleMusic,
         PlaylistChallenge,
-        Credits,
-        Loading,
-        Playing,
-        Paused
+        Victory,
+        SongVictory,
+        PlaylistVictory,
+        PlaylistDefeat,
+        Pause,
+        Defeat,
+        MusicPlaying
     }
 }
