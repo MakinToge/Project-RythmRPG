@@ -64,6 +64,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -358,7 +359,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(190, 23);
             this.button1.TabIndex = 55;
-            this.button1.Text = "Use Stats Points";
+            this.button1.Text = "Spend Stats Points";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label27
@@ -397,11 +398,21 @@
             this.button3.Text = "Reset Level";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(80, 395);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 60;
+            this.button4.Text = "Back";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // CharactersManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 461);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.button2);
@@ -485,5 +496,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
