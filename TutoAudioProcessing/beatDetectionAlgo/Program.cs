@@ -149,7 +149,7 @@ namespace beatDetectionAlgo
             double[][] subbandsInstantEnergyArray = ComputeSubbandsInstantEnergyArray(left, right);//[totInst][subb]
             double[][] subbandsLocalEnergyAverageArray = new double[totalInstant][];//[subb]
 
-            for (int k = LocalLowerBound; k < subbandsInstantEnergyArray.Length - LocalInstantNumber / 2; k++)
+            for (int k = LocalLowerBound; k < totalInstant - LocalInstantNumber / 2; k++)
             {
                 subbandsLocalEnergyAverageArray[k] = ComputeSubbandsLocalEnergyAverage(subbandsInstantEnergyArray, k);
                 for (int i = 0; i < SubbandsNumber; i++)
