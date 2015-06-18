@@ -38,15 +38,15 @@ namespace Rythm
             int damageDealt = this.strength;
             int endurance;
 
-            if (this.skills.Contains(Skills.StrengthBoost))
-            {
-                double tmp = this.strength * 1.5;
-                damageDealt = (int)Math.Floor(tmp);
-            }
-
             try
             {
                 SkilledCharacter tmpCharacter = (SkilledCharacter)character;
+
+                if (this.skills.Contains(Skills.StrengthMegaBoost))
+                {
+                    double tmp = this.strength * 2;
+                    damageDealt = (int)Math.Floor(tmp);
+                }
 
                 if (tmpCharacter.skills.Contains(Skills.EnduranceBoost))
                 {
@@ -58,13 +58,19 @@ namespace Rythm
                     endurance = character.endurance;
                 }
             }
-            catch (InvalidCastException e)  // Character doesn't have skills, ie it's a mob
+            catch (InvalidCastException e) // ie it's a mob
             {
+                if (this.skills.Contains(Skills.StrengthBoost))
+                {
+                    double tmp = this.strength * 1.5;
+                    damageDealt = (int)Math.Floor(tmp);
+                }
+
                 endurance = character.endurance;
             }
 
             damageDealt -= endurance;
-            
+
             // TODO : Find a better way to deal damage
 
             // In case the attacked character endurance is bigger than the strength of the attacking one
