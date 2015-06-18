@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Rythm
 {
+    /// <summary>
+    /// This base class is mainly for the mobs
+    /// </summary>
     class Character
     {
         protected const int MINIMUM_STAT = 1;

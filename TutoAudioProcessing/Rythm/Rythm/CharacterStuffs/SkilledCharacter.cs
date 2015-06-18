@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Rythm
 {
+    /// <summary>
+    /// This class is for the players and bosses
+    /// </summary>
     class SkilledCharacter : Character
     {
         /// <summary>
