@@ -131,9 +131,24 @@ namespace Rythm
         public virtual bool attack(Character character)
         {
             int damageDealt = this.strength;
+            int endurance = character.endurance;
 
-            damageDealt -= character.endurance;
-            
+            try
+            {
+                SkilledCharacter tmpCharacter = (SkilledCharacter)character;
+
+                if (tmpCharacter.skills.Contains(Skills.EnduranceBoost))
+                {
+                    double tmp = character.endurance * 1.5;
+                    endurance = (int)Math.Floor(tmp);
+                }
+            }
+            catch (InvalidCastException e) // ie it's a mob, theoretically impossible
+            {
+            }
+
+            damageDealt -= endurance;
+
             // TODO : Find a better way to deal damage
 
             // In case the attacked character endurance is bigger than the strength of the attacking one
