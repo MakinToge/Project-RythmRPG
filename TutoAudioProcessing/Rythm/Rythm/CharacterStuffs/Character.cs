@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Rythm
+namespace Rythm.CharacterStuffs
 {
     /// <summary>
     /// This base class is mainly for the mobs
@@ -12,6 +14,11 @@ namespace Rythm
     {
         protected const int MINIMUM_STAT = 1;
         protected const int START_HEALTH = 50;
+
+        /// <summary>
+        /// The sprites of the character
+        /// </summary>
+        public CharacterSprites sprites { get; set; }
 
         /// <summary>
         /// Health maximum capacity
@@ -29,26 +36,23 @@ namespace Rythm
         /// Endurance level
         /// </summary>
         public int endurance { get; set; }
-        
-        /// <summary>
-        /// Default constructor
-        /// Will create a character with the default values
-        /// </summary>
-        public Character()
-            : this(START_HEALTH, MINIMUM_STAT, MINIMUM_STAT)
-        {
-            
-        }
 
         /// <summary>
         /// Will create a character with the given values
         /// </summary>
-        public Character(int health, int strength, int endurance)
+        public Character(int health, int strength, int endurance, string idleSpriteName, string attackingSpriteName)
         {
+            this.sprites = new CharacterSprites(idleSpriteName, attackingSpriteName);
+
             this.health = health;
             this.healthCpacity = health;
             this.strength = strength;
             this.endurance = endurance;
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            this.sprites.LoadContent(content);
         }
 
         /// <summary>
