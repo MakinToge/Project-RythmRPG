@@ -37,11 +37,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StartMenu\Achievements.png">
-      <Name>Achievements</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="StartMenu\Options.png">
       <Name>Options</Name>
       <Importer>TextureImporter</Importer>
@@ -215,6 +210,23 @@
   <ItemGroup>
     <Compile Include="Characters\dps.jpg">
       <Name>dps</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="StartMenu\Save1.png">
+      <Name>Save1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="StartMenu\Save2.png">
+      <Name>Save2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="StartMenu\Save3.png">
+      <Name>Save3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
