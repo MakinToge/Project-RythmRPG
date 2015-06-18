@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="CharacterStuffs\Character.cs" />
     <Compile Include="CharacterStuffs\SkilledCharacter.cs" />
+    <Compile Include="CharacterStuffs\CharacterSprites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
