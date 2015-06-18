@@ -20,9 +20,14 @@ namespace RythmRPG {
 
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
+        
         public static GameState GameState;
-        static public int Width;
-        static public int Height;
+        public static int VolumeMusic = 4;
+        public static int VolumeSound = 4;
+        public static Save Save;
+
+        public static int Width;
+        public static int Height;
         public static int UnitX;
         public static int UnitY;
         public static int ButtonWidth;
@@ -34,6 +39,8 @@ namespace RythmRPG {
         public KeyboardState PreviousKeyBoardState { get; set; }
         public StartMenu StartMenu { get; set; }
         public Options Options { get; set; }
+        public GameMenu GameMenu { get; set; }
+        public CharacterManagement CharacterManagement { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
@@ -48,6 +55,8 @@ namespace RythmRPG {
             UnitY = Game1.Height / 18;
             ButtonWidth = 8 * Game1.Width / 32;
             ButtonHeight = 1 * Game1.Height / 18;
+
+            Save = new Save();
         }
 
         /// <summary>
@@ -65,6 +74,11 @@ namespace RythmRPG {
             this.StartMenu.Initialize();
             this.Options = new Options();
             this.Options.Initialize();
+            this.GameMenu = new GameMenu();
+            this.GameMenu.Initialize();
+            this.CharacterManagement = new CharacterManagement();
+            this.CharacterManagement.Initialize();
+
             base.Initialize();
         }
 
@@ -79,6 +93,8 @@ namespace RythmRPG {
             // TODO: use this.Content to load your game content here
             this.StartMenu.LoadContent(this.Content);
             this.Options.LoadContent(this.Content);
+            this.GameMenu.LoadContent(this.Content);
+            this.CharacterManagement.LoadContent(this.Content);         
 
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
@@ -119,6 +135,12 @@ namespace RythmRPG {
                 case RythmRPG.GameState.Options:
                     this.Options.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
+                case RythmRPG.GameState.GameMenu:
+                    this.GameMenu.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.CharacterManagement:
+                    this.CharacterManagement.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
             };
 
             base.Update(gameTime);
@@ -138,6 +160,12 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.Options:
                     this.Options.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.GameMenu:
+                    this.GameMenu.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.CharacterManagement:
+                    this.CharacterManagement.Draw(spriteBatch, gameTime);
                     break;
             };
 

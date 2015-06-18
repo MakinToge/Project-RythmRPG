@@ -29,5 +29,11 @@ namespace RythmRPG.Pages {
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime) {
         }
+        public bool isOver(Rectangle mouse, Sprite sprite) {
+            if (mouse.Intersects(sprite.Rectangle)) {
+                return true;
+            }
+            return false;
+        }
     }
 }

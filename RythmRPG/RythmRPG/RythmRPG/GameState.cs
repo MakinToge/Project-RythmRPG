@@ -7,8 +7,8 @@ namespace RythmRPG {
     public enum GameState {
         StartMenu,
         Options,
-        CharactersSelection,
-        LevelSelection,
+        CharacterManagement,
+        GameMenu,
         Commands,
         Achievements,
         HighScores,
