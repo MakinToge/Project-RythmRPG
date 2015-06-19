@@ -15,11 +15,12 @@ namespace RythmRPG.Pages {
         public TextSprite Endurance { get; set; }
         public TextSprite HP { get; set; }
         public TextSprite Strength { get; set; }
+        public TextSprite Vitality { get; set; }
         public TextSprite StatsPoints { get; set; }
         public TextSprite Gold { get; set; }
         public Sprite Confirm { get; set; }
         public Sprite Cancel { get; set; }
-        public Sprite UpgradeHP { get; set; }
+        public Sprite UpgradeVitality { get; set; }
         public Sprite UpgradeAttack { get; set; }
         public Sprite UpgradeDefense { get; set; }
         public Sprite ResetStatsPoints { get; set; }
@@ -34,7 +35,7 @@ namespace RythmRPG.Pages {
             this.Confirm = new Sprite(21 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.UpgradeAttack = new Sprite(21 * Game1.UnitX, 8 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
             this.UpgradeDefense = new Sprite(21 * Game1.UnitX, 9 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
-            this.UpgradeHP = new Sprite(21 * Game1.UnitX, 7 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
+            this.UpgradeVitality = new Sprite(21 * Game1.UnitX, 10 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
             this.ResetStatsPoints = new Sprite(21 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
 
             //Explain TextSprite
@@ -48,7 +49,8 @@ namespace RythmRPG.Pages {
             this.HP = new TextSprite(14 * Game1.UnitX, 7.2f * Game1.UnitY, "50", Color.Black);
             this.Strength = new TextSprite(17 * Game1.UnitX, 8.2f * Game1.UnitY, "25", Color.Black);
             this.StatsPoints = new TextSprite(19 * Game1.UnitX, 6.2f * Game1.UnitY, "1", Color.Black);
-            this.Gold = new TextSprite(13 * Game1.UnitX, 10.2f * Game1.UnitY, "1", Color.Black);
+            this.Gold = new TextSprite(16 * Game1.UnitX, 11.2f * Game1.UnitY, "1", Color.Black);
+            this.Vitality = new TextSprite(18 * Game1.UnitX, 10.2f * Game1.UnitY, "1", Color.Black);
 
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
@@ -59,7 +61,7 @@ namespace RythmRPG.Pages {
             this.Confirm.LoadContent(content, "ModifyCharacter/Confirm");
             this.UpgradeAttack.LoadContent(content, "ModifyCharacter/Upgrade");
             this.UpgradeDefense.LoadContent(content, "ModifyCharacter/Upgrade");
-            this.UpgradeHP.LoadContent(content, "ModifyCharacter/Upgrade");
+            this.UpgradeVitality.LoadContent(content, "ModifyCharacter/Upgrade");
             this.ResetStatsPoints.LoadContent(content, "ModifyCharacter/ResetStatsPoints");
 
             this.Name.LoadContent(content, "Arial16");
@@ -70,6 +72,7 @@ namespace RythmRPG.Pages {
             this.StatsPoints.LoadContent(content, "Arial16");
             this.Gold.LoadContent(content, "Arial16");
             this.ExplainResetStats.LoadContent(content, "Arial16");
+            this.Vitality.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
@@ -79,7 +82,7 @@ namespace RythmRPG.Pages {
                 if (isOver(mouse, Back)) {
                     Game1.GameState = GameState.CharacterManagement;
                 }
-                else if (isOver(mouse, UpgradeHP)) {
+                else if (isOver(mouse, UpgradeVitality)) {
                 }
                 else if (isOver(mouse, UpgradeAttack)) {
                 }
@@ -103,7 +106,7 @@ namespace RythmRPG.Pages {
             this.Confirm.Draw(spriteBatch, gameTime);
             this.UpgradeAttack.Draw(spriteBatch, gameTime);
             this.UpgradeDefense.Draw(spriteBatch, gameTime);
-            this.UpgradeHP.Draw(spriteBatch, gameTime);
+            this.UpgradeVitality.Draw(spriteBatch, gameTime);
             this.ResetStatsPoints.Draw(spriteBatch, gameTime);
 
             //Character Data
@@ -114,6 +117,7 @@ namespace RythmRPG.Pages {
             this.Strength.Draw(spriteBatch, gameTime);
             this.StatsPoints.Draw(spriteBatch, gameTime);
             this.Gold.Draw(spriteBatch, gameTime);
+            this.Vitality.Draw(spriteBatch, gameTime);
 
             
             if (isOver(this.MouseRectangle, ResetStatsPoints)) {
@@ -128,7 +132,7 @@ namespace RythmRPG.Pages {
             this.HP.Text = character.HealthPoints.ToString();
             this.Strength.Text = character.StrengthPoints.ToString();
             this.StatsPoints.Text = character.StatsPoints.ToString();
-            this.Gold.Text = "Gold : " + character.Gold.ToString();
+            this.Gold.Text = character.Gold.ToString();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace RythmRPG.Pages {
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite Endurance { get; set; }
+        public TextSprite Vitality { get; set; }
         public TextSprite HP { get; set; }
         public TextSprite Strength { get; set; }
 
@@ -43,6 +44,7 @@ namespace RythmRPG.Pages {
             this.Endurance = new TextSprite(16 * Game1.UnitX, 6.9f * Game1.UnitY, "10", Color.Black);
             this.HP = new TextSprite(18 * Game1.UnitX, 7.9f * Game1.UnitY, "50", Color.Black);
             this.Strength = new TextSprite(18 * Game1.UnitX, 8.9f * Game1.UnitY, "25", Color.Black);
+            this.Vitality = new TextSprite(19 * Game1.UnitX, 9.9f * Game1.UnitY, "25", Color.Black);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "AfterGame/" + this.AssetNameMainImage);
@@ -61,6 +63,7 @@ namespace RythmRPG.Pages {
             this.Endurance.LoadContent(content, "Arial16");
             this.HP.LoadContent(content, "Arial16");
             this.Strength.LoadContent(content, "Arial16");
+            this.Vitality.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
@@ -89,6 +92,7 @@ namespace RythmRPG.Pages {
             this.Endurance.Draw(spriteBatch, gameTime);
             this.HP.Draw(spriteBatch, gameTime);
             this.Strength.Draw(spriteBatch, gameTime);
+            this.Vitality.Draw(spriteBatch, gameTime);
         }
 
         public void LoadDataCharacter(Character character) {
@@ -98,6 +102,7 @@ namespace RythmRPG.Pages {
             this.Endurance.Text = character.EndurancePoints.ToString();
             this.HP.Text = character.HealthPoints.ToString();
             this.Strength.Text = character.StrengthPoints.ToString();
+            this.Vitality.Text = character.Vitality.ToString();
         }
     }
 }
