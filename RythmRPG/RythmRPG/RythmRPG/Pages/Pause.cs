@@ -8,24 +8,42 @@ using System.Text;
 namespace RythmRPG.Pages {
     public class Pause : Page{
         public Sprite MainImage { get; set; }
+        public Sprite GameMenu { get; set; }
+        public Sprite Restart { get; set; }
+        public Sprite Resume { get; set; }
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
+            this.GameMenu = new Sprite(10 * Game1.UnitX, 12 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Restart = new Sprite(10 * Game1.UnitX, 9 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Resume = new Sprite(10 * Game1.UnitX, 6 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
-            this.MainImage.LoadContent(content, "SingleMusic/SingleMusic");
+            this.MainImage.LoadContent(content, "Pause/Pause");
+            this.GameMenu.LoadContent(content, "Pause/GameMenu2");
+            this.Restart.LoadContent(content, "Pause/Restart");
+            this.Resume.LoadContent(content, "Pause/Resume");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
-                /*
-                if (isOver(mouse, Back)) {
+
+                if (isOver(mouse, Resume)) {// Clique sur Resume
+                    Game1.GameState = GameState.MusicPlaying;
+                }
+                else if (isOver(mouse, GameMenu)) {// Clique sur GameMenu
                     Game1.GameState = GameState.GameMenu;
-                }*/
+                }
+                else if (isOver(mouse, Restart)) {// Clique sur Restart
+                    Game1.GameState = GameState.MusicPlaying;
+                }
             }
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
+            this.GameMenu.Draw(spriteBatch, gameTime);
+            this.Restart.Draw(spriteBatch, gameTime);
+            this.Resume.Draw(spriteBatch, gameTime);
         }
     }
 }

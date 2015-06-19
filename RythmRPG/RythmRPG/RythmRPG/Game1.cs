@@ -49,6 +49,7 @@ namespace RythmRPG {
         public AfterGame PlaylistVictory { get; set; }
         public Pause Pause { get; set; }
         public AfterGame Defeat { get; set; }
+        public MusicPlaying MusicPlaying { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
@@ -94,7 +95,7 @@ namespace RythmRPG {
             this.Victory.Initialize();
             this.SongVictory = new SongVictory();
             this.SongVictory.Initialize();
-            this.PlaylistDefeat = new PlaylistDefeat("PlaylistDefeat", "Fucking Loser, Shame on YOU !!!!!");
+            this.PlaylistDefeat = new PlaylistDefeat("PlaylistDefeat", "Loser !");
             this.PlaylistDefeat.Initialize();
             this.PlaylistVictory = new AfterGame("PlaylistVictory", "You win XX XP");
             this.PlaylistVictory.Initialize();
@@ -102,6 +103,8 @@ namespace RythmRPG {
             this.Pause.Initialize();
             this.Defeat = new AfterGame("Defeat", "You loose");
             this.Defeat.Initialize();
+            this.MusicPlaying = new MusicPlaying();
+            this.MusicPlaying.Initialize();
 
             base.Initialize();
         }
@@ -127,6 +130,7 @@ namespace RythmRPG {
             this.PlaylistVictory.LoadContent(this.Content);
             this.Pause.LoadContent(this.Content);
             this.Defeat.LoadContent(this.Content);
+            this.MusicPlaying.LoadContent(this.Content);
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
@@ -174,6 +178,9 @@ namespace RythmRPG {
             if (this.CurrentKeyBoardState.IsKeyDown(Keys.T)) {
                 Game1.GameState = RythmRPG.GameState.Victory;
             }
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Y)) {
+                Game1.GameState = RythmRPG.GameState.Pause;
+            }
 
             // TODO: Add your update logic here
             switch (GameState) {
@@ -212,6 +219,9 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.Defeat:
                     this.Defeat.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.MusicPlaying:
+                    this.MusicPlaying.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
             };
 
@@ -262,6 +272,9 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.Defeat:
                     this.Defeat.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.MusicPlaying:
+                    this.MusicPlaying.Draw(spriteBatch, gameTime);
                     break;
             };
 

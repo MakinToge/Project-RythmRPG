@@ -107,7 +107,7 @@ namespace RythmRPG.Pages {
 
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
-
+                    Game1.GameState = GameState.MusicPlaying;
                 }
             }
         }
