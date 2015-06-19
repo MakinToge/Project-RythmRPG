@@ -16,6 +16,7 @@ namespace RythmRPG.Pages {
         public TextSprite Endurance { get; set; }
         public TextSprite HP { get; set; }
         public TextSprite Strength { get; set; }
+        public Difficulty Difficulty { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);

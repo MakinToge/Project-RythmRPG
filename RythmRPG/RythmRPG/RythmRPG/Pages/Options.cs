@@ -18,6 +18,7 @@ namespace RythmRPG.Pages {
         public Sprite RightSound { get; set; }
         public Sprite[] VolumeMusic { get; set; }
         public Sprite[] VolumeSound { get; set; }
+        public Sprite ResetProgression { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -39,11 +40,14 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < this.VolumeSound.Length; i++) {
                 this.VolumeSound[i] = new Sprite((25 + i) * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
             }
+
+            this.ResetProgression = new Sprite(12 * Game1.UnitX, 16 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "Options/Options");
             this.Back.LoadContent(content, "Options/Back");
             this.SeeControls.LoadContent(content, "Options/SeeControls");
+            this.ResetProgression.LoadContent(content, "Options/ResetProgression");
 
             this.LeftDevice.LoadContent(content, "Options/ArrowLeft");
             this.RightDevice.LoadContent(content, "Options/ArrowRight");
@@ -66,6 +70,9 @@ namespace RythmRPG.Pages {
                 if (isOver(mouse, Back)) {
                     Game1.GameState = GameState.StartMenu;
                 }
+                else if (isOver(mouse, ResetProgression)) { //Clique sur ResetProgression
+                    
+                }
                     //Music Volume
                 else if (isOver(mouse, this.LeftMusic) && Game1.VolumeMusic > 0) {
                     Game1.VolumeMusic -= 2;
@@ -87,6 +94,7 @@ namespace RythmRPG.Pages {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
             this.SeeControls.Draw(spriteBatch, gameTime);
+            this.ResetProgression.Draw(spriteBatch, gameTime);
             this.LeftDevice.Draw(spriteBatch, gameTime);
             this.RightDevice.Draw(spriteBatch, gameTime);
             this.LeftMusic.Draw(spriteBatch, gameTime);

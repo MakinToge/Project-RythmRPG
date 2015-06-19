@@ -18,6 +18,7 @@ namespace RythmRPG {
         public int[] ArrayLevelXP { get; set; }
         public string[] SkillsActives { get; set; }
         public int ReachLevelMax { get; set; }
+        public int Gold { get; set; }
 
         public Character(string name, CharacterType type, string assetName, int level, int hp, int strength, int endurance, int statsPoints, int totalXP, int XP, int reachLevelMax) {
             this.Name = name;

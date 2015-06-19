@@ -50,6 +50,7 @@ namespace RythmRPG {
         public Pause Pause { get; set; }
         public AfterGame Defeat { get; set; }
         public MusicPlaying MusicPlaying { get; set; }
+        public ModifyCharacter ModifyCharacter { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
@@ -105,6 +106,12 @@ namespace RythmRPG {
             this.Defeat.Initialize();
             this.MusicPlaying = new MusicPlaying();
             this.MusicPlaying.Initialize();
+            this.ModifyCharacter = new ModifyCharacter();
+            this.ModifyCharacter.Initialize();
+
+            this.SingleMusic.MusicPlaying = this.MusicPlaying;
+            this.PlaylistChallenge.MusicPlaying = this.MusicPlaying;
+            this.CharacterManagement.ModifyCharacter = this.ModifyCharacter;
 
             base.Initialize();
         }
@@ -131,9 +138,9 @@ namespace RythmRPG {
             this.Pause.LoadContent(this.Content);
             this.Defeat.LoadContent(this.Content);
             this.MusicPlaying.LoadContent(this.Content);
+            this.ModifyCharacter.LoadContent(this.Content);
 
-            this.SingleMusic.MusicPlaying = this.MusicPlaying;
-            this.PlaylistChallenge.MusicPlaying = this.MusicPlaying;
+            
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
@@ -226,6 +233,9 @@ namespace RythmRPG {
                 case RythmRPG.GameState.MusicPlaying:
                     this.MusicPlaying.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
+                case RythmRPG.GameState.ModifyCharacter:
+                    this.ModifyCharacter.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
             };
 
             base.Update(gameTime);
@@ -278,6 +288,9 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.MusicPlaying:
                     this.MusicPlaying.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.ModifyCharacter:
+                    this.ModifyCharacter.Draw(spriteBatch, gameTime);
                     break;
             };
 

@@ -8,6 +8,7 @@ namespace RythmRPG {
         StartMenu,
         Options,
         CharacterManagement,
+        ModifyCharacter,
         GameMenu,
         Commands,
         SingleMusic,
