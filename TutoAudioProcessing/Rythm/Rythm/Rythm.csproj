@@ -72,9 +72,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterStuffs\Boss.cs" />
     <Compile Include="CharacterStuffs\Character.cs" />
-    <Compile Include="CharacterStuffs\SkilledCharacter.cs" />
     <Compile Include="CharacterStuffs\CharacterSprites.cs" />
+    <Compile Include="CharacterStuffs\Mob.cs" />
+    <Compile Include="CharacterStuffs\PlayableCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
