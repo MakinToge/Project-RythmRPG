@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Rythm.CharacterStuffs
 {
-    class Character
+    abstract class Character
     {
         public int level { get; set; }
 
