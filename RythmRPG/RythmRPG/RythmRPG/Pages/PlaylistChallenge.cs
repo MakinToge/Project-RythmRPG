@@ -20,6 +20,7 @@ namespace RythmRPG.Pages {
         public Sprite[] Classic { get; set; }
         public Sprite[] Hardcore { get; set; }
         public int SelectedMode { get; set; }
+        public MusicPlaying MusicPlaying { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -108,6 +109,9 @@ namespace RythmRPG.Pages {
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
                     Game1.GameState = GameState.MusicPlaying;
+                    int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
+                    Character character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];
+                    this.MusicPlaying.LoadDataCharacter(character);
                 }
             }
         }

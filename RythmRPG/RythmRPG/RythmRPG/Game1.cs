@@ -131,6 +131,9 @@ namespace RythmRPG {
             this.Pause.LoadContent(this.Content);
             this.Defeat.LoadContent(this.Content);
             this.MusicPlaying.LoadContent(this.Content);
+
+            this.SingleMusic.MusicPlaying = this.MusicPlaying;
+            this.PlaylistChallenge.MusicPlaying = this.MusicPlaying;
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;

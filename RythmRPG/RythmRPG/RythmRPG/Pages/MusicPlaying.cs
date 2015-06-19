@@ -7,6 +7,8 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class MusicPlaying : Page{
+        public bool isLoading { get; set; }
+        public bool isLoaded { get; set; }
         public Sprite MainImage { get; set; }
         public Sprite[] SpriteCharacters { get; set; }
         public TextSprite Name { get; set; }
@@ -56,6 +58,10 @@ namespace RythmRPG.Pages {
             }
         }
 
+        public override void Update(GameTime gametime) {
+            
+        }
+
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
 
@@ -74,6 +80,10 @@ namespace RythmRPG.Pages {
             this.Endurance.Text = character.EndurancePoints.ToString();
             this.HP.Text = character.HealthPoints.ToString();
             this.Strength.Text = character.StrengthPoints.ToString();
+        }
+
+        public void LoadGame() {
+            this.isLoaded = true;
         }
     }
 }
