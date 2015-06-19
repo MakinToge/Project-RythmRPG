@@ -13,20 +13,20 @@ namespace beatDetectionAlgo
 {
     class Program
     {
-        public const int SubbandsNumber = 4;
+        public static bool log = false;
+        public const int SubbandsNumber = 16;
         public const int InstantWidth = 1024;//must be a power of 2 and a multiple of SubBandNumber
         public const int LocalWidth = 44032;//must be a multiple of InstantWidth(best result if ~1sec of music (== SampleRate))
         public const int LocalInstantNumber = LocalWidth / InstantWidth;
         public static int LocalLowerBound = getLocalLowerBound();
-        public const string MusicDirectory = "musicDir";
+        public const string MusicDirectory = "musicDir";//Resampling output directory
+        public const int outRate = 44032;//SampleRate for resampling
 
         static void Main(string[] args)
         {
-            //Resampling("HarrisLilliburleroShort.mp3");
-            Resampling("InstrumentalTheme05.mp3");
-            
-            //List<Beat> beats = DetectBeat("HarrisLilliburleroShort.wav");
-            List<Beat> beats = DetectBeat("InstrumentalTheme05.wav");
+            string file = "HarrisLilliburleroShort";//HarrisLilliburleroShort
+            Resampling(file + ".mp3");
+            List<Beat> beats = DetectBeat(file + ".wav");
             foreach (Beat beat in beats)
             {
                 Console.WriteLine(beat);
@@ -39,11 +39,11 @@ namespace beatDetectionAlgo
             for (int i = 0; i < SubbandsNumber; i++)
             {
                 double subbandLocalEnergy = 0;
-                for (int k = historyIndex - LocalLowerBound; k < historyIndex + LocalInstantNumber / 2; k++)
+                for (int k = LocalLowerBound; k < LocalInstantNumber / 2; k++)
                 {
-                    subbandLocalEnergy += instantSubbandsEnergyArray[k][i];
+                    subbandLocalEnergy += instantSubbandsEnergyArray[historyIndex + k][i];
                 }
-                subbandsLocalEnergyAverage[i] = 1 / (double)LocalInstantNumber * subbandLocalEnergy;
+                subbandsLocalEnergyAverage[i] = subbandLocalEnergy / (double)LocalInstantNumber;
             }
             return subbandsLocalEnergyAverage;
         }
@@ -76,19 +76,19 @@ namespace beatDetectionAlgo
             double[] InstantEnergybySubband = new double[SubbandsNumber];
             double[] Buffer = new double[InstantWidth];
 
-            for (int i = 0; i < InstantWidth; i+=2)//(B)
+            for (int i = 0; i < InstantWidth; i += 2)//(B)
             {
-                Buffer[i/2] = Math.Pow(instantBuffer[i], 2) + Math.Pow(instantBuffer[i+1], 2);//square module
+                Buffer[i / 2] = Math.Pow(instantBuffer[i], 2) + Math.Pow(instantBuffer[i + 1], 2);//square module
             }
 
             for (int i = 0; i < SubbandsNumber; i++)//(Es)
             {
                 double SubbandSum = 0;
-                for (int k = 0; k < InstantWidth/SubbandsNumber; k++)
+                for (int k = 0; k < InstantWidth / SubbandsNumber; k++)
                 {
                     SubbandSum += Buffer[k + i * SubbandsNumber];
                 }
-                InstantEnergybySubband[i] = (double)SubbandsNumber / (double)InstantWidth * SubbandSum;
+                InstantEnergybySubband[i] = (double)SubbandsNumber / InstantWidth * SubbandSum;
             }
 
             return InstantEnergybySubband;
@@ -98,37 +98,37 @@ namespace beatDetectionAlgo
         {
             LomontFFT fftTool = new LomontFFT();
             int totalInstant = left.Length / InstantWidth;
-            double[][] stereo = new double[totalInstant][];//[InstantWidth * 2];
+            double[][] complexData = new double[totalInstant][];//[InstantWidth * 2];
             double[][] subbandsInstantEnergyArray = new double[totalInstant][];//[SubbandsNumber]
 
             for (int i = 0; i < totalInstant; i++)
             {
-                Console.WriteLine(string.Format("instant {0} out of {1}",i,totalInstant));
-                stereo[i] = new double[InstantWidth*2];
-                for (int k = 0; k < InstantWidth*2; k+=2)
+                Console.WriteLine(string.Format("instant {0} out of {1}", i, totalInstant));
+                complexData[i] = new double[InstantWidth * 2];
+                for (int k = 0; k < InstantWidth * 2; k += 2)
                 {
 
-                    stereo[i][k] = (float)left[i * InstantWidth + k/2];
-                    stereo[i][k+1] = (float)right[i * InstantWidth + k/2];
+                    complexData[i][k] = (float)left[i * InstantWidth + k / 2];
+                    complexData[i][k + 1] = (float)right[i * InstantWidth + k / 2];
                 }
-                //FastFourierTransform.FFT(true, InstantWidth, stereo[i]);//stereo is an input and ouput parameter
-                fftTool.FFT(stereo[i], true);
-                subbandsInstantEnergyArray[i] = ComputeSubbandsInstantEnergy(stereo[i]);
+                //FastFourierTransform.FFT(true, InstantWidth, complexData[i]);//complexData is an input and ouput parameter
+                fftTool.FFT(complexData[i], true);
+                subbandsInstantEnergyArray[i] = ComputeSubbandsInstantEnergy(complexData[i]);
             }
             return subbandsInstantEnergyArray;
             /*
             for (int i = 0; i < totalInstant; i++)
             {
                 Console.WriteLine(string.Format("instant {0} out of {1}",i,totalInstant));
-                stereo[i] = new Complex[InstantWidth];
+                complexData[i] = new Complex[InstantWidth];
                 for (int k = 0; k < InstantWidth; k++)
                 {
 
-                    stereo[i][k].X = (float)left[i * InstantWidth + k];
-                    stereo[i][k].Y = (float)right[i * InstantWidth + k];
+                    complexData[i][k].X = (float)left[i * InstantWidth + k];
+                    complexData[i][k].Y = (float)right[i * InstantWidth + k];
                 }
-                FastFourierTransform.FFT(true, InstantWidth, stereo[i]);//stereo is an input and ouput parameter
-                subbandsInstantEnergyArray[i] = ComputeSubbandsInstantEnergy(stereo[i]);
+                FastFourierTransform.FFT(true, InstantWidth, complexData[i]);//complexData is an input and ouput parameter
+                subbandsInstantEnergyArray[i] = ComputeSubbandsInstantEnergy(complexData[i]);
             }
              */
         }
@@ -151,16 +151,30 @@ namespace beatDetectionAlgo
 
             double[][] subbandsInstantEnergyArray = ComputeSubbandsInstantEnergyArray(left, right);//[totInst][subb]
             double[][] subbandsLocalEnergyAverageArray = new double[totalInstant][];//[subb]
+            double variance = 0;
+            double c = 2.5;
+            double v0 = 1.5;
 
-            for (int k = LocalLowerBound; k < totalInstant - LocalInstantNumber / 2; k++)
+            for (int k = -LocalLowerBound; k < totalInstant - LocalInstantNumber / 2; k++)
             {
                 subbandsLocalEnergyAverageArray[k] = ComputeSubbandsLocalEnergyAverage(subbandsInstantEnergyArray, k);
                 for (int i = 0; i < SubbandsNumber; i++)
                 {
-                    Console.WriteLine(string.Format("instant {0}, subb {1} : instant energy {2}, Local Average {3}", k, i, subbandsInstantEnergyArray[k][i], subbandsLocalEnergyAverageArray[k][i]));
-                    if (subbandsInstantEnergyArray[k][i] > 2.8 * subbandsLocalEnergyAverageArray[k][i])
+                    double sum = 0;
+                    for (int j = LocalLowerBound; j < LocalInstantNumber / 2; j++)
                     {
-                        beats.Add(new Beat((double)k/LocalInstantNumber, i));
+                        sum += Math.Pow(subbandsInstantEnergyArray[k + j][i] - subbandsLocalEnergyAverageArray[k][i], 2);
+                    }
+                    variance = sum / LocalInstantNumber;
+                    c = 4 - (Math.Exp(0.3 * i / SubbandsNumber) - 1) * 2;
+                    if (log)
+                    {
+                        Console.WriteLine(string.Format("instant {0}, subb {1} : instant energy {2}, Local Average {3}", k, i, subbandsInstantEnergyArray[k][i], subbandsLocalEnergyAverageArray[k][i]));
+                        Console.WriteLine(string.Format("var {0}, C {1}", variance, c));
+                    }
+                    if (subbandsInstantEnergyArray[k][i] > c * subbandsLocalEnergyAverageArray[k][i] && variance > v0)
+                    {
+                        beats.Add(new Beat((double)k / LocalInstantNumber, i));
                     }
                 }
             }
@@ -170,18 +184,16 @@ namespace beatDetectionAlgo
         {
             if (LocalInstantNumber % 2 == 0)
             {
-                return LocalInstantNumber / 2;
+                return -LocalInstantNumber / 2;
             }
             else
             {
-                return LocalInstantNumber / 2 - 1;
+                return -LocalInstantNumber / 2 - 1;
             }
         }
         static public void Resampling(string inFilePath)
         {
-            string musicDir = "musicDir/";
-            int outRate = 44032;
-            var outFile = musicDir + Path.GetFileNameWithoutExtension(inFilePath) + ".wav";
+            var outFile = MusicDirectory + Path.GetFileNameWithoutExtension(inFilePath) + ".wav";
 
             using (var reader = new Mp3FileReader(inFilePath))
             {
@@ -194,14 +206,15 @@ namespace beatDetectionAlgo
             }
         }
 
-        // convert two bytes to one double in the range -1 to 1
+        // convert two bytes to one double in the range 0 to 64
         static double bytesToDouble(byte firstByte, byte secondByte)
         {
             // convert two bytes to one short (little endian)
             short s = (short)((secondByte << 8) | firstByte);
-            //Console.WriteLine(s + 32768);
-            // convert to range from -1 to (just below) 1
-            return s + 32768.0;
+
+            // convert to range from -1 to 1 (just below)
+            //return (double)s / 32768.0;
+            return ((s + 32768) / (double)1024);
         }
 
         // Returns left and right double arrays. 'right' will be null if sound is mono.
@@ -209,7 +222,7 @@ namespace beatDetectionAlgo
         {
             byte[] wav = File.ReadAllBytes(filename);
 
-            // Determine if mono or stereo
+            // Determine if mono or complexData
             int channels = wav[22];     // Forget byte 23 as 99.999% of WAVs are 1 or 2 channels
 
             // Get past all the other sub chunks to get to the data subchunk:
@@ -226,7 +239,7 @@ namespace beatDetectionAlgo
 
             // Pos is now positioned to start of actual sound data.
             int samples = (wav.Length - pos) / 2;     // 2 bytes per sample (16 bit sound mono)
-            if (channels == 2) samples /= 2;        // 4 bytes per sample (16 bit stereo)
+            if (channels == 2) samples /= 2;        // 4 bytes per sample (16 bit complexData)
 
             // Allocate memory (right will be null if only mono sound)
             left = new double[samples];

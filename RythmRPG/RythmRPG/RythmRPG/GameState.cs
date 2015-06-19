@@ -10,11 +10,14 @@ namespace RythmRPG {
         CharacterManagement,
         GameMenu,
         Commands,
-        Achievements,
-        HighScores,
-        Credits,
-        Loading,
-        Playing,
-        Paused
+        SingleMusic,
+        PlaylistChallenge,
+        Victory,
+        SongVictory,
+        PlaylistVictory,
+        PlaylistDefeat,
+        Pause,
+        Defeat,
+        MusicPlaying
     }
 }
