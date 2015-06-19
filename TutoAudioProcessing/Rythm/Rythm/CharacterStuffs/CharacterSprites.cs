@@ -44,7 +44,7 @@ namespace Rythm.CharacterStuffs
         /// </summary>
         public bool isAttacking { get; set; }
 
-        public CharacterSprites(string idleSpriteName, string attackingSpriteName)
+        public CharacterSprites(string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
         {
             this.isAttacking = false;
             this.idleSpriteName = idleSpriteName;
