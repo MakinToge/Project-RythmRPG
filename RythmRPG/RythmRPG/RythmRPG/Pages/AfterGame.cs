@@ -38,13 +38,13 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < SpriteCharacters.Length; i++) {
                 this.SpriteCharacters[i] = new Sprite(3 * Game1.UnitX, 5 * Game1.UnitY, 9 * Game1.UnitX, 9 * Game1.UnitY);
             }
-            this.Type = new TextSprite(17 * Game1.UnitX, 3.9f * Game1.UnitY, "Medium", Color.Black);
-            this.Name = new TextSprite(17 * Game1.UnitX, 4.9f * Game1.UnitY, "Florizarre", Color.Black);
-            this.Level = new TextSprite(17 * Game1.UnitX, 5.9f * Game1.UnitY, "1", Color.Black);
-            this.Endurance = new TextSprite(16 * Game1.UnitX, 6.9f * Game1.UnitY, "10", Color.Black);
-            this.HP = new TextSprite(18 * Game1.UnitX, 7.9f * Game1.UnitY, "50", Color.Black);
-            this.Strength = new TextSprite(18 * Game1.UnitX, 8.9f * Game1.UnitY, "25", Color.Black);
-            this.Vitality = new TextSprite(19 * Game1.UnitX, 9.9f * Game1.UnitY, "25", Color.Black);
+            this.Type = new TextSprite(17 * Game1.UnitX, 3.9f * Game1.UnitY, "", Color.Black);
+            this.Name = new TextSprite(17 * Game1.UnitX, 4.9f * Game1.UnitY, "", Color.Black);
+            this.Level = new TextSprite(17 * Game1.UnitX, 5.9f * Game1.UnitY, "", Color.Black);
+            this.Endurance = new TextSprite(16 * Game1.UnitX, 6.9f * Game1.UnitY, "", Color.Black);
+            this.HP = new TextSprite(18 * Game1.UnitX, 7.9f * Game1.UnitY, "", Color.Black);
+            this.Strength = new TextSprite(18 * Game1.UnitX, 8.9f * Game1.UnitY, "", Color.Black);
+            this.Vitality = new TextSprite(19 * Game1.UnitX, 9.9f * Game1.UnitY, "", Color.Black);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "AfterGame/" + this.AssetNameMainImage);
@@ -98,7 +98,12 @@ namespace RythmRPG.Pages {
         public void LoadDataCharacter(Character character) {
             this.Type.Text = character.Type.ToString();
             this.Name.Text = character.Name;
-            this.Level.Text = character.Level.ToString();
+            if (character.ReachLevelMax == 0) {
+                this.Level.Text = character.Level.ToString();
+            }
+            else {
+                this.Level.Text = string.Format("{0} ({1})", character.Level, character.ReachLevelMax);
+            }
             this.Endurance.Text = character.EndurancePoints.ToString();
             this.HP.Text = character.HealthPoints.ToString();
             this.Strength.Text = character.StrengthPoints.ToString();

@@ -43,14 +43,14 @@ namespace RythmRPG.Pages {
 
             //Character Data
             this.CharacterSprite = new Sprite(2 * Game1.UnitX, 5 * Game1.UnitY, 8 * Game1.UnitX, 8 * Game1.UnitY);
-            this.Name = new TextSprite(15 * Game1.UnitX, 4.2f * Game1.UnitY, "Florizarre", Color.Black);
-            this.Level = new TextSprite(16 * Game1.UnitX, 5.2f * Game1.UnitY, "1", Color.Black);
-            this.Endurance = new TextSprite(17 * Game1.UnitX, 9.2f * Game1.UnitY, "10", Color.Black);
-            this.HP = new TextSprite(14 * Game1.UnitX, 7.2f * Game1.UnitY, "50", Color.Black);
-            this.Strength = new TextSprite(17 * Game1.UnitX, 8.2f * Game1.UnitY, "25", Color.Black);
-            this.StatsPoints = new TextSprite(19 * Game1.UnitX, 6.2f * Game1.UnitY, "1", Color.Black);
-            this.Gold = new TextSprite(16 * Game1.UnitX, 11.2f * Game1.UnitY, "1", Color.Black);
-            this.Vitality = new TextSprite(18 * Game1.UnitX, 10.2f * Game1.UnitY, "1", Color.Black);
+            this.Name = new TextSprite(15 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
+            this.Level = new TextSprite(16 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.Endurance = new TextSprite(17 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
+            this.HP = new TextSprite(14 * Game1.UnitX, 7.2f * Game1.UnitY, "", Color.Black);
+            this.Strength = new TextSprite(17 * Game1.UnitX, 8.2f * Game1.UnitY, "", Color.Black);
+            this.StatsPoints = new TextSprite(19 * Game1.UnitX, 6.2f * Game1.UnitY, "", Color.Black);
+            this.Gold = new TextSprite(16 * Game1.UnitX, 11.2f * Game1.UnitY, "", Color.Black);
+            this.Vitality = new TextSprite(18 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
 
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
