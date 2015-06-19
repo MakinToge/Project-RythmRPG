@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio">
-      <HintPath>..\NAudio.dll</HintPath>
+      <HintPath>..\TutoAudioProcessing\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="NAudio.WindowsMediaFormat">
       <HintPath>..\NAudio.WindowsMediaFormat.dll</HintPath>

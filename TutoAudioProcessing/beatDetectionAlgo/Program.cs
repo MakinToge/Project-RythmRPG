@@ -13,7 +13,7 @@ namespace beatDetectionAlgo
 {
     class Program
     {
-        public const int SubbandsNumber = 32;
+        public const int SubbandsNumber = 4;
         public const int InstantWidth = 1024;//must be a power of 2 and a multiple of SubBandNumber
         public const int LocalWidth = 44032;//must be a multiple of InstantWidth(best result if ~1sec of music (== SampleRate))
         public const int LocalInstantNumber = LocalWidth / InstantWidth;
@@ -22,8 +22,11 @@ namespace beatDetectionAlgo
 
         static void Main(string[] args)
         {
-            Resampling("HarrisLilliburleroShort.mp3");
-            List<Beat> beats = DetectBeat("HarrisLilliburleroShort.wav");
+            //Resampling("HarrisLilliburleroShort.mp3");
+            Resampling("InstrumentalTheme05.mp3");
+            
+            //List<Beat> beats = DetectBeat("HarrisLilliburleroShort.wav");
+            List<Beat> beats = DetectBeat("InstrumentalTheme05.wav");
             foreach (Beat beat in beats)
             {
                 Console.WriteLine(beat);
@@ -155,7 +158,7 @@ namespace beatDetectionAlgo
                 for (int i = 0; i < SubbandsNumber; i++)
                 {
                     Console.WriteLine(string.Format("instant {0}, subb {1} : instant energy {2}, Local Average {3}", k, i, subbandsInstantEnergyArray[k][i], subbandsLocalEnergyAverageArray[k][i]));
-                    if (subbandsInstantEnergyArray[k][i] > 8.50 * subbandsLocalEnergyAverageArray[k][i])
+                    if (subbandsInstantEnergyArray[k][i] > 2.8 * subbandsLocalEnergyAverageArray[k][i])
                     {
                         beats.Add(new Beat((double)k/LocalInstantNumber, i));
                     }
