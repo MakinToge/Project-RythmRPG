@@ -19,19 +19,24 @@ namespace RythmRPG {
         public string[] SkillsActives { get; set; }
         public int ReachLevelMax { get; set; }
         public int Gold { get; set; }
+        public int Vitality { get; set; }
+        public string Abilility { get; set; }
 
-        public Character(string name, CharacterType type, string assetName, int level, int hp, int strength, int endurance, int statsPoints, int totalXP, int XP, int reachLevelMax) {
+        public Character(string name, CharacterType type, string assetName, int level, int vitality, int strength, int endurance, int statsPoints, int totalXP, int XP, int reachLevelMax) {
             this.Name = name;
             this.Type = type;
             this.AssetName = assetName;
             this.Level = level;
-            this.HealthPoints = hp;
+            this.HealthPoints = vitality;
+            this.Vitality = vitality;
             this.StrengthPoints = strength;
             this.EndurancePoints = endurance;
             this.StatsPoints = statsPoints;
             this.TotalXP = totalXP;
             this.XP = XP;
             this.ReachLevelMax = reachLevelMax;
+
+            this.Abilility = "Special Ability";
         }
     }
 }

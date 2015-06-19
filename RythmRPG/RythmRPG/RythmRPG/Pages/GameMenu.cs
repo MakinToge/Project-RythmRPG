@@ -21,9 +21,11 @@ namespace RythmRPG.Pages {
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite Endurance { get; set; }
+        public TextSprite Vitality { get; set; }
         public TextSprite HP { get; set; }
         public TextSprite Strength { get; set; }
         public TextSprite[] Skills { get; set; }
+        public TextSprite Ability { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -42,13 +44,16 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < SpriteCharacters.Length; i++) {
                 this.SpriteCharacters [i] = new Sprite(13 * Game1.UnitX, 5 * Game1.UnitY, 10 * Game1.UnitX, 10 * Game1.UnitY);
 			}
-            this.Type = new TextSprite(27 * Game1.UnitX, 3.2f * Game1.UnitY,"Medium", Color.Black);
-            this.Name = new TextSprite(27 * Game1.UnitX, 4.2f * Game1.UnitY, "Florizarre", Color.Black);
-            this.Level = new TextSprite(28 * Game1.UnitX, 5.2f * Game1.UnitY, "1", Color.Black);
-            this.Endurance = new TextSprite(28 * Game1.UnitX, 6.2f * Game1.UnitY, "10", Color.Black);
-            this.HP = new TextSprite(26 * Game1.UnitX, 7.2f * Game1.UnitY, "50", Color.Black);
-            this.Strength = new TextSprite(28 * Game1.UnitX, 8.2f * Game1.UnitY, "25", Color.Black);
+            this.Type = new TextSprite(27 * Game1.UnitX, 3.2f * Game1.UnitY,"", Color.Black);
+            this.Name = new TextSprite(27 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
+            this.Level = new TextSprite(28 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.Endurance = new TextSprite(28 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
+            this.HP = new TextSprite(26 * Game1.UnitX, 6.2f * Game1.UnitY, "", Color.Black);
+            this.Strength = new TextSprite(28 * Game1.UnitX, 8.2f * Game1.UnitY, "", Color.Black);
+            this.Vitality = new TextSprite(29 * Game1.UnitX, 7.2f * Game1.UnitY, "", Color.Black);
+            this.Ability = new TextSprite(28 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
 
+            this.LoadDataCharacter(this.Characters.CharacterArray[0]);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "GameMenu/GameMenu");
@@ -71,6 +76,8 @@ namespace RythmRPG.Pages {
             this.Endurance.LoadContent(content, "Arial16");
             this.HP.LoadContent(content, "Arial16");
             this.Strength.LoadContent(content, "Arial16");
+            this.Ability.LoadContent(content, "Arial16");
+            this.Vitality.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
@@ -117,15 +124,23 @@ namespace RythmRPG.Pages {
             this.Endurance.Draw(spriteBatch, gameTime);
             this.HP.Draw(spriteBatch, gameTime);
             this.Strength.Draw(spriteBatch, gameTime);
+            this.Ability.Draw(spriteBatch, gameTime);
+            this.Vitality.Draw(spriteBatch, gameTime);
         }
 
         public void LoadDataCharacter(Character character){
             this.Type.Text = character.Type.ToString();
             this.Name.Text = character.Name;
-            this.Level.Text = character.Level.ToString();
+            if (character.ReachLevelMax == 0) {
+                this.Level.Text = character.Level.ToString();
+            }
+            else {
+                this.Level.Text = string.Format("{0} ({1})", character.Level, character.ReachLevelMax);
+            }
             this.Endurance.Text = character.EndurancePoints.ToString();
             this.HP.Text = character.HealthPoints.ToString();
             this.Strength.Text = character.StrengthPoints.ToString();
+            this.Ability.Text = character.Abilility;
         }
     }
 }

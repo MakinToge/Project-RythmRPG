@@ -11,7 +11,6 @@ namespace RythmRPG.Pages {
         public Sprite Start { get; set; }
         public Sprite Options { get; set; }
         public Sprite[] SaveSprites { get; set; }
-        public Sprite Scores { get; set; }
         public Sprite LeftSave { get; set; }
         public Sprite RightSave { get; set; }
 
@@ -26,7 +25,6 @@ namespace RythmRPG.Pages {
             this.LeftSave = new Sprite(3 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
             this.RightSave = new Sprite(10 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
             
-            this.Scores = new Sprite(3 * Game1.UnitX, 15 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "StartMenu/StartMenu");
@@ -37,7 +35,6 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < Save.NB_SAVE; i++) {
                 this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i+1));
             }
-            this.Scores.LoadContent(content, "StartMenu/Scores");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
@@ -45,9 +42,6 @@ namespace RythmRPG.Pages {
 
                 if (isOver(mouse, Options)) {
                     Game1.GameState = GameState.Options;
-                }
-                else if (isOver(mouse, Scores)) {
-
                 }
                 else if (isOver(mouse, Start)) {
                     Game1.GameState = GameState.GameMenu;
@@ -68,7 +62,6 @@ namespace RythmRPG.Pages {
             this.LeftSave.Draw(spriteBatch, gameTime);
             this.RightSave.Draw(spriteBatch, gameTime);
             this.SaveSprites[Game1.Save.SelectedSave].Draw(spriteBatch, gameTime);
-            this.Scores.Draw(spriteBatch, gameTime);
         }
     }
 }

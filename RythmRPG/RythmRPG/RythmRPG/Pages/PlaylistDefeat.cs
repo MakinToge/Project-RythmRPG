@@ -48,6 +48,7 @@ namespace RythmRPG.Pages {
             this.Endurance.Draw(spriteBatch, gameTime);
             this.HP.Draw(spriteBatch, gameTime);
             this.Strength.Draw(spriteBatch, gameTime);
+            this.Vitality.Draw(spriteBatch, gameTime);
         }
     }
 }

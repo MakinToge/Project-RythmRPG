@@ -15,8 +15,12 @@ namespace RythmRPG.Pages {
         public TextSprite Level { get; set; }
         public TextSprite Endurance { get; set; }
         public TextSprite HP { get; set; }
+        public int HPStart { get; set; }
         public TextSprite Strength { get; set; }
         public Difficulty Difficulty { get; set; }
+        public TextSprite[] Skills { get; set; }
+        public TextSprite Ability { get; set; }
+        
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -27,11 +31,13 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < SpriteCharacters.Length; i++) {
                 this.SpriteCharacters[i] = new Sprite(17 * Game1.UnitX, 2 * Game1.UnitY, 5 * Game1.UnitX, 5 * Game1.UnitY);
             }
-            this.Name = new TextSprite(17 * Game1.UnitX, 1f * Game1.UnitY, "Florizarre", Color.Black);
-            this.Level = new TextSprite(26 * Game1.UnitX, 2.2f * Game1.UnitY, "1", Color.Black);
-            this.Endurance = new TextSprite(26 * Game1.UnitX, 5.2f * Game1.UnitY, "10", Color.Black);
-            this.HP = new TextSprite(26 * Game1.UnitX, 3.2f * Game1.UnitY, "50", Color.Black);
-            this.Strength = new TextSprite(26 * Game1.UnitX, 4.2f * Game1.UnitY, "25", Color.Black);
+            this.Name = new TextSprite(17 * Game1.UnitX, 1f * Game1.UnitY, "", Color.Black);
+            this.Level = new TextSprite(26 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
+            this.Endurance = new TextSprite(26 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.HP = new TextSprite(25 * Game1.UnitX, 3.2f * Game1.UnitY, "", Color.Black);
+            this.Strength = new TextSprite(26 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
+
+            this.Ability = new TextSprite(28 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "MusicPlaying/MusicPlaying");
@@ -47,6 +53,7 @@ namespace RythmRPG.Pages {
             this.Endurance.LoadContent(content, "Arial16");
             this.HP.LoadContent(content, "Arial16");
             this.Strength.LoadContent(content, "Arial16");
+            this.Ability.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             /*
@@ -73,14 +80,23 @@ namespace RythmRPG.Pages {
             this.Endurance.Draw(spriteBatch, gameTime);
             this.HP.Draw(spriteBatch, gameTime);
             this.Strength.Draw(spriteBatch, gameTime);
+            this.Ability.Draw(spriteBatch, gameTime);
         }
 
         public void LoadDataCharacter(Character character) {
+            this.HPStart = character.HealthPoints;
             this.Name.Text = character.Name;
-            this.Level.Text = character.Level.ToString();
+            if (character.ReachLevelMax == 0) {
+                this.Level.Text = character.Level.ToString();
+            }
+            else {
+                this.Level.Text = string.Format("{0} ({1})", character.Level, character.ReachLevelMax);
+            }
+            
             this.Endurance.Text = character.EndurancePoints.ToString();
-            this.HP.Text = character.HealthPoints.ToString();
+            this.HP.Text = character.HealthPoints.ToString() + " / " + this.HPStart.ToString();
             this.Strength.Text = character.StrengthPoints.ToString();
+            this.Ability.Text = character.Abilility;
         }
 
         public void LoadGame() {
