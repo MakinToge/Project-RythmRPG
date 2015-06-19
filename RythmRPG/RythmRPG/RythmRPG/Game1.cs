@@ -40,7 +40,16 @@ namespace RythmRPG {
         public StartMenu StartMenu { get; set; }
         public Options Options { get; set; }
         public GameMenu GameMenu { get; set; }
+        public SingleMusic SingleMusic { get; set; }
+        public PlaylistChallenge PlaylistChallenge { get; set; }
         public CharacterManagement CharacterManagement { get; set; }
+        public AfterGame Victory { get; set; }
+        public SongVictory SongVictory { get; set; }
+        public PlaylistDefeat PlaylistDefeat { get; set; }
+        public AfterGame PlaylistVictory { get; set; }
+        public Pause Pause { get; set; }
+        public AfterGame Defeat { get; set; }
+        public MusicPlaying MusicPlaying { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
@@ -78,6 +87,24 @@ namespace RythmRPG {
             this.GameMenu.Initialize();
             this.CharacterManagement = new CharacterManagement();
             this.CharacterManagement.Initialize();
+            this.SingleMusic = new SingleMusic();
+            this.SingleMusic.Initialize();
+            this.PlaylistChallenge = new PlaylistChallenge();
+            this.PlaylistChallenge.Initialize();
+            this.Victory = new AfterGame("Victory","You win XX XP");
+            this.Victory.Initialize();
+            this.SongVictory = new SongVictory();
+            this.SongVictory.Initialize();
+            this.PlaylistDefeat = new PlaylistDefeat("PlaylistDefeat", "Loser !");
+            this.PlaylistDefeat.Initialize();
+            this.PlaylistVictory = new AfterGame("PlaylistVictory", "You win XX XP");
+            this.PlaylistVictory.Initialize();
+            this.Pause = new Pause();
+            this.Pause.Initialize();
+            this.Defeat = new AfterGame("Defeat", "You loose");
+            this.Defeat.Initialize();
+            this.MusicPlaying = new MusicPlaying();
+            this.MusicPlaying.Initialize();
 
             base.Initialize();
         }
@@ -94,8 +121,19 @@ namespace RythmRPG {
             this.StartMenu.LoadContent(this.Content);
             this.Options.LoadContent(this.Content);
             this.GameMenu.LoadContent(this.Content);
-            this.CharacterManagement.LoadContent(this.Content);         
+            this.CharacterManagement.LoadContent(this.Content);
+            this.SingleMusic.LoadContent(this.Content);
+            this.PlaylistChallenge.LoadContent(this.Content);
+            this.Victory.LoadContent(this.Content);
+            this.SongVictory.LoadContent(this.Content);
+            this.PlaylistDefeat.LoadContent(this.Content);
+            this.PlaylistVictory.LoadContent(this.Content);
+            this.Pause.LoadContent(this.Content);
+            this.Defeat.LoadContent(this.Content);
+            this.MusicPlaying.LoadContent(this.Content);
 
+            this.SingleMusic.MusicPlaying = this.MusicPlaying;
+            this.PlaylistChallenge.MusicPlaying = this.MusicPlaying;
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
@@ -127,6 +165,26 @@ namespace RythmRPG {
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
             this.CurrentKeyBoardState = Keyboard.GetState();
 
+            //A Supprimer (Juste pour tester les pages)
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.A)) {
+                Game1.GameState = RythmRPG.GameState.Defeat;
+            }
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Z)) {
+                Game1.GameState = RythmRPG.GameState.PlaylistDefeat;
+            }
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.E)) {
+                Game1.GameState = RythmRPG.GameState.PlaylistVictory;
+            }
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.R)) {
+                Game1.GameState = RythmRPG.GameState.SongVictory;
+            }
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.T)) {
+                Game1.GameState = RythmRPG.GameState.Victory;
+            }
+            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Y)) {
+                Game1.GameState = RythmRPG.GameState.Pause;
+            }
+
             // TODO: Add your update logic here
             switch (GameState) {
                 case GameState.StartMenu:
@@ -140,6 +198,33 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.CharacterManagement:
                     this.CharacterManagement.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.SingleMusic:
+                    this.SingleMusic.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.PlaylistChallenge:
+                    this.PlaylistChallenge.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.Victory:
+                    this.Victory.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.SongVictory:
+                    this.SongVictory.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.PlaylistDefeat:
+                    this.PlaylistDefeat.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.PlaylistVictory:
+                    this.PlaylistVictory.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.Pause:
+                    this.Pause.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.Defeat:
+                    this.Defeat.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    break;
+                case RythmRPG.GameState.MusicPlaying:
+                    this.MusicPlaying.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
             };
 
@@ -166,6 +251,33 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.CharacterManagement:
                     this.CharacterManagement.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.SingleMusic:
+                    this.SingleMusic.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.PlaylistChallenge:
+                    this.PlaylistChallenge.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.Victory:
+                    this.Victory.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.SongVictory:
+                    this.SongVictory.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.PlaylistDefeat:
+                    this.PlaylistDefeat.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.PlaylistVictory:
+                    this.PlaylistVictory.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.Pause:
+                    this.Pause.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.Defeat:
+                    this.Defeat.Draw(spriteBatch, gameTime);
+                    break;
+                case RythmRPG.GameState.MusicPlaying:
+                    this.MusicPlaying.Draw(spriteBatch, gameTime);
                     break;
             };
 
