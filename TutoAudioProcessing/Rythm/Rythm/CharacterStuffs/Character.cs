@@ -27,7 +27,7 @@ namespace Rythm.CharacterStuffs
             this.attack = attack;
             this.defense = defense;
 
-            this.health = this.level * this.vitality + 10;
+            this.health = this.level * this.vitality;
 
             this.skills = new List<Skills>();
             this.sprites = new CharacterSprites(idleSpriteName, attackingSpriteName, position, size);

@@ -15,14 +15,23 @@ namespace Rythm.CharacterStuffs
         public int combo { get; set; }
         public int hitCombo { get; set; }
 
+        public int nbReset { get; set; }
+
+
         public PlayableCharacter(int level, int vitality, int attack, int defense,
-            UniqueSkill skill, int[,] levelUpStats,
+            UniqueSkill skill, int[,] levelUpStats, int combo,
             string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
             : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size)
         {
             this.levelUpStats = levelUpStats;
             this.uniqueSkill = skill;
+            
             this.hitCombo = 0;
+            this.combo = combo;
+
+            this.nbReset = 0;
+
+            this.health = this.level * this.vitality + 10;
         }
 
         public override void attackCharacter(Character character)
