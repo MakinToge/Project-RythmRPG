@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Rythm.CharacterStuffs
+namespace RythmRPG.Character
 {
     class PlayableCharacter : Character
     {
+        public CharacterType MyProperty { get; set; }
         private int[,] levelUpStats;
 
         public UniqueSkill uniqueSkill { get; set; }

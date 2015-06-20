@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Rythm.CharacterStuffs
+namespace RythmRPG.Character
 {
     class Mob : Character
     {
