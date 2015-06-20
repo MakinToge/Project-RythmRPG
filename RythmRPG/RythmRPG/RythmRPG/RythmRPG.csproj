@@ -76,6 +76,13 @@
     <Compile Include="Character.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="CharacterType.cs" />
+    <Compile Include="Character\Boss.cs" />
+    <Compile Include="Character\Character.cs" />
+    <Compile Include="Character\CharacterSprites.cs" />
+    <Compile Include="Character\Mob.cs" />
+    <Compile Include="Character\PlayableCharacter.cs" />
+    <Compile Include="Character\Skills.cs" />
+    <Compile Include="Character\UniqueSkill.cs" />
     <Compile Include="Difficulty.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Pages\AfterGame.cs" />
