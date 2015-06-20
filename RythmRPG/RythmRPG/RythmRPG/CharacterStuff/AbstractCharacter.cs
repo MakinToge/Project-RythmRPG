@@ -21,8 +21,7 @@ namespace RythmRPG.CharacterStuff
 
         public CharacterSprites sprites { get; set; }
 
-        public AbstractCharacter(int level, int vitality, int attack, int defense,
-            Vector2 position, float scale, bool mirror)
+        public AbstractCharacter(int level, int vitality, int attack, int defense, string idleSpriteName, string attackingSpriteName, Vector2 position, float scale, bool mirror)
         {
             this.level = level;
             this.vitality = vitality;
