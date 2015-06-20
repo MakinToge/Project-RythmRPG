@@ -10,67 +10,86 @@ namespace RythmRPG.CharacterStuff
 {
     class CharacterSprites
     {
-        /// <summary>
-        /// Name of the idle sprite
-        /// </summary>
-        public String idleSpriteName { get; set; }
+        private int frame;
+        private int framecount;
+        
+        private Texture2D idleAnimation;
+        private Texture2D attackingAnimation;
 
-        /// <summary>
-        /// Name of the attacking sprite
-        /// </summary>
-        public String attackingSpriteName { get; set; }
+        private float timePerFrame;
+        private float totalElapsed;
 
-        /// <summary>
-        /// Image of the character when idle
-        /// </summary>
-        public Texture2D idleSprite { get; set; }
+        private float rotation, scale, depth;
+        private Vector2 position;
 
-        /// <summary>
-        /// Image of the character while attacking
-        /// </summary>
-        public Texture2D attackingSprite { get; set; }
-
-        /// <summary>
-        /// The position of the sprites
-        /// </summary>
-        public Vector2 position { get; set; }
-        /// <summary>
-        /// The size of the sprites
-        /// </summary>
-        public Vector2 size { get; set; }
-
-        /// <summary>
-        /// True when attacking, false otherwise
-        /// </summary>
         public bool isAttacking { get; set; }
+        public bool mirror { get; set; }
 
-        public CharacterSprites(string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
+        public CharacterSprites(Vector2 position, float rotation, float scale, float depth, bool mirror)
         {
+            this.position = position;
+            this.rotation = rotation;
+            this.scale = scale;
+            this.depth = depth;
+
             this.isAttacking = false;
-            this.idleSpriteName = idleSpriteName;
-            this.attackingSpriteName = attackingSpriteName;
+            this.mirror = mirror;
         }
 
-        public void LoadContent(ContentManager content)
+        public void Load(ContentManager content, string idle, string attacking, int frameCount, int framesPerSec)
         {
-            this.idleSprite = content.Load<Texture2D>(this.idleSpriteName);
-            this.attackingSprite = content.Load<Texture2D>(this.attackingSpriteName);
+            this.framecount = frameCount;
+
+            this.idleAnimation = content.Load<Texture2D>(idle);
+            this.attackingAnimation = content.Load<Texture2D>(attacking);
+
+            this.timePerFrame = (float)1 / framesPerSec;
+            this.frame = 0;
+            this.totalElapsed = 0;
         }
 
-        public void draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void UpdateFrame(float elapsed)
         {
-            spriteBatch.Begin();
-            
-            if(this.isAttacking)
+            totalElapsed += elapsed;
+
+            if (totalElapsed > timePerFrame)
             {
-                spriteBatch.Draw(this.attackingSprite, this.position, null, Color.White, 0, Vector2.Zero, this.size, SpriteEffects.None, 0);
+                this.frame++;
+
+                if(this.frame == this.framecount - 1 && this.isAttacking)
+                {
+                    this.isAttacking = false;
+                }
+                // Keep the Frame between 0 and the total frames, minus one.
+                this.frame = this.frame % this.framecount;
+                totalElapsed -= this.timePerFrame;
+            }
+        }
+
+        public void DrawFrame(SpriteBatch batch)
+        {
+            DrawFrame(batch, this.frame);
+        }
+
+        public void DrawFrame(SpriteBatch batch, int frame)
+        {
+            int FrameWidth = idleAnimation.Width / framecount;
+            Rectangle sourceRect = new Rectangle(FrameWidth * frame, 0, FrameWidth, idleAnimation.Height);
+
+            SpriteEffects effect = SpriteEffects.None;
+            if (this.mirror)
+            {
+                effect = SpriteEffects.FlipHorizontally;
+            }
+
+            if (this.isAttacking)
+            {
+                batch.Draw(this.attackingAnimation, this.position, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
             else
             {
-                spriteBatch.Draw(this.idleSprite, this.position, null, Color.White, 0, Vector2.Zero, this.size, SpriteEffects.None, 0);
+                batch.Draw(this.idleAnimation, this.position, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
-
-            spriteBatch.End();
         }
     }
 }

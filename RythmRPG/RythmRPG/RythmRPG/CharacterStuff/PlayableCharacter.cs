@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    class PlayableCharacter : Character
+    class PlayableCharacter : AbstractCharacter
     {
         private const int LEVEL_MAX = 25;
         private const int GOLD_TO_RESPEC = 100;
@@ -30,8 +30,8 @@ namespace RythmRPG.CharacterStuff
 
         public PlayableCharacter(int level, int vitality, int attack, int defense,
             UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
-            string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
-            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size)
+            string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
+            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, false)
         {
             this.levelUpStats = levelUpStats;
             this.uniqueSkill = skill;
@@ -48,8 +48,10 @@ namespace RythmRPG.CharacterStuff
             this.skills = new List<Skills>(this.nbRestart);
         }
 
-        public override void attackCharacter(Character character)
+        public override void attackCharacter(AbstractCharacter character)
         {
+            base.attackCharacter(character);
+
             int damageDealt = this.attack;
             int resistance = character.defense;
             this.hitCombo++;

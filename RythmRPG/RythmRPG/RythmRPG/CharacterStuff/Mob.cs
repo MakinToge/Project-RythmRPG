@@ -6,16 +6,18 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    class Mob : Character
+    class Mob : AbstractCharacter
     {
         public Mob(int level, int vitality, int attack, int defense,
-            string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
-            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size)
+            string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
+            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, true)
         {
         }
 
-        public override void attackCharacter(Character character)
+        public override void attackCharacter(AbstractCharacter character)
         {
+            base.attackCharacter(character);
+
             int damageDealt = this.attack;
             int resistance = character.defense;
 

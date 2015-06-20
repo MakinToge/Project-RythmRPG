@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    abstract class Character
+    abstract class AbstractCharacter
     {
         public int level { get; set; }
 
@@ -19,8 +21,8 @@ namespace RythmRPG.CharacterStuff
 
         public CharacterSprites sprites { get; set; }
 
-        public Character(int level, int vitality, int attack, int defense,
-            string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
+        public AbstractCharacter(int level, int vitality, int attack, int defense,
+            Vector2 position, float scale, bool mirror)
         {
             this.level = level;
             this.vitality = vitality;
@@ -30,7 +32,17 @@ namespace RythmRPG.CharacterStuff
             this.health = this.level * this.vitality;
 
             this.skills = new List<Skills>();
-            this.sprites = new CharacterSprites(idleSpriteName, attackingSpriteName, position, size);
+            this.sprites = new CharacterSprites(position, 0, scale, 0, mirror);
+        }
+
+        public void Load(ContentManager content, string idle, string attacking, int frameCount, int framesPerSec)
+        {
+            this.sprites.Load(content, idle, attacking, frameCount, framesPerSec);
+        }
+
+        public void Draw(SpriteBatch batch)
+        {
+            this.sprites.DrawFrame(batch);
         }
 
         public virtual void levelUp()
@@ -63,6 +75,9 @@ namespace RythmRPG.CharacterStuff
             this.health -= damage;
         }
 
-        public abstract void attackCharacter(Character character);
+        public virtual void attackCharacter(AbstractCharacter character)
+        {
+            this.sprites.isAttacking = true;
+        }
     }
 }
