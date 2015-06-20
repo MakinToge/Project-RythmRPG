@@ -232,6 +232,7 @@ namespace RythmRPG {
                     break;
                 case RythmRPG.GameState.MusicPlaying:
                     this.MusicPlaying.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
+                    this.MusicPlaying.Update(gameTime);
                     break;
                 case RythmRPG.GameState.ModifyCharacter:
                     this.ModifyCharacter.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);

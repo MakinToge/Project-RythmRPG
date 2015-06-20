@@ -19,6 +19,8 @@ namespace RythmRPG.Pages {
         public Sprite[] VolumeMusic { get; set; }
         public Sprite[] VolumeSound { get; set; }
         public Sprite ResetProgression { get; set; }
+        public Sprite Keyboard { get; set; }
+        public Sprite Devices { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -42,6 +44,8 @@ namespace RythmRPG.Pages {
             }
 
             this.ResetProgression = new Sprite(12 * Game1.UnitX, 16 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
+            this.Keyboard = new Sprite(13 * Game1.UnitX, 10 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Devices = new Sprite(13 * Game1.UnitX, 6 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "Options/Options");
@@ -55,6 +59,9 @@ namespace RythmRPG.Pages {
             this.RightMusic.LoadContent(content, "Options/ArrowRight");
             this.LeftSound.LoadContent(content, "Options/ArrowLeft");
             this.RightSound.LoadContent(content, "Options/ArrowRight");
+
+            this.Keyboard.LoadContent(content, "Options/keyboard");
+            this.Devices.LoadContent(content, "Options/keyboard");
 
             foreach (Sprite item in this.VolumeMusic) {
                 item.LoadContent(content, "Options/One");
@@ -101,6 +108,9 @@ namespace RythmRPG.Pages {
             this.RightMusic.Draw(spriteBatch, gameTime);
             this.LeftSound.Draw(spriteBatch, gameTime);
             this.RightSound.Draw(spriteBatch, gameTime);
+
+            this.Keyboard.Draw(spriteBatch, gameTime);
+            this.Devices.Draw(spriteBatch, gameTime);
 
             for (int i = 0; i < Game1.VolumeMusic /2; i++) {
                 VolumeMusic[i].Draw(spriteBatch, gameTime);

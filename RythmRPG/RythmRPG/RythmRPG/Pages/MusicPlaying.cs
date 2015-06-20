@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class MusicPlaying : Page{
+        public ContentManager Content { get; set; }
         public bool isLoading { get; set; }
         public bool isLoaded { get; set; }
         public Sprite MainImage { get; set; }
@@ -20,6 +22,8 @@ namespace RythmRPG.Pages {
         public Difficulty Difficulty { get; set; }
         public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
+
+        public List<Sprite>[] Lines { get; set; }
         
 
         public override void Initialize() {
@@ -40,6 +44,8 @@ namespace RythmRPG.Pages {
             this.Ability = new TextSprite(28 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+            this.Content = content;
+
             this.MainImage.LoadContent(content, "MusicPlaying/MusicPlaying");
 
             //Character Data
@@ -67,7 +73,18 @@ namespace RythmRPG.Pages {
         }
 
         public override void Update(GameTime gametime) {
-            
+            int positionDisparaitre = 30 * Game1.UnitX;
+            //Update les notes
+            for (int i = 0; i < this.Lines.Length; i++) {
+                for (int j = 0; j < this.Lines[i].Count; j++) {
+                    //Supprimer la note si elle depasse la positionDisparaitre
+                    Sprite note = this.Lines[i][j];
+                    if (note.Position.X > positionDisparaitre){
+                        this.Lines[i].Remove(note);
+                    }
+                    note.Update(gametime);
+                }
+            }
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
@@ -81,6 +98,14 @@ namespace RythmRPG.Pages {
             this.HP.Draw(spriteBatch, gameTime);
             this.Strength.Draw(spriteBatch, gameTime);
             this.Ability.Draw(spriteBatch, gameTime);
+
+            //Draw la position des notes
+            foreach (List<Sprite> list in Lines) {
+                foreach (Sprite note in list) {
+                    note.Draw(spriteBatch, gameTime);
+                    ;
+                }
+            }
         }
 
         public void LoadDataCharacter(Character character) {
@@ -100,7 +125,35 @@ namespace RythmRPG.Pages {
         }
 
         public void LoadGame() {
+            int nbLines = 5;
+            this.Lines = new List<Sprite>[nbLines];
+            for (int i = 0; i < nbLines; i++) {
+                this.Lines[i] = new List<Sprite>();
+			}
+
+            //Juste pour l'exemple
+            this.AddNote(0);
+            this.AddNote(1);
+            this.AddNote(2);
+            this.AddNote(3);
+            this.AddNote(4);
+
             this.isLoaded = true;
+        }
+
+        public void AddNote(int line) {
+            //Mettre la direction de la note; Gauche à droite:1; Droite à Gauche:-1
+            float directionX = 1;
+            float directionY = 0;
+            //Position de départ de la note
+            float positionX = 2 * Game1.UnitX;
+            float positionY = (11 + line) * Game1.UnitY;
+            //Vitesse
+            float speed = 0.4f;
+            Sprite note = new Sprite(positionX, positionY, Game1.UnitX, Game1.UnitY, directionX, directionY, speed);
+            //Charge l'image
+            note.LoadContent(this.Content, "MusicPlaying/note");
+            Lines[line].Add(note);
         }
     }
 }
