@@ -9,7 +9,7 @@ namespace RythmRPG.CharacterStuff
     class PlayableCharacter : Character
     {
         private const int LEVEL_MAX = 25;
-        private const int GOLD_TO_RESTART = 100;
+        private const int GOLD_TO_RESPEC = 100;
 
         private int[,] levelUpStats;
 
@@ -20,15 +20,16 @@ namespace RythmRPG.CharacterStuff
 
         public int nbRestart { get; set; }
         public int gold { get; set; }
+        public int statPoints { get; set; }
 
         public int xp { get; set; }
-        private const int[] xpLevels = { 1000, 3000, 6000, 10000, 15000, 21000, 28000, 36000, 45000,
-                                         55000, 66000, 78000, 91000, 105000, 120000, 136000, 153000,
-                                         171000, 190000, 210000, 231000, 253000, 276000, 300000 };
+        private int[] xpLevels = { 1000, 3000, 6000, 10000, 15000, 21000, 28000, 36000, 45000,
+                                   55000, 66000, 78000, 91000, 105000, 120000, 136000, 153000,
+                                   171000, 190000, 210000, 231000, 253000, 276000, 300000 };
 
 
         public PlayableCharacter(int level, int vitality, int attack, int defense,
-            UniqueSkill skill, int[,] levelUpStats, int combo, int xp,
+            UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
             string idleSpriteName, string attackingSpriteName, Vector2 position, Vector2 size)
             : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size)
         {
@@ -38,8 +39,9 @@ namespace RythmRPG.CharacterStuff
             this.hitCombo = 0;
             this.combo = combo;
 
-            this.nbRestart = 0;
+            this.nbRestart = nbRestart;
             this.xp = xp;
+            this.statPoints = statPoints;
 
             this.health = this.level * this.vitality + 10;
 
@@ -136,11 +138,10 @@ namespace RythmRPG.CharacterStuff
             }
         }
 
-        public void restart()
+        public bool restart()
         {
-            if(this.gold >= GOLD_TO_RESTART)
+            if(this.level == LEVEL_MAX)
             {
-                this.gold -= GOLD_TO_RESTART;
                 this.nbRestart++;
 
                 this.vitality = 1;
@@ -149,9 +150,32 @@ namespace RythmRPG.CharacterStuff
 
                 this.xp = 0;
                 this.level = 1;
+                this.statPoints = 0;
 
                 this.skills = new List<Skills>(this.nbRestart);
+
+                return true;
             }
+
+            return false;
+        }
+
+        public bool respec()
+        {
+            if(this.gold >= GOLD_TO_RESPEC)
+            {
+                this.gold -= GOLD_TO_RESPEC;
+
+                this.vitality = 1;
+                this.attack = 1;
+                this.defense = 1;
+
+                this.statPoints = 3 * (this.level - 1);
+
+                return true;
+            }
+
+            return false;
         }
 
         public void manageSkill(Skills skillToRemove, Skills skillToActivate)
