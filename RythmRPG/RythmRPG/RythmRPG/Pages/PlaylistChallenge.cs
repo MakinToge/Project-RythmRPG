@@ -120,8 +120,6 @@ namespace RythmRPG.Pages {
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
                     StartMenu.EffectClick.Play();
-                    StartMenu.MainTheme.IsLooped = true;
-                    StartMenu.MainTheme.Volume = StartMenu.VOLUME_ON;
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
                     int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
