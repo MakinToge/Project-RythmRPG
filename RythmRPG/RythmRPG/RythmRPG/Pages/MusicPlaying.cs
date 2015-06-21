@@ -137,7 +137,7 @@ namespace RythmRPG.Pages {
             //Circles
             this.Circles = new List<Sprite>();
             for (int i = 0; i < nbLines; i++) {
-                Sprite circle = new Sprite(28 * Game1.UnitX, (13 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+                Sprite circle = new Sprite(28 * Game1.UnitX, (12 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
                 this.Circles.Add(circle);
                 this.Circles[i].LoadContent(this.Content, "MusicPlaying/noteCircle");
             }
@@ -145,7 +145,7 @@ namespace RythmRPG.Pages {
             this.Strings = new List<Sprite>();
             
             for (int i = 0; i < nbLines; i++) {
-                Sprite oneString = new Sprite(2 * Game1.UnitX, (13.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
+                Sprite oneString = new Sprite(2 * Game1.UnitX, (12.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
                 this.Strings.Add(oneString);
                 this.Strings[i].LoadContent(this.Content, "Options/One");
             }
@@ -164,7 +164,7 @@ namespace RythmRPG.Pages {
             float directionY = 0;
             //Position de départ de la note
             float positionX = 2 * Game1.UnitX;
-            float positionY = (13 + line) * Game1.UnitY;
+            float positionY = (12 + line) * Game1.UnitY;
             //Vitesse
             float speed = 0.4f;
             Sprite note = new Sprite(positionX, positionY, Game1.UnitX, Game1.UnitY, directionX, directionY, speed);
