@@ -8,6 +8,9 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
+    /// <summary>
+    /// Contains the animations of a character, both idle and attacking
+    /// </summary>
     public class CharacterSprites
     {
         private int frameLine;

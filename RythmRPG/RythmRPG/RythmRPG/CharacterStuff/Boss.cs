@@ -6,14 +6,30 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
+    /// <summary>
+    /// The boss class, inherits from Character
+    /// </summary>
     public class Boss : AbstractCharacter
     {
-        public Boss(int level, int vitality, int attack, int defense,
-            string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="level">The level</param>
+        /// <param name="vitality">The vitality</param>
+        /// <param name="attack">The attack</param>
+        /// <param name="defense">The defense</param>
+        /// <param name="position">The position of the boss on screen</param>
+        /// <param name="size">The size of the boss</param>
+        public Boss(int level, int vitality, int attack, int defense, Vector2 position, float size)
             : base(level, vitality, attack, defense, position, size, "")
         {
         }
 
+        /// <summary>
+        /// Override the attack method from Character
+        /// Attack another character
+        /// </summary>
+        /// <param name="character">The character to attack</param>
         public override void attackCharacter(AbstractCharacter character)
         {
             base.attackCharacter(character);

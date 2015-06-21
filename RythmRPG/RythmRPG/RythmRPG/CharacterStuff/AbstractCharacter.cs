@@ -68,7 +68,7 @@ namespace RythmRPG.CharacterStuff
         /// <param name="attack">The attack</param>
         /// <param name="defense">The defense</param>
         /// <param name="position">The position of the character on screen</param>
-        /// <param name="scale">The size of the character</param>
+        /// <param name="scale">The scale of the character</param>
         /// <param name="name">The name of the character</param>
         public AbstractCharacter(int level, int vitality, int attack, int defense, Vector2 position, float scale, string name)
         {
