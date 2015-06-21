@@ -42,9 +42,9 @@ namespace RythmRPG.CharacterStuff
             this.sprites = new CharacterSprites(position, 0, scale, 0);
         }
 
-        public void Load(ContentManager content, string idle, string attacking, int frameCount, int framesPerSec)
+        public void Load(ContentManager content, string idle, string attacking, int frameLineCount, int frameColCount, int framesPerSec)
         {
-            //this.sprites.Load(content, idle, attacking, frameCount, framesPerSec);
+            this.sprites.Load(content, idle, attacking, frameLineCount, frameColCount, framesPerSec);
         }
 
         public void Draw(SpriteBatch batch)
