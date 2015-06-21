@@ -245,6 +245,9 @@ namespace RythmRPG {
                 case RythmRPG.GameState.ModifyCharacter:
                     this.ModifyCharacter.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
+                case RythmRPG.GameState.Exit:
+                    this.Exit();
+                    break;
             };
 
             base.Update(gameTime);
@@ -308,10 +311,6 @@ namespace RythmRPG {
             };
 
             base.Draw(gameTime);
-        }
-
-        public void ChangeTheme() {
-            this.LoadContent();
         }
     }
 }

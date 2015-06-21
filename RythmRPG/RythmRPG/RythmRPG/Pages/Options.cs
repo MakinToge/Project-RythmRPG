@@ -26,29 +26,29 @@ namespace RythmRPG.Pages {
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
-            this.SeeControls = new Sprite(12 * Game1.UnitX, 13 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
+            this.SeeControls = new Sprite(5 * Game1.UnitX, 13 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
 
-            this.LeftDevice = new Sprite(12 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-            this.RightDevice = new Sprite(19 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-            this.LeftMusic = new Sprite(24 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-            this.RightMusic = new Sprite(30 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-            this.LeftSound = new Sprite(24 * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-            this.RightSound = new Sprite(30 * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+            this.LeftDevice = new Sprite(5 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+            this.RightDevice = new Sprite(12 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+            this.LeftMusic = new Sprite(20 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+            this.RightMusic = new Sprite(26 * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+            this.LeftSound = new Sprite(20 * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+            this.RightSound = new Sprite(26 * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
 
             this.VolumeMusic = new Sprite[5];
             this.VolumeSound = new Sprite[5];
             for (int i = 0; i < this.VolumeMusic.Length; i++) {
-                this.VolumeMusic[i] = new Sprite((25 + i) * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
+                this.VolumeMusic[i] = new Sprite((22 + i) * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
             }
             for (int i = 0; i < this.VolumeSound.Length; i++) {
-                this.VolumeSound[i] = new Sprite((25 + i) * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
+                this.VolumeSound[i] = new Sprite((22 + i) * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
             }
 
             this.ResetProgression = new Sprite(12 * Game1.UnitX, 16 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
-            this.Keyboard = new Sprite(14 * Game1.UnitX, 10 * Game1.UnitY, 4 * Game1.UnitX, 2 * Game1.UnitY);
-            this.Devices = new Sprite(14 * Game1.UnitX, 6 * Game1.UnitY, 4 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Keyboard = new Sprite(7 * Game1.UnitX, 10 * Game1.UnitY, 4 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Devices = new Sprite(7 * Game1.UnitX, 6 * Game1.UnitY, 4 * Game1.UnitX, 2 * Game1.UnitY);
 
-            this.MuteMenu = new Sprite(24 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
+            this.MuteMenu = new Sprite(20 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "Options/Options");
