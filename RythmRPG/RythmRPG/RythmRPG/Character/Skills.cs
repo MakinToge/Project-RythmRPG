@@ -5,9 +5,6 @@ using System.Text;
 
 namespace RythmRPG.Character
 {
-    /// <summary>
-    /// Skills that a character can have
-    /// </summary>
     public enum Skills
     {
         /// <summary>
@@ -27,24 +24,13 @@ namespace RythmRPG.Character
         /// </summary>
         ExperienceBoost,
         /// <summary>
-        /// Add more attack to the character only when attacking a boss
+        /// Add 
         /// </summary>
         AttackMegaBoost,
-        /// <summary>
-        /// Add more defense to the character only when attacked by a boss
-        /// </summary>
-        DefenseMegaBoost,
-        /// <summary>
-        /// Do more damage after a successful combo
-        /// </summary>
+        EnduranceMegaBoost,
         CriticalDamage,
-        /// <summary>
-        /// Paralyse a boss after a sccessful combo
-        /// </summary>
         Paralysis,
-        /// <summary>
-        /// Restore health when critically low, only one time during a level
-        /// </summary>
-        Cure
+        Cure,
+        Regeneration
     }
 }

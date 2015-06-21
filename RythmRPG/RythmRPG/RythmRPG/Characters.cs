@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using RythmRPG.CharacterStuff;
+using RythmRPG.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +26,10 @@ namespace RythmRPG {
             };*/
         }
 
-        public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content, Sprite[] spriteCharacters) {
+        public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content, CharacterSprites[] spriteCharacters) {
             for (int i = 0; i < this.CharacterArray.Length; i++) {
-                spriteCharacters[i].LoadContent(content, "Characters/" + this.CharacterArray[i].IdleSpriteName);
+                string name = this.CharacterArray[i].Name;
+                spriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
             }
         }
 
@@ -40,12 +41,12 @@ namespace RythmRPG {
             Vector2 position;
             UniqueSkill ability;
 
-            name = "Flori";
+            name = "Barbarian";
             level = 5;
             defense = 15;
             vitality = 20;
             attack = 15;
-            ability = UniqueSkill.Berserker;
+            ability = UniqueSkill.Templar;
             levelUpStats = new int[1, 2];
             combo = 0;
             xp = 0;
@@ -57,7 +58,7 @@ namespace RythmRPG {
             size = 0;
 
             if(nbCharacter == 1) {
-                name = "Carapuce";
+                name = "Knight";
                 level = 7;
                 defense = 35;
                 vitality = 30;
@@ -74,7 +75,7 @@ namespace RythmRPG {
                 size = 0;
             }
             else if(nbCharacter == 2) {
-                name = "Pika Pika";
+                name = "Ninja";
                 level = 15;
                 defense = 25;
                 vitality = 40;
@@ -91,12 +92,12 @@ namespace RythmRPG {
                 size = 0;
             }
             else if (nbCharacter == 3) {
-                name = "Truc";
+                name = "Magus";
                 level = 24;
                 defense = 35;
                 vitality = 30;
                 attack = 35;
-                ability = UniqueSkill.Experimentation;
+                ability = UniqueSkill.Survivor;
                 levelUpStats = new int[1, 2];
                 combo = 0;
                 xp = 0;
@@ -108,7 +109,8 @@ namespace RythmRPG {
                 size = 0;
             }
 
-            this.CharacterArray[nbCharacter] = new PlayableCharacter(level,vitality,attack,defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, idleSpriteName,attackingSpriteName,position,size, name);
+            this.CharacterArray[nbCharacter] = new PlayableCharacter(level, vitality, attack, defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, position, new Vector2(100, 100), 0, name);
+                //new PlayableCharacter(level,vitality,attack,defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, position,size,0, name);
             this.CharacterArray[nbCharacter].gold = 500;
         }
     }

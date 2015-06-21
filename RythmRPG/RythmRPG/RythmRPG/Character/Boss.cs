@@ -19,9 +19,9 @@ namespace RythmRPG.Character
         /// <param name="attack">The attack</param>
         /// <param name="defense">The defense</param>
         /// <param name="position">The position of the boss on screen</param>
-        /// <param name="size">The size of the boss</param>
-        public Boss(int level, int vitality, int attack, int defense, Vector2 position, float size)
-            : base(level, vitality, attack, defense, position, size, "")
+        /// <param name="scale">The size of the boss</param>
+        public Boss(int level, int vitality, int attack, int defense, Vector2 position, Vector2 size, float scale)
+            : base(level, vitality, attack, defense, position, size, scale, "")
         {
         }
 
@@ -42,7 +42,7 @@ namespace RythmRPG.Character
                 damageDealt += 3;
             }
 
-            if (character.skills.Contains(Skills.DefenseMegaBoost))
+            if (character.skills.Contains(Skills.EnduranceMegaBoost))
             {
                 resistance += 6;
             }

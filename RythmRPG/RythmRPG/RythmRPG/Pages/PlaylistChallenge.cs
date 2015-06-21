@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using RythmRPG.CharacterStuff;
+using RythmRPG.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace RythmRPG.Pages {
     public class PlaylistChallenge : Page{
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
-        public Sprite[] SpriteCharacters { get; set; }
+        public CharacterSprites[] SpriteCharacters { get; set; }
         public Sprite[] Casual { get; set; }
         public Sprite[] Veteran { get; set; }
         public Sprite[] GodLike { get; set; }
@@ -28,9 +28,9 @@ namespace RythmRPG.Pages {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
-            this.SpriteCharacters = new Sprite[Characters.NB_MAX_CHARACTERS];
+            this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
             for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new Sprite(21 * Game1.UnitX, 5 * Game1.UnitY, 8 * Game1.UnitX, 8 * Game1.UnitY);
+                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), new Vector2(8 * Game1.UnitX, 8 * Game1.UnitY), 0,0,0);
             }
 
             this.Casual = new Sprite[2] {
@@ -81,7 +81,8 @@ namespace RythmRPG.Pages {
 
             //Character Data
             for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++) {
-                this.SpriteCharacters[i].LoadContent(content, "Characters/" + Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].IdleSpriteName);
+                string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Name;
+                this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
             }
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
@@ -169,7 +170,7 @@ namespace RythmRPG.Pages {
             this.ChooseMusic.Draw(spriteBatch, gameTime);
             this.Play.Draw(spriteBatch, gameTime);
 
-            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].Draw(spriteBatch, gameTime);
+            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
         }
     }
 }

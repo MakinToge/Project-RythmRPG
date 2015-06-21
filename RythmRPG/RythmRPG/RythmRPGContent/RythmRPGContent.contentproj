@@ -589,43 +589,43 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Spritesheet\Hero\Caracter_Barbarian_Attack.png">
-      <Name>Caracter_Barbarian_Attack</Name>
+    <Compile Include="Spritesheet\Hero\AttackingBarbarian.png">
+      <Name>AttackingBarbarian</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Barbarian_Idle.png">
-      <Name>Caracter_Barbarian_Idle</Name>
+    <Compile Include="Spritesheet\Hero\IdleBarbarian.png">
+      <Name>IdleBarbarian</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Knight_Attack.png">
-      <Name>Caracter_Knight_Attack</Name>
+    <Compile Include="Spritesheet\Hero\AttackingKnight.png">
+      <Name>AttackingKnight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Knight_Idle.png">
-      <Name>Caracter_Knight_Idle</Name>
+    <Compile Include="Spritesheet\Hero\IdleKnight.png">
+      <Name>IdleKnight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Magus_Attack.png">
-      <Name>Caracter_Magus_Attack</Name>
+    <Compile Include="Spritesheet\Hero\AttackingMagus.png">
+      <Name>AttackingMagus</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Magus_Idle.png">
-      <Name>Caracter_Magus_Idle</Name>
+    <Compile Include="Spritesheet\Hero\IdleMagus.png">
+      <Name>IdleMagus</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Ninja_Attack.png">
-      <Name>Caracter_Ninja_Attack</Name>
+    <Compile Include="Spritesheet\Hero\AttackingNinja.png">
+      <Name>AttackingNinja</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Spritesheet\Hero\Caracter_Ninja_Idle.png">
-      <Name>Caracter_Ninja_Idle</Name>
+    <Compile Include="Spritesheet\Hero\IdleNinja.png">
+      <Name>IdleNinja</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

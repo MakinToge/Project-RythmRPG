@@ -17,11 +17,11 @@ namespace RythmRPG.Character
         /// <summary>
         /// Increase stat depending on the number of restart
         /// </summary>
-        Experimentation,
+        Survivor,
         /// <summary>
         /// Use the defense stat instead of the attack stat to deal damage
         /// </summary>
-        Berserker,
+        Templar,
         /// <summary>
         /// Have a chance to kill the ennemy, regardless of his health and defense
         /// </summary>

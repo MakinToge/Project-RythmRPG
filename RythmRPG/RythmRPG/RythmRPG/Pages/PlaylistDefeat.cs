@@ -41,7 +41,7 @@ namespace RythmRPG.Pages {
             this.Retry.Draw(spriteBatch, gameTime);
 
             //Character Data
-            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].Draw(spriteBatch, gameTime);
+            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
             this.Type.Draw(spriteBatch, gameTime);
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
