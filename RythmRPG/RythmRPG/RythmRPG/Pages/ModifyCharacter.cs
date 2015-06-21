@@ -94,6 +94,7 @@ namespace RythmRPG.Pages {
                     this.Vitality.Text = (this.Character.Vitality + this.VitalityPlus).ToString();
                     this.UsedStatPoints += 1;
                     this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
+                    this.HP.Text = (this.Character.Level * (this.Character.Vitality + this.VitalityPlus)).ToString();
                 }
                 else if (isOver(mouse, UpgradeAttack) && IsUpgradable()) {
                     this.AttackPlus += 1;
@@ -120,6 +121,7 @@ namespace RythmRPG.Pages {
                     this.Endurance.Text = (this.Character.Defense + this.DefensePlus).ToString();
                     this.Vitality.Text = (this.Character.Vitality + this.VitalityPlus).ToString();
                     this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
+                    this.HP.Text = (this.Character.Level * (this.Character.Vitality + this.VitalityPlus)).ToString();
                 }
                 else if (isOver(mouse, Confirm)) {
                     this.Character.addAttack(this.AttackPlus);

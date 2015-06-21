@@ -13,7 +13,15 @@ namespace RythmRPG.CharacterStuff
         public int Level { get; set; }
         public string Name { get; set; }
         public int Health { get; set; }
-        public int Vitality { get; set; }
+        private int vitality;
+
+        public int Vitality {
+            get { return vitality; }
+            set { vitality = value;
+            this.Health = this.Level * this.Vitality;
+            }
+        }
+        
         public int Attack { get; set; }
         public int Defense { get; set; }
 
