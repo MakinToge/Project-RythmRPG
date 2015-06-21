@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RythmRPG.Pages {
-    public class PlaylistChallenge : Page{
+namespace RythmRPG.Pages
+{
+    public class PlaylistChallenge : Page
+    {
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
         public CharacterSprites[] SpriteCharacters { get; set; }
@@ -24,7 +26,8 @@ namespace RythmRPG.Pages {
         public int SelectedMode { get; set; }
         public MusicPlaying MusicPlaying { get; set; }
 
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
@@ -60,7 +63,8 @@ namespace RythmRPG.Pages {
                 new Sprite(Game1.UnitX, 13 * Game1.UnitY, 8 * Game1.UnitX, Game1.UnitY)
             };
         }
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "PlaylistChallenge/PlaylistChallenge");
             this.Back.LoadContent(content, "Options/Back");
 
@@ -85,39 +89,47 @@ namespace RythmRPG.Pages {
                 this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
             }
         }
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
             if (currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
             {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
-                if (isOver(mouse, Back)) {
+                if (isOver(mouse, Back))
+                {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
-                else if (isOver(mouse, Casual[0])) {
+                else if (isOver(mouse, Casual[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 0;
                     Game1.Difficulty = Difficulty.Casual;
                 }
-                else if (isOver(mouse, Veteran[0])) {
+                else if (isOver(mouse, Veteran[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 1;
                     Game1.Difficulty = Difficulty.Veteran;
                 }
-                else if (isOver(mouse, GodLike[0])) {
+                else if (isOver(mouse, GodLike[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 2;
                     Game1.Difficulty = Difficulty.GodLike;
                 }
-                else if (isOver(mouse, Classic[0])) {
+                else if (isOver(mouse, Classic[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedMode = 0;
                 }
-                else if (isOver(mouse, Hardcore[0])) {
+                else if (isOver(mouse, Hardcore[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedMode = 1;
                 }
-                else if (isOver(mouse, ChooseMusic)) {//Clique sur Choose Music
+                else if (isOver(mouse, ChooseMusic))
+                {//Clique sur Choose Music
                     StartMenu.EffectClick.Play();
 
                     OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
@@ -125,7 +137,8 @@ namespace RythmRPG.Pages {
                     if (open.ShowDialog() != DialogResult.OK) return;
 
                 }
-                else if (isOver(mouse, Play)) {// Clique sur Play!
+                else if (isOver(mouse, Play))
+                {// Clique sur Play!
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
@@ -139,7 +152,8 @@ namespace RythmRPG.Pages {
             }
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
 
@@ -147,23 +161,28 @@ namespace RythmRPG.Pages {
             this.Veteran[0].Draw(spriteBatch, gameTime);
             this.GodLike[0].Draw(spriteBatch, gameTime);
 
-            if (this.SelectedDifficulty == 0) {
+            if (this.SelectedDifficulty == 0)
+            {
                 this.Casual[1].Draw(spriteBatch, gameTime);
             }
-            else if (this.SelectedDifficulty == 1) {
+            else if (this.SelectedDifficulty == 1)
+            {
                 this.Veteran[1].Draw(spriteBatch, gameTime);
             }
-            else if (this.SelectedDifficulty == 2) {
+            else if (this.SelectedDifficulty == 2)
+            {
                 this.GodLike[1].Draw(spriteBatch, gameTime);
             }
 
             this.Classic[0].Draw(spriteBatch, gameTime);
             this.Hardcore[0].Draw(spriteBatch, gameTime);
 
-            if (this.SelectedMode == 0) {
+            if (this.SelectedMode == 0)
+            {
                 this.Classic[1].Draw(spriteBatch, gameTime);
             }
-            else if (SelectedMode == 1) {
+            else if (SelectedMode == 1)
+            {
                 this.Hardcore[1].Draw(spriteBatch, gameTime);
             }
 
