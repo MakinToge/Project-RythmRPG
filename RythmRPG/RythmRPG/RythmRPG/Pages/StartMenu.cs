@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,22 @@ namespace RythmRPG.Pages {
         public Sprite[] SaveSprites { get; set; }
         public Sprite LeftSave { get; set; }
         public Sprite RightSave { get; set; }
+
+        public const float VOLUME_ON = 0.5f;
+       
+        public const float VOLUME_OFF = 0f;
+
+        public static SoundEffect EffectClick;
+
+        public static SoundEffect EffectBack;
+
+        public static SoundEffect EffectVictory;
+
+        public static SoundEffect EffectDefeat;
+       
+        public SoundEffect Song;
+      
+        public static SoundEffectInstance MainTheme;
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -35,21 +52,36 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < Save.NB_SAVE; i++) {
                 this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i+1));
             }
+
+            //Sounds
+            EffectClick = content.Load<SoundEffect>("Sound/click");
+            EffectBack = content.Load<SoundEffect>("Sound/negative-soft");
+
+            //Music
+            Song = content.Load<SoundEffect>("Sound/Dust");
+            MainTheme = Song.CreateInstance();
+            MainTheme.IsLooped = true;
+            MainTheme.Volume = VOLUME_ON;
+            MainTheme.Play();
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X,currentMouseState.Y ,10,10);
 
                 if (isOver(mouse, Options)) {
+                    EffectClick.Play();
                     Game1.GameState = GameState.Options;
                 }
                 else if (isOver(mouse, Start)) {
+                    EffectClick.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
                 else if (isOver(mouse, LeftSave) && Game1.Save.SelectedSave > 0) {
+                    EffectClick.Play();
                     Game1.Save.SelectedSave -= 1;
                 }
                 else if (isOver(mouse, RightSave) && Game1.Save.SelectedSave < Save.NB_SAVE - 1) {
+                    EffectClick.Play();
                     Game1.Save.SelectedSave += 1;
                 }
             }

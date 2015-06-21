@@ -70,24 +70,31 @@ namespace RythmRPG.Pages {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, Back)) {
+                    StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
                 else if (isOver(mouse, Casual[0])) {
+                    StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 0;
                     Game1.Difficulty = Difficulty.Casual;
                 }
                 else if (isOver(mouse, Veteran[0])) {
+                    StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 1;
                     Game1.Difficulty = Difficulty.Veteran;
                 }
                 else if (isOver(mouse, GodLike[0])) {
+                    StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 2;
                     Game1.Difficulty = Difficulty.GodLike;
                 }
                 else if (isOver(mouse, ChooseMusic)) {//Clique sur Choose Music
+                    StartMenu.EffectClick.Play();
                     
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
+                    StartMenu.EffectClick.Play();
+                    StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
                     int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
                     PlayableCharacter character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];

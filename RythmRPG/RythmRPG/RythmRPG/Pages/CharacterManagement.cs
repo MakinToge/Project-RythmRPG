@@ -114,25 +114,31 @@ namespace RythmRPG.Pages {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, Back)) {
+                    StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
                 else if (isOver(mouse, TabMedium[0])) {
+                    StartMenu.EffectClick.Play();
                     this.TabSelected = 0;
                     this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
                 }
                 else if (isOver(mouse, TabTank[0])) {
+                    StartMenu.EffectClick.Play();
                     this.TabSelected = 1;
                     this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
                 }
                 else if (isOver(mouse, TabDPS[0])) {
+                    StartMenu.EffectClick.Play();
                     this.TabSelected = 2;
                     this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
                 }
                 else if (isOver(mouse, TabCustom[0])) {
+                    StartMenu.EffectClick.Play();
                     this.TabSelected = 3;
                     this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
                 }
                 else if (isOver(mouse, Modify)) {
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.ModifyCharacter;
                     this.ModifyCharacter.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
                 }

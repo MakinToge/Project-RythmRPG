@@ -71,6 +71,7 @@ namespace RythmRPG.Pages {
             }
             */
             if (currentKeyboardState.IsKeyDown(Keys.Escape)) {
+                StartMenu.EffectClick.Play();
                 Game1.GameState = GameState.Pause;
             }
             else if (currentKeyboardState.IsKeyDown(Keys.Z)) {//Touche Z

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using RythmRPG.CharacterStuff;
 using System;
@@ -27,7 +28,7 @@ namespace RythmRPG.Pages {
         public TextSprite Strength { get; set; }
         public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
-
+    
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
@@ -65,7 +66,7 @@ namespace RythmRPG.Pages {
 
             this.LeftCharacter.LoadContent(content, "Options/ArrowLeft");
             this.RightCharacter.LoadContent(content, "Options/ArrowRight");
-
+            
             //Character Data
             for (int i = 0; i < this.Characters.CharacterArray.Length; i++) {
                 this.SpriteCharacters[i].LoadContent(content, "Characters/" + this.Characters.CharacterArray[i].IdleSpriteName);
@@ -85,23 +86,29 @@ namespace RythmRPG.Pages {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, Back)) {
+                    StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.StartMenu;
                 }
                 else if (isOver(mouse, CharacterManagement)) {
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.CharacterManagement;
                 }
                 else if (isOver(mouse, LeftCharacter) && this.Characters.SelectCharacter > 0) {
+                    StartMenu.EffectClick.Play();
                     this.Characters.SelectCharacter -= 1;
                     this.LoadDataCharacter(this.Characters.CharacterArray[this.Characters.SelectCharacter]);
                 }
                 else if (isOver(mouse, RightCharacter) && this.Characters.SelectCharacter < Characters.NB_MAX_CHARACTERS - 1) {
+                    StartMenu.EffectClick.Play();
                     this.Characters.SelectCharacter += 1;
                     this.LoadDataCharacter(this.Characters.CharacterArray[this.Characters.SelectCharacter]);
                 }
                 else if (isOver(mouse, SingleMusic)) {
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.SingleMusic;
                 }
                 else if (isOver(mouse, PlaylistChallenge)) {
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.PlaylistChallenge;
                 }
             }

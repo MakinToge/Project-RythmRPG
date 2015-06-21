@@ -103,23 +103,28 @@ namespace RythmRPG.Pages {
                 Rectangle mouse = new Rectangle(currentMouseState.X,currentMouseState.Y ,10,10);
 
                 if (isOver(mouse, Back)) {
+                    StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.StartMenu;
                 }
                 else if (isOver(mouse, ResetProgression)) { //Clique sur ResetProgression
-                    
+                    StartMenu.EffectClick.Play();
                 }
                     //Music Volume
                 else if (isOver(mouse, this.LeftMusic) && Game1.VolumeMusic > 0) {
+                    StartMenu.EffectClick.Play();
                     Game1.VolumeMusic -= 2;
                 }
                 else if (isOver(mouse, this.RightMusic) && Game1.VolumeMusic < 10) {
+                    StartMenu.EffectClick.Play();
                     Game1.VolumeMusic += 2;
                 }
                     //Sound Volume
                 else if (isOver(mouse, this.LeftSound) && Game1.VolumeSound > 0) {
+                    StartMenu.EffectClick.Play();
                     Game1.VolumeSound -= 2;
                 }
                 else if (isOver(mouse, this.RightSound) && Game1.VolumeSound < 10) {
+                    StartMenu.EffectClick.Play();
                     Game1.VolumeSound += 2;
                 }
                 //Menu Volume
@@ -135,14 +140,17 @@ namespace RythmRPG.Pages {
 
                 //Themes
                 if (isOver(mouse, Theme1[0])) {
+                    StartMenu.EffectClick.Play();
                     Game1.SelectedTheme = 0;
                     this.SelectedTheme = 0;
                 }
                 else if (isOver(mouse, Theme2[0])) {
+                    StartMenu.EffectClick.Play();
                     Game1.SelectedTheme = 1;
                     this.SelectedTheme = 1;
                 }
                 else if (isOver(mouse, Theme3[0])) {
+                    StartMenu.EffectClick.Play();
                     Game1.SelectedTheme = 2;
                     this.SelectedTheme = 2;
                 }

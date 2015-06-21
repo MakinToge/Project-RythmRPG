@@ -28,12 +28,16 @@ namespace RythmRPG.Pages {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
                 
                 if (isOver(mouse, NextMusic)) {// Clique sur Next Song
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.MusicPlaying;
                 }
                 else if (isOver(mouse, GameMenu)) {// Clique sur GameMenu
+                    StartMenu.EffectClick.Play();
+                    StartMenu.MainTheme.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
                 else if (isOver(mouse, Restart)) {// Clique sur Restart
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.MusicPlaying;
                 }
             }

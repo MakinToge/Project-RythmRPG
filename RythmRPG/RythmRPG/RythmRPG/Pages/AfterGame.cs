@@ -71,9 +71,10 @@ namespace RythmRPG.Pages {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, PlayAgain)) { //Clique sur Play Again
-
+                    StartMenu.EffectClick.Play();
                 }
                 else if (isOver(mouse, GameMenu)) {
+                    StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
             }
