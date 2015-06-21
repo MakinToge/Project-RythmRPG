@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.CharacterStuff
+namespace RythmRPG.Character
 {
     /// <summary>
-    /// The mob class, inherits from Character
+    /// The boss class, inherits from Character
     /// </summary>
-    public class Mob : AbstractCharacter
+    public class Boss : AbstractCharacter
     {
         /// <summary>
-        /// The constructor
+        /// Constructor
         /// </summary>
         /// <param name="level">The level</param>
         /// <param name="vitality">The vitality</param>
         /// <param name="attack">The attack</param>
         /// <param name="defense">The defense</param>
-        /// <param name="position">The position of the mob on screen</param>
-        /// <param name="size">The size of the mob</param>
-        public Mob(int level, int vitality, int attack, int defense, Vector2 position, float size)
+        /// <param name="position">The position of the boss on screen</param>
+        /// <param name="size">The size of the boss</param>
+        public Boss(int level, int vitality, int attack, int defense, Vector2 position, float size)
             : base(level, vitality, attack, defense, position, size, "")
         {
         }
@@ -29,7 +29,7 @@ namespace RythmRPG.CharacterStuff
         /// Override the attack method from Character
         /// Attack another character
         /// </summary>
-        /// <param name="character"></param>
+        /// <param name="character">The character to attack</param>
         public override void attackCharacter(AbstractCharacter character)
         {
             base.attackCharacter(character);
@@ -37,15 +37,23 @@ namespace RythmRPG.CharacterStuff
             int damageDealt = this.Attack;
             int resistance = character.Defense;
 
-            if(character.skills.Contains(Skills.DefenseBoost))
+            if (this.skills.Contains(Skills.AttackBoost))
+            {
+                damageDealt += 3;
+            }
+
+            if (character.skills.Contains(Skills.DefenseMegaBoost))
+            {
+                resistance += 6;
+            }
+            else if (character.skills.Contains(Skills.DefenseBoost))
             {
                 resistance += 3;
             }
 
             damageDealt -= resistance;
-            damageDealt += (int)Math.Floor(1.1 * this.Attack);
 
-            if(damageDealt < 0)
+            if (damageDealt < 0)
             {
                 damageDealt = 0;
             }

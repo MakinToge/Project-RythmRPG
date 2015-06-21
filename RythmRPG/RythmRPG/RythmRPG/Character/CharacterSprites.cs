@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.CharacterStuff
+namespace RythmRPG.Character
 {
     /// <summary>
     /// Contains the animations of a character, both idle and attacking

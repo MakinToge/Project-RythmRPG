@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.CharacterStuff
+namespace RythmRPG.Character
 {
     /// <summary>
     /// The base of all characters in game, hero mobs and bosses

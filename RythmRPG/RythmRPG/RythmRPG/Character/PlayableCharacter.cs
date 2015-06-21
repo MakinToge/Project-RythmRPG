@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.CharacterStuff
+namespace RythmRPG.Character
 {
     /// <summary>
     /// The playable character class, inherits from Character
