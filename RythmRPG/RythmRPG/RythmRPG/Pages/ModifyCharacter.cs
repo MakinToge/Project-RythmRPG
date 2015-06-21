@@ -11,6 +11,7 @@ namespace RythmRPG.Pages {
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
         public Sprite CharacterSprite { get; set; }
+        public PlayableCharacter Character { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite Endurance { get; set; }
@@ -27,6 +28,11 @@ namespace RythmRPG.Pages {
         public Sprite ResetStatsPoints { get; set; }
         public TextSprite ExplainResetStats { get; set; }
         public Rectangle MouseRectangle { get; set; }
+
+        public int DefensePlus { get; set; }
+        public int AttackPlus { get; set; }
+        public int VitalityPlus { get; set; }
+        public int UsedStatPoints { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -83,17 +89,49 @@ namespace RythmRPG.Pages {
                 if (isOver(mouse, Back)) {
                     Game1.GameState = GameState.CharacterManagement;
                 }
-                else if (isOver(mouse, UpgradeVitality)) {
+                else if (isOver(mouse, UpgradeVitality) && IsUpgradable()) {
+                    this.VitalityPlus += 1;
+                    this.Vitality.Text = (this.Character.Vitality + this.VitalityPlus).ToString();
+                    this.UsedStatPoints += 1;
+                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
                 }
-                else if (isOver(mouse, UpgradeAttack)) {
+                else if (isOver(mouse, UpgradeAttack) && IsUpgradable()) {
+                    this.AttackPlus += 1;
+                    this.Strength.Text = (this.Character.Attack + this.AttackPlus).ToString();
+                    this.UsedStatPoints += 1;
+                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
                 }
-                else if (isOver(mouse, UpgradeDefense)) {
+                else if (isOver(mouse, UpgradeDefense) && IsUpgradable()) {
+                    this.DefensePlus += 1;
+                    this.Endurance.Text = (this.Character.Defense + this.DefensePlus).ToString();
+                    this.UsedStatPoints += 1;
+                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
                 }
                 else if (isOver(mouse, ResetStatsPoints)) {
+                    this.Character.respec();
+                    this.LoadDataCharacter(this.Character);
                 }
                 else if (isOver(mouse, Cancel)) {
+                    this.AttackPlus = 0;
+                    this.DefensePlus = 0;
+                    this.VitalityPlus = 0;
+                    this.UsedStatPoints = 0;
+                    this.Strength.Text = (this.Character.Attack + this.AttackPlus).ToString();
+                    this.Endurance.Text = (this.Character.Defense + this.DefensePlus).ToString();
+                    this.Vitality.Text = (this.Character.Vitality + this.VitalityPlus).ToString();
+                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
                 }
                 else if (isOver(mouse, Confirm)) {
+                    this.Character.addAttack(this.AttackPlus);
+                    this.Character.addDefense(this.DefensePlus);
+                    this.Character.addVitality(this.VitalityPlus);
+                    this.Character.statPoints = this.Character.statPoints - this.UsedStatPoints;
+
+                    this.AttackPlus = 0;
+                    this.DefensePlus = 0;
+                    this.VitalityPlus = 0;
+
+                    this.LoadDataCharacter(this.Character);
                 }
             }
 
@@ -127,14 +165,22 @@ namespace RythmRPG.Pages {
         }
 
         public void LoadDataCharacter(PlayableCharacter character) {
+            this.Character = character;
+
             this.Name.Text = character.Name;
             this.Level.Text = character.Level.ToString();
-            this.Endurance.Text = character.Defense.ToString();
-            this.Vitality.Text = character.Vitality.ToString();
+            this.Endurance.Text = (character.Defense + this.DefensePlus).ToString();
+            this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
             this.HP.Text = character.Health.ToString();
-            this.Strength.Text = character.Attack.ToString();
+            this.Strength.Text = (character.Attack + this.AttackPlus).ToString();
             this.StatsPoints.Text = character.statPoints.ToString();
             this.Gold.Text = character.gold.ToString();
+        }
+        public bool IsUpgradable() {
+            if ( this.UsedStatPoints < this.Character.statPoints) {
+                return true;
+            }
+            return false;
         }
     }
 }
