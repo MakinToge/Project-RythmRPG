@@ -131,9 +131,11 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, this.MuteMenu)) {
                     if (Game1.VolumeMenu == 0) {
                         Game1.VolumeMenu = 5;
+                        StartMenu.MainTheme.Volume = 0.5f;
                     }
                     else {
                         Game1.VolumeMenu = 0;
+                        StartMenu.MainTheme.Volume = 0;
                     }
                     
                 }
@@ -193,6 +195,9 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < Game1.VolumeSound /2; i++) {
                 VolumeSound[i].Draw(spriteBatch, gameTime);
             }
+        }
+
+        public void VolumeSoundUp() {
         }
     }
 }
