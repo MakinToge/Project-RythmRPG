@@ -10,6 +10,8 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class MusicPlaying : Page{
+        private Texture2D background;
+
         public ContentManager Content { get; set; }
         public bool isLoading { get; set; }
         public bool isLoaded { get; set; }
@@ -52,7 +54,7 @@ namespace RythmRPG.Pages {
             this.Content = content;
 
             this.MainImage.LoadContent(content, "MusicPlaying/MusicPlaying");
-
+            this.background = Content.Load<Texture2D>("BackgroundLevel");
             //Character Data
             
             for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++) {
@@ -110,6 +112,9 @@ namespace RythmRPG.Pages {
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+            spriteBatch.Begin();
+            spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f, SpriteEffects.None, 0);
+            spriteBatch.End();
             this.MainImage.Draw(spriteBatch, gameTime);
 
             //Character Data

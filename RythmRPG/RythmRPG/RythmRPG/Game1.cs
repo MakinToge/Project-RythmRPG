@@ -259,7 +259,7 @@ namespace RythmRPG {
 
             // TODO: Add your drawing code here
             this.spriteBatch.Begin();
-            this.spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f /*new Vector2(DEFAULT_WINDOWS_WIDTH, DEFAULT_WINDOWS_HEIGHT)*/, SpriteEffects.None, 0);
+            this.spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f, SpriteEffects.None, 0);
             this.spriteBatch.End();
 
             switch (GameState) {
