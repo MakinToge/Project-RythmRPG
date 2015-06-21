@@ -87,8 +87,8 @@ namespace RythmRPG.Character
         /// <param name="name">The name of the player</param>
         public PlayableCharacter(int level, int vitality, int attack, int defense,
             UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
-            Vector2 position, Vector2 size, float scale, string name)
-            : base(level, vitality, attack, defense, position, size, scale, name)
+            Vector2 position, float scale, string name)
+            : base(level, vitality, attack, defense, position, scale, name)
         {
             this.levelUpStats = levelUpStats;
             this.uniqueSkill = skill;

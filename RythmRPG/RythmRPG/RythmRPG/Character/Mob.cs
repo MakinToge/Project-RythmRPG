@@ -20,8 +20,8 @@ namespace RythmRPG.Character
         /// <param name="defense">The defense</param>
         /// <param name="position">The position of the mob on screen</param>
         /// <param name="scale">The size of the mob</param>
-        public Mob(int level, int vitality, int attack, int defense, Vector2 position, Vector2 size, float scale)
-            : base(level, vitality, attack, defense, position, size, scale, "")
+        public Mob(int level, int vitality, int attack, int defense, Vector2 position, float scale)
+            : base(level, vitality, attack, defense, position, scale, "")
         {
         }
 

@@ -69,11 +69,6 @@ namespace RythmRPG.Character
         private Vector2 origin;
 
         /// <summary>
-        /// The size of the sprites on screen
-        /// </summary>
-        private Vector2 size;
-
-        /// <summary>
         /// True if we want to place the bottom right corner of the image 
         /// </summary>
         private bool bottomRight = false;
@@ -103,10 +98,9 @@ namespace RythmRPG.Character
         /// <param name="rotation">The rotation of the animation</param>
         /// <param name="scale">The scale of the animation</param>
         /// <param name="depth">The depth of the animation</param>
-        public CharacterSprites(Vector2 position, Vector2 size, float rotation, float scale, float depth)
+        public CharacterSprites(Vector2 position, float rotation, float scale, float depth)
         {
             this.position = position;
-            this.size = size;
 
             this.rotation = rotation;
             this.scale = scale;
@@ -213,7 +207,7 @@ namespace RythmRPG.Character
                     spritePosition = this.position;
                 }
 
-                batch.Draw(this.attackingAnimation, spritePosition, sourceRect, Color.White, this.rotation, Vector2.Zero, this.size, effect, this.depth);
+                batch.Draw(this.attackingAnimation, spritePosition, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
             else
             {

@@ -109,7 +109,7 @@ namespace RythmRPG {
                 size = 0;
             }
 
-            this.CharacterArray[nbCharacter] = new PlayableCharacter(level, vitality, attack, defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, position, new Vector2(100, 100), 0, name);
+            this.CharacterArray[nbCharacter] = new PlayableCharacter(level, vitality, attack, defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, position, 0, name);
                 //new PlayableCharacter(level,vitality,attack,defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, position,size,0, name);
             this.CharacterArray[nbCharacter].gold = 500;
         }

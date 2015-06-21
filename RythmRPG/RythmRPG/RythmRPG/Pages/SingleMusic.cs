@@ -26,7 +26,7 @@ namespace RythmRPG.Pages {
 
             this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
             for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), new Vector2(8 * Game1.UnitX, 8 * Game1.UnitY), 0,1.75f,0);
+                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), 0,1.75f,0);
             }
 
             this.Casual = new Sprite[2] {
