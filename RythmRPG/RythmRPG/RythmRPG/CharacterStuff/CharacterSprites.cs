@@ -24,6 +24,7 @@ namespace RythmRPG.CharacterStuff
         private float rotation, scale, depth;
         private Vector2 position;
         private Vector2 origin;
+        private bool bottomLeft = false;
 
         private bool isAttacking = false;
         public bool IsAttacking {
@@ -60,7 +61,13 @@ namespace RythmRPG.CharacterStuff
             this.frameCol = 0;
             this.totalElapsed = 0;
 
+            this.origin = new Vector2(this.position.X, this.position.Y);
+        }
+
+        public void setOriginBottomLeft()
+        {
             this.origin = new Vector2(this.position.X + (this.attackingAnimation.Width / this.frameColCount), this.position.Y + (this.attackingAnimation.Height / this.frameLineCount));
+            this.bottomLeft = true;
         }
 
         public void UpdateFrame(float elapsed)
@@ -97,10 +104,9 @@ namespace RythmRPG.CharacterStuff
             int frameHeight;
 
             Rectangle sourceRect;
-
             Vector2 pos;
 
-            SpriteEffects effect = SpriteEffects.None;
+            SpriteEffects effect = SpriteEffects.FlipHorizontally;
 
             if (this.isAttacking)
             {
@@ -108,7 +114,15 @@ namespace RythmRPG.CharacterStuff
                 frameHeight = attackingAnimation.Height / frameLineCount;
 
                 sourceRect = new Rectangle(frameWidth * frameCol, frameHeight * frameLine, frameWidth, frameHeight);
-                pos = new Vector2(this.origin.X - sourceRect.Width, this.origin.Y - sourceRect.Height);
+
+                if (this.bottomLeft)
+                {
+                    pos = new Vector2(this.origin.X - sourceRect.Width, this.origin.Y - sourceRect.Height);
+                }
+                else
+                {
+                    pos = this.position;
+                }
 
                 batch.Draw(this.attackingAnimation, pos, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
@@ -118,7 +132,14 @@ namespace RythmRPG.CharacterStuff
                 frameHeight = idleAnimation.Height / frameLineCount;
 
                 sourceRect = new Rectangle(frameWidth * frameCol, frameHeight * frameLine, frameWidth, frameHeight);
-                pos = new Vector2(this.origin.X - sourceRect.Width, this.origin.Y - sourceRect.Height);
+                if (this.bottomLeft)
+                {
+                    pos = new Vector2(this.origin.X - sourceRect.Width, this.origin.Y - sourceRect.Height);
+                }
+                else
+                {
+                    pos = this.position;
+                }
 
                 batch.Draw(this.idleAnimation, pos, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
