@@ -19,7 +19,7 @@ namespace RythmRPG
         private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 8;
         private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;
 
-
+        /*
         static public void AddBeatsToLane(SortedSet<double>[] sSBeats, int laneIndex, List<double> beats)
         {
             double lastTime = 0;
@@ -98,9 +98,6 @@ namespace RythmRPG
                 }
             }
 
-
-
-
-        }
+        }*/
     }
 }
