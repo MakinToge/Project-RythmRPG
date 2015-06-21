@@ -44,7 +44,7 @@ namespace RythmRPG.Pages {
             //Character Data
             this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
             for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters [i] = new CharacterSprites(new Vector2(13 * Game1.UnitX, 5 * Game1.UnitY), new Vector2(10 * Game1.UnitX, 10 * Game1.UnitY), 0,0,0);
+                this.SpriteCharacters [i] = new CharacterSprites(new Vector2(13 * Game1.UnitX, 5 * Game1.UnitY), new Vector2(10 * Game1.UnitX, 10 * Game1.UnitY), 0,2,0);
 			}
             this.Type = new TextSprite(27 * Game1.UnitX, 3.2f * Game1.UnitY,"", Color.Black);
             this.Name = new TextSprite(27 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);

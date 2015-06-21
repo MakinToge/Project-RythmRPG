@@ -230,7 +230,7 @@ namespace RythmRPG.Character
                     spritePosition = this.position;
                 }
 
-                batch.Draw(this.idleAnimation, spritePosition, sourceRect, Color.White, this.rotation, Vector2.Zero, this.size, effect, this.depth);
+                batch.Draw(this.idleAnimation, spritePosition, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
 
             batch.End();

@@ -18,6 +18,8 @@ namespace RythmRPG {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private Texture2D background;
+
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
         
@@ -129,6 +131,8 @@ namespace RythmRPG {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            this.background = Content.Load<Texture2D>("MainBackground");
+
             this.StartMenu.LoadContent(this.Content);
             this.Options.LoadContent(this.Content);
             this.GameMenu.LoadContent(this.Content);
@@ -254,6 +258,10 @@ namespace RythmRPG {
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
+            this.spriteBatch.Begin();
+            this.spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f /*new Vector2(DEFAULT_WINDOWS_WIDTH, DEFAULT_WINDOWS_HEIGHT)*/, SpriteEffects.None, 0);
+            this.spriteBatch.End();
+
             switch (GameState) {
                 case GameState.StartMenu:
                     this.StartMenu.Draw(spriteBatch, gameTime);
