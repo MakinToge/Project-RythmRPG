@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RythmRPG.CharacterStuff;
 using System;
@@ -24,10 +25,9 @@ namespace RythmRPG.Pages {
         public Difficulty Difficulty { get; set; }
         public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
-
+        public List<Sprite> Strings { get; set; }
         public List<Sprite>[] Lines { get; set; }
         public List<Sprite> Circles { get; set; }
-        
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -45,6 +45,8 @@ namespace RythmRPG.Pages {
             this.Strength = new TextSprite(26 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
 
             this.Ability = new TextSprite(28 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
+
+            
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.Content = content;
@@ -92,7 +94,7 @@ namespace RythmRPG.Pages {
                 for (int j = 0; j < this.Lines[i].Count; j++) {
                     //Supprimer la note si elle depasse la positionDisparaitre
                     Sprite note = this.Lines[i][j];
-                    if (note.Position.X > positionDisparaitre){
+                    if (note.Position.X > positionDisparaitre){//Monstre doit attaquer ici
                         this.Lines[i].Remove(note);
                     }
                     note.Update(gametime);
@@ -120,6 +122,11 @@ namespace RythmRPG.Pages {
             }
             //Draw circles
             foreach (Sprite item in Circles) {
+                item.Draw(spriteBatch, gameTime);
+            }
+
+            //Draw Strings
+            foreach (Sprite item in this.Strings) {
                 item.Draw(spriteBatch, gameTime);
             }
         }
@@ -162,6 +169,14 @@ namespace RythmRPG.Pages {
                 Sprite circle = new Sprite(28 * Game1.UnitX, (11 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
                 this.Circles.Add(circle);
                 this.Circles[i].LoadContent(this.Content, "MusicPlaying/noteCircle");
+            }
+            //Strings
+            this.Strings = new List<Sprite>();
+            
+            for (int i = 0; i < nbLines; i++) {
+                Sprite oneString = new Sprite(2 * Game1.UnitX, (11.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
+                this.Strings.Add(oneString);
+                this.Strings[i].LoadContent(this.Content, "Options/One");
             }
 
             //Juste pour l'exemple
