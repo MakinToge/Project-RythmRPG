@@ -195,7 +195,7 @@ namespace RythmRPG.Character
             Rectangle sourceRect;
             Vector2 spritePosition;
 
-            SpriteEffects effect = SpriteEffects.FlipHorizontally;
+            SpriteEffects effect = SpriteEffects.None;
 
             if (this.isAttacking)
             {
