@@ -504,11 +504,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Options\Options.png">
-      <Name>Options</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Options\Theme1.png">
       <Name>Theme1</Name>
       <Importer>TextureImporter</Importer>
@@ -564,6 +559,13 @@
   <ItemGroup>
     <Compile Include="AfterGame\SingleMusic.png">
       <Name>SingleMusic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Options\Options.png">
+      <Name>Options</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
