@@ -38,10 +38,10 @@ namespace RythmRPG.Pages {
             this.VolumeMusic = new Sprite[5];
             this.VolumeSound = new Sprite[5];
             for (int i = 0; i < this.VolumeMusic.Length; i++) {
-                this.VolumeMusic[i] = new Sprite((22 + i) * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
+                this.VolumeMusic[i] = new Sprite((21 + i) * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
             }
             for (int i = 0; i < this.VolumeSound.Length; i++) {
-                this.VolumeSound[i] = new Sprite((22 + i) * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
+                this.VolumeSound[i] = new Sprite((21 + i) * Game1.UnitX, 11 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
             }
 
             this.ResetProgression = new Sprite(12 * Game1.UnitX, 16 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
