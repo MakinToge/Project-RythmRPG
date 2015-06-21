@@ -551,11 +551,7 @@
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Spritesheet\Boss\" />
-    <Folder Include="Spritesheet\Hero\" />
-    <Folder Include="Spritesheet\Mob\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="AfterGame\SingleMusic.png">
       <Name>SingleMusic</Name>
@@ -566,6 +562,124 @@
   <ItemGroup>
     <Compile Include="Options\Options.png">
       <Name>Options</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Spritesheet\Boss\BOSS_Bull_Attack.png">
+      <Name>BOSS_Bull_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Boss\BOSS_Bull_Idle.png">
+      <Name>BOSS_Bull_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Boss\BOSS_King_Attack.png">
+      <Name>BOSS_King_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Boss\BOSS_King_Idle.png">
+      <Name>BOSS_King_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Spritesheet\Hero\Caracter_Barbarian_Attack.png">
+      <Name>Caracter_Barbarian_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Barbarian_Idle.png">
+      <Name>Caracter_Barbarian_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Knight_Attack.png">
+      <Name>Caracter_Knight_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Knight_Idle.png">
+      <Name>Caracter_Knight_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Magus_Attack.png">
+      <Name>Caracter_Magus_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Magus_Idle.png">
+      <Name>Caracter_Magus_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Ninja_Attack.png">
+      <Name>Caracter_Ninja_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Hero\Caracter_Ninja_Idle.png">
+      <Name>Caracter_Ninja_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Spritesheet\Mob\Mob_BigWarrior_Attack.png">
+      <Name>Mob_BigWarrior_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_BigWarrior_Idle.png">
+      <Name>Mob_BigWarrior_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_MediumWarrior_Attack.png">
+      <Name>Mob_MediumWarrior_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_MediumWarrior_Idle.png">
+      <Name>Mob_MediumWarrior_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_SmallWarrior_Attack.png">
+      <Name>Mob_SmallWarrior_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_SmallWarrior_Idle.png">
+      <Name>Mob_SmallWarrior_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_Witch_Attack.png">
+      <Name>Mob_Witch_Attack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Spritesheet\Mob\Mob_Witch_Idle.png">
+      <Name>Mob_Witch_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackgroundLevel.png">
+      <Name>BackgroundLevel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="MainBackground.png">
+      <Name>MainBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
