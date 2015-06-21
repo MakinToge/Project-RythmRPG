@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 
 namespace RythmRPG.Pages {
     public class MusicPlaying : Page{
@@ -25,6 +26,8 @@ namespace RythmRPG.Pages {
         public List<Sprite>[] Lines { get; set; }
         public List<Sprite> Circles { get; set; }
 
+        public Timer timer;
+
         public override void Initialize() {
 
             //Character Data
@@ -34,6 +37,14 @@ namespace RythmRPG.Pages {
                 this.SpriteCharacters[i] = new CharacterSprites(new Vector2(8 * Game1.UnitX, 8 * Game1.UnitY), 0, 0.7f, 0);
             }
             this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
+
+            this.timer = new Timer();
+            this.timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            this.timer.Interval = 5000;
+            this.timer.Enabled = true;
+
+            Console.WriteLine("Press \'q\' to quit the sample.");
+            while (Console.Read() != 'q') ;
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.Content = content;
@@ -187,6 +198,12 @@ namespace RythmRPG.Pages {
             }
             note.LoadContent(this.Content, assetName);
             Lines[line].Add(note);
+        }
+
+        // Specify what you want to happen when the Elapsed event is raised.
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("Hello World!");
         }
     }
 }
