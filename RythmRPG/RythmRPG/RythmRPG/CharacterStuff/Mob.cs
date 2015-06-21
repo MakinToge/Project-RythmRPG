@@ -10,7 +10,7 @@ namespace RythmRPG.CharacterStuff
     {
         public Mob(int level, int vitality, int attack, int defense,
             string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
-            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, true, "")
+            : base(level, vitality, attack, defense, position, size, "")
         {
         }
 
