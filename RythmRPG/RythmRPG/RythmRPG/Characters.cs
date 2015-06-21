@@ -36,7 +36,7 @@ namespace RythmRPG {
         public void LoadDataCharacters(int nbCharacter) {
             //Charger les données Données au hasard pour l'instant
             int level, defense, vitality, attack, combo, xp, statPoints, nbRestart, size;
-            string idleSpriteName, attackingSpriteName, name;
+            string name;
             int[,] levelUpStats = new int[1, 2];
             Vector2 position;
             UniqueSkill ability;
@@ -46,14 +46,13 @@ namespace RythmRPG {
             defense = 15;
             vitality = 20;
             attack = 15;
-            ability = UniqueSkill.Templar;
+            ability = UniqueSkill.Survivor;
             levelUpStats = new int[1, 2];
             combo = 0;
             xp = 0;
             statPoints = 0;
             nbRestart = 0;
-            idleSpriteName = "medium";
-            attackingSpriteName = "";
+            
             position = new Vector2(0, 0);
             size = 0;
 
@@ -63,14 +62,13 @@ namespace RythmRPG {
                 defense = 35;
                 vitality = 30;
                 attack = 10;
-                ability = UniqueSkill.GoldDigger;
+                ability = UniqueSkill.Templar;
                 levelUpStats = new int[1, 2];
                 combo = 0;
                 xp = 0;
                 statPoints = 0;
                 nbRestart = 0;
-                idleSpriteName = "tank";
-                attackingSpriteName = "";
+                
                 position = new Vector2(0, 0);
                 size = 0;
             }
@@ -86,8 +84,7 @@ namespace RythmRPG {
                 xp = 0;
                 statPoints = 0;
                 nbRestart = 0;
-                idleSpriteName = "dps";
-                attackingSpriteName = "";
+                
                 position = new Vector2(0, 0);
                 size = 0;
             }
@@ -97,14 +94,13 @@ namespace RythmRPG {
                 defense = 35;
                 vitality = 30;
                 attack = 35;
-                ability = UniqueSkill.Survivor;
+                ability = UniqueSkill.GoldDigger;
                 levelUpStats = new int[1, 2];
                 combo = 0;
                 xp = 0;
                 statPoints = 0;
                 nbRestart = 2;
-                idleSpriteName = "custom";
-                attackingSpriteName = "";
+                
                 position = new Vector2(0, 0);
                 size = 0;
             }

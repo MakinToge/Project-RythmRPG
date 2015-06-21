@@ -10,7 +10,7 @@ namespace RythmRPG.Pages {
     public class ModifyCharacter : Page{
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
-        public Sprite CharacterSprite { get; set; }
+        public CharacterSprites CharacterSprite { get; set; }
         public PlayableCharacter Character { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
@@ -49,7 +49,7 @@ namespace RythmRPG.Pages {
             this.ExplainResetStats = this.HP = new TextSprite(22 * Game1.UnitX, 6.2f * Game1.UnitY, "Cost : 100 Gold", Color.Black);
 
             //Character Data
-            this.CharacterSprite = new Sprite(2 * Game1.UnitX, 5 * Game1.UnitY, 8 * Game1.UnitX, 8 * Game1.UnitY);
+            this.CharacterSprite = new CharacterSprites(new Vector2(2 * Game1.UnitX, 5 * Game1.UnitY), 0, 2, 0);
             this.Name = new TextSprite(15 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(16 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
             this.Endurance = new TextSprite(17 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
@@ -63,7 +63,7 @@ namespace RythmRPG.Pages {
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "ModifyCharacter/Custom");
             this.Back.LoadContent(content, "Options/Back");
-            this.CharacterSprite.LoadContent(content, "Characters/custom");
+            this.CharacterSprite.Load(content, "Spritesheet/Hero/IdleMagus", "Spritesheet/Hero/AttackingMagus", 2,4,10);
             this.Cancel.LoadContent(content, "ModifyCharacter/Cancel");
             this.Confirm.LoadContent(content, "ModifyCharacter/Confirm");
             this.UpgradeAttack.LoadContent(content, "ModifyCharacter/Upgrade");
@@ -149,7 +149,7 @@ namespace RythmRPG.Pages {
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
-            this.CharacterSprite.Draw(spriteBatch, gameTime);
+            this.CharacterSprite.DrawFrame(spriteBatch);
             this.Cancel.Draw(spriteBatch, gameTime);
             this.Confirm.Draw(spriteBatch, gameTime);
             this.UpgradeAttack.Draw(spriteBatch, gameTime);
