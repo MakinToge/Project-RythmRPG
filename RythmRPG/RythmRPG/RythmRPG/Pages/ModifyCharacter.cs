@@ -130,6 +130,7 @@ namespace RythmRPG.Pages {
             this.Name.Text = character.Name;
             this.Level.Text = character.Level.ToString();
             this.Endurance.Text = character.Defense.ToString();
+            this.Vitality.Text = character.Vitality.ToString();
             this.HP.Text = character.Health.ToString();
             this.Strength.Text = character.Attack.ToString();
             this.StatsPoints.Text = character.statPoints.ToString();

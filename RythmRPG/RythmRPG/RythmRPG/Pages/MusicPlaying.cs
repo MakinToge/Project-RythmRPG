@@ -14,6 +14,7 @@ namespace RythmRPG.Pages {
         public bool isLoaded { get; set; }
         public Sprite MainImage { get; set; }
         public Sprite[] SpriteCharacters { get; set; }
+        public List<AbstractCharacter> Monsters { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite Endurance { get; set; }
@@ -71,6 +72,16 @@ namespace RythmRPG.Pages {
             */
             if (currentKeyboardState.IsKeyDown(Keys.Escape)) {
                 Game1.GameState = GameState.Pause;
+            }
+            else if (currentKeyboardState.IsKeyDown(Keys.Z)) {//Touche Z
+            }
+            else if (currentKeyboardState.IsKeyDown(Keys.Q)) {//Touche Q
+            }
+            else if (currentKeyboardState.IsKeyDown(Keys.D)) {//Touche D
+            }
+            else if (currentKeyboardState.IsKeyDown(Keys.LeftShift)) {//Touche Shift
+            }
+            else if (currentKeyboardState.IsKeyDown(Keys.Space)) {//Touche Space
             }
         }
 

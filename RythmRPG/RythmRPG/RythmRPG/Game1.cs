@@ -21,9 +21,12 @@ namespace RythmRPG {
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
         
+        //Options
         public static GameState GameState;
+        public static int SelectedTheme;
         public static int VolumeMusic = 4;
         public static int VolumeSound = 4;
+        public static int VolumeMenu = 5;
         public static Save Save;
         public static Difficulty Difficulty;
 
@@ -297,6 +300,10 @@ namespace RythmRPG {
             };
 
             base.Draw(gameTime);
+        }
+
+        public void ChangeTheme() {
+            this.LoadContent();
         }
     }
 }

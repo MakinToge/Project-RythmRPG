@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    class Mob : AbstractCharacter
+    public class Mob : AbstractCharacter
     {
         public Mob(int level, int vitality, int attack, int defense,
             string idleSpriteName, string attackingSpriteName, Vector2 position, float size)

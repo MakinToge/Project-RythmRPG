@@ -21,6 +21,11 @@ namespace RythmRPG.Pages {
         public Sprite ResetProgression { get; set; }
         public Sprite Keyboard { get; set; }
         public Sprite Devices { get; set; }
+        public Sprite MuteMenu { get; set; }
+        public int SelectedTheme { get; set; }
+        public Sprite[] Theme1 { get; set; }
+        public Sprite[] Theme2 { get; set; }
+        public Sprite[] Theme3 { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -44,8 +49,23 @@ namespace RythmRPG.Pages {
             }
 
             this.ResetProgression = new Sprite(12 * Game1.UnitX, 16 * Game1.UnitY, Game1.ButtonWidth, Game1.ButtonHeight);
-            this.Keyboard = new Sprite(13 * Game1.UnitX, 10 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
-            this.Devices = new Sprite(13 * Game1.UnitX, 6 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Keyboard = new Sprite(14 * Game1.UnitX, 10 * Game1.UnitY, 4 * Game1.UnitX, 2 * Game1.UnitY);
+            this.Devices = new Sprite(14 * Game1.UnitX, 6 * Game1.UnitY, 4 * Game1.UnitX, 2 * Game1.UnitY);
+
+            this.MuteMenu = new Sprite(24 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
+            this.SelectedTheme = 0;
+            this.Theme1 = new Sprite[2] {
+                new Sprite(Game1.UnitX, 6 * Game1.UnitY, 6 * Game1.UnitX, Game1.UnitY),
+                new Sprite(Game1.UnitX, 6 * Game1.UnitY, 6 * Game1.UnitX, Game1.UnitY)
+            };
+            this.Theme2 = new Sprite[2] {
+                new Sprite(Game1.UnitX, 7 * Game1.UnitY, 6 * Game1.UnitX, Game1.UnitY),
+                new Sprite(Game1.UnitX, 7 * Game1.UnitY, 6 * Game1.UnitX, Game1.UnitY)
+            };
+            this.Theme3 = new Sprite[2] {
+                new Sprite(Game1.UnitX, 8 * Game1.UnitY, 6 * Game1.UnitX, Game1.UnitY),
+                new Sprite(Game1.UnitX, 8 * Game1.UnitY, 6 * Game1.UnitX, Game1.UnitY)
+            };
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "Options/Options");
@@ -62,6 +82,14 @@ namespace RythmRPG.Pages {
 
             this.Keyboard.LoadContent(content, "Options/keyboard");
             this.Devices.LoadContent(content, "Options/keyboard");
+
+            this.MuteMenu.LoadContent(content, "Options/MuteMenu");
+            this.Theme1[0].LoadContent(content, "Options/Theme1");
+            this.Theme1[1].LoadContent(content, "Options/Theme1");
+            this.Theme2[0].LoadContent(content, "Options/Theme2");
+            this.Theme2[1].LoadContent(content, "Options/Theme2");
+            this.Theme3[0].LoadContent(content, "Options/Theme3");
+            this.Theme3[1].LoadContent(content, "Options/Theme3");
 
             foreach (Sprite item in this.VolumeMusic) {
                 item.LoadContent(content, "Options/One");
@@ -94,6 +122,30 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, this.RightSound) && Game1.VolumeSound < 10) {
                     Game1.VolumeSound += 2;
                 }
+                //Menu Volume
+                else if (isOver(mouse, this.MuteMenu)) {
+                    if (Game1.VolumeMenu == 0) {
+                        Game1.VolumeMenu = 5;
+                    }
+                    else {
+                        Game1.VolumeMenu = 0;
+                    }
+                    
+                }
+
+                //Themes
+                if (isOver(mouse, Theme1[0])) {
+                    Game1.SelectedTheme = 0;
+                    this.SelectedTheme = 0;
+                }
+                else if (isOver(mouse, Theme2[0])) {
+                    Game1.SelectedTheme = 1;
+                    this.SelectedTheme = 1;
+                }
+                else if (isOver(mouse, Theme3[0])) {
+                    Game1.SelectedTheme = 2;
+                    this.SelectedTheme = 2;
+                }
             }
         }
 
@@ -111,6 +163,21 @@ namespace RythmRPG.Pages {
 
             this.Keyboard.Draw(spriteBatch, gameTime);
             this.Devices.Draw(spriteBatch, gameTime);
+
+            this.MuteMenu.Draw(spriteBatch, gameTime);
+            this.Theme1[0].Draw(spriteBatch, gameTime);
+            this.Theme2[0].Draw(spriteBatch, gameTime);
+            this.Theme3[0].Draw(spriteBatch, gameTime);
+            if (SelectedTheme == 0) {
+                this.Theme1[1].Draw(spriteBatch, gameTime);
+            }
+            else if (SelectedTheme == 1) {
+                this.Theme2[1].Draw(spriteBatch, gameTime);
+            }
+            else if (SelectedTheme == 2) {
+                this.Theme3[1].Draw(spriteBatch, gameTime);
+            }
+
 
             for (int i = 0; i < Game1.VolumeMusic /2; i++) {
                 VolumeMusic[i].Draw(spriteBatch, gameTime);
