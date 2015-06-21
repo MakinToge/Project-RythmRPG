@@ -25,6 +25,7 @@ namespace RythmRPG {
         public static int VolumeMusic = 4;
         public static int VolumeSound = 4;
         public static Save Save;
+        public static Difficulty Difficulty;
 
         public static int Width;
         public static int Height;

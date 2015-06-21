@@ -6,11 +6,11 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    class Boss : AbstractCharacter
+    public class Boss : AbstractCharacter
     {
         public Boss(int level, int vitality, int attack, int defense,
             string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
-            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, true)
+            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, true,"")
         {
         }
 
@@ -18,8 +18,8 @@ namespace RythmRPG.CharacterStuff
         {
             base.attackCharacter(character);
 
-            int damageDealt = this.attack;
-            int resistance = character.defense;
+            int damageDealt = this.Attack;
+            int resistance = character.Defense;
 
             if (this.skills.Contains(Skills.StrengthBoost))
             {

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    class CharacterSprites
+    public class CharacterSprites
     {
         private int frame;
         private int framecount;

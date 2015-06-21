@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using RythmRPG.CharacterStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace RythmRPG.Pages {
         public TextSprite Ability { get; set; }
 
         public List<Sprite>[] Lines { get; set; }
+        public List<Sprite> Circles { get; set; }
         
 
         public override void Initialize() {
@@ -51,7 +53,7 @@ namespace RythmRPG.Pages {
             //Character Data
             
             for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++) {
-                this.SpriteCharacters[i].LoadContent(content, "Characters/" + Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Type.ToString().ToLower());
+                this.SpriteCharacters[i].LoadContent(content, "Characters/" + Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].IdleSpriteName);
             }
 
             this.Name.LoadContent(content, "Arial16");
@@ -103,40 +105,58 @@ namespace RythmRPG.Pages {
             foreach (List<Sprite> list in Lines) {
                 foreach (Sprite note in list) {
                     note.Draw(spriteBatch, gameTime);
-                    ;
                 }
+            }
+            //Draw circles
+            foreach (Sprite item in Circles) {
+                item.Draw(spriteBatch, gameTime);
             }
         }
 
-        public void LoadDataCharacter(Character character) {
-            this.HPStart = character.HealthPoints;
+        public void LoadDataCharacter(PlayableCharacter character) {
+            this.HPStart = character.Health;
             this.Name.Text = character.Name;
-            if (character.ReachLevelMax == 0) {
+            if (character.NbRestart == 0) {
                 this.Level.Text = character.Level.ToString();
             }
             else {
-                this.Level.Text = string.Format("{0} ({1})", character.Level, character.ReachLevelMax);
+                this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
             }
             
-            this.Endurance.Text = character.EndurancePoints.ToString();
-            this.HP.Text = character.HealthPoints.ToString() + " / " + this.HPStart.ToString();
-            this.Strength.Text = character.StrengthPoints.ToString();
-            this.Ability.Text = character.Abilility;
+            this.Endurance.Text = character.Defense.ToString();
+            this.HP.Text = character.Health.ToString() + " / " + this.HPStart.ToString();
+            this.Strength.Text = character.Attack.ToString();
+            this.Ability.Text = character.uniqueSkill.ToString();
         }
 
         public void LoadGame() {
-            int nbLines = 5;
+            int nbLines;
+            if (Game1.Difficulty == Difficulty.Casual) {
+                nbLines = 3;
+            }
+            else if (Game1.Difficulty == Difficulty.Veteran) {
+                nbLines = 4;
+            }
+            else {
+                nbLines = 5;
+            }
+            
             this.Lines = new List<Sprite>[nbLines];
             for (int i = 0; i < nbLines; i++) {
                 this.Lines[i] = new List<Sprite>();
 			}
+            //Circles
+            this.Circles = new List<Sprite>();
+            for (int i = 0; i < nbLines; i++) {
+                Sprite circle = new Sprite(28 * Game1.UnitX, (11 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+                this.Circles.Add(circle);
+                this.Circles[i].LoadContent(this.Content, "MusicPlaying/noteCircle");
+            }
 
             //Juste pour l'exemple
-            this.AddNote(0);
-            this.AddNote(1);
-            this.AddNote(2);
-            this.AddNote(3);
-            this.AddNote(4);
+            for (int i = 0; i < nbLines; i++) {
+                this.AddNote(i);
+            }
 
             this.isLoaded = true;
         }
@@ -152,7 +172,23 @@ namespace RythmRPG.Pages {
             float speed = 0.4f;
             Sprite note = new Sprite(positionX, positionY, Game1.UnitX, Game1.UnitY, directionX, directionY, speed);
             //Charge l'image
-            note.LoadContent(this.Content, "MusicPlaying/note");
+            string assetName = "MusicPlaying/note";
+            if (line == 0) {
+                assetName = "MusicPlaying/noteGreen";
+            }
+            else if (line == 1) {
+                assetName = "MusicPlaying/noteRed";
+            }
+            else if (line == 2) {
+                assetName = "MusicPlaying/noteYellow";
+            }
+            else if (line == 3) {
+                assetName = "MusicPlaying/noteBlue";
+            }
+            else {
+                assetName = "MusicPlaying/noteOrange";
+            }
+            note.LoadContent(this.Content, assetName);
             Lines[line].Add(note);
         }
     }

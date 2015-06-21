@@ -6,7 +6,7 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    class PlayableCharacter : AbstractCharacter
+    public class PlayableCharacter : AbstractCharacter
     {
         private const int LEVEL_MAX = 25;
         private const int GOLD_TO_RESPEC = 100;
@@ -15,13 +15,13 @@ namespace RythmRPG.CharacterStuff
 
         public UniqueSkill uniqueSkill { get; set; }
 
-        public int combo { get; set; }
+        public int Combo { get; set; }
         public int hitCombo { get; set; }
 
-        public int nbRestart { get; set; }
+        public int NbRestart { get; set; }
         public int gold { get; set; }
         public int statPoints { get; set; }
-
+        public string IdleSpriteName { get; set; }
         public int xp { get; set; }
         private int[] xpLevels = { 1000, 3000, 6000, 10000, 15000, 21000, 28000, 36000, 45000,
                                    55000, 66000, 78000, 91000, 105000, 120000, 136000, 153000,
@@ -30,38 +30,40 @@ namespace RythmRPG.CharacterStuff
 
         public PlayableCharacter(int level, int vitality, int attack, int defense,
             UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
-            string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
-            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, false)
+            string idleSpriteName, string attackingSpriteName, Vector2 position, float size, string name)
+            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, false, name)
         {
             this.levelUpStats = levelUpStats;
             this.uniqueSkill = skill;
 
             this.hitCombo = 0;
-            this.combo = combo;
+            this.Combo = combo;
 
-            this.nbRestart = nbRestart;
+            this.NbRestart = nbRestart;
             this.xp = xp;
             this.statPoints = statPoints;
 
-            this.health = this.level * this.vitality + 10;
+            this.Health = this.Level * this.Vitality + 10;
 
-            this.skills = new List<Skills>(this.nbRestart);
+            this.skills = new List<Skills>(this.NbRestart);
+
+            this.IdleSpriteName = idleSpriteName;
         }
 
         public override void attackCharacter(AbstractCharacter character)
         {
             base.attackCharacter(character);
 
-            int damageDealt = this.attack;
-            int resistance = character.defense;
+            int damageDealt = this.Attack;
+            int resistance = character.Defense;
             this.hitCombo++;
             
             if(this.uniqueSkill == UniqueSkill.Berserker)
             {
-                damageDealt = this.defense;
+                damageDealt = this.Defense;
             }
 
-            if (this.skills.Contains(Skills.CriticalDamage) && this.hitCombo == this.combo)
+            if (this.skills.Contains(Skills.CriticalDamage) && this.hitCombo == this.Combo)
             {
                 damageDealt += 9;
                 this.hitCombo = 0;
@@ -103,7 +105,7 @@ namespace RythmRPG.CharacterStuff
                 Random rand = new Random();
                 if (rand.Next(100) <= 5)
                 {
-                    damageDealt = character.health;
+                    damageDealt = character.Health;
                 }
             }
 
@@ -112,19 +114,19 @@ namespace RythmRPG.CharacterStuff
 
         public override void levelUp()
         {
-            if(this.level < LEVEL_MAX)
+            if(this.Level < LEVEL_MAX)
             {
                 base.levelUp();
 
-                this.vitality += this.levelUpStats[this.level % 3, 0];
-                this.attack += this.levelUpStats[this.level % 3, 1];
-                this.defense += this.levelUpStats[this.level % 3, 2];
+                this.Vitality += this.levelUpStats[this.Level % 3, 0];
+                this.Attack += this.levelUpStats[this.Level % 3, 1];
+                this.Defense += this.levelUpStats[this.Level % 3, 2];
             }
         }
 
         public void gainXP(int xp)
         {
-            if(this.level < LEVEL_MAX)
+            if(this.Level < LEVEL_MAX)
             {
                 this.xp += xp;
 
@@ -133,7 +135,7 @@ namespace RythmRPG.CharacterStuff
                     this.xp = xpLevels[LEVEL_MAX - 2];
                 }
 
-                if (this.xp >= xpLevels[this.level - 1])
+                if (this.xp >= xpLevels[this.Level - 1])
                 {
                     this.levelUp();
                 }
@@ -142,19 +144,19 @@ namespace RythmRPG.CharacterStuff
 
         public bool restart()
         {
-            if(this.level == LEVEL_MAX)
+            if(this.Level == LEVEL_MAX)
             {
-                this.nbRestart++;
+                this.NbRestart++;
 
-                this.vitality = 1;
-                this.attack = 1;
-                this.defense = 1;
+                this.Vitality = 1;
+                this.Attack = 1;
+                this.Defense = 1;
 
                 this.xp = 0;
-                this.level = 1;
+                this.Level = 1;
                 this.statPoints = 0;
 
-                this.skills = new List<Skills>(this.nbRestart);
+                this.skills = new List<Skills>(this.NbRestart);
 
                 return true;
             }
@@ -168,11 +170,11 @@ namespace RythmRPG.CharacterStuff
             {
                 this.gold -= GOLD_TO_RESPEC;
 
-                this.vitality = 1;
-                this.attack = 1;
-                this.defense = 1;
+                this.Vitality = 1;
+                this.Attack = 1;
+                this.Defense = 1;
 
-                this.statPoints = 3 * (this.level - 1);
+                this.statPoints = 3 * (this.Level - 1);
 
                 return true;
             }

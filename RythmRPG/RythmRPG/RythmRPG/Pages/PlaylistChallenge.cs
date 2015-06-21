@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using RythmRPG.CharacterStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,7 +80,7 @@ namespace RythmRPG.Pages {
 
             //Character Data
             for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++) {
-                this.SpriteCharacters[i].LoadContent(content, "Characters/" + Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Type.ToString().ToLower());
+                this.SpriteCharacters[i].LoadContent(content, "Characters/" + Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].IdleSpriteName);
             }
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
@@ -91,12 +92,15 @@ namespace RythmRPG.Pages {
                 }
                 else if (isOver(mouse, Casual[0])) {
                     this.SelectedDifficulty = 0;
+                    Game1.Difficulty = Difficulty.Casual;
                 }
                 else if (isOver(mouse, Veteran[0])) {
                     this.SelectedDifficulty = 1;
+                    Game1.Difficulty = Difficulty.Veteran;
                 }
                 else if (isOver(mouse, GodLike[0])) {
                     this.SelectedDifficulty = 2;
+                    Game1.Difficulty = Difficulty.GodLike;
                 }
                 else if (isOver(mouse, Classic[0])) {
                     this.SelectedMode = 0;
@@ -110,7 +114,7 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, Play)) {// Clique sur Play!
                     Game1.GameState = GameState.MusicPlaying;
                     int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
-                    Character character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];
+                    PlayableCharacter character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];
 
                     //Charge le jeu
                     this.MusicPlaying.LoadDataCharacter(character);

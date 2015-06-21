@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using RythmRPG.CharacterStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,14 +126,14 @@ namespace RythmRPG.Pages {
             }
         }
 
-        public void LoadDataCharacter(Character character) {
+        public void LoadDataCharacter(PlayableCharacter character) {
             this.Name.Text = character.Name;
             this.Level.Text = character.Level.ToString();
-            this.Endurance.Text = character.EndurancePoints.ToString();
-            this.HP.Text = character.HealthPoints.ToString();
-            this.Strength.Text = character.StrengthPoints.ToString();
-            this.StatsPoints.Text = character.StatsPoints.ToString();
-            this.Gold.Text = character.Gold.ToString();
+            this.Endurance.Text = character.Defense.ToString();
+            this.HP.Text = character.Health.ToString();
+            this.Strength.Text = character.Attack.ToString();
+            this.StatsPoints.Text = character.statPoints.ToString();
+            this.Gold.Text = character.gold.ToString();
         }
     }
 }

@@ -73,9 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
-    <Compile Include="Character.cs" />
     <Compile Include="Characters.cs" />
-    <Compile Include="CharacterType.cs" />
     <Compile Include="CharacterStuff\Boss.cs" />
     <Compile Include="CharacterStuff\AbstractCharacter.cs" />
     <Compile Include="CharacterStuff\CharacterSprites.cs" />

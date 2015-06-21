@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using RythmRPG.CharacterStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,7 @@ namespace RythmRPG.Pages {
 
             //Character Data
             for (int i = 0; i < this.Characters.CharacterArray.Length; i++) {
-                this.SpriteCharacters[i].LoadContent(content, "Characters/" + this.Characters.CharacterArray[i].Type.ToString().ToLower());
+                this.SpriteCharacters[i].LoadContent(content, "Characters/" + this.Characters.CharacterArray[i].IdleSpriteName);
             }
             
             this.Type.LoadContent(content, "Arial16");
@@ -128,19 +129,19 @@ namespace RythmRPG.Pages {
             this.Vitality.Draw(spriteBatch, gameTime);
         }
 
-        public void LoadDataCharacter(Character character){
-            this.Type.Text = character.Type.ToString();
+        public void LoadDataCharacter(PlayableCharacter character){
+            this.Type.Text = character.IdleSpriteName;
             this.Name.Text = character.Name;
-            if (character.ReachLevelMax == 0) {
+            if (character.NbRestart == 0) {
                 this.Level.Text = character.Level.ToString();
             }
             else {
-                this.Level.Text = string.Format("{0} ({1})", character.Level, character.ReachLevelMax);
+                this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
             }
-            this.Endurance.Text = character.EndurancePoints.ToString();
-            this.HP.Text = character.HealthPoints.ToString();
-            this.Strength.Text = character.StrengthPoints.ToString();
-            this.Ability.Text = character.Abilility;
+            this.Endurance.Text = character.Defense.ToString();
+            this.HP.Text = character.Health.ToString();
+            this.Strength.Text = character.Attack.ToString();
+            this.Ability.Text = character.uniqueSkill.ToString();
         }
     }
 }

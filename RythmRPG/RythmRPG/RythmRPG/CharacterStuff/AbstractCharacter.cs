@@ -8,27 +8,27 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
-    abstract class AbstractCharacter
+    public class AbstractCharacter
     {
-        public int level { get; set; }
-
-        public int health { get; set; }
-        public int vitality { get; set; }
-        public int attack { get; set; }
-        public int defense { get; set; }
+        public int Level { get; set; }
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public int Vitality { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
 
         public List<Skills> skills { get; set; }
 
         public CharacterSprites sprites { get; set; }
 
-        public AbstractCharacter(int level, int vitality, int attack, int defense, string idleSpriteName, string attackingSpriteName, Vector2 position, float scale, bool mirror)
+        public AbstractCharacter(int level, int vitality, int attack, int defense, string idleSpriteName, string attackingSpriteName, Vector2 position, float scale, bool mirror, string name)
         {
-            this.level = level;
-            this.vitality = vitality;
-            this.attack = attack;
-            this.defense = defense;
-
-            this.health = this.level * this.vitality;
+            this.Level = level;
+            this.Vitality = vitality;
+            this.Attack = attack;
+            this.Defense = defense;
+            this.Name = name;
+            this.Health = this.Level * this.Vitality;
 
             this.skills = new List<Skills>();
             this.sprites = new CharacterSprites(position, 0, scale, 0, mirror);
@@ -46,32 +46,32 @@ namespace RythmRPG.CharacterStuff
 
         public virtual void levelUp()
         {
-            this.level++;
+            this.Level++;
         }
 
         public void addVitality(int nbPoints)
         {
-            this.vitality += nbPoints;
+            this.Vitality += nbPoints;
         }
 
         public void addAttack(int nbPoints)
         {
-            this.attack += nbPoints;
+            this.Attack += nbPoints;
         }
 
         public void addDefense(int nbPoints)
         {
-            this.defense += nbPoints;
+            this.Defense += nbPoints;
         }
 
         public bool isDead()
         {
-            return this.health <= 0;
+            return this.Health <= 0;
         }
 
         public void takeDamage(int damage)
         {
-            this.health -= damage;
+            this.Health -= damage;
         }
 
         public virtual void attackCharacter(AbstractCharacter character)
