@@ -57,6 +57,21 @@ namespace RythmRPG.CharacterStuff
             this.Level++;
         }
 
+        public virtual void addVitality(int nbPoints)
+        {
+            this.Vitality += nbPoints;
+        }
+
+        public virtual void addAttack(int nbPoints)
+        {
+            this.Attack += nbPoints;
+        }
+
+        public virtual void addDefense(int nbPoints)
+        {
+            this.Defense += nbPoints;
+        }
+
         public bool isDead()
         {
             return this.Health <= 0;
