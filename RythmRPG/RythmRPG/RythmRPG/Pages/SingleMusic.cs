@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace RythmRPG.Pages {
     public class SingleMusic : Page{
@@ -66,7 +67,8 @@ namespace RythmRPG.Pages {
             }
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
+            if (currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
+            {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, Back)) {
@@ -90,6 +92,9 @@ namespace RythmRPG.Pages {
                 }
                 else if (isOver(mouse, ChooseMusic)) {//Clique sur Choose Music
                     StartMenu.EffectClick.Play();
+                    OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
+                    open.Filter = "MP3 File (*.mp3)|*.mp3;";
+                    if (open.ShowDialog() != DialogResult.OK) return;
                     
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
