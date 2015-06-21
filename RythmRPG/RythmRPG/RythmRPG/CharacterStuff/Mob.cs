@@ -6,14 +6,30 @@ using System.Text;
 
 namespace RythmRPG.CharacterStuff
 {
+    /// <summary>
+    /// The mob class, inherits from Character
+    /// </summary>
     public class Mob : AbstractCharacter
     {
-        public Mob(int level, int vitality, int attack, int defense,
-            string idleSpriteName, string attackingSpriteName, Vector2 position, float size)
+        /// <summary>
+        /// The constructor
+        /// </summary>
+        /// <param name="level">The level</param>
+        /// <param name="vitality">The vitality</param>
+        /// <param name="attack">The attack</param>
+        /// <param name="defense">The defense</param>
+        /// <param name="position">The position of the mob on screen</param>
+        /// <param name="size">The size of the mob</param>
+        public Mob(int level, int vitality, int attack, int defense, Vector2 position, float size)
             : base(level, vitality, attack, defense, position, size, "")
         {
         }
 
+        /// <summary>
+        /// Override the attack method from Character
+        /// Attack another character
+        /// </summary>
+        /// <param name="character"></param>
         public override void attackCharacter(AbstractCharacter character)
         {
             base.attackCharacter(character);
@@ -21,7 +37,7 @@ namespace RythmRPG.CharacterStuff
             int damageDealt = this.Attack;
             int resistance = character.Defense;
 
-            if(character.skills.Contains(Skills.EnduranceBoost))
+            if(character.skills.Contains(Skills.DefenseBoost))
             {
                 resistance += 3;
             }

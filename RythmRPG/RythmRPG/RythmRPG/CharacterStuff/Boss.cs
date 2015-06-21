@@ -37,16 +37,16 @@ namespace RythmRPG.CharacterStuff
             int damageDealt = this.Attack;
             int resistance = character.Defense;
 
-            if (this.skills.Contains(Skills.StrengthBoost))
+            if (this.skills.Contains(Skills.AttackBoost))
             {
                 damageDealt += 3;
             }
 
-            if (character.skills.Contains(Skills.EnduranceMegaBoost))
+            if (character.skills.Contains(Skills.DefenseMegaBoost))
             {
                 resistance += 6;
             }
-            else if (character.skills.Contains(Skills.EnduranceBoost))
+            else if (character.skills.Contains(Skills.DefenseBoost))
             {
                 resistance += 3;
             }
