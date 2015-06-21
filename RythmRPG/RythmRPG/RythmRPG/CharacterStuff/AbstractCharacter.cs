@@ -44,7 +44,7 @@ namespace RythmRPG.CharacterStuff
 
         public void Load(ContentManager content, string idle, string attacking, int frameCount, int framesPerSec)
         {
-            this.sprites.Load(content, idle, attacking, frameCount, framesPerSec);
+            //this.sprites.Load(content, idle, attacking, frameCount, framesPerSec);
         }
 
         public void Draw(SpriteBatch batch)
@@ -84,7 +84,7 @@ namespace RythmRPG.CharacterStuff
 
         public virtual void attackCharacter(AbstractCharacter character)
         {
-            this.sprites.isAttacking = true;
+            this.sprites.IsAttacking = true;
         }
     }
 }
