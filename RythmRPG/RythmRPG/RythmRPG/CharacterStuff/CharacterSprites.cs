@@ -23,9 +23,8 @@ namespace RythmRPG.CharacterStuff
         private Vector2 position;
 
         public bool isAttacking { get; set; }
-        public bool mirror { get; set; }
 
-        public CharacterSprites(Vector2 position, float rotation, float scale, float depth, bool mirror)
+        public CharacterSprites(Vector2 position, float rotation, float scale, float depth)
         {
             this.position = position;
             this.rotation = rotation;
@@ -33,7 +32,6 @@ namespace RythmRPG.CharacterStuff
             this.depth = depth;
 
             this.isAttacking = false;
-            this.mirror = mirror;
         }
 
         public void Load(ContentManager content, string idle, string attacking, int frameCount, int framesPerSec)
@@ -60,6 +58,7 @@ namespace RythmRPG.CharacterStuff
                 {
                     this.isAttacking = false;
                 }
+
                 // Keep the Frame between 0 and the total frames, minus one.
                 this.frame = this.frame % this.framecount;
                 totalElapsed -= this.timePerFrame;
@@ -77,10 +76,6 @@ namespace RythmRPG.CharacterStuff
             Rectangle sourceRect = new Rectangle(FrameWidth * frame, 0, FrameWidth, idleAnimation.Height);
 
             SpriteEffects effect = SpriteEffects.None;
-            if (this.mirror)
-            {
-                effect = SpriteEffects.FlipHorizontally;
-            }
 
             if (this.isAttacking)
             {

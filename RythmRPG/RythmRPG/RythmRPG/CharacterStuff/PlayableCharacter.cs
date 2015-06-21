@@ -31,7 +31,7 @@ namespace RythmRPG.CharacterStuff
         public PlayableCharacter(int level, int vitality, int attack, int defense,
             UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
             string idleSpriteName, string attackingSpriteName, Vector2 position, float size, string name)
-            : base(level, vitality, attack, defense, idleSpriteName, attackingSpriteName, position, size, false, name)
+            : base(level, vitality, attack, defense, position, size, name)
         {
             this.levelUpStats = levelUpStats;
             this.uniqueSkill = skill;
@@ -121,6 +121,38 @@ namespace RythmRPG.CharacterStuff
                 this.Vitality += this.levelUpStats[this.Level % 3, 0];
                 this.Attack += this.levelUpStats[this.Level % 3, 1];
                 this.Defense += this.levelUpStats[this.Level % 3, 2];
+
+                if(this.uniqueSkill == UniqueSkill.GoldDigger)
+                {
+                    this.statPoints += 3;
+                }
+            }
+        }
+
+        public void increaseVitality()
+        {
+            if (this.statPoints > 0)
+            {
+                this.Vitality++;
+                this.statPoints--;
+            }
+        }
+
+        public void increaseAttack()
+        {
+            if (this.statPoints > 0)
+            {
+                this.Attack++;
+                this.statPoints--;
+            }
+        }
+
+        public void increaseDefense()
+        {
+            if (this.statPoints > 0)
+            {
+                this.Defense++;
+                this.statPoints--;
             }
         }
 
