@@ -33,6 +33,8 @@ namespace RythmRPG.Pages {
                 }
                 else if (isOver(mouse, GameMenu)) {// Clique sur GameMenu
                     StartMenu.EffectClick.Play();
+                    StartMenu.MainTheme.IsLooped = true;
+                    StartMenu.MainTheme.Volume = StartMenu.VOLUME_ON;
                     StartMenu.MainTheme.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
