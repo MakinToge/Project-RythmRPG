@@ -10,8 +10,10 @@ namespace RythmRPG.CharacterStuff
 {
     public class CharacterSprites
     {
-        private int frame;
-        private int framecount;
+        private int frameLine;
+        private int frameCol;
+        private int frameLineCount;
+        private int frameColCount;
         
         private Texture2D idleAnimation;
         private Texture2D attackingAnimation;
@@ -21,8 +23,21 @@ namespace RythmRPG.CharacterStuff
 
         private float rotation, scale, depth;
         private Vector2 position;
+        private Vector2 origin;
 
-        public bool isAttacking { get; set; }
+        private bool isAttacking = false;
+        public bool IsAttacking {
+            get { return isAttacking; }
+            set
+            {
+                if (isAttacking != value)
+                {
+                    this.isAttacking = value;
+                    this.frameLine = 0;
+                    this.frameCol = 0;
+                }
+            }
+        }
 
         public CharacterSprites(Vector2 position, float rotation, float scale, float depth)
         {
@@ -30,20 +45,22 @@ namespace RythmRPG.CharacterStuff
             this.rotation = rotation;
             this.scale = scale;
             this.depth = depth;
-
-            this.isAttacking = false;
         }
 
-        public void Load(ContentManager content, string idle, string attacking, int frameCount, int framesPerSec)
+        public void Load(ContentManager content, string idle, string attacking, int frameLineCount, int frameColCount, int framesPerSec)
         {
-            this.framecount = frameCount;
+            this.frameLineCount = frameLineCount;
+            this.frameColCount = frameColCount;
 
             this.idleAnimation = content.Load<Texture2D>(idle);
             this.attackingAnimation = content.Load<Texture2D>(attacking);
 
             this.timePerFrame = (float)1 / framesPerSec;
-            this.frame = 0;
+            this.frameLine = 0;
+            this.frameCol = 0;
             this.totalElapsed = 0;
+
+            this.origin = new Vector2(this.position.X + (this.attackingAnimation.Width / this.frameColCount), this.position.Y + (this.attackingAnimation.Height / this.frameLineCount));
         }
 
         public void UpdateFrame(float elapsed)
@@ -52,38 +69,58 @@ namespace RythmRPG.CharacterStuff
 
             if (totalElapsed > timePerFrame)
             {
-                this.frame++;
+                this.frameCol++;
 
-                if(this.frame == this.framecount - 1 && this.isAttacking)
+                if(this.frameCol == this.frameColCount)
                 {
-                    this.isAttacking = false;
+                    this.frameCol = 0;
+                    this.frameLine++;
+
+                    if (this.frameLine == this.frameLineCount)
+                    {
+                        this.frameLine = 0;
+
+                        if(this.isAttacking)
+                        {
+                            this.IsAttacking = false;
+                        }
+                    }
                 }
 
-                // Keep the Frame between 0 and the total frames, minus one.
-                this.frame = this.frame % this.framecount;
                 totalElapsed -= this.timePerFrame;
             }
         }
 
         public void DrawFrame(SpriteBatch batch)
         {
-            DrawFrame(batch, this.frame);
-        }
+            int frameWidth;
+            int frameHeight;
 
-        public void DrawFrame(SpriteBatch batch, int frame)
-        {
-            int FrameWidth = idleAnimation.Width / framecount;
-            Rectangle sourceRect = new Rectangle(FrameWidth * frame, 0, FrameWidth, idleAnimation.Height);
+            Rectangle sourceRect;
+
+            Vector2 pos;
 
             SpriteEffects effect = SpriteEffects.None;
 
             if (this.isAttacking)
             {
-                batch.Draw(this.attackingAnimation, this.position, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
+                frameWidth = attackingAnimation.Width / frameColCount;
+                frameHeight = attackingAnimation.Height / frameLineCount;
+
+                sourceRect = new Rectangle(frameWidth * frameCol, frameHeight * frameLine, frameWidth, frameHeight);
+                pos = new Vector2(this.origin.X - sourceRect.Width, this.origin.Y - sourceRect.Height);
+
+                batch.Draw(this.attackingAnimation, pos, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
             else
             {
-                batch.Draw(this.idleAnimation, this.position, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
+                frameWidth = idleAnimation.Width / frameColCount;
+                frameHeight = idleAnimation.Height / frameLineCount;
+
+                sourceRect = new Rectangle(frameWidth * frameCol, frameHeight * frameLine, frameWidth, frameHeight);
+                pos = new Vector2(this.origin.X - sourceRect.Width, this.origin.Y - sourceRect.Height);
+
+                batch.Draw(this.idleAnimation, pos, sourceRect, Color.White, this.rotation, Vector2.Zero, this.scale, effect, this.depth);
             }
         }
     }

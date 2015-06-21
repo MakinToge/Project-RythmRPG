@@ -129,31 +129,22 @@ namespace RythmRPG.CharacterStuff
             }
         }
 
-        public void increaseVitality()
+        public override void addVitality(int nbPoints)
         {
-            if (this.statPoints > 0)
-            {
-                this.Vitality++;
-                this.statPoints--;
-            }
+            this.Vitality += nbPoints;
+            this.statPoints -= nbPoints;
         }
 
-        public void increaseAttack()
+        public override void addAttack(int nbPoints)
         {
-            if (this.statPoints > 0)
-            {
-                this.Attack++;
-                this.statPoints--;
-            }
+            this.Attack += nbPoints;
+            this.statPoints -= nbPoints;
         }
 
-        public void increaseDefense()
+        public override void addDefense(int nbPoints)
         {
-            if (this.statPoints > 0)
-            {
-                this.Defense++;
-                this.statPoints--;
-            }
+            this.Defense += nbPoints;
+            this.statPoints -= nbPoints;
         }
 
         public void gainXP(int xp)
