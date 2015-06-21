@@ -92,6 +92,7 @@ namespace RythmRPG.Pages {
                 }
                 else if (isOver(mouse, ChooseMusic)) {//Clique sur Choose Music
                     StartMenu.EffectClick.Play();
+
                     OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
                     open.Filter = "MP3 File (*.mp3)|*.mp3;";
                     if (open.ShowDialog() != DialogResult.OK) return;
