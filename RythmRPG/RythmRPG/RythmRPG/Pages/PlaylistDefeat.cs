@@ -15,7 +15,7 @@ namespace RythmRPG.Pages {
         }
         public override void Initialize() {
             base.Initialize();
-            this.Skip = new Sprite(22 * Game1.UnitX, 12 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY); 
+            this.Skip = new Sprite(22 * Game1.UnitX, 12 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.Retry = new Sprite(22 * Game1.UnitX, 6 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             
         }
