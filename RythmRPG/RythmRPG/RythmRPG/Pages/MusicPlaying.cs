@@ -15,45 +15,30 @@ namespace RythmRPG.Pages {
         public ContentManager Content { get; set; }
         public bool isLoading { get; set; }
         public bool isLoaded { get; set; }
-        public Sprite MainImage { get; set; }
         public CharacterSprites[] SpriteCharacters { get; set; }
         public List<AbstractCharacter> Monsters { get; set; }
-        public TextSprite Name { get; set; }
-        public TextSprite Level { get; set; }
-        public TextSprite Endurance { get; set; }
         public TextSprite HP { get; set; }
         public int HPStart { get; set; }
-        public TextSprite Strength { get; set; }
         public Difficulty Difficulty { get; set; }
         public TextSprite[] Skills { get; set; }
-        public TextSprite Ability { get; set; }
         public List<Sprite> Strings { get; set; }
         public List<Sprite>[] Lines { get; set; }
         public List<Sprite> Circles { get; set; }
 
         public override void Initialize() {
-            this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
 
             //Character Data
             
             this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
             for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(17 * Game1.UnitX, 2 * Game1.UnitY), 0,1f,0);
+                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(8 * Game1.UnitX, 8 * Game1.UnitY), 0, 0.7f, 0);
             }
-            this.Name = new TextSprite(17 * Game1.UnitX, 1f * Game1.UnitY, "", Color.Black);
-            this.Level = new TextSprite(26 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
-            this.Endurance = new TextSprite(26 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
-            this.HP = new TextSprite(25 * Game1.UnitX, 3.2f * Game1.UnitY, "", Color.Black);
-            this.Strength = new TextSprite(26 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
-
-            this.Ability = new TextSprite(28 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
-
-            
+            this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.Content = content;
 
-            this.MainImage.LoadContent(content, "MusicPlaying/MusicPlaying");
+            //this.MainImage.LoadContent(content, "MusicPlaying/MusicPlaying");
             this.background = Content.Load<Texture2D>("BackgroundLevel");
             //Character Data
             
@@ -61,20 +46,10 @@ namespace RythmRPG.Pages {
                 string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Name;
                 this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
             }
-
-            this.Name.LoadContent(content, "Arial16");
-            this.Level.LoadContent(content, "Arial16");
-            this.Endurance.LoadContent(content, "Arial16");
             this.HP.LoadContent(content, "Arial16");
-            this.Strength.LoadContent(content, "Arial16");
-            this.Ability.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
-            /*
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
-                Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
-            }
-            */
+
             if (currentKeyboardState.IsKeyDown(Keys.Escape)) {
                 StartMenu.EffectClick.Play();
                 Game1.GameState = GameState.Pause;
@@ -115,16 +90,10 @@ namespace RythmRPG.Pages {
             spriteBatch.Begin();
             spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f, SpriteEffects.None, 0);
             spriteBatch.End();
-            this.MainImage.Draw(spriteBatch, gameTime);
 
             //Character Data
             this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
-            this.Name.Draw(spriteBatch, gameTime);
-            this.Level.Draw(spriteBatch, gameTime);
-            this.Endurance.Draw(spriteBatch, gameTime);
             this.HP.Draw(spriteBatch, gameTime);
-            this.Strength.Draw(spriteBatch, gameTime);
-            this.Ability.Draw(spriteBatch, gameTime);
 
             //Draw la position des notes
             foreach (List<Sprite> list in Lines) {
@@ -145,18 +114,8 @@ namespace RythmRPG.Pages {
 
         public void LoadDataCharacter(PlayableCharacter character) {
             this.HPStart = character.Health;
-            this.Name.Text = character.Name;
-            if (character.NbRestart == 0) {
-                this.Level.Text = character.Level.ToString();
-            }
-            else {
-                this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
-            }
-            
-            this.Endurance.Text = character.Defense.ToString();
+
             this.HP.Text = character.Health.ToString() + " / " + this.HPStart.ToString();
-            this.Strength.Text = character.Attack.ToString();
-            this.Ability.Text = character.uniqueSkill.ToString();
         }
 
         public void LoadGame() {
@@ -178,7 +137,7 @@ namespace RythmRPG.Pages {
             //Circles
             this.Circles = new List<Sprite>();
             for (int i = 0; i < nbLines; i++) {
-                Sprite circle = new Sprite(28 * Game1.UnitX, (11 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+                Sprite circle = new Sprite(28 * Game1.UnitX, (13 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
                 this.Circles.Add(circle);
                 this.Circles[i].LoadContent(this.Content, "MusicPlaying/noteCircle");
             }
@@ -186,7 +145,7 @@ namespace RythmRPG.Pages {
             this.Strings = new List<Sprite>();
             
             for (int i = 0; i < nbLines; i++) {
-                Sprite oneString = new Sprite(2 * Game1.UnitX, (11.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
+                Sprite oneString = new Sprite(2 * Game1.UnitX, (13.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
                 this.Strings.Add(oneString);
                 this.Strings[i].LoadContent(this.Content, "Options/One");
             }
@@ -205,7 +164,7 @@ namespace RythmRPG.Pages {
             float directionY = 0;
             //Position de départ de la note
             float positionX = 2 * Game1.UnitX;
-            float positionY = (11 + line) * Game1.UnitY;
+            float positionY = (13 + line) * Game1.UnitY;
             //Vitesse
             float speed = 0.4f;
             Sprite note = new Sprite(positionX, positionY, Game1.UnitX, Game1.UnitY, directionX, directionY, speed);
