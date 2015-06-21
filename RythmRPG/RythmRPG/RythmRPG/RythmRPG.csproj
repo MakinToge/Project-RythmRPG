@@ -75,13 +75,13 @@
   <ItemGroup>
     <Compile Include="Button.cs" />
     <Compile Include="Characters.cs" />
-    <Compile Include="CharacterStuff\Boss.cs" />
-    <Compile Include="CharacterStuff\AbstractCharacter.cs" />
-    <Compile Include="CharacterStuff\CharacterSprites.cs" />
-    <Compile Include="CharacterStuff\Mob.cs" />
-    <Compile Include="CharacterStuff\PlayableCharacter.cs" />
-    <Compile Include="CharacterStuff\Skills.cs" />
-    <Compile Include="CharacterStuff\UniqueSkill.cs" />
+    <Compile Include="Character\Boss.cs" />
+    <Compile Include="Character\AbstractCharacter.cs" />
+    <Compile Include="Character\CharacterSprites.cs" />
+    <Compile Include="Character\Mob.cs" />
+    <Compile Include="Character\PlayableCharacter.cs" />
+    <Compile Include="Character\Skills.cs" />
+    <Compile Include="Character\UniqueSkill.cs" />
     <Compile Include="Difficulty.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Pages\AfterGame.cs" />

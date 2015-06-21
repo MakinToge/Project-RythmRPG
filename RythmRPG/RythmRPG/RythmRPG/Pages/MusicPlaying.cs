@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using RythmRPG.CharacterStuff;
+using RythmRPG.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace RythmRPG.Pages {
         public bool isLoading { get; set; }
         public bool isLoaded { get; set; }
         public Sprite MainImage { get; set; }
-        public Sprite[] SpriteCharacters { get; set; }
+        public CharacterSprites[] SpriteCharacters { get; set; }
         public List<AbstractCharacter> Monsters { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
@@ -34,9 +34,9 @@ namespace RythmRPG.Pages {
 
             //Character Data
             
-            this.SpriteCharacters = new Sprite[Characters.NB_MAX_CHARACTERS];
+            this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
             for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new Sprite(17 * Game1.UnitX, 2 * Game1.UnitY, 5 * Game1.UnitX, 5 * Game1.UnitY);
+                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(17 * Game1.UnitX, 2 * Game1.UnitY), new Vector2(5 * Game1.UnitX, 5 * Game1.UnitY), 0,0,0);
             }
             this.Name = new TextSprite(17 * Game1.UnitX, 1f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(26 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.Black);
@@ -56,7 +56,8 @@ namespace RythmRPG.Pages {
             //Character Data
             
             for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++) {
-                this.SpriteCharacters[i].LoadContent(content, "Characters/" + Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].IdleSpriteName);
+                string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Name;
+                this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
             }
 
             this.Name.LoadContent(content, "Arial16");
@@ -107,7 +108,7 @@ namespace RythmRPG.Pages {
             this.MainImage.Draw(spriteBatch, gameTime);
 
             //Character Data
-            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].Draw(spriteBatch, gameTime);
+            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
             this.Endurance.Draw(spriteBatch, gameTime);

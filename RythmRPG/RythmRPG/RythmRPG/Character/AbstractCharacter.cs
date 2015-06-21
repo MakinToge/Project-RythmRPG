@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.CharacterStuff
+namespace RythmRPG.Character
 {
     /// <summary>
     /// The base of all characters in game, hero mobs and bosses
@@ -68,9 +68,9 @@ namespace RythmRPG.CharacterStuff
         /// <param name="attack">The attack</param>
         /// <param name="defense">The defense</param>
         /// <param name="position">The position of the character on screen</param>
-        /// <param name="scale">The size of the character</param>
+        /// <param name="scale">The scale of the character</param>
         /// <param name="name">The name of the character</param>
-        public AbstractCharacter(int level, int vitality, int attack, int defense, Vector2 position, float scale, string name)
+        public AbstractCharacter(int level, int vitality, int attack, int defense, Vector2 position, Vector2 size, float scale, string name)
         {
             this.Level = level;
             this.Vitality = vitality;
@@ -80,7 +80,7 @@ namespace RythmRPG.CharacterStuff
             this.Health = this.Level * this.Vitality;
 
             this.skills = new List<Skills>();
-            this.sprites = new CharacterSprites(position, 0, scale, 0);
+            this.sprites = new CharacterSprites(position, size, 0, scale, 0);
         }
 
         /// <summary>
