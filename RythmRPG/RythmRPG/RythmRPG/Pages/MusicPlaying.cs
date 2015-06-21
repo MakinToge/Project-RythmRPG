@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Timers;
+using System.IO;
 
 namespace RythmRPG.Pages {
     public class MusicPlaying : Page{
@@ -38,13 +39,6 @@ namespace RythmRPG.Pages {
             }
             this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
 
-            this.timer = new Timer();
-            this.timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            this.timer.Interval = 5000;
-            this.timer.Enabled = true;
-
-            Console.WriteLine("Press \'q\' to quit the sample.");
-            while (Console.Read() != 'q') ;
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.Content = content;
@@ -130,6 +124,10 @@ namespace RythmRPG.Pages {
         }
 
         public void LoadGame() {
+            this.timer = new Timer();
+            this.timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            this.timer.Interval = 1000;
+            this.timer.Enabled = true;
             int nbLines;
             if (Game1.Difficulty == Difficulty.Casual) {
                 nbLines = 3;
