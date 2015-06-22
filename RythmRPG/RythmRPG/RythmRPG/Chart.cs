@@ -7,17 +7,17 @@ namespace RythmRPG
 {
     class Chart
     {
-        private const int EASY_LANE0_SUBBAND_UPPERLIMIT = 4;
-        private const int EASY_LANE1_SUBBAND_UPPERLIMIT = 9;
+        private const int EASY_LANE0_SUBBAND_UPPERLIMIT = 4;//4
+        private const int EASY_LANE1_SUBBAND_UPPERLIMIT = 9;//5//7
 
-        private const int NORMAL_LANE0_SUBBAND_UPPERLIMIT = 3;
-        private const int NORMAL_LANE1_SUBBAND_UPPERLIMIT = 7;
-        private const int NORMAL_LANE2_SUBBAND_UPPERLIMIT = 11;
+        private const int NORMAL_LANE0_SUBBAND_UPPERLIMIT = 3;//3
+        private const int NORMAL_LANE1_SUBBAND_UPPERLIMIT = 7;//4
+        private const int NORMAL_LANE2_SUBBAND_UPPERLIMIT = 11;//4//5
 
-        private const int HARD_LANE0_SUBBAND_UPPERLIMIT = 2;
-        private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 5;
-        private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 8;
-        private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;
+        private const int HARD_LANE0_SUBBAND_UPPERLIMIT = 3;//2
+        private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 5;//3
+        private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 8;//3
+        private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 13;//4//4
         static private double minimumTimeInterval = 0.5;
         static public int LaneNumber = 3;
 

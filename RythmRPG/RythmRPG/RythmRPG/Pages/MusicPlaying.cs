@@ -245,7 +245,7 @@ namespace RythmRPG.Pages
         // Specify what you want to happen when the Elapsed event is raised.
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            MusicPlaying.MillisecondsSinceLoadGame += 10;
+            MusicPlaying.MillisecondsSinceLoadGame += 16;
         }
 
         // gametime.ElapsedGameTime.TotalMilliseconds

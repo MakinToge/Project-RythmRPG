@@ -115,7 +115,7 @@ namespace RythmRPG
                         sum += Math.Pow(subbandsInstantEnergyArray[k + j][i] - subbandsLocalEnergyAverageArray[k][i], 2);
                     }
                     localVariance = sum / LocalInstantNumber;
-                    c = 4 - (Math.Exp(0.3 * i / SubbandsNumber) - 1) * 2;
+                    c = 3 - (Math.Exp(0.3) - 1) * 2;//(Math.Exp(0.3 * i / SubbandsNumber) - 1) * 2;
                     if (log)
                     {
                         Console.WriteLine(string.Format("instant {0}, subb {1} : instant energy {2}, Local Average {3}", k, i, subbandsInstantEnergyArray[k][i], subbandsLocalEnergyAverageArray[k][i]));
