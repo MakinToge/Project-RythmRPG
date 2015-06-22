@@ -39,7 +39,7 @@ namespace RythmRPG {
         public bool isOver(Microsoft.Xna.Framework.Input.MouseState mouse)
         {
             Vector2 size = this.Font.MeasureString(this.Text);
-            if (mouse.X >= this.Position.X && mouse.Y >= this.Position.Y && mouse.X <= size.X && mouse.Y <= size.Y)
+            if (mouse.X >= this.Position.X && mouse.Y >= this.Position.Y && mouse.X <= this.Position.X + size.X && mouse.Y <= this.Position.Y + size.Y)
             {
                 return true;
             }
