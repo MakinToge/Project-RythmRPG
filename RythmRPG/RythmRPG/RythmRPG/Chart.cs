@@ -19,7 +19,7 @@ namespace RythmRPG
         private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 8;
         private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;
         static private double minimumTimeInterval = 0.5;
-        static public int LaneNumber = (int)Game1.Difficulty + 2;
+        static public int LaneNumber = 3;
 
 
         static private void AddBeatsToLane(SortedSet<double>[] sSBeats, int laneIndex, List<double> beats)
@@ -38,8 +38,13 @@ namespace RythmRPG
         }
         static public SortedSet<double>[] getSetArray(List<double>[] beats, Difficulty difficulty)
         {
+            LaneNumber = (int)Game1.Difficulty + 3;
             minimumTimeInterval = (5 - (int)difficulty) / 8.0;
             SortedSet<double>[] sSBeats = new SortedSet<double>[LaneNumber];
+            for (int i = 0; i < LaneNumber; i++)
+            {
+                sSBeats[i] = new SortedSet<double>();
+            }
 
             if (difficulty == Difficulty.Casual)
             {

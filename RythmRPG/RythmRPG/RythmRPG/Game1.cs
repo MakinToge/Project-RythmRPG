@@ -18,6 +18,7 @@ namespace RythmRPG {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
         private Texture2D background;
 
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
@@ -32,6 +33,9 @@ namespace RythmRPG {
         public static Save Save;
         public static Difficulty Difficulty;
 
+        public static string WavFileDirectory = "musicDir/";
+        public static bool IsChallengeMode = false;
+        public static string CurrentSelectedWavFile = "";
         public static int Width;
         public static int Height;
         public static int UnitX;

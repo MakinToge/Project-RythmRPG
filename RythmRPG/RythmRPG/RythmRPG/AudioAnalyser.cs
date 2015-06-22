@@ -14,7 +14,6 @@ namespace RythmRPG
         private const int LocalInstantNumber = LocalWidth / InstantWidth;
         private static int LocalLowerBound = getLocalLowerBound();
         private const string MusicDirectory = "musicDir";//Resampling output directory
-        private const int outRate = 44032;//SampleRate for resampling
 
         static private double[] ComputeSubbandsLocalEnergyAverage(double[][] instantSubbandsEnergyArray, int historyIndex)//<Ei>, LocalLowBound <= historyIndex < subbandsInstantEnergyArray.Length - LocalInstantNumber/2
         {
@@ -82,10 +81,14 @@ namespace RythmRPG
         static public List<double>[] DetectBeat(string wavFilePath)
         {
             List<double>[] beats = new List<double>[16];
+            for (int i = 0; i < SubbandsNumber; i++)
+            {
+                beats[i] = new List<double>();
+            }
 
             double[] left;
             double[] right;
-            wavFileReader.ReadWavFile(string.Format("{0}/{1}", MusicDirectory, wavFilePath), out left, out right);
+            wavFileReader.ReadWavFile(wavFilePath, out left, out right);
 
             if (right == null)//if mono
             {

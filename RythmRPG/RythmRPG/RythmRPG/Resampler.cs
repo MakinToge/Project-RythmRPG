@@ -9,9 +9,15 @@ namespace RythmRPG
 {
     class Resampler
     {
-        static public void Resampling(string inFilePath, string wavDirectory, int outRate)
+
+        public const int RESAMPLING_SAMPLE_RATE = 44032;//SampleRate
+        static public void Resampling(string inFilePath, string wavDirectory, int outRate, out string outFilePath)
         {
-            var outFile = wavDirectory + Path.GetFileNameWithoutExtension(inFilePath) + ".wav";
+            if (!Directory.Exists(wavDirectory))
+            {
+                Directory.CreateDirectory(wavDirectory);
+            }
+            outFilePath = wavDirectory + Path.GetFileNameWithoutExtension(inFilePath) + ".wav";
 
             using (var reader = new Mp3FileReader(inFilePath))
             {
@@ -19,7 +25,7 @@ namespace RythmRPG
                 using (var resampler = new MediaFoundationResampler(reader, outFormat))
                 {
                     resampler.ResamplerQuality = 60;
-                    WaveFileWriter.CreateWaveFile(outFile, resampler);
+                    WaveFileWriter.CreateWaveFile(outFilePath, resampler);
                 }
             }
         }

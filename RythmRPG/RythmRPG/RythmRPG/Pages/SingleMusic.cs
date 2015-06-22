@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace RythmRPG.Pages {
     public class SingleMusic : Page{
+
+
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
         public CharacterSprites[] SpriteCharacters { get; set; }
@@ -71,7 +73,7 @@ namespace RythmRPG.Pages {
             if (currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
             {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
-
+                string choosedFile = "";
                 if (isOver(mouse, Back)) {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
@@ -96,15 +98,23 @@ namespace RythmRPG.Pages {
 
                     OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
                     open.Filter = "MP3 File (*.mp3)|*.mp3;";
+                    open.Multiselect = false;
                     if (open.ShowDialog() != DialogResult.OK) return;
-                    
+                    choosedFile = open.FileName;
+                    string wavFile;
+                    Resampler.Resampling(choosedFile, Game1.WavFileDirectory ,Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
+                    Game1.CurrentSelectedWavFile = wavFile;
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
+                    if (Game1.CurrentSelectedWavFile == "") return;
+                    
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
                     int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
                     PlayableCharacter character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];
+
+                    
 
                     //Charge le jeu
                     this.MusicPlaying.LoadDataCharacter(character);
