@@ -63,7 +63,7 @@ namespace RythmRPG.Pages {
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
-
+                Game1.characters.getSelectedCharacter().prepareForMusic();
                 if (isOver(mouse, PlayAgain)) { //Clique sur Play Again
                     StartMenu.EffectClick.Play();
                 }
@@ -83,6 +83,7 @@ namespace RythmRPG.Pages {
 
             //Character Data
             PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
+            tmp.prepareForMusic();
             tmp.setPosition(new Vector2(4.5f * Game1.UnitX, 5.5f * Game1.UnitY));
             tmp.setScale(2);
             tmp.Draw(spriteBatch);

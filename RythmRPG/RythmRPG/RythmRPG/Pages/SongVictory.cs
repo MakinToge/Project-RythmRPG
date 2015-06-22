@@ -26,7 +26,8 @@ namespace RythmRPG.Pages {
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
-                
+
+                Game1.characters.getSelectedCharacter().prepareForMusic();
                 if (isOver(mouse, NextMusic)) {// Clique sur Next Song
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.MusicPlaying;
