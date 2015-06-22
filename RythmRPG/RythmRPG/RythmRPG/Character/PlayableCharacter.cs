@@ -102,7 +102,7 @@ namespace RythmRPG.Character
             this.statPoints = statPoints;
             this.gold = gold;
 
-            this.Health = this.Level * this.Vitality + 10;
+            this.Health = this.Level * this.Vitality + 100;
 
             this.skills = new List<Skills>(this.NbRestart);
         }
@@ -322,7 +322,7 @@ namespace RythmRPG.Character
             }
             if (skillToActivate != Skills.None)
             {
-                if (this.skills.Count < this.NbRestart)
+                if (this.skills.Count <= this.NbRestart)
                 {
                     if (!this.skills.Contains(skillToActivate))
                     {
@@ -343,7 +343,7 @@ namespace RythmRPG.Character
         public override void prepareForMusic()
         {
             base.prepareForMusic();
-            this.Health = this.Level * this.Vitality + 10;
+            this.Health = this.Level * this.Vitality + 100;
         }
 
         public int xpToNextLevel()

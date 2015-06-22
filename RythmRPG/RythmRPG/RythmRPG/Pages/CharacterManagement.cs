@@ -136,24 +136,40 @@ namespace RythmRPG.Pages {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 0;
                     Game1.characters.selectedCharacter = 0;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabTank[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 1;
                     Game1.characters.selectedCharacter = 1;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabDPS[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 2;
                     Game1.characters.selectedCharacter = 2;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabCustom[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 3;
                     Game1.characters.selectedCharacter = 3;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, Modify)) {
