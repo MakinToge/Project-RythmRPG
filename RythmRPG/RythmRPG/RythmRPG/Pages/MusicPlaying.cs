@@ -140,6 +140,7 @@ namespace RythmRPG.Pages
                     IsFinished = true;
                     output.Stop();
                     this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.earnedXP);
+                    this.Victory.LoadDataCharacter(this.player);
                     StartMenu.EffectVictory.Play();
                     Game1.GameState = RythmRPG.GameState.Victory;
                 }
@@ -155,6 +156,7 @@ namespace RythmRPG.Pages
                     if (this.player.isDead())
                     {
                         output.Stop();
+                        this.Defeat.LoadDataCharacter(this.player);
                         StartMenu.EffectDefeat.Play();
                         Game1.GameState = RythmRPG.GameState.Defeat;
                     }
@@ -333,7 +335,7 @@ namespace RythmRPG.Pages
                 goodHit = true;
                 this.LinesNotes[pressedKey].Dequeue();
             }
-            
+
             if (goodHit)
             {
                 player.attackCharacter(monster);
@@ -356,6 +358,7 @@ namespace RythmRPG.Pages
                 if (player.isDead())
                 {
                     output.Stop();
+                    this.Defeat.LoadDataCharacter(this.player);
                     StartMenu.EffectDefeat.Play();
                     Game1.GameState = RythmRPG.GameState.Defeat;
                 }

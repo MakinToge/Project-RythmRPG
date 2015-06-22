@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RythmRPG.Character;
 using System;
@@ -12,12 +13,15 @@ namespace RythmRPG.Pages {
         
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
-        public Sprite  CharacterManagement { get; set; }
+        public Sprite CharacterManagement { get; set; }
         public Sprite PlaylistChallenge { get; set; }
         public Sprite SingleMusic { get; set; }
         public Sprite LeftCharacter { get; set; }
         public Sprite RightCharacter { get; set; }
-        
+
+        public List<TextSprite> SkillList { get; set; }
+        private SpriteFont font;
+
         public TextSprite Type { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
@@ -48,8 +52,9 @@ namespace RythmRPG.Pages {
             this.Vitality = new TextSprite(29 * Game1.UnitX, 7.2f * Game1.UnitY, "", Color.Black);
             this.Ability = new TextSprite(28 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
 
-            
+            this.SkillList = new List<TextSprite>();
         }
+
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "GameMenu/GameMenu");
             this.Back.LoadContent(content, "Options/Back");
@@ -59,9 +64,9 @@ namespace RythmRPG.Pages {
 
             this.LeftCharacter.LoadContent(content, "Options/ArrowLeft");
             this.RightCharacter.LoadContent(content, "Options/ArrowRight");
-            
-            
-            
+
+
+            this.font = content.Load<SpriteFont>("Arial16");
             this.Type.LoadContent(content, "Arial16");
             this.Name.LoadContent(content, "Arial16");
             this.Level.LoadContent(content, "Arial16");
@@ -139,6 +144,11 @@ namespace RythmRPG.Pages {
             this.Strength.Draw(spriteBatch, gameTime);
             this.Ability.Draw(spriteBatch, gameTime);
             this.Vitality.Draw(spriteBatch, gameTime);
+
+            for (int i = 0; i < this.SkillList.Count; i++)
+            {
+                this.SkillList.ElementAt<TextSprite>(i).Draw(spriteBatch, gameTime);
+            }
         }
 
         public void LoadDataCharacter(PlayableCharacter character){
@@ -155,6 +165,21 @@ namespace RythmRPG.Pages {
             this.HP.Text = character.Health.ToString();
             this.Strength.Text = character.Attack.ToString();
             this.Ability.Text = character.uniqueSkill.ToString();
+
+            this.loadSkills(character);
+        }
+
+        public void loadSkills(PlayableCharacter character)
+        {
+            this.SkillList.Clear();
+
+            for (int i = 0; i < character.skills.Count; i++)
+            {
+                Vector2 position = new Vector2(25 * Game1.UnitX, 12f * Game1.UnitY + i*30);
+                TextSprite textSprite = new TextSprite(position, character.skills.ElementAt<Skills>(i).ToString(), Color.Black);
+                textSprite.Font = this.font;
+                this.SkillList.Add(textSprite);
+            }
         }
     }
 }
