@@ -71,7 +71,7 @@ namespace RythmRPG
                     complexData[i][k] = (float)left[i * InstantWidth + k / 2];
                     complexData[i][k + 1] = (float)right[i * InstantWidth + k / 2];
                 }
-                //FastFourierTransform.FFT(true, InstantWidth, complexData[i]);//complexData is an input and ouput parameter
+                //FastFourierTransform.FFT(true, InstantWidth, complexData[i]);
                 fftTool.FFT(complexData[i], true);
                 subbandsInstantEnergyArray[i] = ComputeSubbandsInstantEnergy(complexData[i]);
             }
