@@ -38,7 +38,10 @@ namespace RythmRPG
                 using (var resampler = new MediaFoundationResampler(reader, outFormat))
                 {
                     resampler.ResamplerQuality = 60;
-                    WaveFileWriter.CreateWaveFile(outFilePath, resampler);
+                    if(!File.Exists(outFilePath))
+                    {
+                        WaveFileWriter.CreateWaveFile(outFilePath, resampler);
+                    }
                 }
             }
         }

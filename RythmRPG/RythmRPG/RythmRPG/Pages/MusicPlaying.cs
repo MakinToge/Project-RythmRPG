@@ -19,7 +19,7 @@ namespace RythmRPG.Pages
         private const int NB_BOSS = 1;
 
         private Texture2D background;
-        
+
         private NAudio.Wave.WaveStream pcm = null;
         private bool firstUpdate = true;
         private int currentEnemy = 0;
@@ -139,8 +139,8 @@ namespace RythmRPG.Pages
                 {
                     IsFinished = true;
                     output.Stop();
-
-                    Game1.GameState = RythmRPG.GameState.Defeat;
+                    this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.earnedXP);
+                    Game1.GameState = RythmRPG.GameState.Victory;
                 }
 
 
@@ -208,6 +208,11 @@ namespace RythmRPG.Pages
 
         public void LoadDataCharacter(PlayableCharacter character)
         {
+            if (this.HP == null)
+            {
+                this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
+                this.InputsSprite = new Sprite(27 * Game1.UnitX, 11 * Game1.UnitY, 3 * Game1.UnitX, 7 * Game1.UnitY);
+            }
             this.HPStart = character.Health;
 
             this.HP.Text = character.Health.ToString() + " / " + this.HPStart.ToString();
@@ -217,13 +222,14 @@ namespace RythmRPG.Pages
         {
             IsLoading = true;
             IsFinished = false;
+            firstUpdate = true;
 
             //player's charachter
             this.player = Game1.characters.getSelectedCharacter();
 
             //AudioProcessing
             AllowedError = MusicPlaying.BASE_ALLOWED_ERROR_WIDTH + MusicPlaying.ALLOWED_ERROR_WIDTH_COEFFICIENT * (double)Game1.Difficulty;
-            
+
             float speed = Note.DEFAULT_BASE_SPEED + Note.DEFAULT_SPEED_COEFFICIENT * (float)Game1.Difficulty;//per millisec
             float lineLength = 25 * Game1.UnitX;
 
