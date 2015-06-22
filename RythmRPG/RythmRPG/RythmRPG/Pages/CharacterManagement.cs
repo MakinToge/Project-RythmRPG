@@ -16,6 +16,7 @@ namespace RythmRPG.Pages {
         public PlayableCharacter Character { get; set; }
 
         public TextSprite[] SkillList { get; set; }
+        public TextSprite ToolTip { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite XPNextLevel { get; set; }
@@ -71,7 +72,7 @@ namespace RythmRPG.Pages {
                 this.SkillList[i] = new TextSprite(25 * Game1.UnitX, (7f * Game1.UnitY) + i*30, "", Color.DarkSlateGray);
                 this.SkillList[i].Text = ((Skills) i).ToString();
             }
-
+            this.ToolTip = new TextSprite(25 * Game1.UnitX, (14f * Game1.UnitY), "Left click to activate,\r\nRight click to deactivate !", Color.Black);
             this.Name = new TextSprite(15 * Game1.UnitX, 3.3f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(6 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
             this.Xp = new TextSprite(5 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
@@ -87,8 +88,8 @@ namespace RythmRPG.Pages {
             this.Modify = new Sprite(2 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
 
             this.TabSelected = 0;
-            //this.LoadDataCharacter(Game1.characters[this.SelectedCharacter]);
         }
+
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "CharacterManagement/CharacterManagement");
             this.Back.LoadContent(content, "Options/Back");
@@ -108,6 +109,7 @@ namespace RythmRPG.Pages {
             {
                 this.SkillList[i].LoadContent(content, "Arial16");
             }
+            this.ToolTip.LoadContent(content, "Arial16");
             this.Name.LoadContent(content, "Arial16");
             this.Level.LoadContent(content, "Arial16");
             this.Endurance.LoadContent(content, "Arial16");
@@ -122,6 +124,7 @@ namespace RythmRPG.Pages {
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             this.Character = Game1.characters.getSelectedCharacter();
+
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
@@ -133,24 +136,40 @@ namespace RythmRPG.Pages {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 0;
                     Game1.characters.selectedCharacter = 0;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabTank[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 1;
                     Game1.characters.selectedCharacter = 1;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabDPS[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 2;
                     Game1.characters.selectedCharacter = 2;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabCustom[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 3;
                     Game1.characters.selectedCharacter = 3;
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, Modify)) {
@@ -162,10 +181,37 @@ namespace RythmRPG.Pages {
                 {
                     for (int i = 0; i < NB_SKILLS; i++)
                     {
-                        //this.SkillList[i].
-                        //if(isOver(mouse, this.SkillList[i]))
+                        if(this.SkillList[i].isOver(currentMouseState))
                         {
-
+                            for (int j = 0; j < NB_SKILLS; j++)
+                            {
+                                if (((Skills)j).ToString() == this.SkillList[i].Text)
+                                {
+                                    if (this.Character.manageSkill(Skills.None, (Skills)j))
+                                    {
+                                        this.SkillList[i].Color = Color.Black;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (currentMouseState.RightButton == ButtonState.Pressed && previousMouseState.RightButton == ButtonState.Released)
+            {
+                for (int i = 0; i < NB_SKILLS; i++)
+                {
+                    if (this.SkillList[i].isOver(currentMouseState))
+                    {
+                        for (int j = 0; j < NB_SKILLS; j++)
+                        {
+                            if (((Skills)j).ToString() == this.SkillList[i].Text)
+                            {
+                                if (this.Character.manageSkill((Skills)j, Skills.None))
+                                {
+                                    this.SkillList[i].Color = Color.DarkSlateGray;
+                                }
+                            }
                         }
                     }
                 }
@@ -178,7 +224,7 @@ namespace RythmRPG.Pages {
             this.Character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
-            
+
 
             this.TabMedium[0].Draw(spriteBatch, gameTime);
             this.TabTank[0].Draw(spriteBatch, gameTime);
@@ -220,6 +266,7 @@ namespace RythmRPG.Pages {
             {
                 this.SkillList[i].Draw(spriteBatch, gameTime);
             }
+            this.ToolTip.Draw(spriteBatch, gameTime);
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
             this.Endurance.Draw(spriteBatch, gameTime);
@@ -253,17 +300,13 @@ namespace RythmRPG.Pages {
             this.StatsPoints.Text = character.statPoints.ToString();
             this.Gold.Text = character.gold.ToString();
 
-            for(int i = 0; i < NB_SKILLS; i++)
+            for (int i = 0; i < NB_SKILLS; i++)
             {
-                for(int j = 0; j < character.skills.Count; j++)
+                for (int j = 0; j < character.skills.Count; j++)
                 {
-                    if(((Skills)i) == character.skills.ElementAt<Skills>(j))
+                    if ((Skills)i == (character.skills.ElementAt<Skills>(j)))
                     {
                         this.SkillList[i].Color = Color.Black;
-                    }
-                    else
-                    {
-                        this.SkillList[i].Color = Color.DarkSlateGray;
                     }
                 }
             }
