@@ -19,6 +19,7 @@ namespace RythmRPG.Pages {
         public Sprite[] GodLike { get; set; }
         public int SelectedDifficulty { get; set; }
         public Sprite Play { get; set; }
+        public Sprite NotPlay { get; set; }
         public Sprite ChooseMusic { get; set; }
         public MusicPlaying MusicPlaying { get; set; }
 
@@ -47,6 +48,7 @@ namespace RythmRPG.Pages {
             this.SelectedDifficulty = 0;
 
             this.Play = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
+            this.NotPlay = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.ChooseMusic = new Sprite(11 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
@@ -60,6 +62,7 @@ namespace RythmRPG.Pages {
             this.GodLike[0].LoadContent(content, "SingleMusic/GodLike");
             this.GodLike[1].LoadContent(content, "SingleMusic/Selected/GodLike");
 
+            this.NotPlay.LoadContent(content, "SingleMusic/Play!2");
             this.Play.LoadContent(content, "SingleMusic/Play!");
             this.ChooseMusic.LoadContent(content, "SingleMusic/ChooseMusic");
 
@@ -142,7 +145,9 @@ namespace RythmRPG.Pages {
             }
 
             this.ChooseMusic.Draw(spriteBatch, gameTime);
+            
             this.Play.Draw(spriteBatch, gameTime);
+            this.NotPlay.Draw(spriteBatch, gameTime);
 
             this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
         }
