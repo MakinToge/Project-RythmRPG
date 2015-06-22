@@ -11,6 +11,7 @@ namespace RythmRPG.Character
     /// <summary>
     /// Contains the animations of a character, both idle and attacking
     /// </summary>
+    [Serializable]
     public class CharacterSprites
     {
         /// <summary>
@@ -36,11 +37,13 @@ namespace RythmRPG.Character
         /// <summary>
         /// The idle animation
         /// </summary>
+        [NonSerialized]
         private Texture2D idleAnimation;
 
         /// <summary>
         /// The attacking animation
         /// </summary>
+        [NonSerialized]
         private Texture2D attackingAnimation;
 
         /// <summary>
