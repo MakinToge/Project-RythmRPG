@@ -295,6 +295,7 @@ namespace RythmRPG.Pages
                     this.currentEnemy %= this.Monsters.Count;
 
                     this.earnedXP += c.giveXP();
+                    c.prepareForMusic();
                 }
             }
             else

@@ -157,9 +157,9 @@ namespace RythmRPG.Character
 
             damageDealt -= resistance;
 
-            if (damageDealt < 0)
+            if (damageDealt <= 0)
             {
-                damageDealt = 0;
+                damageDealt = 1;
             }
 
             if(this.uniqueSkill == UniqueSkill.FatalBlow)
