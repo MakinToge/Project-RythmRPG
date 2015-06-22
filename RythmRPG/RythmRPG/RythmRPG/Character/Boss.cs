@@ -104,7 +104,7 @@ namespace RythmRPG.Character
             }
         }
 
-        public override int giveXP()
+        public override int giveXP(int nbInput, Difficulty difficulty)
         {
             return this.Vitality * this.Level;
         }

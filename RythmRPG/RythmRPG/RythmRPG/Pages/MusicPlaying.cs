@@ -24,6 +24,8 @@ namespace RythmRPG.Pages
         private bool firstUpdate = true;
         private int currentEnemy = 0;
         private int earnedXP = 0;
+        private int xpToDisplay = 0;
+        private int nbTotalInput = 0;
         private PlayableCharacter player;
         private float target = 25.5f * Game1.UnitX;//circle center
         private const double BASE_ALLOWED_ERROR_WIDTH = 0.2;//valid pressed key from -0.25sec to +0.25sec with Casual difficulty
@@ -139,8 +141,10 @@ namespace RythmRPG.Pages
                 {
                     IsFinished = true;
                     output.Stop();
-                    this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.earnedXP);
+                    this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.xpToDisplay);
                     this.Victory.LoadDataCharacter(this.player);
+                    this.player.gainXP(this.earnedXP);
+                    this.earnedXP = 0;
                     StartMenu.EffectVictory.Play();
                     Game1.GameState = RythmRPG.GameState.Victory;
                 }
@@ -149,7 +153,7 @@ namespace RythmRPG.Pages
                 if (this.LinesNotes[i].Count != 0 && this.LinesNotes[i].Peek().Position.X > noteLimitPositionX)//remove note when out of the line
                 {
                     AbstractCharacter monster = this.Monsters.ElementAt<AbstractCharacter>(0);
-                    monster.attackCharacter(this.player);
+                    //monster.attackCharacter(this.player);
 
                     this.HP.Text = player.Health.ToString() + " / " + this.HPStart.ToString();
 
@@ -227,6 +231,7 @@ namespace RythmRPG.Pages
             IsLoading = true;
             IsFinished = false;
             firstUpdate = true;
+            this.currentEnemy = 0;
 
             //player's charachter
             this.player = Game1.characters.getSelectedCharacter();
@@ -244,6 +249,7 @@ namespace RythmRPG.Pages
             string wavFilePath = Game1.CurrentSelectedWavFile;
             this.SSNotes = new SortedSet<double>[Chart.LaneNumber];//raw(not scaled)
             this.SSNotes2 = new SortedSet<double>[Chart.LaneNumber];//scaled
+            
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
                 this.SSNotes[i] = new SortedSet<double>();
@@ -322,6 +328,11 @@ namespace RythmRPG.Pages
                 }
             }
 
+            for (int i = 0; i < Chart.LaneNumber; i++)
+            {
+                this.nbTotalInput += SSNotes2[i].Count;
+            }
+
             this.IsLoaded = true;
         }
         public void KeyPressed(int pressedKey)
@@ -345,13 +356,14 @@ namespace RythmRPG.Pages
                     this.currentEnemy++;
                     this.currentEnemy %= this.Monsters.Count;
 
-                    this.earnedXP += monster.giveXP();
+                    this.earnedXP += monster.giveXP(this.nbTotalInput, Game1.Difficulty);
+                    this.xpToDisplay = this.earnedXP;
                     monster.prepareForMusic();
                 }
             }
             else
             {
-                monster.attackCharacter(player);
+                //monster.attackCharacter(player);
 
                 this.HP.Text = player.Health.ToString() + " / " + this.HPStart.ToString();
 

@@ -200,6 +200,6 @@ namespace RythmRPG.Character
             return this.Vitality * this.Level;
         }
 
-        public abstract int giveXP();
+        public abstract int giveXP(int nbInput, Difficulty difficulty);
     }
 }

@@ -99,9 +99,22 @@ namespace RythmRPG.Character
             }
         }
 
-        public override int giveXP()
+        public override int giveXP(int nbInput, Difficulty difficulty)
         {
-            return (int)Math.Floor(this.Vitality * this.Level / 2.5);
+            int diff;
+            switch(difficulty)
+            {
+                case Difficulty.Casual:
+                    diff = 6;
+                    break;
+                case Difficulty.Veteran:
+                    diff = 3;
+                    break;
+                default:
+                    diff = 1;
+                    break;
+            }
+            return ((int)Math.Floor(this.Vitality * this.Level / 2.5) + (nbInput / diff));
         }
     }
 }
