@@ -229,10 +229,19 @@ namespace RythmRPG.Pages
 
             // Create monsters list
             this.Monsters = new List<AbstractCharacter>();
-            Mob m = new Mob(1, 20, 1, 1, new Vector2(16 * Game1.UnitX, 7.75f * Game1.UnitY), 0.75f);
-            m.Load(Content, "Spritesheet/Mob/Mob_Witch_Idle", "Spritesheet/Mob/Mob_Witch_Attack", 2, 4, 10);
-            m.setOriginBottomLeft();
-            this.Monsters.Add(m);
+            Mob mob = new Mob(this.Difficulty, new Vector2(18f * Game1.UnitX, 5.5f * Game1.UnitY), 0.75f);
+            mob.Load(Content);
+            mob.setOriginBottomRight();
+            this.Monsters.Add(mob);
+            mob = new Mob(this.Difficulty, new Vector2(18f * Game1.UnitX, 5.5f * Game1.UnitY), 0.75f);
+            mob.Load(Content);
+            mob.setOriginBottomRight();
+            this.Monsters.Add(mob);
+
+            Boss boss = new Boss(this.Difficulty, new Vector2(18f * Game1.UnitX, 5.5f * Game1.UnitY), 0.75f);
+            boss.Load(Content);
+            boss.setOriginBottomRight();
+            this.Monsters.Add(boss);
             
 
             //play the selected music

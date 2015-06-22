@@ -190,9 +190,9 @@ namespace RythmRPG.Character
             this.sprites.resetAnimations();
         }
 
-        public void setOriginBottomLeft()
+        public void setOriginBottomRight()
         {
-            this.sprites.setOriginBottomLeft();
+            this.sprites.setOriginBottomRight();
         }
     }
 }

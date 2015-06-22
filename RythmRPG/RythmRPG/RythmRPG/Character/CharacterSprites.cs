@@ -140,7 +140,7 @@ namespace RythmRPG.Character
         /// <summary>
         /// Change the origin of the sprite to the bottom, right-hand corner
         /// </summary>
-        public void setOriginBottomLeft()
+        public void setOriginBottomRight()
         {
             this.origin = new Vector2(this.position.X + (this.attackingAnimation.Width / this.frameColCount), this.position.Y + (this.attackingAnimation.Height / this.frameLineCount));
             this.bottomRight = true;
