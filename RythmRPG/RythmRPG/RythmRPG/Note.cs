@@ -9,6 +9,9 @@ namespace RythmRPG
 {
     class Note : Sprite
     {
+        public const float DEFAULT_BASE_SPEED = 0.3f;
+        public const float DEFAULT_SPEED_COEFFICIENT = 0.1f;
+
         public double Time { get; private set; }
         public int Line { get; set; }
 
@@ -21,7 +24,7 @@ namespace RythmRPG
             this.Direction = new Vector2(1, 0);//x = 1 (left)
             this.Position = new Vector2(0.5f*Game1.UnitX, (12 + line) * Game1.UnitY);
             this.Size = new Vector2(Game1.UnitX,Game1.UnitY);
-            this.Speed = 0.3f + 0.1f * (float)Game1.Difficulty;
+            this.Speed = DEFAULT_BASE_SPEED + DEFAULT_SPEED_COEFFICIENT * (float)Game1.Difficulty;
 
             //Load png
             string assetName = "MusicPlaying/note";
