@@ -63,7 +63,7 @@ namespace RythmRPG
 
             for (int i = 0; i < totalInstant; i++)
             {
-                Console.WriteLine(string.Format("instant {0} out of {1}", i, totalInstant));
+                //Console.WriteLine(string.Format("instant {0} out of {1}", i, totalInstant));
                 complexData[i] = new double[InstantWidth * 2];
                 for (int k = 0; k < InstantWidth * 2; k += 2)
                 {
