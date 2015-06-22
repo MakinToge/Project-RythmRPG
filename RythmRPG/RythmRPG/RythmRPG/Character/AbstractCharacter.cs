@@ -168,5 +168,15 @@ namespace RythmRPG.Character
         {
             this.sprites.IsAttacking = true;
         }
+
+        public void setPosition(Vector2 position)
+        {
+            this.sprites.position = position;
+        }
+
+        public void setScale(float scale)
+        {
+            this.sprites.scale = scale;
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace RythmRPG {
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
         private const int NB_CHARACTERS = 4;
 
-        private static PlayableCharacter[] characters = new PlayableCharacter[NB_CHARACTERS];
+        public static PlayableCharacter[] characters = new PlayableCharacter[NB_CHARACTERS];
         public static string saveFileName;
         private static ContentManager content;
 
@@ -315,9 +315,6 @@ namespace RythmRPG {
                 IFormatter format = new BinaryFormatter();
                 Stream stream;
 
-                //To delete
-                characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 1, 1 }, { 1, 1 } }, 1, 1, 1, 1, Vector2.Zero, 1, "Magus");
-
                 try
                 {
                     stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -346,10 +343,10 @@ namespace RythmRPG {
             }
             catch (Exception e) // i.e. the file doesn't exist
             {
-                characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Magus");
-                characters[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
-                characters[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Ninja");
-                characters[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Knight");
+                characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
+                characters[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Knight");
+                characters[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Ninja");
+                characters[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Magus");
             }
 
             for(int i = 0; i < NB_CHARACTERS; i++)

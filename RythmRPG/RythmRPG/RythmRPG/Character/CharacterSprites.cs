@@ -59,12 +59,13 @@ namespace RythmRPG.Character
         /// <summary>
         /// The rotation, scale and depth of the animation
         /// </summary>
-        private float rotation, scale, depth;
+        private float rotation, depth;
+        public float scale { get; set; }
 
         /// <summary>
         /// The position of the animation on screen
         /// </summary>
-        private Vector2 position;
+        public Vector2 position { get; set; }
 
         /// <summary>
         /// The origin of the animation

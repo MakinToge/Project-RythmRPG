@@ -87,7 +87,7 @@ namespace RythmRPG.Character
         /// <param name="size">The size of the player</param>
         /// <param name="name">The name of the player</param>
         public PlayableCharacter(int level, int vitality, int attack, int defense,
-            UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
+            UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart, int gold,
             Vector2 position, float scale, string name)
             : base(level, vitality, attack, defense, position, scale, name)
         {
