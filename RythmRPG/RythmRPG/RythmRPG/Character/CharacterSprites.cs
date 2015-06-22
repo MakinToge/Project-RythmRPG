@@ -234,6 +234,9 @@ namespace RythmRPG.Character
             batch.End();
         }
 
+        /// <summary>
+        /// Reset the animations
+        /// </summary>
         public void resetAnimations()
         {
             this.frameCol = 0;

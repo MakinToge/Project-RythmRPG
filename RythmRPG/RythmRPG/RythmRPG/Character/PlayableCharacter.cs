@@ -335,22 +335,39 @@ namespace RythmRPG.Character
             return false;
         }
 
+        /// <summary>
+        /// Gives the amount of experience earned by killing the character
+        /// </summary>
+        /// <param name="nbInput">The number of input of the music</param>
+        /// <param name="difficulty">The difficulty of the game</param>
+        /// <returns>The amount of experience earned</returns>
         public override int giveXP(int nbInput, Difficulty difficulty)
         {
             return 0;
         }
 
+        /// <summary>
+        /// Initialize the character for the music
+        /// </summary>
         public override void prepareForMusic()
         {
             base.prepareForMusic();
             this.Health = this.Level * this.Vitality + 100;
         }
 
+        /// <summary>
+        /// Returns the amount of experience needed to pass the level
+        /// </summary>
+        /// <returns>The amount of experience needed</returns>
         public int xpToNextLevel()
         {
             return this.xpLevels[this.Level - 1] - this.xp;
         }
 
+        /// <summary>
+        /// Returns the total health points of the character
+        /// </summary>
+        /// <returns>The total of health points</returns>
         public override int getMaxHealth()
         {
             return base.getMaxHealth() + 100;
