@@ -153,7 +153,7 @@ namespace RythmRPG.Pages
                 if (this.LinesNotes[i].Count != 0 && this.LinesNotes[i].Peek().Position.X > noteLimitPositionX)//remove note when out of the line
                 {
                     AbstractCharacter monster = this.Monsters.ElementAt<AbstractCharacter>(0);
-                    //monster.attackCharacter(this.player);
+                    monster.attackCharacter(this.player);
 
                     this.HP.Text = player.Health.ToString() + " / " + this.HPStart.ToString();
 
@@ -363,7 +363,7 @@ namespace RythmRPG.Pages
             }
             else
             {
-                //monster.attackCharacter(player);
+                monster.attackCharacter(player);
 
                 this.HP.Text = player.Health.ToString() + " / " + this.HPStart.ToString();
 

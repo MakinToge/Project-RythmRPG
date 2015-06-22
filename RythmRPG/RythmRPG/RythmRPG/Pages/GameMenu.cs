@@ -10,28 +10,136 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class GameMenu : Page{
-        
+
+        /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
         public Sprite MainImage { get; set; }
+        /// <summary>
+        /// Gets or sets the back.
+        /// </summary>
+        /// <value>
+        /// The back.
+        /// </value>
         public Sprite Back { get; set; }
+        /// <summary>
+        /// Gets or sets the character management.
+        /// </summary>
+        /// <value>
+        /// The character management.
+        /// </value>
         public Sprite CharacterManagement { get; set; }
+        /// <summary>
+        /// Gets or sets the playlist challenge.
+        /// </summary>
+        /// <value>
+        /// The playlist challenge.
+        /// </value>
         public Sprite PlaylistChallenge { get; set; }
+        /// <summary>
+        /// Gets or sets the single music.
+        /// </summary>
+        /// <value>
+        /// The single music.
+        /// </value>
         public Sprite SingleMusic { get; set; }
+        /// <summary>
+        /// Gets or sets the left character.
+        /// </summary>
+        /// <value>
+        /// The left character.
+        /// </value>
         public Sprite LeftCharacter { get; set; }
+        /// <summary>
+        /// Gets or sets the right character.
+        /// </summary>
+        /// <value>
+        /// The right character.
+        /// </value>
         public Sprite RightCharacter { get; set; }
 
+        /// <summary>
+        /// Gets or sets the skill list.
+        /// </summary>
+        /// <value>
+        /// The skill list.
+        /// </value>
         public List<TextSprite> SkillList { get; set; }
+        /// <summary>
+        /// The font
+        /// </summary>
         private SpriteFont font;
 
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
         public TextSprite Type { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public TextSprite Name { get; set; }
+        /// <summary>
+        /// Gets or sets the level.
+        /// </summary>
+        /// <value>
+        /// The level.
+        /// </value>
         public TextSprite Level { get; set; }
+        /// <summary>
+        /// Gets or sets the endurance.
+        /// </summary>
+        /// <value>
+        /// The endurance.
+        /// </value>
         public TextSprite Endurance { get; set; }
+        /// <summary>
+        /// Gets or sets the vitality.
+        /// </summary>
+        /// <value>
+        /// The vitality.
+        /// </value>
         public TextSprite Vitality { get; set; }
+        /// <summary>
+        /// Gets or sets the hp.
+        /// </summary>
+        /// <value>
+        /// The hp.
+        /// </value>
         public TextSprite HP { get; set; }
+        /// <summary>
+        /// Gets or sets the strength.
+        /// </summary>
+        /// <value>
+        /// The strength.
+        /// </value>
         public TextSprite Strength { get; set; }
+        /// <summary>
+        /// Gets or sets the skills.
+        /// </summary>
+        /// <value>
+        /// The skills.
+        /// </value>
         public TextSprite[] Skills { get; set; }
+        /// <summary>
+        /// Gets or sets the ability.
+        /// </summary>
+        /// <value>
+        /// The ability.
+        /// </value>
         public TextSprite Ability { get; set; }
-    
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
@@ -55,6 +163,10 @@ namespace RythmRPG.Pages {
             this.SkillList = new List<TextSprite>();
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "GameMenu/GameMenu");
             this.Back.LoadContent(content, "Options/Back");
@@ -64,7 +176,6 @@ namespace RythmRPG.Pages {
 
             this.LeftCharacter.LoadContent(content, "Options/ArrowLeft");
             this.RightCharacter.LoadContent(content, "Options/ArrowRight");
-
 
             this.font = content.Load<SpriteFont>("Arial16");
             this.Type.LoadContent(content, "Arial16");
@@ -76,6 +187,13 @@ namespace RythmRPG.Pages {
             this.Ability.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
         }
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        /// <param name="previousKeyboardState">State of the previous keyboard.</param>
+        /// <param name="currentKeyboardState">State of the current keyboard.</param>
+        /// <param name="previousMouseState">State of the previous mouse.</param>
+        /// <param name="currentMouseState">State of the current mouse.</param>
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
@@ -111,6 +229,11 @@ namespace RythmRPG.Pages {
             }
         }
 
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
@@ -151,6 +274,10 @@ namespace RythmRPG.Pages {
             }
         }
 
+        /// <summary>
+        /// Loads the data character.
+        /// </summary>
+        /// <param name="character">The character.</param>
         public void LoadDataCharacter(PlayableCharacter character){
             this.Type.Text = character.Name;
             this.Name.Text = character.Name;
@@ -169,6 +296,10 @@ namespace RythmRPG.Pages {
             this.loadSkills(character);
         }
 
+        /// <summary>
+        /// Loads the skills.
+        /// </summary>
+        /// <param name="character">The character.</param>
         public void loadSkills(PlayableCharacter character)
         {
             this.SkillList.Clear();

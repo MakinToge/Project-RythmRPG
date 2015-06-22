@@ -11,7 +11,17 @@ namespace RythmRPG
     class Resampler
     {
 
+        /// <summary>
+        /// The resampling sample rate
+        /// </summary>
         public const int RESAMPLING_SAMPLE_RATE = 44032;//SampleRate
+        /// <summary>
+        /// Resamplings the specified in file path.
+        /// </summary>
+        /// <param name="inFilePath">The in file path.</param>
+        /// <param name="wavDirectory">The wav directory.</param>
+        /// <param name="outRate">The out rate.</param>
+        /// <param name="outFilePath">The out file path.</param>
         static public void Resampling(string inFilePath, string wavDirectory, int outRate, out string outFilePath)
         {
             if(MusicPlaying.output != null){
