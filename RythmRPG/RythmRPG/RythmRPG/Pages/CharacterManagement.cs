@@ -22,6 +22,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the back.
         /// </summary>
@@ -29,6 +30,7 @@ namespace RythmRPG.Pages
         /// The back.
         /// </value>
         public Sprite Back { get; set; }
+
         /// <summary>
         /// Gets or sets the modify.
         /// </summary>
@@ -36,6 +38,7 @@ namespace RythmRPG.Pages
         /// The modify.
         /// </value>
         public Sprite Modify { get; set; }
+
         /// <summary>
         /// Gets or sets the character.
         /// </summary>
@@ -51,6 +54,7 @@ namespace RythmRPG.Pages
         /// The skill list.
         /// </value>
         public TextSprite[] SkillList { get; set; }
+
         /// <summary>
         /// Gets or sets the tool tip.
         /// </summary>
@@ -58,6 +62,7 @@ namespace RythmRPG.Pages
         /// The tool tip.
         /// </value>
         public TextSprite ToolTip { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -65,6 +70,7 @@ namespace RythmRPG.Pages
         /// The name.
         /// </value>
         public TextSprite Name { get; set; }
+
         /// <summary>
         /// Gets or sets the level.
         /// </summary>
@@ -72,6 +78,7 @@ namespace RythmRPG.Pages
         /// The level.
         /// </value>
         public TextSprite Level { get; set; }
+
         /// <summary>
         /// Gets or sets the xp next level.
         /// </summary>
@@ -79,6 +86,7 @@ namespace RythmRPG.Pages
         /// The xp next level.
         /// </value>
         public TextSprite XPNextLevel { get; set; }
+
         /// <summary>
         /// Gets or sets the endurance.
         /// </summary>
@@ -86,6 +94,7 @@ namespace RythmRPG.Pages
         /// The endurance.
         /// </value>
         public TextSprite Endurance { get; set; }
+
         /// <summary>
         /// Gets or sets the hp.
         /// </summary>
@@ -93,6 +102,7 @@ namespace RythmRPG.Pages
         /// The hp.
         /// </value>
         public TextSprite HP { get; set; }
+
         /// <summary>
         /// Gets or sets the vitality.
         /// </summary>
@@ -100,6 +110,7 @@ namespace RythmRPG.Pages
         /// The vitality.
         /// </value>
         public TextSprite Vitality { get; set; }
+
         /// <summary>
         /// Gets or sets the strength.
         /// </summary>
@@ -107,6 +118,7 @@ namespace RythmRPG.Pages
         /// The strength.
         /// </value>
         public TextSprite Strength { get; set; }
+
         /// <summary>
         /// Gets or sets the ability.
         /// </summary>
@@ -114,6 +126,7 @@ namespace RythmRPG.Pages
         /// The ability.
         /// </value>
         public TextSprite Ability { get; set; }
+
         /// <summary>
         /// Gets or sets the xp.
         /// </summary>
@@ -121,6 +134,7 @@ namespace RythmRPG.Pages
         /// The xp.
         /// </value>
         public TextSprite Xp { get; set; }
+
         /// <summary>
         /// Gets or sets the stats points.
         /// </summary>
@@ -128,6 +142,7 @@ namespace RythmRPG.Pages
         /// The stats points.
         /// </value>
         public TextSprite StatsPoints { get; set; }
+
         /// <summary>
         /// Gets or sets the gold.
         /// </summary>
@@ -135,6 +150,7 @@ namespace RythmRPG.Pages
         /// The gold.
         /// </value>
         public TextSprite Gold { get; set; }
+
         /// <summary>
         /// Gets or sets the selected character.
         /// </summary>
@@ -142,6 +158,7 @@ namespace RythmRPG.Pages
         /// The selected character.
         /// </value>
         public int SelectedCharacter { get; set; }
+
         /// <summary>
         /// Gets or sets the tab medium.
         /// </summary>
@@ -149,6 +166,7 @@ namespace RythmRPG.Pages
         /// The tab medium.
         /// </value>
         public Sprite[] TabMedium { get; set; }
+
         /// <summary>
         /// Gets or sets the tab tank.
         /// </summary>
@@ -156,6 +174,7 @@ namespace RythmRPG.Pages
         /// The tab tank.
         /// </value>
         public Sprite[] TabTank { get; set; }
+
         /// <summary>
         /// Gets or sets the tab DPS.
         /// </summary>
@@ -163,6 +182,7 @@ namespace RythmRPG.Pages
         /// The tab DPS.
         /// </value>
         public Sprite[] TabDPS { get; set; }
+
         /// <summary>
         /// Gets or sets the tab custom.
         /// </summary>
@@ -170,6 +190,7 @@ namespace RythmRPG.Pages
         /// The tab custom.
         /// </value>
         public Sprite[] TabCustom { get; set; }
+
         /// <summary>
         /// The tab selected
         /// </summary>
@@ -183,6 +204,7 @@ namespace RythmRPG.Pages
                 this.SelectedCharacter = value;
             }
         }
+
         /// <summary>
         /// Gets or sets the modify character page.
         /// </summary>
@@ -190,7 +212,6 @@ namespace RythmRPG.Pages
         /// The modify character page.
         /// </value>
         public ModifyCharacter ModifyCharacter { get; set; }
-
 
         /// <summary>
         /// Initializes this instance.
@@ -218,11 +239,13 @@ namespace RythmRPG.Pages
             };
 
             this.SkillList = new TextSprite[NB_SKILLS];
+
             for (int i = 0; i < NB_SKILLS; i++)
             {
                 this.SkillList[i] = new TextSprite(25 * Game1.UnitX, (7f * Game1.UnitY) + i * 30, "", Color.DarkSlateGray);
                 this.SkillList[i].Text = ((Skills)i).ToString();
             }
+
             this.ToolTip = new TextSprite(25 * Game1.UnitX, (14f * Game1.UnitY), "Left click to activate,\r\nRight click to deactivate !", Color.Black);
             this.Name = new TextSprite(15 * Game1.UnitX, 3.3f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(6 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
@@ -260,11 +283,11 @@ namespace RythmRPG.Pages
             this.TabCustom[0].LoadContent(content, "CharacterManagement/Custom");
             this.TabCustom[1].LoadContent(content, "CharacterManagement/Selected/Custom");
 
-
             for (int i = 0; i < NB_SKILLS; i++)
             {
                 this.SkillList[i].LoadContent(content, "Arial16");
             }
+            
             this.ToolTip.LoadContent(content, "Arial16");
             this.Name.LoadContent(content, "Arial16");
             this.Level.LoadContent(content, "Arial16");
@@ -278,6 +301,7 @@ namespace RythmRPG.Pages
             this.StatsPoints.LoadContent(content, "Arial16");
             this.Gold.LoadContent(content, "Arial16");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -389,8 +413,6 @@ namespace RythmRPG.Pages
             }
         }
 
-
-
         /// <summary>
         /// Draws the specified sprite batch.
         /// </summary>
@@ -401,7 +423,6 @@ namespace RythmRPG.Pages
             this.Character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
-
 
             this.TabMedium[0].Draw(spriteBatch, gameTime);
             this.TabTank[0].Draw(spriteBatch, gameTime);
@@ -427,7 +448,7 @@ namespace RythmRPG.Pages
                 this.Modify.Draw(spriteBatch, gameTime);
             }
 
-            //Character Data
+            // Character Data
             this.LoadDataCharacter(this.Character);
 
             if (this.Character.Name == "Barbarian")
@@ -447,6 +468,7 @@ namespace RythmRPG.Pages
             {
                 this.SkillList[i].Draw(spriteBatch, gameTime);
             }
+
             this.ToolTip.Draw(spriteBatch, gameTime);
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
@@ -469,6 +491,7 @@ namespace RythmRPG.Pages
         public void LoadDataCharacter(PlayableCharacter character)
         {
             this.Name.Text = character.Name;
+
             if (character.NbRestart == 0)
             {
                 this.Level.Text = character.Level.ToString();
@@ -477,6 +500,7 @@ namespace RythmRPG.Pages
             {
                 this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
             }
+
             this.Endurance.Text = character.Defense.ToString();
             this.HP.Text = character.Health.ToString();
             this.Strength.Text = character.Attack.ToString();

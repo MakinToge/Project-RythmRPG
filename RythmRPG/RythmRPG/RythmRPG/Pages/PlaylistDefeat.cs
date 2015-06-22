@@ -17,6 +17,7 @@ namespace RythmRPG.Pages
         /// The skip.
         /// </value>
         public Sprite Skip { get; set; }
+
         /// <summary>
         /// Gets or sets the retry.
         /// </summary>
@@ -34,6 +35,7 @@ namespace RythmRPG.Pages
             : base(assetNameMainImage, message)
         {
         }
+
         /// <summary>
         /// Initializes this instance.
         /// </summary>
@@ -42,8 +44,8 @@ namespace RythmRPG.Pages
             base.Initialize();
             this.Skip = new Sprite(22 * Game1.UnitX, 12 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.Retry = new Sprite(22 * Game1.UnitX, 6 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
-
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -54,6 +56,7 @@ namespace RythmRPG.Pages
             this.Skip.LoadContent(content, "AfterGame/SkipMusic");
             this.Retry.LoadContent(content, "AfterGame/RetryMusic");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>

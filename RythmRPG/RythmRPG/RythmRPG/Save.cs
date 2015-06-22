@@ -11,6 +11,7 @@ namespace RythmRPG
         /// The number of save
         /// </summary>
         public const int NB_SAVE = 3;
+
         /// <summary>
         /// Gets or sets the selected save.
         /// </summary>
@@ -18,6 +19,7 @@ namespace RythmRPG
         /// The selected save.
         /// </value>
         public int SelectedSave { get; set; }
+
         /// <summary>
         /// Gets or sets the characters array.
         /// </summary>

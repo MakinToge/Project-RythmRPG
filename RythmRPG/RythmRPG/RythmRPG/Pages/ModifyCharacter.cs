@@ -17,6 +17,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the back.
         /// </summary>
@@ -32,6 +33,7 @@ namespace RythmRPG.Pages
         /// The name.
         /// </value>
         public TextSprite Name { get; set; }
+
         /// <summary>
         /// Gets or sets the level.
         /// </summary>
@@ -39,6 +41,7 @@ namespace RythmRPG.Pages
         /// The level.
         /// </value>
         public TextSprite Level { get; set; }
+
         /// <summary>
         /// Gets or sets the endurance.
         /// </summary>
@@ -46,6 +49,7 @@ namespace RythmRPG.Pages
         /// The endurance.
         /// </value>
         public TextSprite Endurance { get; set; }
+
         /// <summary>
         /// Gets or sets the hp.
         /// </summary>
@@ -53,6 +57,7 @@ namespace RythmRPG.Pages
         /// The hp.
         /// </value>
         public TextSprite HP { get; set; }
+
         /// <summary>
         /// Gets or sets the strength.
         /// </summary>
@@ -60,6 +65,7 @@ namespace RythmRPG.Pages
         /// The strength.
         /// </value>
         public TextSprite Strength { get; set; }
+
         /// <summary>
         /// Gets or sets the vitality.
         /// </summary>
@@ -67,6 +73,7 @@ namespace RythmRPG.Pages
         /// The vitality.
         /// </value>
         public TextSprite Vitality { get; set; }
+
         /// <summary>
         /// Gets or sets the stats points.
         /// </summary>
@@ -74,6 +81,7 @@ namespace RythmRPG.Pages
         /// The stats points.
         /// </value>
         public TextSprite StatsPoints { get; set; }
+
         /// <summary>
         /// Gets or sets the gold.
         /// </summary>
@@ -81,6 +89,7 @@ namespace RythmRPG.Pages
         /// The gold.
         /// </value>
         public TextSprite Gold { get; set; }
+
         /// <summary>
         /// Gets or sets the confirm.
         /// </summary>
@@ -88,6 +97,7 @@ namespace RythmRPG.Pages
         /// The confirm.
         /// </value>
         public Sprite Confirm { get; set; }
+
         /// <summary>
         /// Gets or sets the cancel.
         /// </summary>
@@ -95,6 +105,7 @@ namespace RythmRPG.Pages
         /// The cancel.
         /// </value>
         public Sprite Cancel { get; set; }
+
         /// <summary>
         /// Gets or sets the upgrade vitality.
         /// </summary>
@@ -102,6 +113,7 @@ namespace RythmRPG.Pages
         /// The upgrade vitality.
         /// </value>
         public Sprite UpgradeVitality { get; set; }
+
         /// <summary>
         /// Gets or sets the upgrade attack.
         /// </summary>
@@ -109,6 +121,7 @@ namespace RythmRPG.Pages
         /// The upgrade attack.
         /// </value>
         public Sprite UpgradeAttack { get; set; }
+
         /// <summary>
         /// Gets or sets the upgrade defense.
         /// </summary>
@@ -116,6 +129,7 @@ namespace RythmRPG.Pages
         /// The upgrade defense.
         /// </value>
         public Sprite UpgradeDefense { get; set; }
+
         /// <summary>
         /// Gets or sets the reset stats points.
         /// </summary>
@@ -123,6 +137,7 @@ namespace RythmRPG.Pages
         /// The reset stats points.
         /// </value>
         public Sprite ResetStatsPoints { get; set; }
+
         /// <summary>
         /// Gets or sets the explain reset stats.
         /// </summary>
@@ -130,6 +145,7 @@ namespace RythmRPG.Pages
         /// The explain reset stats.
         /// </value>
         public TextSprite ExplainResetStats { get; set; }
+
         /// <summary>
         /// Gets or sets the mouse rectangle.
         /// </summary>
@@ -145,6 +161,7 @@ namespace RythmRPG.Pages
         /// The defense plus.
         /// </value>
         public int DefensePlus { get; set; }
+
         /// <summary>
         /// Gets or sets the attack plus.
         /// </summary>
@@ -152,6 +169,7 @@ namespace RythmRPG.Pages
         /// The attack plus.
         /// </value>
         public int AttackPlus { get; set; }
+
         /// <summary>
         /// Gets or sets the vitality plus.
         /// </summary>
@@ -159,6 +177,7 @@ namespace RythmRPG.Pages
         /// The vitality plus.
         /// </value>
         public int VitalityPlus { get; set; }
+
         /// <summary>
         /// Gets or sets the used stat points.
         /// </summary>
@@ -182,10 +201,10 @@ namespace RythmRPG.Pages
             this.UpgradeVitality = new Sprite(21 * Game1.UnitX, 10 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
             this.ResetStatsPoints = new Sprite(21 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
 
-            //Explain TextSprite
+            // Explain TextSprite
             this.ExplainResetStats = this.HP = new TextSprite(22 * Game1.UnitX, 6.2f * Game1.UnitY, "Cost : 100 Gold", Color.Black);
 
-            //Character Data
+            // Character Data
             this.Name = new TextSprite(15 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(16 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
             this.Endurance = new TextSprite(17 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
@@ -194,8 +213,8 @@ namespace RythmRPG.Pages
             this.StatsPoints = new TextSprite(19 * Game1.UnitX, 6.2f * Game1.UnitY, "", Color.Black);
             this.Gold = new TextSprite(16 * Game1.UnitX, 11.2f * Game1.UnitY, "", Color.Black);
             this.Vitality = new TextSprite(18 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
-
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -221,6 +240,7 @@ namespace RythmRPG.Pages
             this.ExplainResetStats.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -235,7 +255,6 @@ namespace RythmRPG.Pages
             this.MouseRectangle = mouse;
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
             {
-
                 if (isOver(mouse, Back))
                 {
                     StartMenu.EffectBack.Play();
@@ -309,7 +328,6 @@ namespace RythmRPG.Pages
                     this.LoadDataCharacter(character);
                 }
             }
-
         }
 
         /// <summary>
@@ -332,7 +350,7 @@ namespace RythmRPG.Pages
             this.UpgradeVitality.Draw(spriteBatch, gameTime);
             this.ResetStatsPoints.Draw(spriteBatch, gameTime);
 
-            //Character Data
+            // Character Data
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
             this.Endurance.Draw(spriteBatch, gameTime);
@@ -341,7 +359,6 @@ namespace RythmRPG.Pages
             this.StatsPoints.Draw(spriteBatch, gameTime);
             this.Gold.Draw(spriteBatch, gameTime);
             this.Vitality.Draw(spriteBatch, gameTime);
-
 
             if (isOver(this.MouseRectangle, ResetStatsPoints))
             {
@@ -365,6 +382,7 @@ namespace RythmRPG.Pages
             this.StatsPoints.Text = character.statPoints.ToString();
             this.Gold.Text = character.gold.ToString();
         }
+
         /// <summary>
         /// Determines whether this instance is upgradable.
         /// </summary>

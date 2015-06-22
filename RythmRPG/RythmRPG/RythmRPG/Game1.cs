@@ -25,11 +25,11 @@ namespace RythmRPG
         /// The graphics
         /// </summary>
         GraphicsDeviceManager graphics;
+
         /// <summary>
         /// The sprite batch
         /// </summary>
         SpriteBatch spriteBatch;
-
 
         /// <summary>
         /// The background
@@ -40,6 +40,7 @@ namespace RythmRPG
         /// The default windows width
         /// </summary>
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
+
         /// <summary>
         /// The default windows height
         /// </summary>
@@ -49,10 +50,12 @@ namespace RythmRPG
         /// The save file name
         /// </summary>
         public static string saveFileName;
+
         /// <summary>
         /// The content
         /// </summary>
         private static ContentManager content;
+
         /// <summary>
         /// The characters
         /// </summary>
@@ -63,26 +66,32 @@ namespace RythmRPG
         /// The game state
         /// </summary>
         public static GameState GameState;
+
         /// <summary>
         /// The selected theme
         /// </summary>
         public static int SelectedTheme;
+
         /// <summary>
         /// The volume music
         /// </summary>
         public static int VolumeMusic = 10;
+
         /// <summary>
         /// The volume sound
         /// </summary>
         public static int VolumeSound = 10;
+
         /// <summary>
         /// The volume menu
         /// </summary>
         public static int VolumeMenu = 5;
+
         /// <summary>
         /// The save
         /// </summary>
         public static Save Save;
+
         /// <summary>
         /// The difficulty
         /// </summary>
@@ -92,34 +101,42 @@ namespace RythmRPG
         /// The wav file directory
         /// </summary>
         public static string WavFileDirectory = "musicDir/";
+
         /// <summary>
         /// The is challenge mode
         /// </summary>
         public static bool IsChallengeMode = false;
+
         /// <summary>
         /// The current selected wav file
         /// </summary>
         public static string CurrentSelectedWavFile = "";
+
         /// <summary>
         /// The width
         /// </summary>
         public static int Width;
+
         /// <summary>
         /// The height
         /// </summary>
         public static int Height;
+
         /// <summary>
         /// The unit x
         /// </summary>
         public static int UnitX;
+
         /// <summary>
         /// The unit y
         /// </summary>
         public static int UnitY;
+
         /// <summary>
         /// The button width
         /// </summary>
         public static int ButtonWidth;
+
         /// <summary>
         /// The button height
         /// </summary>
@@ -132,6 +149,7 @@ namespace RythmRPG
         /// The state of the current mouse.
         /// </value>
         public MouseState CurrentMouseState { get; set; }
+
         /// <summary>
         /// Gets or sets the state of the previous mouse.
         /// </summary>
@@ -139,6 +157,7 @@ namespace RythmRPG
         /// The state of the previous mouse.
         /// </value>
         public MouseState PreviousMouseState { get; set; }
+
         /// <summary>
         /// Gets or sets the state of the current key board.
         /// </summary>
@@ -146,6 +165,7 @@ namespace RythmRPG
         /// The state of the current key board.
         /// </value>
         public KeyboardState CurrentKeyBoardState { get; set; }
+
         /// <summary>
         /// Gets or sets the state of the previous key board.
         /// </summary>
@@ -153,6 +173,7 @@ namespace RythmRPG
         /// The state of the previous key board.
         /// </value>
         public KeyboardState PreviousKeyBoardState { get; set; }
+
         /// <summary>
         /// Gets or sets the start menu.
         /// </summary>
@@ -160,6 +181,7 @@ namespace RythmRPG
         /// The start menu.
         /// </value>
         public StartMenu StartMenu { get; set; }
+
         /// <summary>
         /// Gets or sets the options.
         /// </summary>
@@ -167,6 +189,7 @@ namespace RythmRPG
         /// The options.
         /// </value>
         public Options Options { get; set; }
+
         /// <summary>
         /// Gets or sets the game menu.
         /// </summary>
@@ -174,6 +197,7 @@ namespace RythmRPG
         /// The game menu.
         /// </value>
         public GameMenu GameMenu { get; set; }
+
         /// <summary>
         /// Gets or sets the single music.
         /// </summary>
@@ -181,6 +205,7 @@ namespace RythmRPG
         /// The single music.
         /// </value>
         public SingleMusic SingleMusic { get; set; }
+
         /// <summary>
         /// Gets or sets the playlist challenge.
         /// </summary>
@@ -188,6 +213,7 @@ namespace RythmRPG
         /// The playlist challenge.
         /// </value>
         public PlaylistChallenge PlaylistChallenge { get; set; }
+
         /// <summary>
         /// Gets or sets the character management.
         /// </summary>
@@ -195,6 +221,7 @@ namespace RythmRPG
         /// The character management.
         /// </value>
         public CharacterManagement CharacterManagement { get; set; }
+
         /// <summary>
         /// Gets or sets the victory.
         /// </summary>
@@ -202,6 +229,7 @@ namespace RythmRPG
         /// The victory.
         /// </value>
         public AfterGame Victory { get; set; }
+
         /// <summary>
         /// Gets or sets the song victory.
         /// </summary>
@@ -209,6 +237,7 @@ namespace RythmRPG
         /// The song victory.
         /// </value>
         public SongVictory SongVictory { get; set; }
+
         /// <summary>
         /// Gets or sets the playlist defeat.
         /// </summary>
@@ -216,6 +245,7 @@ namespace RythmRPG
         /// The playlist defeat.
         /// </value>
         public PlaylistDefeat PlaylistDefeat { get; set; }
+
         /// <summary>
         /// Gets or sets the playlist victory.
         /// </summary>
@@ -223,6 +253,7 @@ namespace RythmRPG
         /// The playlist victory.
         /// </value>
         public AfterGame PlaylistVictory { get; set; }
+
         /// <summary>
         /// Gets or sets the pause.
         /// </summary>
@@ -230,6 +261,7 @@ namespace RythmRPG
         /// The pause.
         /// </value>
         public Pause Pause { get; set; }
+
         /// <summary>
         /// Gets or sets the defeat.
         /// </summary>
@@ -237,6 +269,7 @@ namespace RythmRPG
         /// The defeat.
         /// </value>
         public AfterGame Defeat { get; set; }
+
         /// <summary>
         /// Gets or sets the music playing.
         /// </summary>
@@ -244,6 +277,7 @@ namespace RythmRPG
         /// The music playing.
         /// </value>
         public MusicPlaying MusicPlaying { get; set; }
+
         /// <summary>
         /// Gets or sets the modify character.
         /// </summary>
@@ -251,6 +285,10 @@ namespace RythmRPG
         /// The modify character.
         /// </value>
         public ModifyCharacter ModifyCharacter { get; set; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -259,7 +297,6 @@ namespace RythmRPG
             graphics.PreferredBackBufferHeight = DEFAULT_WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
             content = Content;
-
 
             Width = DEFAULT_WINDOWS_WIDTH;
             Height = DEFAULT_WINDOWS_HEIGHT;
@@ -348,8 +385,6 @@ namespace RythmRPG
             this.Defeat.LoadContent(this.Content);
             this.MusicPlaying.LoadContent(this.Content);
             this.ModifyCharacter.LoadContent(this.Content);
-
-
 
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
@@ -500,6 +535,11 @@ namespace RythmRPG
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// When exiting the program, override to save characters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         protected override void OnExiting(object sender, EventArgs args)
         {
             if (saveFileName != null)
@@ -530,6 +570,9 @@ namespace RythmRPG
             base.OnExiting(sender, args);
         }
 
+        /// <summary>
+        /// Load the characters from the save file
+        /// </summary>
         public static void LoadCharacters()
         {
 

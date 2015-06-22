@@ -18,6 +18,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the start.
         /// </summary>
@@ -25,6 +26,7 @@ namespace RythmRPG.Pages
         /// The start.
         /// </value>
         public Sprite Start { get; set; }
+
         /// <summary>
         /// Gets or sets the options.
         /// </summary>
@@ -32,6 +34,7 @@ namespace RythmRPG.Pages
         /// The options.
         /// </value>
         public Sprite Options { get; set; }
+
         /// <summary>
         /// Gets or sets the save sprites.
         /// </summary>
@@ -39,6 +42,7 @@ namespace RythmRPG.Pages
         /// The save sprites.
         /// </value>
         public Sprite[] SaveSprites { get; set; }
+
         /// <summary>
         /// Gets or sets the left save.
         /// </summary>
@@ -46,6 +50,7 @@ namespace RythmRPG.Pages
         /// The left save.
         /// </value>
         public Sprite LeftSave { get; set; }
+
         /// <summary>
         /// Gets or sets the right save.
         /// </summary>
@@ -61,6 +66,7 @@ namespace RythmRPG.Pages
         /// The exit button.
         /// </value>
         public Sprite ExitButton { get; set; }
+
         /// <summary>
         /// Gets or sets the character.
         /// </summary>
@@ -150,14 +156,17 @@ namespace RythmRPG.Pages
             this.ExitButton = new Sprite(3 * Game1.UnitX, 6 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
             this.Options = new Sprite(3 * Game1.UnitX, 9 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
             this.SaveSprites = new Sprite[Save.NB_SAVE];
+
             for (int i = 0; i < Save.NB_SAVE; i++)
             {
                 this.SaveSprites[i] = new Sprite(5 * Game1.UnitX, 13 * Game1.UnitY, 4 * Game1.UnitX, Game1.UnitY);
             }
+
             this.LeftSave = new Sprite(3 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
             this.RightSave = new Sprite(10 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
 
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -170,10 +179,12 @@ namespace RythmRPG.Pages
             this.Options.LoadContent(content, "StartMenu/Options");
             this.LeftSave.LoadContent(content, "Options/ArrowLeft");
             this.RightSave.LoadContent(content, "Options/ArrowRight");
+
             for (int i = 0; i < Save.NB_SAVE; i++)
             {
                 this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i + 1));
             }
+
             string name = "Knight";
             this.Character.Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
 
@@ -201,6 +212,7 @@ namespace RythmRPG.Pages
             MainTheme.Volume = VOLUME_ON;
             MainTheme.Play();
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>

@@ -12,7 +12,6 @@ namespace RythmRPG.Pages
 {
     public class GameMenu : Page
     {
-
         /// <summary>
         /// Gets or sets the main image.
         /// </summary>
@@ -20,6 +19,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the back.
         /// </summary>
@@ -27,6 +27,7 @@ namespace RythmRPG.Pages
         /// The back.
         /// </value>
         public Sprite Back { get; set; }
+
         /// <summary>
         /// Gets or sets the character management.
         /// </summary>
@@ -34,6 +35,7 @@ namespace RythmRPG.Pages
         /// The character management.
         /// </value>
         public Sprite CharacterManagement { get; set; }
+
         /// <summary>
         /// Gets or sets the playlist challenge.
         /// </summary>
@@ -41,6 +43,7 @@ namespace RythmRPG.Pages
         /// The playlist challenge.
         /// </value>
         public Sprite PlaylistChallenge { get; set; }
+
         /// <summary>
         /// Gets or sets the single music.
         /// </summary>
@@ -48,6 +51,7 @@ namespace RythmRPG.Pages
         /// The single music.
         /// </value>
         public Sprite SingleMusic { get; set; }
+
         /// <summary>
         /// Gets or sets the left character.
         /// </summary>
@@ -55,6 +59,7 @@ namespace RythmRPG.Pages
         /// The left character.
         /// </value>
         public Sprite LeftCharacter { get; set; }
+
         /// <summary>
         /// Gets or sets the right character.
         /// </summary>
@@ -70,6 +75,7 @@ namespace RythmRPG.Pages
         /// The skill list.
         /// </value>
         public List<TextSprite> SkillList { get; set; }
+
         /// <summary>
         /// The font
         /// </summary>
@@ -82,6 +88,7 @@ namespace RythmRPG.Pages
         /// The type.
         /// </value>
         public TextSprite Type { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -89,6 +96,7 @@ namespace RythmRPG.Pages
         /// The name.
         /// </value>
         public TextSprite Name { get; set; }
+
         /// <summary>
         /// Gets or sets the level.
         /// </summary>
@@ -96,6 +104,7 @@ namespace RythmRPG.Pages
         /// The level.
         /// </value>
         public TextSprite Level { get; set; }
+
         /// <summary>
         /// Gets or sets the endurance.
         /// </summary>
@@ -103,6 +112,7 @@ namespace RythmRPG.Pages
         /// The endurance.
         /// </value>
         public TextSprite Endurance { get; set; }
+
         /// <summary>
         /// Gets or sets the vitality.
         /// </summary>
@@ -110,6 +120,7 @@ namespace RythmRPG.Pages
         /// The vitality.
         /// </value>
         public TextSprite Vitality { get; set; }
+
         /// <summary>
         /// Gets or sets the hp.
         /// </summary>
@@ -117,6 +128,7 @@ namespace RythmRPG.Pages
         /// The hp.
         /// </value>
         public TextSprite HP { get; set; }
+
         /// <summary>
         /// Gets or sets the strength.
         /// </summary>
@@ -124,6 +136,7 @@ namespace RythmRPG.Pages
         /// The strength.
         /// </value>
         public TextSprite Strength { get; set; }
+
         /// <summary>
         /// Gets or sets the skills.
         /// </summary>
@@ -131,6 +144,7 @@ namespace RythmRPG.Pages
         /// The skills.
         /// </value>
         public TextSprite[] Skills { get; set; }
+
         /// <summary>
         /// Gets or sets the ability.
         /// </summary>
@@ -152,7 +166,6 @@ namespace RythmRPG.Pages
 
             this.LeftCharacter = new Sprite(9 * Game1.UnitX, 2 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
             this.RightCharacter = new Sprite(22 * Game1.UnitX, 2 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-
 
             this.Type = new TextSprite(27 * Game1.UnitX, 3.2f * Game1.UnitY, "", Color.Black);
             this.Name = new TextSprite(27 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
@@ -191,6 +204,7 @@ namespace RythmRPG.Pages
             this.Ability.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -294,6 +308,7 @@ namespace RythmRPG.Pages
         {
             this.Type.Text = character.Name;
             this.Name.Text = character.Name;
+
             if (character.NbRestart == 0)
             {
                 this.Level.Text = character.Level.ToString();
@@ -302,6 +317,7 @@ namespace RythmRPG.Pages
             {
                 this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
             }
+
             this.Endurance.Text = character.Defense.ToString();
             this.Vitality.Text = character.Vitality.ToString();
             this.HP.Text = character.Health.ToString();

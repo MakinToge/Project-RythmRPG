@@ -14,7 +14,8 @@ namespace RythmRPG
         /// <summary>
         /// The resampling sample rate
         /// </summary>
-        public const int RESAMPLING_SAMPLE_RATE = 44032;//SampleRate
+        public const int RESAMPLING_SAMPLE_RATE = 44032;
+
         /// <summary>
         /// Resamplings the specified in file path.
         /// </summary>

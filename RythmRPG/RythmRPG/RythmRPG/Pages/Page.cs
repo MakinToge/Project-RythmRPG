@@ -16,8 +16,8 @@ namespace RythmRPG.Pages
         /// </summary>
         public Page()
         {
-
         }
+
         /// <summary>
         /// Initializes this instance.
         /// </summary>
@@ -67,6 +67,7 @@ namespace RythmRPG.Pages
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
         }
+
         /// <summary>
         /// Determines whether the specified mouse is over.
         /// </summary>
@@ -79,6 +80,7 @@ namespace RythmRPG.Pages
             {
                 return true;
             }
+
             return false;
         }
     }

@@ -8,7 +8,6 @@ namespace RythmRPG
 {
     class wavFileReader
     {
-
         // convert two bytes to one double in the range 0 to 64
         static private double bytesToDouble(byte firstByte, byte secondByte)
         {

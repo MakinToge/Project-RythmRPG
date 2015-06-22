@@ -19,6 +19,7 @@ namespace RythmRPG
         /// The font.
         /// </value>
         public SpriteFont Font { get; set; }
+
         /// <summary>
         /// Gets or sets the position.
         /// </summary>
@@ -26,6 +27,7 @@ namespace RythmRPG
         /// The position.
         /// </value>
         public Vector2 Position { get; set; }
+
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
@@ -33,6 +35,7 @@ namespace RythmRPG
         /// The text.
         /// </value>
         public string Text { get; set; }
+
         /// <summary>
         /// Gets or sets the color.
         /// </summary>
@@ -48,6 +51,7 @@ namespace RythmRPG
             : this(Vector2.Zero, "", Color.White)
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TextSprite"/> class.
         /// </summary>
@@ -60,6 +64,7 @@ namespace RythmRPG
             this.Text = text;
             this.Color = color;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TextSprite"/> class.
         /// </summary>
@@ -73,6 +78,7 @@ namespace RythmRPG
             this.Text = text;
             this.Color = color;
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -82,6 +88,7 @@ namespace RythmRPG
         {
             this.Font = content.Load<SpriteFont>(assetName);
         }
+
         /// <summary>
         /// Draws the specified sprite batch.
         /// </summary>
@@ -89,11 +96,11 @@ namespace RythmRPG
         /// <param name="gameTime">The game time.</param>
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-
             spriteBatch.Begin();
             spriteBatch.DrawString(this.Font, this.Text, this.Position, this.Color);
             spriteBatch.End();
         }
+
         /// <summary>
         /// Determines whether the specified mouse is over.
         /// </summary>

@@ -16,6 +16,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the game menu.
         /// </summary>
@@ -23,6 +24,7 @@ namespace RythmRPG.Pages
         /// The game menu.
         /// </value>
         public Sprite GameMenu { get; set; }
+
         /// <summary>
         /// Gets or sets the restart.
         /// </summary>
@@ -30,6 +32,7 @@ namespace RythmRPG.Pages
         /// The restart.
         /// </value>
         public Sprite Restart { get; set; }
+
         /// <summary>
         /// Gets or sets the next music.
         /// </summary>
@@ -37,6 +40,7 @@ namespace RythmRPG.Pages
         /// The next music.
         /// </value>
         public Sprite NextMusic { get; set; }
+
         /// <summary>
         /// Initializes this instance.
         /// </summary>
@@ -47,6 +51,7 @@ namespace RythmRPG.Pages
             this.Restart = new Sprite(10 * Game1.UnitX, 9 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
             this.NextMusic = new Sprite(10 * Game1.UnitX, 6 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -58,6 +63,7 @@ namespace RythmRPG.Pages
             this.Restart.LoadContent(content, "Pause/Restart");
             this.NextMusic.LoadContent(content, "AfterGame/NextSong");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>

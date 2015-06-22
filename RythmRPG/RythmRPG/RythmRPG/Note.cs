@@ -13,6 +13,7 @@ namespace RythmRPG
         /// The default base speed
         /// </summary>
         public const float DEFAULT_BASE_SPEED = 0.3f;
+
         /// <summary>
         /// The default speed coefficient
         /// </summary>
@@ -25,6 +26,7 @@ namespace RythmRPG
         /// The time.
         /// </value>
         public double Time { get; private set; }
+
         /// <summary>
         /// Gets or sets the line.
         /// </summary>
@@ -74,6 +76,7 @@ namespace RythmRPG
             }
             this.LoadContent(MusicPlaying.Content, assetName);
         }
+
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>

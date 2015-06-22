@@ -27,8 +27,8 @@ namespace RythmRPG.Pages
         private int xpToDisplay = 0;
         private int nbTotalInput = 0;
         private PlayableCharacter player;
-        private float target = 25.5f * Game1.UnitX;//circle center
-        private const double BASE_ALLOWED_ERROR_WIDTH = 0.2;//valid pressed key from -0.25sec to +0.25sec with Casual difficulty
+        private float target = 25.5f * Game1.UnitX; // Circle center
+        private const double BASE_ALLOWED_ERROR_WIDTH = 0.2; // Valid pressed key from -0.25sec to +0.25sec with Casual difficulty
         private const double ALLOWED_ERROR_WIDTH_COEFFICIENT = 0.05;
 
         public static ContentManager Content { get; set; }
@@ -79,24 +79,24 @@ namespace RythmRPG.Pages
                 StartMenu.EffectClick.Play();
                 Game1.GameState = GameState.Pause;
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.A) && previousKeyboardState.IsKeyUp(Keys.A))
-            {//Touche A
+            else if (currentKeyboardState.IsKeyDown(Keys.A) && previousKeyboardState.IsKeyUp(Keys.A))   // Key A
+            {
                 KeyPressed(0);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.Z) && previousKeyboardState.IsKeyUp(Keys.Z))
-            {//Touche Z
+            else if (currentKeyboardState.IsKeyDown(Keys.Z) && previousKeyboardState.IsKeyUp(Keys.Z))   // Key Z
+            {
                 KeyPressed(1);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.E) && previousKeyboardState.IsKeyUp(Keys.E))
-            {//Touche E
+            else if (currentKeyboardState.IsKeyDown(Keys.E) && previousKeyboardState.IsKeyUp(Keys.E))   // Key E
+            {
                 KeyPressed(2);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.R) && previousKeyboardState.IsKeyUp(Keys.R))
-            {//Touche R
+            else if (currentKeyboardState.IsKeyDown(Keys.R) && previousKeyboardState.IsKeyUp(Keys.R))   // Key R
+            {
                 if ((int)Game1.Difficulty > 0) KeyPressed(3);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.T) && previousKeyboardState.IsKeyUp(Keys.T))
-            {//Touche T
+            else if (currentKeyboardState.IsKeyDown(Keys.T) && previousKeyboardState.IsKeyUp(Keys.T))   // Key T
+            {
                 if ((int)Game1.Difficulty > 1) KeyPressed(4);
             }
         }
@@ -121,23 +121,23 @@ namespace RythmRPG.Pages
                 double currentSeconds = pcm.CurrentTime.TotalSeconds;
                 if (SSNotes2[i].Min <= MusicPlaying.LengthSpeedUnit)
                 {
-                    SSNotes2[i].Remove(SSNotes2[i].Min);//too soon beats are discarded
+                    SSNotes2[i].Remove(SSNotes2[i].Min); // Too soon, beats are discarded
 
                 }
                 else if (SSNotes2[i].Count > 0 && SSNotes2[i].Min - LengthSpeedUnit < currentSeconds + 0.02 && currentSeconds - 0.02 < SSNotes2[i].Min - LengthSpeedUnit)//add note to the line
                 {
 
-                    this.LinesNotes[i].Enqueue(new Note(SSNotes2[i].Min, i));//throwing the note to the player
+                    this.LinesNotes[i].Enqueue(new Note(SSNotes2[i].Min, i)); // Throwing the note to the player
                     SSNotes2[i].Remove(SSNotes2[i].Min);
 
                 }
-                else if (SSNotes2[i].Count == 0)//no more note on line i
+                else if (SSNotes2[i].Count == 0) // No more note on line i
                 {
                     finishedLine++;
                 }
 
 
-                if (span.TotalSeconds < currentSeconds)//song finished
+                if (span.TotalSeconds < currentSeconds) // Song over
                 {
                     IsFinished = true;
                     output.Stop();
@@ -150,7 +150,7 @@ namespace RythmRPG.Pages
                 }
 
 
-                if (this.LinesNotes[i].Count != 0 && this.LinesNotes[i].Peek().Position.X > noteLimitPositionX)//remove note when out of the line
+                if (this.LinesNotes[i].Count != 0 && this.LinesNotes[i].Peek().Position.X > noteLimitPositionX) // Remove note when out of the line
                 {
                     AbstractCharacter monster = this.Monsters.ElementAt<AbstractCharacter>(0);
                     monster.attackCharacter(this.player);
@@ -180,7 +180,7 @@ namespace RythmRPG.Pages
             spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f, SpriteEffects.None, 0);
             spriteBatch.End();
 
-            //Character Data
+            // Character Data
             PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
             tmp.setPosition(new Vector2(8 * Game1.UnitX, 7.75f * Game1.UnitY));
             tmp.setScale(0.7f);
@@ -190,7 +190,7 @@ namespace RythmRPG.Pages
 
             this.HP.Draw(spriteBatch, gameTime);
 
-            //Draw la position des notes
+            // Draw notes position
             foreach (Queue<Note> line in LinesNotes)
             {
                 foreach (Note note in line)
@@ -198,20 +198,20 @@ namespace RythmRPG.Pages
                     note.Draw(spriteBatch, gameTime);
                 }
             }
-            //Draw circles
+
+            // Draw circles
             foreach (Sprite item in Circles)
             {
                 item.Draw(spriteBatch, gameTime);
             }
 
-            //Draw LinesSprite
+            // Draw LinesSprite
             foreach (Sprite item in this.LinesSprite)
             {
                 item.Draw(spriteBatch, gameTime);
             }
 
             this.InputsSprite.Draw(spriteBatch, gameTime);
-            //Console.WriteLine(gameTime.TotalGameTime.TotalMilliseconds);
         }
 
         public void LoadDataCharacter(PlayableCharacter character)
@@ -233,22 +233,22 @@ namespace RythmRPG.Pages
             firstUpdate = true;
             this.currentEnemy = 0;
 
-            //player's charachter
+            // Player's character
             this.player = Game1.characters.getSelectedCharacter();
             this.player.prepareForMusic();
 
-            //AudioProcessing
+            // AudioProcessing
             AllowedError = MusicPlaying.BASE_ALLOWED_ERROR_WIDTH + MusicPlaying.ALLOWED_ERROR_WIDTH_COEFFICIENT * (double)Game1.Difficulty;
 
-            float speed = Note.DEFAULT_BASE_SPEED + Note.DEFAULT_SPEED_COEFFICIENT * (float)Game1.Difficulty;//per millisec
+            float speed = Note.DEFAULT_BASE_SPEED + Note.DEFAULT_SPEED_COEFFICIENT * (float)Game1.Difficulty; // Per millisec
             float lineLength = 25 * Game1.UnitX;
 
             AllowedError *= speed * 1000.0;
-            MusicPlaying.LengthSpeedUnit = lineLength / speed / 1000;//in second
+            MusicPlaying.LengthSpeedUnit = lineLength / speed / 1000; // In second
 
             string wavFilePath = Game1.CurrentSelectedWavFile;
-            this.SSNotes = new SortedSet<double>[Chart.LaneNumber];//raw(not scaled)
-            this.SSNotes2 = new SortedSet<double>[Chart.LaneNumber];//scaled
+            this.SSNotes = new SortedSet<double>[Chart.LaneNumber]; // Raw(not scaled)
+            this.SSNotes2 = new SortedSet<double>[Chart.LaneNumber]; // Scaled
 
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
@@ -271,7 +271,7 @@ namespace RythmRPG.Pages
                 this.LinesNotes[i] = new Queue<Note>();
             }
 
-            //Circles
+            // Circles
             this.Circles = new List<Sprite>();
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
@@ -279,7 +279,8 @@ namespace RythmRPG.Pages
                 this.Circles.Add(circle);
                 this.Circles[i].LoadContent(MusicPlaying.Content, "MusicPlaying/noteCircle");
             }
-            //LinesSprite
+
+            // LinesSprite
             this.LinesSprite = new List<Sprite>();
 
             for (int i = 0; i < Chart.LaneNumber; i++)
@@ -311,7 +312,7 @@ namespace RythmRPG.Pages
             }
 
 
-            //play the selected music
+            // Play the selected music
             NAudio.Wave.WaveFileReader reader = new NAudio.Wave.WaveFileReader(Game1.CurrentSelectedWavFile);
             this.pcm = new NAudio.Wave.WaveChannel32(reader);
             MusicPlaying.stream = new NAudio.Wave.BlockAlignReductionStream(pcm);
@@ -324,7 +325,7 @@ namespace RythmRPG.Pages
             {
                 foreach (double beat in SSNotes[i])
                 {
-                    SSNotes2[i].Add(beat * span.TotalSeconds / max);//scale the beats with the real audio stream length
+                    SSNotes2[i].Add(beat * span.TotalSeconds / max); // Scale the beats with the real audio stream length
                 }
             }
 
@@ -335,6 +336,7 @@ namespace RythmRPG.Pages
 
             this.IsLoaded = true;
         }
+
         public void KeyPressed(int pressedKey)
         {
             AbstractCharacter monster = this.Monsters.ElementAt<AbstractCharacter>(this.currentEnemy);
@@ -376,6 +378,5 @@ namespace RythmRPG.Pages
                 }
             }
         }
-
     }
 }

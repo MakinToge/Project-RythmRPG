@@ -17,6 +17,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the asset name main image.
         /// </summary>
@@ -24,6 +25,7 @@ namespace RythmRPG.Pages
         /// The asset name main image.
         /// </value>
         public string AssetNameMainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the message.
         /// </summary>
@@ -31,6 +33,7 @@ namespace RythmRPG.Pages
         /// The message.
         /// </value>
         public string Message { get; set; }
+
         /// <summary>
         /// Gets or sets the xp.
         /// </summary>
@@ -38,6 +41,7 @@ namespace RythmRPG.Pages
         /// The xp.
         /// </value>
         public TextSprite Xp { get; set; }
+
         /// <summary>
         /// Gets or sets the play again.
         /// </summary>
@@ -45,6 +49,7 @@ namespace RythmRPG.Pages
         /// The play again.
         /// </value>
         public Sprite PlayAgain { get; set; }
+
         /// <summary>
         /// Gets or sets the game menu.
         /// </summary>
@@ -60,6 +65,7 @@ namespace RythmRPG.Pages
         /// The type.
         /// </value>
         public TextSprite Type { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -67,6 +73,7 @@ namespace RythmRPG.Pages
         /// The name.
         /// </value>
         public TextSprite Name { get; set; }
+
         /// <summary>
         /// Gets or sets the level.
         /// </summary>
@@ -74,6 +81,7 @@ namespace RythmRPG.Pages
         /// The level.
         /// </value>
         public TextSprite Level { get; set; }
+
         /// <summary>
         /// Gets or sets the endurance.
         /// </summary>
@@ -81,6 +89,7 @@ namespace RythmRPG.Pages
         /// The endurance.
         /// </value>
         public TextSprite Endurance { get; set; }
+
         /// <summary>
         /// Gets or sets the vitality.
         /// </summary>
@@ -88,6 +97,7 @@ namespace RythmRPG.Pages
         /// The vitality.
         /// </value>
         public TextSprite Vitality { get; set; }
+
         /// <summary>
         /// Gets or sets the hp.
         /// </summary>
@@ -95,6 +105,7 @@ namespace RythmRPG.Pages
         /// The hp.
         /// </value>
         public TextSprite HP { get; set; }
+
         /// <summary>
         /// Gets or sets the strength.
         /// </summary>
@@ -113,6 +124,7 @@ namespace RythmRPG.Pages
             this.AssetNameMainImage = assetNameMainImage;
             this.Message = message;
         }
+
         /// <summary>
         /// Initializes this instance.
         /// </summary>
@@ -131,6 +143,7 @@ namespace RythmRPG.Pages
             this.Strength = new TextSprite(18 * Game1.UnitX, 8.9f * Game1.UnitY, "", Color.Black);
             this.Vitality = new TextSprite(19 * Game1.UnitX, 9.9f * Game1.UnitY, "", Color.Black);
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -150,6 +163,7 @@ namespace RythmRPG.Pages
             this.Strength.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -164,7 +178,7 @@ namespace RythmRPG.Pages
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, PlayAgain))
-                { //Clique sur Play Again
+                {
                     StartMenu.EffectClick.Play();
                     MusicPlaying.output.Dispose();
                     MusicPlaying.output = null;
@@ -201,7 +215,7 @@ namespace RythmRPG.Pages
             this.GameMenu.Draw(spriteBatch, gameTime);
             this.Xp.Draw(spriteBatch, gameTime);
 
-            //Character Data
+            // Character Data
             PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
             tmp.prepareForMusic();
             if (tmp.Name == "Barbarian")

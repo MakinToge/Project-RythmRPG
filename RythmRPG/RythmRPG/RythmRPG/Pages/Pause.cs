@@ -16,6 +16,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the game menu.
         /// </summary>
@@ -23,6 +24,7 @@ namespace RythmRPG.Pages
         /// The game menu.
         /// </value>
         public Sprite GameMenu { get; set; }
+
         /// <summary>
         /// Gets or sets the restart.
         /// </summary>
@@ -30,6 +32,7 @@ namespace RythmRPG.Pages
         /// The restart.
         /// </value>
         public Sprite Restart { get; set; }
+
         /// <summary>
         /// Gets or sets the resume.
         /// </summary>
@@ -37,6 +40,7 @@ namespace RythmRPG.Pages
         /// The resume.
         /// </value>
         public Sprite Resume { get; set; }
+
         /// <summary>
         /// Initializes this instance.
         /// </summary>
@@ -47,6 +51,7 @@ namespace RythmRPG.Pages
             this.Restart = new Sprite(10 * Game1.UnitX, 9 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
             this.Resume = new Sprite(10 * Game1.UnitX, 6 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -58,6 +63,7 @@ namespace RythmRPG.Pages
             this.Restart.LoadContent(content, "Pause/Restart");
             this.Resume.LoadContent(content, "Pause/Resume");
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -72,13 +78,13 @@ namespace RythmRPG.Pages
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, Resume))
-                {// Clique sur Resume
+                {
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.MusicPlaying;
                     MusicPlaying.output.Play();
                 }
                 else if (isOver(mouse, GameMenu))
-                {// Clique sur GameMenu
+                {
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Play();
                     MusicPlaying.output.Dispose();
@@ -86,7 +92,7 @@ namespace RythmRPG.Pages
                     Game1.GameState = GameState.GameMenu;
                 }
                 else if (isOver(mouse, Restart))
-                {// Clique sur Restart
+                {
                     StartMenu.EffectClick.Play();
                     MusicPlaying musicPlaying = new MusicPlaying();
                     musicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());

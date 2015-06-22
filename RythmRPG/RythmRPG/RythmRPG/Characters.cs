@@ -14,6 +14,7 @@ namespace RythmRPG
         /// The number max characters
         /// </summary>
         private const int NB_MAX_CHARACTERS = 4;
+
         /// <summary>
         /// Gets the number of  character.
         /// </summary>
@@ -27,10 +28,12 @@ namespace RythmRPG
                 return NB_MAX_CHARACTERS;
             }
         }
+
         /// <summary>
         /// The character array
         /// </summary>
         public PlayableCharacter[] characterArray;
+
         /// <summary>
         /// Gets or sets the selected character.
         /// </summary>

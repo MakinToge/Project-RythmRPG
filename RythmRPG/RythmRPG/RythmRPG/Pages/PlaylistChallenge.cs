@@ -18,6 +18,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the back.
         /// </summary>
@@ -33,6 +34,7 @@ namespace RythmRPG.Pages
         /// The casual.
         /// </value>
         public Sprite[] Casual { get; set; }
+
         /// <summary>
         /// Gets or sets the veteran.
         /// </summary>
@@ -40,6 +42,7 @@ namespace RythmRPG.Pages
         /// The veteran.
         /// </value>
         public Sprite[] Veteran { get; set; }
+
         /// <summary>
         /// Gets or sets the god like.
         /// </summary>
@@ -47,6 +50,7 @@ namespace RythmRPG.Pages
         /// The god like.
         /// </value>
         public Sprite[] GodLike { get; set; }
+
         /// <summary>
         /// Gets or sets the selected difficulty.
         /// </summary>
@@ -54,6 +58,7 @@ namespace RythmRPG.Pages
         /// The selected difficulty.
         /// </value>
         public int SelectedDifficulty { get; set; }
+
         /// <summary>
         /// Gets or sets the play.
         /// </summary>
@@ -61,6 +66,7 @@ namespace RythmRPG.Pages
         /// The play.
         /// </value>
         public Sprite Play { get; set; }
+
         /// <summary>
         /// Gets or sets the not play.
         /// </summary>
@@ -68,6 +74,7 @@ namespace RythmRPG.Pages
         /// The not play.
         /// </value>
         public Sprite NotPlay { get; set; }
+
         /// <summary>
         /// Gets or sets the choose music.
         /// </summary>
@@ -83,6 +90,7 @@ namespace RythmRPG.Pages
         /// The classic.
         /// </value>
         public Sprite[] Classic { get; set; }
+
         /// <summary>
         /// Gets or sets the hardcore.
         /// </summary>
@@ -90,6 +98,7 @@ namespace RythmRPG.Pages
         /// The hardcore.
         /// </value>
         public Sprite[] Hardcore { get; set; }
+
         /// <summary>
         /// Gets or sets the selected mode.
         /// </summary>
@@ -97,6 +106,7 @@ namespace RythmRPG.Pages
         /// The selected mode.
         /// </value>
         public int SelectedMode { get; set; }
+
         /// <summary>
         /// Gets or sets the music playing.
         /// </summary>
@@ -142,6 +152,7 @@ namespace RythmRPG.Pages
                 new Sprite(Game1.UnitX, 13 * Game1.UnitY, 8 * Game1.UnitX, Game1.UnitY)
             };
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -166,8 +177,8 @@ namespace RythmRPG.Pages
             this.Classic[1].LoadContent(content, "PlaylistChallenge/Selected/Classic");
             this.Hardcore[0].LoadContent(content, "PlaylistChallenge/Hardcore");
             this.Hardcore[1].LoadContent(content, "PlaylistChallenge/Selected/Hardcore");
-
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -215,7 +226,7 @@ namespace RythmRPG.Pages
                     this.SelectedMode = 1;
                 }
                 else if (isOver(mouse, ChooseMusic))
-                {//Clique sur Choose Music
+                {
                     StartMenu.EffectClick.Play();
 
                     OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
@@ -224,12 +235,12 @@ namespace RythmRPG.Pages
 
                 }
                 else if (isOver(mouse, Play))
-                {// Clique sur Play!
+                {
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
 
-                    //Charge le jeu
+                    // Load the game
                     this.MusicPlaying.LoadGame();
                     this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }

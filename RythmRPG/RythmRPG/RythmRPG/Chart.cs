@@ -11,45 +11,53 @@ namespace RythmRPG
         /// <summary>
         /// The easy lane0 subband upperlimit
         /// </summary>
-        private const int EASY_LANE0_SUBBAND_UPPERLIMIT = 5;//4
+        private const int EASY_LANE0_SUBBAND_UPPERLIMIT = 5;
+
         /// <summary>
         /// The easy lane1 subband upperlimit
         /// </summary>
-        private const int EASY_LANE1_SUBBAND_UPPERLIMIT = 10;//5//7
+        private const int EASY_LANE1_SUBBAND_UPPERLIMIT = 10;
 
         /// <summary>
         /// The normal lane0 subband upperlimit
         /// </summary>
-        private const int NORMAL_LANE0_SUBBAND_UPPERLIMIT = 4;//3
+        private const int NORMAL_LANE0_SUBBAND_UPPERLIMIT = 4;
+
         /// <summary>
         /// The normal lane1 subband upperlimit
         /// </summary>
-        private const int NORMAL_LANE1_SUBBAND_UPPERLIMIT = 8;//4
+        private const int NORMAL_LANE1_SUBBAND_UPPERLIMIT = 8;
+
         /// <summary>
         /// The normal lane2 subband upperlimit
         /// </summary>
-        private const int NORMAL_LANE2_SUBBAND_UPPERLIMIT = 12;//4//5
+        private const int NORMAL_LANE2_SUBBAND_UPPERLIMIT = 12;
 
         /// <summary>
         /// The hard lane0 subband upperlimit
         /// </summary>
-        private const int HARD_LANE0_SUBBAND_UPPERLIMIT = 3;//2
+        private const int HARD_LANE0_SUBBAND_UPPERLIMIT = 3;
+
         /// <summary>
         /// The hard lane1 subband upperlimit
         /// </summary>
-        private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 6;//3
+        private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 6;
+
         /// <summary>
         /// The hard lane2 subband upperlimit
         /// </summary>
-        private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 9;//3
+        private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 9;
+
         /// <summary>
         /// The hard lane3 subband upperlimit
         /// </summary>
-        private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;//4//4
+        private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;
+
         /// <summary>
         /// The minimum time interval
         /// </summary>
         private static double minimumTimeInterval = 0.5;
+
         /// <summary>
         /// The lane number
         /// </summary>
@@ -95,6 +103,7 @@ namespace RythmRPG
                 i++;
             }
         }
+
         /// <summary>
         /// Gets the set array.
         /// </summary>

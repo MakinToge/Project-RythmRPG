@@ -16,6 +16,7 @@ namespace RythmRPG.Pages
         /// The main image.
         /// </value>
         public Sprite MainImage { get; set; }
+
         /// <summary>
         /// Gets or sets the back.
         /// </summary>
@@ -23,6 +24,7 @@ namespace RythmRPG.Pages
         /// The back.
         /// </value>
         public Sprite Back { get; set; }
+
         /// <summary>
         /// Gets or sets the see controls.
         /// </summary>
@@ -30,6 +32,7 @@ namespace RythmRPG.Pages
         /// The see controls.
         /// </value>
         public Sprite SeeControls { get; set; }
+
         /// <summary>
         /// Gets or sets the left device.
         /// </summary>
@@ -37,6 +40,7 @@ namespace RythmRPG.Pages
         /// The left device.
         /// </value>
         public Sprite LeftDevice { get; set; }
+
         /// <summary>
         /// Gets or sets the right device.
         /// </summary>
@@ -44,6 +48,7 @@ namespace RythmRPG.Pages
         /// The right device.
         /// </value>
         public Sprite RightDevice { get; set; }
+
         /// <summary>
         /// Gets or sets the left music.
         /// </summary>
@@ -51,6 +56,7 @@ namespace RythmRPG.Pages
         /// The left music.
         /// </value>
         public Sprite LeftMusic { get; set; }
+
         /// <summary>
         /// Gets or sets the right music.
         /// </summary>
@@ -58,6 +64,7 @@ namespace RythmRPG.Pages
         /// The right music.
         /// </value>
         public Sprite RightMusic { get; set; }
+
         /// <summary>
         /// Gets or sets the left sound.
         /// </summary>
@@ -65,6 +72,7 @@ namespace RythmRPG.Pages
         /// The left sound.
         /// </value>
         public Sprite LeftSound { get; set; }
+
         /// <summary>
         /// Gets or sets the right sound.
         /// </summary>
@@ -72,6 +80,7 @@ namespace RythmRPG.Pages
         /// The right sound.
         /// </value>
         public Sprite RightSound { get; set; }
+
         /// <summary>
         /// Gets or sets the volume music.
         /// </summary>
@@ -79,6 +88,7 @@ namespace RythmRPG.Pages
         /// The volume music.
         /// </value>
         public Sprite[] VolumeMusic { get; set; }
+
         /// <summary>
         /// Gets or sets the volume sound.
         /// </summary>
@@ -86,6 +96,7 @@ namespace RythmRPG.Pages
         /// The volume sound.
         /// </value>
         public Sprite[] VolumeSound { get; set; }
+
         /// <summary>
         /// Gets or sets the reset progression.
         /// </summary>
@@ -93,6 +104,7 @@ namespace RythmRPG.Pages
         /// The reset progression.
         /// </value>
         public Sprite ResetProgression { get; set; }
+
         /// <summary>
         /// Gets or sets the keyboard.
         /// </summary>
@@ -100,6 +112,7 @@ namespace RythmRPG.Pages
         /// The keyboard.
         /// </value>
         public Sprite Keyboard { get; set; }
+
         /// <summary>
         /// Gets or sets the devices.
         /// </summary>
@@ -107,6 +120,7 @@ namespace RythmRPG.Pages
         /// The devices.
         /// </value>
         public Sprite Devices { get; set; }
+
         /// <summary>
         /// Gets or sets the mute menu.
         /// </summary>
@@ -133,6 +147,7 @@ namespace RythmRPG.Pages
 
             this.VolumeMusic = new Sprite[5];
             this.VolumeSound = new Sprite[5];
+
             for (int i = 0; i < this.VolumeMusic.Length; i++)
             {
                 this.VolumeMusic[i] = new Sprite((21 + i) * Game1.UnitX, 7 * Game1.UnitY, Game1.UnitX / 2, Game1.UnitY);
@@ -148,6 +163,7 @@ namespace RythmRPG.Pages
 
             this.MuteMenu = new Sprite(20 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -180,6 +196,7 @@ namespace RythmRPG.Pages
                 item.LoadContent(content, "Options/One");
             }
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -199,10 +216,10 @@ namespace RythmRPG.Pages
                     Game1.GameState = GameState.StartMenu;
                 }
                 else if (isOver(mouse, ResetProgression))
-                { //Clique sur ResetProgression
+                {
                     StartMenu.EffectClick.Play();
                 }
-                //Music Volume
+                // All Music Volume (in game and menu)
                 else if (isOver(mouse, this.LeftMusic) && Game1.VolumeMusic > 0)
                 {
                     Game1.VolumeMusic -= 2;
@@ -215,7 +232,7 @@ namespace RythmRPG.Pages
                     StartMenu.MainTheme.Volume += 0.1f;
                     StartMenu.EffectClick.Play();
                 }
-                //Sound Volume
+                // Sound Volume
                 else if (isOver(mouse, this.LeftSound) && Game1.VolumeSound > 0)
                 {
                     Game1.VolumeSound -= 2;
@@ -234,7 +251,7 @@ namespace RythmRPG.Pages
                     StartMenu.EffectDefeat.Volume += 0.2f;
                     StartMenu.EffectClick.Play();
                 }
-                //Menu Volume
+                // Menu Song Volume
                 else if (isOver(mouse, this.MuteMenu))
                 {
                     if (Game1.VolumeMenu == 0)
@@ -287,6 +304,5 @@ namespace RythmRPG.Pages
                 VolumeSound[i].Draw(spriteBatch, gameTime);
             }
         }
-
     }
 }

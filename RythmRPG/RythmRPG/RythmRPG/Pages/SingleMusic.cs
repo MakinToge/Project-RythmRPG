@@ -124,6 +124,7 @@ namespace RythmRPG.Pages
             this.ChooseMusic = new Sprite(11 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.WaitPlease = new TextSprite(12 * Game1.UnitX, 6 * Game1.UnitY, "It might take some time", Color.Black);
         }
+
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -144,8 +145,8 @@ namespace RythmRPG.Pages
             this.Play.LoadContent(content, "SingleMusic/Play!");
             this.ChooseMusic.LoadContent(content, "SingleMusic/ChooseMusic");
             this.WaitPlease.LoadContent(content, "Arial16");
-
         }
+
         /// <summary>
         /// Handles the input.
         /// </summary>
@@ -183,7 +184,7 @@ namespace RythmRPG.Pages
                     Game1.Difficulty = Difficulty.GodLike;
                 }
                 else if (isOver(mouse, ChooseMusic))
-                {//Clique sur Choose Music
+                {
                     StartMenu.EffectClick.Play();
 
                     OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
@@ -193,13 +194,14 @@ namespace RythmRPG.Pages
                     choosedFile = open.FileName;
                     string wavFile;
                     Resampler.Resampling(choosedFile, Game1.WavFileDirectory, Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
-                    //remplace bouton play
+                    
+                    // Replace play button
                     this.IsMusicChosen = true;
 
                     Game1.CurrentSelectedWavFile = wavFile;
                 }
                 else if (isOver(mouse, Play))
-                {// Clique sur Play!
+                {
                     if (Game1.CurrentSelectedWavFile == "") return;
 
                     StartMenu.EffectClick.Play();
@@ -208,7 +210,7 @@ namespace RythmRPG.Pages
 
                     this.IsMusicChosen = false;
 
-                    //Charge le jeu
+                    // load the game
                     this.MusicPlaying.LoadGame();
                     this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
 
