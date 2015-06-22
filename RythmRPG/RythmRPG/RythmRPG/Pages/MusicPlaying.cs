@@ -44,6 +44,7 @@ namespace RythmRPG.Pages
         public static float LengthSpeedUnit;
         public TimeSpan span{get;set;}
         private int currentEnemy = 0;
+        private int earnedXP = 0;
 
         public Timer timer;
         public static long MillisecondsSinceLoadGame = 0;
@@ -289,6 +290,8 @@ namespace RythmRPG.Pages
                 {
                     this.currentEnemy++;
                     this.currentEnemy %= this.Monsters.Count;
+
+                    this.earnedXP += c.giveXP();
                 }
             }
             else

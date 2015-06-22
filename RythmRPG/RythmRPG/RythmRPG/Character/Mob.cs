@@ -99,7 +99,7 @@ namespace RythmRPG.Character
             }
         }
 
-        public int giveXP()
+        public override int giveXP()
         {
             return (int)Math.Floor(this.Vitality * this.Level / 2.5);
         }

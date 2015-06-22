@@ -327,5 +327,10 @@ namespace RythmRPG.Character
                 }
             }
         }
+
+        public override int giveXP()
+        {
+            return 0;
+        }
     }
 }

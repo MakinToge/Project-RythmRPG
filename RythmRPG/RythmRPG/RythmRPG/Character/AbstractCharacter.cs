@@ -12,7 +12,7 @@ namespace RythmRPG.Character
     /// The base of all characters in game, hero mobs and bosses
     /// </summary>
     [Serializable]
-    public class AbstractCharacter
+    public abstract class AbstractCharacter
     {
         /// <summary>
         /// The level of the character
@@ -194,5 +194,7 @@ namespace RythmRPG.Character
         {
             this.sprites.setOriginBottomRight();
         }
+
+        public abstract int giveXP();
     }
 }

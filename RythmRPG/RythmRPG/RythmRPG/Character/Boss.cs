@@ -104,7 +104,7 @@ namespace RythmRPG.Character
             }
         }
 
-        public int giveXP()
+        public override int giveXP()
         {
             return this.Vitality * this.Level;
         }
