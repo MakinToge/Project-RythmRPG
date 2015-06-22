@@ -136,11 +136,10 @@ namespace RythmRPG.Pages
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
-                    int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].selectedCharacter;
 
                     //Charge le jeu
-                    this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                     this.MusicPlaying.LoadGame();
+                    this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
             }
         }
