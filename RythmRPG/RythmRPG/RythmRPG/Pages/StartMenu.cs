@@ -49,7 +49,7 @@ namespace RythmRPG.Pages {
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
-            this.Character = new CharacterSprites(new Vector2(19 * Game1.UnitX, 5 * Game1.UnitY), 0, 2.55f, 0);
+            this.Character = new CharacterSprites(new Vector2(19 * Game1.UnitX, 5 * Game1.UnitY), 0, 2.5f, 0);
             this.Start = new Sprite(3 * Game1.UnitX, 3 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
             this.ExitButton = new Sprite(3 * Game1.UnitX, 6 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
             this.Options = new Sprite(3 * Game1.UnitX, 9 * Game1.UnitY, Game1.ButtonWidth, 2* Game1.ButtonHeight);
