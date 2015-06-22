@@ -27,8 +27,16 @@ namespace RythmRPG.Pages {
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
             this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
-            for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), 0,1.75f,0);
+            for (int i = 0; i < SpriteCharacters.Length; i++)
+            {
+                if (i != 0)
+                {
+                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(23.5f * Game1.UnitX, 4 * Game1.UnitY), 0, 2, 0);
+                }
+                else
+                {
+                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), 0, 1.75f, 0);
+                }
             }
 
             this.Casual = new Sprite[2] {
@@ -103,6 +111,8 @@ namespace RythmRPG.Pages {
                     choosedFile = open.FileName;
                     string wavFile;
                     Resampler.Resampling(choosedFile, Game1.WavFileDirectory ,Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
+                    //remplace bouton play
+
                     Game1.CurrentSelectedWavFile = wavFile;
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
