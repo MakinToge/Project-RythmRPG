@@ -140,6 +140,7 @@ namespace RythmRPG.Pages
                     IsFinished = true;
                     output.Stop();
                     this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.earnedXP);
+                    this.Victory.LoadDataCharacter(this.player);
                     Game1.GameState = RythmRPG.GameState.Victory;
                 }
 
@@ -154,6 +155,7 @@ namespace RythmRPG.Pages
                     if (this.player.isDead())
                     {
                         output.Stop();
+                        this.Defeat.LoadDataCharacter(this.player);
                         Game1.GameState = RythmRPG.GameState.Defeat;
                     }
 
@@ -353,6 +355,7 @@ namespace RythmRPG.Pages
                 if (player.isDead())
                 {
                     output.Stop();
+                    this.Defeat.LoadDataCharacter(this.player);
                     Game1.GameState = RythmRPG.GameState.Defeat;
                 }
             }
