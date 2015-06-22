@@ -24,13 +24,30 @@ namespace RythmRPG.Character
         /// </summary>
         ExperienceBoost,
         /// <summary>
-        /// Add 
+        /// Add more strength to the character when attacking a boss
+        /// PlayableCharacter use only
         /// </summary>
         AttackMegaBoost,
+        /// <summary>
+        /// Add more defense to the character when attacked by boss
+        /// PlayableCharacter use only
+        /// </summary>
         EnduranceMegaBoost,
+        /// <summary>
+        /// Chance to kill instantly the enemy
+        /// </summary>
         CriticalDamage,
+        /// <summary>
+        /// Chance to paralyse the enemy for a short period of time
+        /// </summary>
         Paralysis,
+        /// <summary>
+        /// Gives health points back when critically low
+        /// </summary>
         Cure,
+        /// <summary>
+        /// None
+        /// </summary>
         None
     }
 }

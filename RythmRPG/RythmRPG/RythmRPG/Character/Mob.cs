@@ -78,6 +78,10 @@ namespace RythmRPG.Character
             character.takeDamage(damageDealt);
         }
 
+        /// <summary>
+        /// Load the animations
+        /// </summary>
+        /// <param name="content">The content manager</param>
         public void Load(ContentManager content)
         {
             Random rand = new Random();
@@ -99,6 +103,12 @@ namespace RythmRPG.Character
             }
         }
 
+        /// <summary>
+        /// Gives the amount of experience earned by killing the character
+        /// </summary>
+        /// <param name="nbInput">The number of input of the music</param>
+        /// <param name="difficulty">The difficulty of the game</param>
+        /// <returns>The amount of experience earned</returns>
         public override int giveXP(int nbInput, Difficulty difficulty)
         {
             int diff;

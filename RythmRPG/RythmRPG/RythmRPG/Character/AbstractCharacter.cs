@@ -169,37 +169,65 @@ namespace RythmRPG.Character
             this.sprites.IsAttacking = true;
         }
 
+        /// <summary>
+        /// Set the position on screen
+        /// </summary>
+        /// <param name="position">Position on screen</param>
         public void setPosition(Vector2 position)
         {
             this.sprites.position = position;
         }
 
+        /// <summary>
+        /// Set the scale of the sprites
+        /// </summary>
+        /// <param name="scale">The scale</param>
         public void setScale(float scale)
         {
             this.sprites.scale = scale;
         }
 
+        /// <summary>
+        /// Update the animation
+        /// </summary>
+        /// <param name="elapsed">Elapsed time</param>
         public void UpdateFrame(float elapsed)
         {
             this.sprites.UpdateFrame(elapsed);
         }
 
+        /// <summary>
+        /// Initialize the character for the music
+        /// </summary>
         public virtual void prepareForMusic()
         {
             this.Health = this.Level * this.Vitality;
             this.sprites.resetAnimations();
         }
 
+        /// <summary>
+        /// Set the origin on the bottom right-hand corner of the sprite
+        /// </summary>
         public void setOriginBottomRight()
         {
             this.sprites.setOriginBottomRight();
         }
 
+        /// <summary>
+        /// Return the total health points
+        /// </summary>
+        /// <returns>The health points</returns>
         public virtual int getMaxHealth()
         {
             return this.Vitality * this.Level;
         }
 
+        /// <summary>
+        /// Gives the amount of experience earned by killing the character
+        /// </summary>
+        /// <param name="nbInput">The number of input of the music</param>
+        /// <param name="difficulty">The difficulty of the game</param>
+        /// <returns>The amount of experience earned</returns>
         public abstract int giveXP(int nbInput, Difficulty difficulty);
     }
 }
