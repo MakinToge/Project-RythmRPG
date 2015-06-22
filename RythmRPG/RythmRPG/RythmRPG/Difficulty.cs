@@ -5,8 +5,9 @@ using System.Text;
 
 namespace RythmRPG {
     public enum Difficulty {
-        Casual,
-        Veteran,
-        GodLike
+        Null,
+        Casual=1,
+        Veteran=2,
+        GodLike=3
     }
 }

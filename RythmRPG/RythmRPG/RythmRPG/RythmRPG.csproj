@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioAnalyser.cs" />
-    <Compile Include="Beat.cs" />
+    <Compile Include="Note.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="Character\Boss.cs" />
