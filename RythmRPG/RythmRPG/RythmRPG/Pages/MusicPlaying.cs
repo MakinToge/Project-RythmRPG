@@ -77,24 +77,24 @@ namespace RythmRPG.Pages
                 StartMenu.EffectClick.Play();
                 Game1.GameState = GameState.Pause;
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.Z) && previousKeyboardState.IsKeyUp(Keys.Z))
-            {//Touche Z
+            else if (currentKeyboardState.IsKeyDown(Keys.A) && previousKeyboardState.IsKeyUp(Keys.A))
+            {//Touche A
                 KeyPressed(0);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.Q) && previousKeyboardState.IsKeyUp(Keys.Q))
-            {//Touche Q
+            else if (currentKeyboardState.IsKeyDown(Keys.Z) && previousKeyboardState.IsKeyUp(Keys.Z))
+            {//Touche Z
                 KeyPressed(1);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.D) && previousKeyboardState.IsKeyUp(Keys.D))
-            {//Touche D
+            else if (currentKeyboardState.IsKeyDown(Keys.E) && previousKeyboardState.IsKeyUp(Keys.E))
+            {//Touche E
                 KeyPressed(2);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
-            {//Touche Space
+            else if (currentKeyboardState.IsKeyDown(Keys.R) && previousKeyboardState.IsKeyUp(Keys.R))
+            {//Touche R
                 if ((int)Game1.Difficulty > 0) KeyPressed(3);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.LeftShift) && previousKeyboardState.IsKeyUp(Keys.LeftShift))
-            {//Touche Shift
+            else if (currentKeyboardState.IsKeyDown(Keys.T) && previousKeyboardState.IsKeyUp(Keys.T))
+            {//Touche T
                 if ((int)Game1.Difficulty > 1) KeyPressed(4);
             }
         }
@@ -140,6 +140,7 @@ namespace RythmRPG.Pages
                     IsFinished = true;
                     output.Stop();
                     this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.earnedXP);
+                    StartMenu.EffectVictory.Play();
                     Game1.GameState = RythmRPG.GameState.Victory;
                 }
 
@@ -154,6 +155,7 @@ namespace RythmRPG.Pages
                     if (this.player.isDead())
                     {
                         output.Stop();
+                        StartMenu.EffectDefeat.Play();
                         Game1.GameState = RythmRPG.GameState.Defeat;
                     }
 
@@ -331,7 +333,7 @@ namespace RythmRPG.Pages
                 goodHit = true;
                 this.LinesNotes[pressedKey].Dequeue();
             }
-
+            
             if (goodHit)
             {
                 player.attackCharacter(monster);
@@ -354,6 +356,7 @@ namespace RythmRPG.Pages
                 if (player.isDead())
                 {
                     output.Stop();
+                    StartMenu.EffectDefeat.Play();
                     Game1.GameState = RythmRPG.GameState.Defeat;
                 }
             }
