@@ -42,7 +42,7 @@ namespace RythmRPG
             characterArray[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
             characterArray[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Knight");
             characterArray[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Ninja");
-            characterArray[3] = new PlayableCharacter(10, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 30, 0, 500, Vector2.Zero, 1, "Magus");
+            characterArray[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Magus");
         }
 
         public void LoadCharacters(PlayableCharacter[] characters)
