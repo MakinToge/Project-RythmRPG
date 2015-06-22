@@ -344,7 +344,7 @@ namespace RythmRPG {
                 characters = (PlayableCharacter[])formatter.Deserialize(stream);
                 stream.Close();
             }
-            catch (Exception e)
+            catch (Exception e) // i.e. the file doesn't exist
             {
                 characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Magus");
                 characters[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
