@@ -203,7 +203,7 @@ namespace RythmRPG.Pages {
         // Specify what you want to happen when the Elapsed event is raised.
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            //Console.WriteLine("{0}");
+            //Console.WriteLine("{0}",this.timer.
         }
 
         // gametime.ElapsedGameTime.TotalMilliseconds
