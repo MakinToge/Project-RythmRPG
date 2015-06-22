@@ -23,6 +23,9 @@ namespace RythmRPG.Pages {
         public TextSprite Strength { get; set; }
         public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
+        public TextSprite Xp { get; set; }
+        public TextSprite StatsPoints { get; set; }
+        public TextSprite Gold { get; set; }
         public int SelectedCharacter { get; set; }
         public Sprite[] TabMedium { get; set; }
         public Sprite[] TabTank { get; set; }
@@ -66,11 +69,15 @@ namespace RythmRPG.Pages {
             
             this.Name = new TextSprite(15 * Game1.UnitX, 3.3f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(6 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
+            this.Xp = new TextSprite(5 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.XPNextLevel = new TextSprite(8 * Game1.UnitX, 6.2f * Game1.UnitY, "", Color.Black);
             this.Endurance = new TextSprite(7 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
             this.HP = new TextSprite(5 * Game1.UnitX, 7.2f * Game1.UnitY, "", Color.Black);
             this.Strength = new TextSprite(7 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
             this.Vitality = new TextSprite(8 * Game1.UnitX, 8.2f * Game1.UnitY, "", Color.Black);
             this.Ability = new TextSprite(25 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.StatsPoints = new TextSprite(8 * Game1.UnitX, 11.2f * Game1.UnitY, "", Color.Black);
+            this.Gold = new TextSprite(6 * Game1.UnitX, 12.2f * Game1.UnitY, "", Color.Black);
 
             this.Modify = new Sprite(2 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
 
@@ -100,6 +107,10 @@ namespace RythmRPG.Pages {
             this.Strength.LoadContent(content, "Arial16");
             this.Ability.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
+            this.Xp.LoadContent(content, "Arial16");
+            this.XPNextLevel.LoadContent(content, "Arial16");
+            this.StatsPoints.LoadContent(content, "Arial16");
+            this.Gold.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             this.Character = Game1.characters.getSelectedCharacter();
@@ -193,6 +204,11 @@ namespace RythmRPG.Pages {
             this.Strength.Draw(spriteBatch, gameTime);
             this.Ability.Draw(spriteBatch, gameTime);
             this.Vitality.Draw(spriteBatch, gameTime);
+
+            this.Xp.Draw(spriteBatch, gameTime);
+            this.XPNextLevel.Draw(spriteBatch, gameTime);
+            this.StatsPoints.Draw(spriteBatch, gameTime);
+            this.Gold.Draw(spriteBatch, gameTime);
         }
 
         public void LoadDataCharacter(PlayableCharacter character) {
@@ -208,6 +224,11 @@ namespace RythmRPG.Pages {
             this.Strength.Text = character.Attack.ToString();
             this.Vitality.Text = character.Vitality.ToString();
             this.Ability.Text = character.uniqueSkill.ToString();
+
+            this.Xp.Text = character.xp.ToString();
+            this.XPNextLevel.Text = character.xp.ToString();
+            this.StatsPoints.Text = character.statPoints.ToString();
+            this.Gold.Text = character.gold.ToString();
         }
     }
 }
