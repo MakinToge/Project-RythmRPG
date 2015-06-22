@@ -22,6 +22,7 @@ namespace RythmRPG.Pages {
         public Sprite NotPlay { get; set; }
         public Sprite ChooseMusic { get; set; }
         public MusicPlaying MusicPlaying { get; set; }
+        public bool IsMusicChosen { get; set; }
 
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
@@ -88,6 +89,7 @@ namespace RythmRPG.Pages {
                 if (isOver(mouse, Back)) {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
+                    this.IsMusicChosen = false;
                 }
                 else if (isOver(mouse, Casual[0])) {
                     StartMenu.EffectClick.Play();
@@ -115,6 +117,7 @@ namespace RythmRPG.Pages {
                     string wavFile;
                     Resampler.Resampling(choosedFile, Game1.WavFileDirectory ,Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
                     //remplace bouton play
+                    this.IsMusicChosen = true;
 
                     Game1.CurrentSelectedWavFile = wavFile;
                 }
@@ -127,7 +130,7 @@ namespace RythmRPG.Pages {
                     int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
                     PlayableCharacter character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];
 
-                    
+                    this.IsMusicChosen = false;
 
                     //Charge le jeu
                     this.MusicPlaying.LoadDataCharacter(character);
@@ -155,9 +158,13 @@ namespace RythmRPG.Pages {
             }
 
             this.ChooseMusic.Draw(spriteBatch, gameTime);
-            
-            this.Play.Draw(spriteBatch, gameTime);
-            this.NotPlay.Draw(spriteBatch, gameTime);
+
+            if (IsMusicChosen) {
+                this.Play.Draw(spriteBatch, gameTime);
+            }
+            else {
+                this.NotPlay.Draw(spriteBatch, gameTime);
+            }
 
             this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
         }
