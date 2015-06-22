@@ -7,6 +7,7 @@ using System.Text;
 
 namespace RythmRPG
 {
+    [Serializable]
     public class Characters
     {
         

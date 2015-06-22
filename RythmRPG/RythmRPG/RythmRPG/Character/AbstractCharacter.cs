@@ -11,7 +11,6 @@ namespace RythmRPG.Character
     /// <summary>
     /// The base of all characters in game, hero mobs and bosses
     /// </summary>
-    [Serializable]
     public class AbstractCharacter
     {
         /// <summary>
