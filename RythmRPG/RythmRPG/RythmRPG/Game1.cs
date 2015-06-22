@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using RythmRPG.Pages;
+using RythmRPG.Character;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace RythmRPG {
     /// <summary>
@@ -23,7 +27,11 @@ namespace RythmRPG {
 
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
-        
+
+        public static string saveFileName;
+        private static ContentManager content;
+        public static Characters characters = new Characters();
+
         //Options
         public static GameState GameState;
         public static int SelectedTheme;
@@ -67,6 +75,8 @@ namespace RythmRPG {
             graphics.PreferredBackBufferWidth = DEFAULT_WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = DEFAULT_WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
+            content = Content;
+            
 
             Width = DEFAULT_WINDOWS_WIDTH;
             Height = DEFAULT_WINDOWS_HEIGHT;
@@ -153,6 +163,7 @@ namespace RythmRPG {
             this.ModifyCharacter.LoadContent(this.Content);
 
             
+            
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
@@ -183,26 +194,6 @@ namespace RythmRPG {
             this.CurrentMouseState = Mouse.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
             this.CurrentKeyBoardState = Keyboard.GetState();
-
-            //A Supprimer (Juste pour tester les pages)
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.A)) {
-                Game1.GameState = RythmRPG.GameState.Defeat;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Z)) {
-                Game1.GameState = RythmRPG.GameState.PlaylistDefeat;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.E)) {
-                Game1.GameState = RythmRPG.GameState.PlaylistVictory;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.R)) {
-                Game1.GameState = RythmRPG.GameState.SongVictory;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.T)) {
-                Game1.GameState = RythmRPG.GameState.Victory;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Y)) {
-                Game1.GameState = RythmRPG.GameState.Pause;
-            }
 
             // TODO: Add your update logic here
             switch (GameState) {
@@ -315,6 +306,55 @@ namespace RythmRPG {
             };
 
             base.Draw(gameTime);
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            if(saveFileName != null)
+            {
+                IFormatter format = new BinaryFormatter();
+                Stream stream;
+
+                try
+                {
+                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    DirectoryInfo di = Directory.CreateDirectory("./Save");
+                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                }
+
+                characters.selectedCharacter = 0;
+                format.Serialize(stream, characters);
+                stream.Close();
+            }
+
+            base.OnExiting(sender, args);
+        }
+
+        public static void LoadCharacters()
+        {
+            
+            IFormatter formatter = new BinaryFormatter();
+            try
+            {
+                Stream stream = new FileStream("./Save/" + saveFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                characters = (Characters)formatter.Deserialize(stream);
+                stream.Close();
+            }
+            catch (Exception e) // i.e. the file doesn't exist
+            {
+                characters.CreateDataCharacters();
+            }
+
+            characters.LoadContent(content);
+            for(int i=0;i<4;i++)
+            {
+                string tmp = characters.characterArray[i].Name;
+            }
+
+            characters.selectedCharacter = 0;
         }
     }
 }

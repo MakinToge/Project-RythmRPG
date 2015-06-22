@@ -11,6 +11,7 @@ namespace RythmRPG.Character
     /// <summary>
     /// The base of all characters in game, hero mobs and bosses
     /// </summary>
+    [Serializable]
     public class AbstractCharacter
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace RythmRPG.Character
         public int Vitality {
             get { return vitality; }
             set { vitality = value;
-            this.Health = this.Level * this.Vitality;
+            this.Health = this.Level * this.Vitality + 10;
             }
         }
         
@@ -166,6 +167,21 @@ namespace RythmRPG.Character
         public virtual void attackCharacter(AbstractCharacter character)
         {
             this.sprites.IsAttacking = true;
+        }
+
+        public void setPosition(Vector2 position)
+        {
+            this.sprites.position = position;
+        }
+
+        public void setScale(float scale)
+        {
+            this.sprites.scale = scale;
+        }
+
+        public void UpdateFrame(float elapsed)
+        {
+            this.sprites.UpdateFrame(elapsed);
         }
     }
 }

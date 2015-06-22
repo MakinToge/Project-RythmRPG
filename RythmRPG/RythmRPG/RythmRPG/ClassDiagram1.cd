@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RythmRPG.Pages.AfterGame" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAIiABAAAAwAACAhAQAQAQQBAAAABAQAAIAAAAAQ=</HashCode>
+      <FileName>Pages\AfterGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.CharacterManagement" Collapsed="true">
+    <Position X="17.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAIIiAAAIAAwAQKABAAAQAQQBBIAABgQAAAAAAABQ=</HashCode>
+      <FileName>Pages\CharacterManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.GameMenu" Collapsed="true">
+    <Position X="19.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAAIiAAACAEwAACABAAAwAQQBAAAABQQAACAAAAAQ=</HashCode>
+      <FileName>Pages\GameMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.MusicPlaying" Collapsed="true">
+    <Position X="21.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EARQAgCAAgAAhwAAAABBiAABSSAIAAAAiAAAAABAIAU=</HashCode>
+      <FileName>Pages\MusicPlaying.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.ModifyCharacter" Collapsed="true">
+    <Position X="14" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAIiAQAgQAwAASAAAAAQISUBAAAAFAEACEBAECAU=</HashCode>
+      <FileName>Pages\ModifyCharacter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.Options" Collapsed="true">
+    <Position X="17.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQgAAoCAgAAEAwAAAAABAAQAQACAqAAAAAAAAAECIAQ=</HashCode>
+      <FileName>Pages\Options.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.Page" Collapsed="true">
+    <Position X="17.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEACAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAIAAAAQ=</HashCode>
+      <FileName>Pages\Page.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.PlaylistChallenge" Collapsed="true">
+    <Position X="21.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAKCBAQAAAwAAABBAAAAAAABACAABgAAEAAAAAAQ=</HashCode>
+      <FileName>Pages\PlaylistChallenge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.Pause" Collapsed="true">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAICAAAAAAwAAAAgAAAAAAAAAAAAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Pages\Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.PlaylistDefeat" Collapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAwBAAAAAAAAAAAAAAAAAAAAAAAAAEAQ=</HashCode>
+      <FileName>Pages\PlaylistDefeat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.SongVictory" Collapsed="true">
+    <Position X="19.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAICAAAABAwAAAAgAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Pages\SongVictory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.SingleMusic" Collapsed="true">
+    <Position X="21.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAICAAQAAAwAAABBAAAAAAABACAABgAAEAAAAAAQ=</HashCode>
+      <FileName>Pages\SingleMusic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RythmRPG.Pages.StartMenu" Collapsed="true">
+    <Position X="15.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQCAAICAAiggAwAAAAAQAAgAAAMAAAgAEgEAAkBACgQ=</HashCode>
+      <FileName>Pages\StartMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

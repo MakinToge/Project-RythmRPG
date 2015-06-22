@@ -7,116 +7,52 @@ using System.Text;
 
 namespace RythmRPG
 {
+    [Serializable]
     public class Characters
     {
-        public const int NB_MAX_CHARACTERS = 4;
-        public PlayableCharacter[] CharacterArray { get; set; }
-        public int SelectCharacter { get; set; }
+        
+        private const int NB_MAX_CHARACTERS = 4;
+        public int NbCharacter
+        {
+            get
+            {
+                return NB_MAX_CHARACTERS;
+            }
+        }
+        public PlayableCharacter[] characterArray;
+        public int selectedCharacter { get; set; }
 
         public Characters()
         {
-            // Data Characters
-            this.CharacterArray = new PlayableCharacter[NB_MAX_CHARACTERS];
-            for (int i = 0; i < this.CharacterArray.Length; i++)
-            {
-                this.LoadDataCharacters(i);
-            }
-            /*{
-                new PlayableCharacter()
-                new Character("Florizarre", CharacterType.Medium,"medium", 1,50,25,10,0,0,0,0),
-                new Character("Squirtle", CharacterType.Tank,"tank", 4,75,15,20,0,0,0,0),
-                new Character("DPS", CharacterType.DPS,"dps", 4,75,15,20,0,0,0,0),
-                new Character("Truc", CharacterType.Custom,"custom", 4,15,5,10,0,0,0,0)
-            };*/
+            this.selectedCharacter = 0;
+            this.characterArray = new PlayableCharacter[NB_MAX_CHARACTERS];
         }
 
-        public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content, CharacterSprites[] spriteCharacters)
+        public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
-            for (int i = 0; i < this.CharacterArray.Length; i++)
+            for (int i = 0; i < NB_MAX_CHARACTERS; i++)
             {
-                string name = this.CharacterArray[i].Name;
-                spriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
+                string name = this.characterArray[i].Name;
+                this.characterArray[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
             }
         }
 
-        public void LoadDataCharacters(int nbCharacter)
+        public void CreateDataCharacters()
         {
-            //Charger les données Données au hasard pour l'instant
-            int level, defense, vitality, attack, combo, xp, statPoints, nbRestart, size;
-            string name;
-            int[,] levelUpStats = new int[1, 2];
-            Vector2 position;
-            UniqueSkill ability;
+            characterArray[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
+            characterArray[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Knight");
+            characterArray[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Ninja");
+            characterArray[3] = new PlayableCharacter(10, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 30, 0, 500, Vector2.Zero, 1, "Magus");
+        }
 
-            name = "Barbarian";
-            level = 5;
-            defense = 15;
-            vitality = 20;
-            attack = 15;
-            ability = UniqueSkill.Survivor;
-            levelUpStats = new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-            combo = 0;
-            xp = 0;
-            statPoints = 0;
-            nbRestart = 0;
+        public void LoadCharacters(PlayableCharacter[] characters)
+        {
+            this.characterArray = characters;
+        }
 
-            position = new Vector2(0, 0);
-            size = 0;
-
-            if (nbCharacter == 1)
-            {
-                name = "Knight";
-                level = 7;
-                defense = 35;
-                vitality = 30;
-                attack = 10;
-                ability = UniqueSkill.Templar;
-                levelUpStats = new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } };
-                combo = 0;
-                xp = 0;
-                statPoints = 0;
-                nbRestart = 0;
-
-                position = new Vector2(0, 0);
-                size = 0;
-            }
-            else if (nbCharacter == 2)
-            {
-                name = "Ninja";
-                level = 15;
-                defense = 25;
-                vitality = 40;
-                attack = 25;
-                ability = UniqueSkill.FatalBlow;
-                levelUpStats = new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } };
-                combo = 0;
-                xp = 0;
-                statPoints = 0;
-                nbRestart = 0;
-
-                position = new Vector2(0, 0);
-                size = 0;
-            }
-            else if (nbCharacter == 3)
-            {
-                name = "Magus";
-                level = 24;
-                defense = 35;
-                vitality = 30;
-                attack = 35;
-                ability = UniqueSkill.GoldDigger;
-                levelUpStats = new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
-                combo = 0;
-                xp = 0;
-                statPoints = 0;
-                nbRestart = 2;
-
-                position = new Vector2(0, 0);
-                size = 0;
-            }
-
-            this.CharacterArray[nbCharacter] = new PlayableCharacter(level, vitality, attack, defense, ability, levelUpStats, combo, xp, statPoints, nbRestart, position, 0, name);
-            this.CharacterArray[nbCharacter].gold = 500;
+        public PlayableCharacter getSelectedCharacter()
+        {
+            return this.characterArray[this.selectedCharacter];
         }
     }
 }

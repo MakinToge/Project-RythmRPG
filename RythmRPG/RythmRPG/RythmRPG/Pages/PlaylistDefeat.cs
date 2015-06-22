@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using RythmRPG.Character;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,11 @@ namespace RythmRPG.Pages {
             this.Retry.Draw(spriteBatch, gameTime);
 
             //Character Data
-            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
+            PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
+            tmp.setPosition(new Vector2(4.5f * Game1.UnitX, 5.5f * Game1.UnitY));
+            tmp.setScale(2);
+            tmp.Draw(spriteBatch);
+
             this.Type.Draw(spriteBatch, gameTime);
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);

@@ -12,8 +12,8 @@ namespace RythmRPG.Pages {
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
         public Sprite Modify { get; set; }
-        public Characters Characters { get; set; }
-        public CharacterSprites[] SpriteCharacters { get; set; }
+        public PlayableCharacter Character { get; set; }
+        
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite XPNextLevel { get; set; }
@@ -23,6 +23,9 @@ namespace RythmRPG.Pages {
         public TextSprite Strength { get; set; }
         public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
+        public TextSprite Xp { get; set; }
+        public TextSprite StatsPoints { get; set; }
+        public TextSprite Gold { get; set; }
         public int SelectedCharacter { get; set; }
         public Sprite[] TabMedium { get; set; }
         public Sprite[] TabTank { get; set; }
@@ -60,27 +63,26 @@ namespace RythmRPG.Pages {
                 new Sprite(23 * Game1.UnitX, 2 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY),
                 new Sprite(23 * Game1.UnitX, 2 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY)
             };
-            
 
-            this.Characters = Game1.Save.CharactersArray[Game1.Save.SelectedSave];
-            this.SelectedCharacter = 0;
-            //Character Data
-            this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
-            for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(12 * Game1.UnitX, 5 * Game1.UnitY), 0,2,0);
-            }
+
+            
+            
             this.Name = new TextSprite(15 * Game1.UnitX, 3.3f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(6 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
+            this.Xp = new TextSprite(5 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.XPNextLevel = new TextSprite(8 * Game1.UnitX, 6.2f * Game1.UnitY, "", Color.Black);
             this.Endurance = new TextSprite(7 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
             this.HP = new TextSprite(5 * Game1.UnitX, 7.2f * Game1.UnitY, "", Color.Black);
             this.Strength = new TextSprite(7 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
             this.Vitality = new TextSprite(8 * Game1.UnitX, 8.2f * Game1.UnitY, "", Color.Black);
             this.Ability = new TextSprite(25 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
+            this.StatsPoints = new TextSprite(8 * Game1.UnitX, 11.2f * Game1.UnitY, "", Color.Black);
+            this.Gold = new TextSprite(6 * Game1.UnitX, 12.2f * Game1.UnitY, "", Color.Black);
 
             this.Modify = new Sprite(2 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
 
             this.TabSelected = 0;
-            this.LoadDataCharacter(this.Characters.CharacterArray[0]);
+            //this.LoadDataCharacter(Game1.characters[this.SelectedCharacter]);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "CharacterManagement/CharacterManagement");
@@ -96,11 +98,7 @@ namespace RythmRPG.Pages {
             this.TabCustom[0].LoadContent(content, "CharacterManagement/Custom");
             this.TabCustom[1].LoadContent(content, "CharacterManagement/Selected/Custom");
 
-            //Character Data
-            for (int i = 0; i < this.Characters.CharacterArray.Length; i++) {
-                string name = this.Characters.CharacterArray[i].Name;
-                this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
-            }
+            
 
             this.Name.LoadContent(content, "Arial16");
             this.Level.LoadContent(content, "Arial16");
@@ -109,8 +107,13 @@ namespace RythmRPG.Pages {
             this.Strength.LoadContent(content, "Arial16");
             this.Ability.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
+            this.Xp.LoadContent(content, "Arial16");
+            this.XPNextLevel.LoadContent(content, "Arial16");
+            this.StatsPoints.LoadContent(content, "Arial16");
+            this.Gold.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+            this.Character = Game1.characters.getSelectedCharacter();
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
@@ -121,27 +124,31 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, TabMedium[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 0;
-                    this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
+                    Game1.characters.selectedCharacter = 0;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabTank[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 1;
-                    this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
+                    Game1.characters.selectedCharacter = 1;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabDPS[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 2;
-                    this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
+                    Game1.characters.selectedCharacter = 2;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabCustom[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 3;
-                    this.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
+                    Game1.characters.selectedCharacter = 3;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, Modify)) {
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.ModifyCharacter;
-                    this.ModifyCharacter.LoadDataCharacter(this.Characters.CharacterArray[this.SelectedCharacter]);
+                    this.ModifyCharacter.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
             }
         }
@@ -149,6 +156,7 @@ namespace RythmRPG.Pages {
         
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+            this.Character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
             
@@ -174,7 +182,21 @@ namespace RythmRPG.Pages {
             }
 
             //Character Data
-            this.SpriteCharacters[this.SelectedCharacter].DrawFrame(spriteBatch);
+            this.LoadDataCharacter(this.Character);
+
+            if (this.Character.Name == "Barbarian")
+            {
+                this.Character.setPosition(new Vector2(12 * Game1.UnitX, 5 * Game1.UnitY));
+                this.Character.setScale(2);
+                this.Character.Draw(spriteBatch);
+            }
+            else
+            {
+                this.Character.setPosition(new Vector2(14 * Game1.UnitX, 5 * Game1.UnitY));
+                this.Character.setScale(2);
+                this.Character.Draw(spriteBatch);
+            }
+
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
             this.Endurance.Draw(spriteBatch, gameTime);
@@ -182,6 +204,11 @@ namespace RythmRPG.Pages {
             this.Strength.Draw(spriteBatch, gameTime);
             this.Ability.Draw(spriteBatch, gameTime);
             this.Vitality.Draw(spriteBatch, gameTime);
+
+            this.Xp.Draw(spriteBatch, gameTime);
+            this.XPNextLevel.Draw(spriteBatch, gameTime);
+            this.StatsPoints.Draw(spriteBatch, gameTime);
+            this.Gold.Draw(spriteBatch, gameTime);
         }
 
         public void LoadDataCharacter(PlayableCharacter character) {
@@ -197,6 +224,11 @@ namespace RythmRPG.Pages {
             this.Strength.Text = character.Attack.ToString();
             this.Vitality.Text = character.Vitality.ToString();
             this.Ability.Text = character.uniqueSkill.ToString();
+
+            this.Xp.Text = character.xp.ToString();
+            this.XPNextLevel.Text = character.xp.ToString();
+            this.StatsPoints.Text = character.statPoints.ToString();
+            this.Gold.Text = character.gold.ToString();
         }
     }
 }

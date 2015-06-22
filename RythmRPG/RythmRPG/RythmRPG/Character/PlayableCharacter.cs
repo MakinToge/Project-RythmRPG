@@ -9,6 +9,7 @@ namespace RythmRPG.Character
     /// <summary>
     /// The playable character class, inherits from Character
     /// </summary>
+    [Serializable]
     public class PlayableCharacter : AbstractCharacter
     {
         /// <summary>
@@ -86,7 +87,7 @@ namespace RythmRPG.Character
         /// <param name="size">The size of the player</param>
         /// <param name="name">The name of the player</param>
         public PlayableCharacter(int level, int vitality, int attack, int defense,
-            UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart,
+            UniqueSkill skill, int[,] levelUpStats, int combo, int xp, int statPoints, int nbRestart, int gold,
             Vector2 position, float scale, string name)
             : base(level, vitality, attack, defense, position, scale, name)
         {
@@ -99,6 +100,7 @@ namespace RythmRPG.Character
             this.NbRestart = nbRestart;
             this.xp = xp;
             this.statPoints = statPoints;
+            this.gold = gold;
 
             this.Health = this.Level * this.Vitality + 10;
 
@@ -200,8 +202,11 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addVitality(int nbPoints)
         {
-            this.Vitality += nbPoints;
-            this.statPoints -= nbPoints;
+            if(this.statPoints >= nbPoints)
+            {
+                this.Vitality += nbPoints;
+                this.statPoints -= nbPoints;
+            }
         }
 
         /// <summary>
@@ -211,8 +216,11 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addAttack(int nbPoints)
         {
-            this.Attack += nbPoints;
-            this.statPoints -= nbPoints;
+            if (this.statPoints >= nbPoints)
+            {
+                this.Attack += nbPoints;
+                this.statPoints -= nbPoints;
+            }
         }
 
         /// <summary>
@@ -222,8 +230,11 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addDefense(int nbPoints)
         {
-            this.Defense += nbPoints;
-            this.statPoints -= nbPoints;
+            if (this.statPoints >= nbPoints)
+            {
+                this.Defense += nbPoints;
+                this.statPoints -= nbPoints;
+            }
         }
 
         /// <summary>
@@ -281,7 +292,7 @@ namespace RythmRPG.Character
         /// <returns>True if respec successful, false if not enough gold</returns>
         public bool respec()
         {
-            if(this.gold >= GOLD_TO_RESPEC) // Check if enough gold
+            if (this.gold >= GOLD_TO_RESPEC) // Check if enough gold
             {
                 this.gold -= GOLD_TO_RESPEC;
 

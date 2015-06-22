@@ -71,7 +71,7 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < Save.NB_SAVE; i++) {
                 this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i+1));
             }
-            string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[1].Name;
+            string name = "Knight";
             this.Character.Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
 
             //Sounds
@@ -109,6 +109,8 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, Start)) {
                     EffectClick.Play();
                     Game1.GameState = GameState.GameMenu;
+                    Game1.saveFileName = string.Format("save{0}.sav", Game1.Save.SelectedSave);
+                    Game1.LoadCharacters();
                 }
                 else if (isOver(mouse, ExitButton)) {
                     Game1.GameState = GameState.Exit;
