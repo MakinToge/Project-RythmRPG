@@ -302,7 +302,6 @@ namespace RythmRPG.Pages
 
                 if (tmp.isDead())
                 {
-                    // Perdu
                     Game1.GameState = RythmRPG.GameState.Defeat;
                 }
             }
