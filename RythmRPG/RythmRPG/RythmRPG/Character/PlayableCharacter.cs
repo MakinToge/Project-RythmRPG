@@ -335,7 +335,7 @@ namespace RythmRPG.Character
             return false;
         }
 
-        public override int giveXP()
+        public override int giveXP(int nbInput, Difficulty difficulty)
         {
             return 0;
         }
@@ -348,7 +348,12 @@ namespace RythmRPG.Character
 
         public int xpToNextLevel()
         {
-            return this.xpLevels[this.Level] - this.xp;
+            return this.xpLevels[this.Level - 1] - this.xp;
+        }
+
+        public override int getMaxHealth()
+        {
+            return base.getMaxHealth() + 100;
         }
     }
 }

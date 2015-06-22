@@ -11,24 +11,97 @@ namespace RythmRPG.Pages {
     public class SingleMusic : Page{
 
 
+        /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
         public Sprite MainImage { get; set; }
+        /// <summary>
+        /// Gets or sets the back.
+        /// </summary>
+        /// <value>
+        /// The back.
+        /// </value>
         public Sprite Back { get; set; }
+        /// <summary>
+        /// Gets or sets the wait please.
+        /// </summary>
+        /// <value>
+        /// The wait please.
+        /// </value>
         public TextSprite WaitPlease { get; set; }
+        /// <summary>
+        /// Gets or sets the casual.
+        /// </summary>
+        /// <value>
+        /// The casual.
+        /// </value>
         public Sprite[] Casual { get; set; }
+        /// <summary>
+        /// Gets or sets the veteran.
+        /// </summary>
+        /// <value>
+        /// The veteran.
+        /// </value>
         public Sprite[] Veteran { get; set; }
+        /// <summary>
+        /// Gets or sets the god like.
+        /// </summary>
+        /// <value>
+        /// The god like.
+        /// </value>
         public Sprite[] GodLike { get; set; }
+        /// <summary>
+        /// Gets or sets the selected difficulty.
+        /// </summary>
+        /// <value>
+        /// The selected difficulty.
+        /// </value>
         public int SelectedDifficulty { get; set; }
+        /// <summary>
+        /// Gets or sets the play.
+        /// </summary>
+        /// <value>
+        /// The play.
+        /// </value>
         public Sprite Play { get; set; }
+        /// <summary>
+        /// Gets or sets the not play.
+        /// </summary>
+        /// <value>
+        /// The not play.
+        /// </value>
         public Sprite NotPlay { get; set; }
+        /// <summary>
+        /// Gets or sets the choose music.
+        /// </summary>
+        /// <value>
+        /// The choose music.
+        /// </value>
         public Sprite ChooseMusic { get; set; }
+        /// <summary>
+        /// Gets or sets the music playing.
+        /// </summary>
+        /// <value>
+        /// The music playing.
+        /// </value>
         public MusicPlaying MusicPlaying { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is music chosen.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is music chosen; otherwise, <c>false</c>.
+        /// </value>
         public bool IsMusicChosen { get; set; }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
-
-            
 
             this.Casual = new Sprite[2] {
                 new Sprite(Game1.UnitX, 5 * Game1.UnitY, 8 * Game1.UnitX, Game1.UnitY),
@@ -50,6 +123,10 @@ namespace RythmRPG.Pages {
             this.ChooseMusic = new Sprite(11 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.WaitPlease = new TextSprite(12 * Game1.UnitX, 6 * Game1.UnitY, "It might take some time", Color.Black);
         }
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "SingleMusic/SingleMusic");
             this.Back.LoadContent(content, "Options/Back");
@@ -67,6 +144,13 @@ namespace RythmRPG.Pages {
             this.WaitPlease.LoadContent(content, "Arial16");
             
         }
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        /// <param name="previousKeyboardState">State of the previous keyboard.</param>
+        /// <param name="currentKeyboardState">State of the current keyboard.</param>
+        /// <param name="previousMouseState">State of the previous mouse.</param>
+        /// <param name="currentMouseState">State of the current mouse.</param>
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
             {
@@ -123,6 +207,11 @@ namespace RythmRPG.Pages {
             }
         }
 
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);

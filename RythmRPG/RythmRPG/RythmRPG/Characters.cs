@@ -10,8 +10,17 @@ namespace RythmRPG
     [Serializable]
     public class Characters
     {
-        
+
+        /// <summary>
+        /// The number max characters
+        /// </summary>
         private const int NB_MAX_CHARACTERS = 4;
+        /// <summary>
+        /// Gets the number of  character.
+        /// </summary>
+        /// <value>
+        /// The number of character.
+        /// </value>
         public int NbCharacter
         {
             get
@@ -19,15 +28,31 @@ namespace RythmRPG
                 return NB_MAX_CHARACTERS;
             }
         }
+        /// <summary>
+        /// The character array
+        /// </summary>
         public PlayableCharacter[] characterArray;
+        /// <summary>
+        /// Gets or sets the selected character.
+        /// </summary>
+        /// <value>
+        /// The selected character.
+        /// </value>
         public int selectedCharacter { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Characters"/> class.
+        /// </summary>
         public Characters()
         {
             this.selectedCharacter = 0;
             this.characterArray = new PlayableCharacter[NB_MAX_CHARACTERS];
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
             for (int i = 0; i < NB_MAX_CHARACTERS; i++)
@@ -37,6 +62,9 @@ namespace RythmRPG
             }
         }
 
+        /// <summary>
+        /// Creates the data characters.
+        /// </summary>
         public void CreateDataCharacters()
         {
             characterArray[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
@@ -45,11 +73,19 @@ namespace RythmRPG
             characterArray[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Magus");
         }
 
+        /// <summary>
+        /// Loads the characters.
+        /// </summary>
+        /// <param name="characters">The characters.</param>
         public void LoadCharacters(PlayableCharacter[] characters)
         {
             this.characterArray = characters;
         }
 
+        /// <summary>
+        /// Gets the selected character.
+        /// </summary>
+        /// <returns></returns>
         public PlayableCharacter getSelectedCharacter()
         {
             return this.characterArray[this.selectedCharacter];

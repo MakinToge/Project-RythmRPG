@@ -195,6 +195,11 @@ namespace RythmRPG.Character
             this.sprites.setOriginBottomRight();
         }
 
-        public abstract int giveXP();
+        public virtual int getMaxHealth()
+        {
+            return this.Vitality * this.Level;
+        }
+
+        public abstract int giveXP(int nbInput, Difficulty difficulty);
     }
 }

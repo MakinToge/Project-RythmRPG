@@ -7,22 +7,115 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class Options : Page{
+        /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
         public Sprite MainImage { get; set; }
+        /// <summary>
+        /// Gets or sets the back.
+        /// </summary>
+        /// <value>
+        /// The back.
+        /// </value>
         public Sprite Back { get; set; }
+        /// <summary>
+        /// Gets or sets the see controls.
+        /// </summary>
+        /// <value>
+        /// The see controls.
+        /// </value>
         public Sprite SeeControls { get; set; }
+        /// <summary>
+        /// Gets or sets the left device.
+        /// </summary>
+        /// <value>
+        /// The left device.
+        /// </value>
         public Sprite LeftDevice { get; set; }
+        /// <summary>
+        /// Gets or sets the right device.
+        /// </summary>
+        /// <value>
+        /// The right device.
+        /// </value>
         public Sprite RightDevice { get; set; }
+        /// <summary>
+        /// Gets or sets the left music.
+        /// </summary>
+        /// <value>
+        /// The left music.
+        /// </value>
         public Sprite LeftMusic { get; set; }
+        /// <summary>
+        /// Gets or sets the right music.
+        /// </summary>
+        /// <value>
+        /// The right music.
+        /// </value>
         public Sprite RightMusic { get; set; }
+        /// <summary>
+        /// Gets or sets the left sound.
+        /// </summary>
+        /// <value>
+        /// The left sound.
+        /// </value>
         public Sprite LeftSound { get; set; }
+        /// <summary>
+        /// Gets or sets the right sound.
+        /// </summary>
+        /// <value>
+        /// The right sound.
+        /// </value>
         public Sprite RightSound { get; set; }
+        /// <summary>
+        /// Gets or sets the volume music.
+        /// </summary>
+        /// <value>
+        /// The volume music.
+        /// </value>
         public Sprite[] VolumeMusic { get; set; }
+        /// <summary>
+        /// Gets or sets the volume sound.
+        /// </summary>
+        /// <value>
+        /// The volume sound.
+        /// </value>
         public Sprite[] VolumeSound { get; set; }
+        /// <summary>
+        /// Gets or sets the reset progression.
+        /// </summary>
+        /// <value>
+        /// The reset progression.
+        /// </value>
         public Sprite ResetProgression { get; set; }
+        /// <summary>
+        /// Gets or sets the keyboard.
+        /// </summary>
+        /// <value>
+        /// The keyboard.
+        /// </value>
         public Sprite Keyboard { get; set; }
+        /// <summary>
+        /// Gets or sets the devices.
+        /// </summary>
+        /// <value>
+        /// The devices.
+        /// </value>
         public Sprite Devices { get; set; }
+        /// <summary>
+        /// Gets or sets the mute menu.
+        /// </summary>
+        /// <value>
+        /// The mute menu.
+        /// </value>
         public Sprite MuteMenu { get; set; }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
@@ -50,6 +143,10 @@ namespace RythmRPG.Pages {
 
             this.MuteMenu = new Sprite(20 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY);
         }
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "Options/Options");
             this.Back.LoadContent(content, "Options/Back");
@@ -75,6 +172,13 @@ namespace RythmRPG.Pages {
                 item.LoadContent(content, "Options/One");
             }
         }
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        /// <param name="previousKeyboardState">State of the previous keyboard.</param>
+        /// <param name="currentKeyboardState">State of the current keyboard.</param>
+        /// <param name="previousMouseState">State of the previous mouse.</param>
+        /// <param name="currentMouseState">State of the current mouse.</param>
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X,currentMouseState.Y ,10,10);
@@ -132,6 +236,11 @@ namespace RythmRPG.Pages {
             }
         }
 
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
@@ -157,7 +266,5 @@ namespace RythmRPG.Pages {
             }
         }
 
-        public void VolumeSoundUp() {
-        }
     }
 }
