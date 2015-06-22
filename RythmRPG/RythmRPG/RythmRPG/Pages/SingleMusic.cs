@@ -89,7 +89,6 @@ namespace RythmRPG.Pages {
                 if (isOver(mouse, Back)) {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
-                    this.IsMusicChosen = false;
                 }
                 else if (isOver(mouse, Casual[0])) {
                     StartMenu.EffectClick.Play();
