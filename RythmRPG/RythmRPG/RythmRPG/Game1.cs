@@ -19,55 +19,235 @@ namespace RythmRPG {
     /// This is the main type for your game
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game {
+        /// <summary>
+        /// The graphics
+        /// </summary>
         GraphicsDeviceManager graphics;
+        /// <summary>
+        /// The sprite batch
+        /// </summary>
         SpriteBatch spriteBatch;
 
 
+        /// <summary>
+        /// The background
+        /// </summary>
         private Texture2D background;
 
+        /// <summary>
+        /// The default windows width
+        /// </summary>
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
+        /// <summary>
+        /// The default windows height
+        /// </summary>
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
 
+        /// <summary>
+        /// The save file name
+        /// </summary>
         public static string saveFileName;
+        /// <summary>
+        /// The content
+        /// </summary>
         private static ContentManager content;
+        /// <summary>
+        /// The characters
+        /// </summary>
         public static Characters characters = new Characters();
 
         //Options
+        /// <summary>
+        /// The game state
+        /// </summary>
         public static GameState GameState;
+        /// <summary>
+        /// The selected theme
+        /// </summary>
         public static int SelectedTheme;
+        /// <summary>
+        /// The volume music
+        /// </summary>
         public static int VolumeMusic = 10;
+        /// <summary>
+        /// The volume sound
+        /// </summary>
         public static int VolumeSound = 10;
+        /// <summary>
+        /// The volume menu
+        /// </summary>
         public static int VolumeMenu = 5;
+        /// <summary>
+        /// The save
+        /// </summary>
         public static Save Save;
+        /// <summary>
+        /// The difficulty
+        /// </summary>
         public static Difficulty Difficulty;
 
+        /// <summary>
+        /// The wav file directory
+        /// </summary>
         public static string WavFileDirectory = "musicDir/";
+        /// <summary>
+        /// The is challenge mode
+        /// </summary>
         public static bool IsChallengeMode = false;
+        /// <summary>
+        /// The current selected wav file
+        /// </summary>
         public static string CurrentSelectedWavFile = "";
+        /// <summary>
+        /// The width
+        /// </summary>
         public static int Width;
+        /// <summary>
+        /// The height
+        /// </summary>
         public static int Height;
+        /// <summary>
+        /// The unit x
+        /// </summary>
         public static int UnitX;
+        /// <summary>
+        /// The unit y
+        /// </summary>
         public static int UnitY;
+        /// <summary>
+        /// The button width
+        /// </summary>
         public static int ButtonWidth;
+        /// <summary>
+        /// The button height
+        /// </summary>
         public static int ButtonHeight;
 
+        /// <summary>
+        /// Gets or sets the state of the current mouse.
+        /// </summary>
+        /// <value>
+        /// The state of the current mouse.
+        /// </value>
         public MouseState CurrentMouseState { get; set; }
+        /// <summary>
+        /// Gets or sets the state of the previous mouse.
+        /// </summary>
+        /// <value>
+        /// The state of the previous mouse.
+        /// </value>
         public MouseState PreviousMouseState { get; set; }
+        /// <summary>
+        /// Gets or sets the state of the current key board.
+        /// </summary>
+        /// <value>
+        /// The state of the current key board.
+        /// </value>
         public KeyboardState CurrentKeyBoardState { get; set; }
+        /// <summary>
+        /// Gets or sets the state of the previous key board.
+        /// </summary>
+        /// <value>
+        /// The state of the previous key board.
+        /// </value>
         public KeyboardState PreviousKeyBoardState { get; set; }
+        /// <summary>
+        /// Gets or sets the start menu.
+        /// </summary>
+        /// <value>
+        /// The start menu.
+        /// </value>
         public StartMenu StartMenu { get; set; }
+        /// <summary>
+        /// Gets or sets the options.
+        /// </summary>
+        /// <value>
+        /// The options.
+        /// </value>
         public Options Options { get; set; }
+        /// <summary>
+        /// Gets or sets the game menu.
+        /// </summary>
+        /// <value>
+        /// The game menu.
+        /// </value>
         public GameMenu GameMenu { get; set; }
+        /// <summary>
+        /// Gets or sets the single music.
+        /// </summary>
+        /// <value>
+        /// The single music.
+        /// </value>
         public SingleMusic SingleMusic { get; set; }
+        /// <summary>
+        /// Gets or sets the playlist challenge.
+        /// </summary>
+        /// <value>
+        /// The playlist challenge.
+        /// </value>
         public PlaylistChallenge PlaylistChallenge { get; set; }
+        /// <summary>
+        /// Gets or sets the character management.
+        /// </summary>
+        /// <value>
+        /// The character management.
+        /// </value>
         public CharacterManagement CharacterManagement { get; set; }
+        /// <summary>
+        /// Gets or sets the victory.
+        /// </summary>
+        /// <value>
+        /// The victory.
+        /// </value>
         public AfterGame Victory { get; set; }
+        /// <summary>
+        /// Gets or sets the song victory.
+        /// </summary>
+        /// <value>
+        /// The song victory.
+        /// </value>
         public SongVictory SongVictory { get; set; }
+        /// <summary>
+        /// Gets or sets the playlist defeat.
+        /// </summary>
+        /// <value>
+        /// The playlist defeat.
+        /// </value>
         public PlaylistDefeat PlaylistDefeat { get; set; }
+        /// <summary>
+        /// Gets or sets the playlist victory.
+        /// </summary>
+        /// <value>
+        /// The playlist victory.
+        /// </value>
         public AfterGame PlaylistVictory { get; set; }
+        /// <summary>
+        /// Gets or sets the pause.
+        /// </summary>
+        /// <value>
+        /// The pause.
+        /// </value>
         public Pause Pause { get; set; }
+        /// <summary>
+        /// Gets or sets the defeat.
+        /// </summary>
+        /// <value>
+        /// The defeat.
+        /// </value>
         public AfterGame Defeat { get; set; }
+        /// <summary>
+        /// Gets or sets the music playing.
+        /// </summary>
+        /// <value>
+        /// The music playing.
+        /// </value>
         public MusicPlaying MusicPlaying { get; set; }
+        /// <summary>
+        /// Gets or sets the modify character.
+        /// </summary>
+        /// <value>
+        /// The modify character.
+        /// </value>
         public ModifyCharacter ModifyCharacter { get; set; }
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
