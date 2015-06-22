@@ -20,7 +20,6 @@ namespace RythmRPG.Pages
         private NAudio.Wave.BlockAlignReductionStream stream = null;
         private NAudio.Wave.DirectSoundOut output = null;
         private NAudio.Wave.WaveStream pcm = null;
-        private double blackOut = 0;
         private bool firstUpdate = true;
 
         public static ContentManager Content { get; set; }
@@ -31,6 +30,7 @@ namespace RythmRPG.Pages
         public TextSprite HP { get; set; }
         public int HPStart { get; set; }
         public Difficulty Difficulty { get; set; }
+        public Sprite InputsSprite { get; set; }
         public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
         public List<Sprite> LinesSprite { get; set; }
@@ -48,6 +48,7 @@ namespace RythmRPG.Pages
         public override void Initialize()
         {
             this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
+            this.InputsSprite = new Sprite(27 * Game1.UnitX, 11 * Game1.UnitY, 3 * Game1.UnitX,7 * Game1.UnitY);
         }
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
@@ -56,6 +57,7 @@ namespace RythmRPG.Pages
 
             this.background = Content.Load<Texture2D>("BackgroundLevel");
             this.HP.LoadContent(content, "Arial16");
+            this.InputsSprite.LoadContent(content, "MusicPlaying/inputs");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
         {
@@ -164,6 +166,7 @@ namespace RythmRPG.Pages
                 item.Draw(spriteBatch, gameTime);
             }
 
+            this.InputsSprite.Draw(spriteBatch, gameTime);
             //Console.WriteLine(gameTime.TotalGameTime.TotalMilliseconds);
         }
 

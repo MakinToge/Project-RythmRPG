@@ -13,7 +13,7 @@ namespace RythmRPG.Pages {
 
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
-
+        public TextSprite WaitPlease { get; set; }
         public Sprite[] Casual { get; set; }
         public Sprite[] Veteran { get; set; }
         public Sprite[] GodLike { get; set; }
@@ -48,6 +48,7 @@ namespace RythmRPG.Pages {
             this.NotPlay = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
             this.Play = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.ChooseMusic = new Sprite(11 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
+            this.WaitPlease = new TextSprite(12 * Game1.UnitX, 6 * Game1.UnitY, "It might take some time", Color.Black);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "SingleMusic/SingleMusic");
@@ -63,7 +64,7 @@ namespace RythmRPG.Pages {
             this.NotPlay.LoadContent(content, "SingleMusic/Play!2");
             this.Play.LoadContent(content, "SingleMusic/Play!");
             this.ChooseMusic.LoadContent(content, "SingleMusic/ChooseMusic");
-
+            this.WaitPlease.LoadContent(content, "Arial16");
             
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
@@ -146,6 +147,7 @@ namespace RythmRPG.Pages {
                 this.Play.Draw(spriteBatch, gameTime);
             }
             else {
+                this.WaitPlease.Draw(spriteBatch, gameTime);
                 this.NotPlay.Draw(spriteBatch, gameTime);
             }
 
