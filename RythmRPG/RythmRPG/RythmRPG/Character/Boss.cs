@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,36 @@ namespace RythmRPG.Character
         /// <param name="defense">The defense</param>
         /// <param name="position">The position of the boss on screen</param>
         /// <param name="scale">The size of the boss</param>
-        public Boss(int level, int vitality, int attack, int defense, Vector2 position, float scale)
-            : base(level, vitality, attack, defense, position, scale, "")
+        public Boss(Difficulty diff, Vector2 position, float scale)
+            : base(0, 0, 0, 0, position, scale, "")
         {
+            int difficulty = 1;
+            Random rand = new Random();
+
+            switch (diff)
+            {
+                case Difficulty.Casual:
+                    difficulty = 1;
+                    this.Level = rand.Next(7, 9);
+                    break;
+                case Difficulty.Veteran:
+                    difficulty = 3;
+                    this.Level = rand.Next(17, 19);
+                    this.skills.Add(Skills.AttackBoost);
+                    break;
+                case Difficulty.GodLike:
+                    difficulty = 6;
+                    this.Level = 25;
+                    this.skills.Add(Skills.AttackBoost);
+                    this.skills.Add(Skills.DefenseBoost);
+                    break;
+            }
+
+            this.Attack = rand.Next(7, 9) * difficulty;
+            this.Defense = rand.Next(7, 9) * difficulty;
+
+            this.Vitality = (this.Attack + this.Defense + 50) * difficulty;
+            this.Health = this.Vitality * this.Level;
         }
 
         /// <summary>
@@ -59,6 +87,26 @@ namespace RythmRPG.Character
             }
 
             character.takeDamage(damageDealt);
+        }
+
+        public void Load(ContentManager content)
+        {
+            Random rand = new Random();
+
+            switch (rand.Next(2))
+            {
+                case 0:
+                    this.sprites.Load(content, "Spritesheet/Boss/BOSS_Bull_Idle", "Spritesheet/Boss/BOSS_Bull_Attack", 2, 4, 10);
+                    break;
+                case 1:
+                    this.sprites.Load(content, "Spritesheet/Boss/BOSS_King_Idle", "Spritesheet/Boss/BOSS_King_Attack", 2, 4, 10);
+                    break;
+            }
+        }
+
+        public override int giveXP()
+        {
+            return this.Vitality * this.Level;
         }
     }
 }

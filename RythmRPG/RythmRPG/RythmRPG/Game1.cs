@@ -132,6 +132,8 @@ namespace RythmRPG {
             this.SingleMusic.MusicPlaying = this.MusicPlaying;
             this.PlaylistChallenge.MusicPlaying = this.MusicPlaying;
             this.CharacterManagement.ModifyCharacter = this.ModifyCharacter;
+            this.MusicPlaying.Defeat = this.Defeat;
+            this.MusicPlaying.Victory = this.Victory;
 
             base.Initialize();
         }
