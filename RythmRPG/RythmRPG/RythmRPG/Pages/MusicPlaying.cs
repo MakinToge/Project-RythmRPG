@@ -14,7 +14,7 @@ namespace RythmRPG.Pages
 {
     public class MusicPlaying : Page
     {
-        public static int NOTE_LIMIT_POSITIONX = 29 * Game1.UnitX;
+        public static float NOTE_LIMIT_POSITIONX = 26.5f * Game1.UnitX;
 
         private Texture2D background;
         private NAudio.Wave.BlockAlignReductionStream stream = null;
@@ -100,6 +100,8 @@ namespace RythmRPG.Pages
 
         public override void Update(GameTime gametime)
         {
+            //MusicPlaying.MillisecondsSinceLoadGame += (int)gametime.ElapsedGameTime.TotalMilliseconds;
+
             for (int i = 0; i < this.SpriteCharacters.Length; i++)
             {
                 this.SpriteCharacters[i].UpdateFrame((float)gametime.ElapsedGameTime.TotalSeconds);
@@ -169,16 +171,8 @@ namespace RythmRPG.Pages
 
             this.timer = new Timer();
             this.timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            this.timer.Interval = 10;
+            this.timer.Interval = 9;
             this.timer.Enabled = true;
-
-            //play the selected music
-            NAudio.Wave.WaveStream pcm = new NAudio.Wave.WaveChannel32(new NAudio.Wave.WaveFileReader(Game1.CurrentSelectedWavFile));
-            stream = new NAudio.Wave.BlockAlignReductionStream(pcm);
-
-            output = new NAudio.Wave.DirectSoundOut();
-            output.Init(stream);
-            output.Play();
 
             string wavFilePath = Game1.CurrentSelectedWavFile;
             this.SSNotes = new SortedSet<double>[Chart.LaneNumber];
@@ -192,13 +186,6 @@ namespace RythmRPG.Pages
             this.LengthSpeedUnit = lineLength / speed;//millisec
 
 
-
-            /*
-             * timer1 = 0
-             * timer2 = lengthSpeedUnit
-             * 
-             * 
-             */
             this.LinesNotes = new Queue<Note>[Chart.LaneNumber];
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
@@ -209,7 +196,7 @@ namespace RythmRPG.Pages
             this.Circles = new List<Sprite>();
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
-                Sprite circle = new Sprite(28 * Game1.UnitX, (12 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
+                Sprite circle = new Sprite(25.5f * Game1.UnitX, (12 + i) * Game1.UnitY, Game1.UnitX, Game1.UnitY);
                 this.Circles.Add(circle);
                 this.Circles[i].LoadContent(MusicPlaying.Content, "MusicPlaying/noteCircle");
             }
@@ -218,16 +205,17 @@ namespace RythmRPG.Pages
             
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
-                Sprite oneString = new Sprite(2 * Game1.UnitX, (12.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
+                Sprite oneString = new Sprite(Game1.UnitX, (12.5f + i) * Game1.UnitY, 26 * Game1.UnitX, 1);
                 this.LinesSprite.Add(oneString);
                 this.LinesSprite[i].LoadContent(MusicPlaying.Content, "Options/One");
             }
 
-            //Juste pour l'exemple
-            //for (int i = 0; i < Chart.LaneNumber; i++)
-            //{
-            //    this.AddNote(i);
-            //}
+            //play the selected music
+            NAudio.Wave.WaveStream pcm = new NAudio.Wave.WaveChannel32(new NAudio.Wave.WaveFileReader(Game1.CurrentSelectedWavFile));
+            stream = new NAudio.Wave.BlockAlignReductionStream(pcm);
+            output = new NAudio.Wave.DirectSoundOut();
+            output.Init(stream);
+            output.Play();
 
             this.isLoaded = true;
         }
@@ -245,7 +233,7 @@ namespace RythmRPG.Pages
         // Specify what you want to happen when the Elapsed event is raised.
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            MusicPlaying.MillisecondsSinceLoadGame += 16;
+            MusicPlaying.MillisecondsSinceLoadGame += 15;
         }
 
         // gametime.ElapsedGameTime.TotalMilliseconds

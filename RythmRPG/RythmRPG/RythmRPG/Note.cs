@@ -19,7 +19,7 @@ namespace RythmRPG
             this.Line = line;
 
             this.Direction = new Vector2(1, 0);//x = 1 (left)
-            this.Position = new Vector2(2 * Game1.UnitX, (12 + line) * Game1.UnitY);
+            this.Position = new Vector2(0.5f*Game1.UnitX, (12 + line) * Game1.UnitY);
             this.Size = new Vector2(Game1.UnitX,Game1.UnitY);
             this.Speed = 0.3f + 0.1f * (float)Game1.Difficulty;
 
@@ -51,5 +51,6 @@ namespace RythmRPG
         {
             return string.Format("beat at {0} on line {1}", this.Time, this.Line);
         }
+
     }
 }

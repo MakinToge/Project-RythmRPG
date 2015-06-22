@@ -7,33 +7,39 @@ namespace RythmRPG
 {
     class Chart
     {
-        private const int EASY_LANE0_SUBBAND_UPPERLIMIT = 4;//4
-        private const int EASY_LANE1_SUBBAND_UPPERLIMIT = 9;//5//7
+        private const int EASY_LANE0_SUBBAND_UPPERLIMIT = 5;//4
+        private const int EASY_LANE1_SUBBAND_UPPERLIMIT = 10;//5//7
 
-        private const int NORMAL_LANE0_SUBBAND_UPPERLIMIT = 3;//3
-        private const int NORMAL_LANE1_SUBBAND_UPPERLIMIT = 7;//4
-        private const int NORMAL_LANE2_SUBBAND_UPPERLIMIT = 11;//4//5
+        private const int NORMAL_LANE0_SUBBAND_UPPERLIMIT = 4;//3
+        private const int NORMAL_LANE1_SUBBAND_UPPERLIMIT = 8;//4
+        private const int NORMAL_LANE2_SUBBAND_UPPERLIMIT = 12;//4//5
 
         private const int HARD_LANE0_SUBBAND_UPPERLIMIT = 3;//2
-        private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 5;//3
-        private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 8;//3
-        private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 13;//4//4
+        private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 6;//3
+        private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 9;//3
+        private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;//4//4
         static private double minimumTimeInterval = 0.5;
         static public int LaneNumber = 3;
 
 
-        static private void AddBeatsToLane(SortedSet<double>[] sSBeats, int laneIndex, List<double> beats)
+        static private void AddBeatsToLane(SortedSet<double>[] sSBeats, int laneIndex, List<double>[] beats, int subbandIndexStart, int subbandIndexStop)
         {
-            double lastTime = 0;
-            foreach (var beat in beats)
+
+            int i = subbandIndexStart;
+            double lastTime = 1;
+            while (i < subbandIndexStop)
             {
-                if (lastTime + minimumTimeInterval <= beat)
+                foreach (double beat in beats[i])
                 {
-                    if (sSBeats[laneIndex].Add(beat))
+                    if (lastTime + minimumTimeInterval <= beat)
                     {
-                        lastTime = beat;
+                        if (sSBeats[laneIndex].Add(beat))
+                        {
+                            lastTime = beat;
+                        }
                     }
                 }
+                i++;
             }
         }
         static public SortedSet<double>[] getSetArray(List<double>[] beats, Difficulty difficulty)
@@ -48,60 +54,25 @@ namespace RythmRPG
 
             if (difficulty == Difficulty.Casual)
             {
-                for (int i = 0; i < EASY_LANE0_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 0, beats[i]);
-                }
-                for (int i = EASY_LANE0_SUBBAND_UPPERLIMIT; i < EASY_LANE1_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 1, beats[i]);
-                }
-                for (int i = EASY_LANE1_SUBBAND_UPPERLIMIT; i < AudioAnalyser.SubbandsNumber; i++)
-                {
-                    AddBeatsToLane(sSBeats, 2, beats[i]);
-                }
+                AddBeatsToLane(sSBeats, 0, beats, 0, EASY_LANE0_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 1, beats, EASY_LANE0_SUBBAND_UPPERLIMIT, EASY_LANE1_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 2, beats, EASY_LANE1_SUBBAND_UPPERLIMIT, AudioAnalyser.SubbandsNumber);
+                
             }
             else if (difficulty == Difficulty.Veteran)
             {
-                for (int i = 0; i < NORMAL_LANE0_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 0, beats[i]);
-                }
-                for (int i = NORMAL_LANE0_SUBBAND_UPPERLIMIT; i < NORMAL_LANE1_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 1, beats[i]);
-                }
-                for (int i = NORMAL_LANE1_SUBBAND_UPPERLIMIT; i < NORMAL_LANE2_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 2, beats[i]);
-                }
-                for (int i = NORMAL_LANE2_SUBBAND_UPPERLIMIT; i < AudioAnalyser.SubbandsNumber; i++)
-                {
-                    AddBeatsToLane(sSBeats, 3, beats[i]);
-                }
+                AddBeatsToLane(sSBeats, 0, beats, 0, NORMAL_LANE0_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 1, beats, NORMAL_LANE0_SUBBAND_UPPERLIMIT, NORMAL_LANE1_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 2, beats, NORMAL_LANE1_SUBBAND_UPPERLIMIT, NORMAL_LANE2_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 3, beats, NORMAL_LANE2_SUBBAND_UPPERLIMIT, AudioAnalyser.SubbandsNumber);
             }
             else if (difficulty == Difficulty.GodLike)
             {
-                for (int i = 0; i < HARD_LANE0_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 0, beats[i]);
-                }
-                for (int i = HARD_LANE0_SUBBAND_UPPERLIMIT; i < HARD_LANE1_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 1, beats[i]);
-                }
-                for (int i = HARD_LANE1_SUBBAND_UPPERLIMIT; i < HARD_LANE2_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 2, beats[i]);
-                }
-                for (int i = HARD_LANE2_SUBBAND_UPPERLIMIT; i < HARD_LANE3_SUBBAND_UPPERLIMIT; i++)
-                {
-                    AddBeatsToLane(sSBeats, 3, beats[i]);
-                }
-                for (int i = HARD_LANE3_SUBBAND_UPPERLIMIT; i < AudioAnalyser.SubbandsNumber; i++)
-                {
-                    AddBeatsToLane(sSBeats, 4, beats[i]);
-                }
+                AddBeatsToLane(sSBeats, 0, beats, 0, HARD_LANE0_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 1, beats, HARD_LANE0_SUBBAND_UPPERLIMIT, HARD_LANE1_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 2, beats, HARD_LANE1_SUBBAND_UPPERLIMIT, HARD_LANE2_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 3, beats, HARD_LANE2_SUBBAND_UPPERLIMIT, HARD_LANE3_SUBBAND_UPPERLIMIT);
+                AddBeatsToLane(sSBeats, 4, beats, HARD_LANE3_SUBBAND_UPPERLIMIT, AudioAnalyser.SubbandsNumber);
             }
             return sSBeats;
         }
