@@ -31,6 +31,6 @@ namespace RythmRPG.Character
         CriticalDamage,
         Paralysis,
         Cure,
-        Regeneration
+        None
     }
 }
