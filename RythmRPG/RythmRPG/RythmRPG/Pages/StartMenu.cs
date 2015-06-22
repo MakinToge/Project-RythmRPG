@@ -109,6 +109,8 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, Start)) {
                     EffectClick.Play();
                     Game1.GameState = GameState.GameMenu;
+                    Game1.saveFileName = string.Format("save{0}.sav", Game1.Save.SelectedSave);
+                    Game1.LoadCharacters();
                 }
                 else if (isOver(mouse, ExitButton)) {
                     Game1.GameState = GameState.Exit;

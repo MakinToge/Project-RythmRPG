@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using RythmRPG.Pages;
+using RythmRPG.Character;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace RythmRPG {
     /// <summary>
@@ -23,7 +27,12 @@ namespace RythmRPG {
 
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
-        
+        private const int NB_CHARACTERS = 4;
+
+        private static PlayableCharacter[] characters = new PlayableCharacter[NB_CHARACTERS];
+        public static string saveFileName;
+        private static ContentManager content;
+
         //Options
         public static GameState GameState;
         public static int SelectedTheme;
@@ -67,6 +76,7 @@ namespace RythmRPG {
             graphics.PreferredBackBufferWidth = DEFAULT_WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = DEFAULT_WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
+            content = this.Content;
 
             Width = DEFAULT_WINDOWS_WIDTH;
             Height = DEFAULT_WINDOWS_HEIGHT;
@@ -152,6 +162,7 @@ namespace RythmRPG {
             this.MusicPlaying.LoadContent(this.Content);
             this.ModifyCharacter.LoadContent(this.Content);
 
+            
             
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
@@ -295,6 +306,56 @@ namespace RythmRPG {
             };
 
             base.Draw(gameTime);
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            if(saveFileName != null)
+            {
+                IFormatter format = new BinaryFormatter();
+                Stream stream;
+
+                //To delete
+                characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 1, 1 }, { 1, 1 } }, 1, 1, 1, 1, Vector2.Zero, 1, "Magus");
+
+                try
+                {
+                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    DirectoryInfo di = Directory.CreateDirectory("./Save");
+                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                }
+
+                format.Serialize(stream, characters);
+                stream.Close();
+            }
+
+            base.OnExiting(sender, args);
+        }
+
+        public static void LoadCharacters()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            try
+            {
+                Stream stream = new FileStream("./Save/" + saveFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                characters = (PlayableCharacter[])formatter.Deserialize(stream);
+                stream.Close();
+            }
+            catch (Exception e) // i.e. the file doesn't exist
+            {
+                characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Magus");
+                characters[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
+                characters[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Ninja");
+                characters[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, Vector2.Zero, 1, "Knight");
+            }
+
+            for(int i = 0; i < NB_CHARACTERS; i++)
+            {
+                characters[i].Load(content, "Spritesheet/Hero/Idle" + characters[i].Name, "Spritesheet/Hero/Attacking" + characters[i].Name, 2, 4, 10);
+            }
         }
     }
 }

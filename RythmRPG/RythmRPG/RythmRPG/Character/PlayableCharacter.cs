@@ -9,6 +9,7 @@ namespace RythmRPG.Character
     /// <summary>
     /// The playable character class, inherits from Character
     /// </summary>
+    [Serializable]
     public class PlayableCharacter : AbstractCharacter
     {
         /// <summary>
