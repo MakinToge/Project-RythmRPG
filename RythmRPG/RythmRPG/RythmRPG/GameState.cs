@@ -19,6 +19,7 @@ namespace RythmRPG {
         PlaylistDefeat,
         Pause,
         Defeat,
-        MusicPlaying
+        MusicPlaying,
+        Exit
     }
 }
