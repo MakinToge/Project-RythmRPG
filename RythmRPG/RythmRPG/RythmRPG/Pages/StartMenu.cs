@@ -71,7 +71,7 @@ namespace RythmRPG.Pages {
             for (int i = 0; i < Save.NB_SAVE; i++) {
                 this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i+1));
             }
-            string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[1].Name;
+            string name = "Knight";
             this.Character.Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
 
             //Sounds

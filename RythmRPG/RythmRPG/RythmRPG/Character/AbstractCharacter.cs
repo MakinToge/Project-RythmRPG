@@ -178,5 +178,10 @@ namespace RythmRPG.Character
         {
             this.sprites.scale = scale;
         }
+
+        public void UpdateFrame(float elapsed)
+        {
+            this.sprites.UpdateFrame(elapsed);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace RythmRPG.Pages
         public static ContentManager Content { get; set; }
         public bool isLoading { get; set; }
         public bool isLoaded { get; set; }
-        public CharacterSprites[] SpriteCharacters { get; set; }
+        
         public List<AbstractCharacter> Monsters { get; set; }
         public TextSprite HP { get; set; }
         public int HPStart { get; set; }
@@ -45,22 +45,7 @@ namespace RythmRPG.Pages
 
             //Character Data
             
-            this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
-            for (int i = 0; i < SpriteCharacters.Length; i++)
-            {
-                if(i == 1)
-                {
-                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(8 * Game1.UnitX, 7.75f * Game1.UnitY), 0, 0.7f, 0);
-                }
-                else if(i == 2)
-                {
-                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(8 * Game1.UnitX, 8.5f * Game1.UnitY), 0, 0.7f, 0);
-                }
-                else
-                {
-                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(8 * Game1.UnitX, 8 * Game1.UnitY), 0, 0.7f, 0);
-                }
-            }
+            
             this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
 
         }
@@ -72,11 +57,7 @@ namespace RythmRPG.Pages
             this.background = Content.Load<Texture2D>("BackgroundLevel");
             //Character Data
             
-            for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++)
-            {
-                string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Name;
-                this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
-            }
+            
             this.HP.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
@@ -113,9 +94,9 @@ namespace RythmRPG.Pages
         {
             //MusicPlaying.MillisecondsSinceLoadGame += (int)gametime.ElapsedGameTime.TotalMilliseconds;
 
-            for (int i = 0; i < this.SpriteCharacters.Length; i++)
+            for (int i = 0; i < Game1.characters.NbCharacter; i++)
             {
-                this.SpriteCharacters[i].UpdateFrame((float)gametime.ElapsedGameTime.TotalSeconds);
+                Game1.characters.getSelectedCharacter().UpdateFrame((float)gametime.ElapsedGameTime.TotalSeconds);
             }
 
             for (int i = 0; i < Chart.LaneNumber; i++)
@@ -144,7 +125,11 @@ namespace RythmRPG.Pages
             spriteBatch.End();
 
             //Character Data
-            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
+            PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
+            tmp.setPosition(new Vector2(8 * Game1.UnitX, 7.75f * Game1.UnitY));
+            tmp.setScale(0.7f);
+            tmp.Draw(spriteBatch);
+
             this.HP.Draw(spriteBatch, gameTime);
 
             //Draw la position des notes

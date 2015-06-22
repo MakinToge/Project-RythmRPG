@@ -13,7 +13,7 @@ namespace RythmRPG.Pages {
 
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
-        public CharacterSprites[] SpriteCharacters { get; set; }
+
         public Sprite[] Casual { get; set; }
         public Sprite[] Veteran { get; set; }
         public Sprite[] GodLike { get; set; }
@@ -28,18 +28,7 @@ namespace RythmRPG.Pages {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
-            this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
-            for (int i = 0; i < SpriteCharacters.Length; i++)
-            {
-                if (i != 0)
-                {
-                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(23.5f * Game1.UnitX, 4 * Game1.UnitY), 0, 2, 0);
-                }
-                else
-                {
-                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), 0, 1.75f, 0);
-                }
-            }
+            
 
             this.Casual = new Sprite[2] {
                 new Sprite(Game1.UnitX, 5 * Game1.UnitY, 8 * Game1.UnitX, Game1.UnitY),
@@ -75,11 +64,7 @@ namespace RythmRPG.Pages {
             this.Play.LoadContent(content, "SingleMusic/Play!");
             this.ChooseMusic.LoadContent(content, "SingleMusic/ChooseMusic");
 
-            //Character Data
-            for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++) {
-                string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Name;
-                this.SpriteCharacters[i].Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2,4,10);
-            }
+            
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
@@ -126,13 +111,12 @@ namespace RythmRPG.Pages {
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
-                    int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter;
-                    PlayableCharacter character = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[selectedCharacter];
-
+                    int selectedCharacter = Game1.Save.CharactersArray[Game1.Save.SelectedSave].selectedCharacter;
+                    
                     this.IsMusicChosen = false;
 
                     //Charge le jeu
-                    this.MusicPlaying.LoadDataCharacter(character);
+                    this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                     this.MusicPlaying.LoadGame();
                 }
             }
@@ -165,7 +149,10 @@ namespace RythmRPG.Pages {
                 this.NotPlay.Draw(spriteBatch, gameTime);
             }
 
-            this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
+            PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
+            tmp.setPosition(new Vector2(23.5f * Game1.UnitX, 4 * Game1.UnitY));
+            tmp.setScale(2);
+            tmp.Draw(spriteBatch); 
         }
     }
 }

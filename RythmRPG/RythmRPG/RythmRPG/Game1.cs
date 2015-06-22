@@ -27,11 +27,10 @@ namespace RythmRPG {
 
         public const int DEFAULT_WINDOWS_WIDTH = 1280;
         public const int DEFAULT_WINDOWS_HEIGHT = 720;
-        private const int NB_CHARACTERS = 4;
 
-        public static PlayableCharacter[] characters = new PlayableCharacter[NB_CHARACTERS];
         public static string saveFileName;
         private static ContentManager content;
+        public static Characters characters = new Characters();
 
         //Options
         public static GameState GameState;
@@ -76,7 +75,8 @@ namespace RythmRPG {
             graphics.PreferredBackBufferWidth = DEFAULT_WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = DEFAULT_WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
-            content = this.Content;
+            content = Content;
+            
 
             Width = DEFAULT_WINDOWS_WIDTH;
             Height = DEFAULT_WINDOWS_HEIGHT;
@@ -334,25 +334,20 @@ namespace RythmRPG {
 
         public static void LoadCharacters()
         {
+            
             IFormatter formatter = new BinaryFormatter();
             try
             {
                 Stream stream = new FileStream("./Save/" + saveFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-                characters = (PlayableCharacter[])formatter.Deserialize(stream);
+                characters = (Characters)formatter.Deserialize(stream);
                 stream.Close();
             }
             catch (Exception e) // i.e. the file doesn't exist
             {
-                characters[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
-                characters[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Knight");
-                characters[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Ninja");
-                characters[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Magus");
+                characters.CreateDataCharacters();
             }
 
-            for(int i = 0; i < NB_CHARACTERS; i++)
-            {
-                characters[i].Load(content, "Spritesheet/Hero/Idle" + characters[i].Name, "Spritesheet/Hero/Attacking" + characters[i].Name, 2, 4, 10);
-            }
+            characters.LoadContent(content);
         }
     }
 }
