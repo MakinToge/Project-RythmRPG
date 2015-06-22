@@ -100,6 +100,7 @@ namespace RythmRPG.Character
             this.NbRestart = nbRestart;
             this.xp = xp;
             this.statPoints = statPoints;
+            this.gold = gold;
 
             this.Health = this.Level * this.Vitality + 10;
 
@@ -201,8 +202,11 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addVitality(int nbPoints)
         {
-            this.Vitality += nbPoints;
-            this.statPoints -= nbPoints;
+            if(this.statPoints >= nbPoints)
+            {
+                this.Vitality += nbPoints;
+                this.statPoints -= nbPoints;
+            }
         }
 
         /// <summary>
@@ -212,8 +216,11 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addAttack(int nbPoints)
         {
-            this.Attack += nbPoints;
-            this.statPoints -= nbPoints;
+            if (this.statPoints >= nbPoints)
+            {
+                this.Attack += nbPoints;
+                this.statPoints -= nbPoints;
+            }
         }
 
         /// <summary>
@@ -223,8 +230,11 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addDefense(int nbPoints)
         {
-            this.Defense += nbPoints;
-            this.statPoints -= nbPoints;
+            if (this.statPoints >= nbPoints)
+            {
+                this.Defense += nbPoints;
+                this.statPoints -= nbPoints;
+            }
         }
 
         /// <summary>
@@ -282,7 +292,7 @@ namespace RythmRPG.Character
         /// <returns>True if respec successful, false if not enough gold</returns>
         public bool respec()
         {
-            if(this.gold >= GOLD_TO_RESPEC) // Check if enough gold
+            if (this.gold >= GOLD_TO_RESPEC) // Check if enough gold
             {
                 this.gold -= GOLD_TO_RESPEC;
 

@@ -325,6 +325,7 @@ namespace RythmRPG {
                     stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
                 }
 
+                characters.selectedCharacter = 0;
                 format.Serialize(stream, characters);
                 stream.Close();
             }
@@ -348,6 +349,12 @@ namespace RythmRPG {
             }
 
             characters.LoadContent(content);
+            for(int i=0;i<4;i++)
+            {
+                string tmp = characters.characterArray[i].Name;
+            }
+
+            characters.selectedCharacter = 0;
         }
     }
 }

@@ -10,8 +10,7 @@ namespace RythmRPG.Pages {
     public class ModifyCharacter : Page{
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
-        public CharacterSprites CharacterSprite { get; set; }
-        public PlayableCharacter Character { get; set; }
+        
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite Endurance { get; set; }
@@ -49,7 +48,6 @@ namespace RythmRPG.Pages {
             this.ExplainResetStats = this.HP = new TextSprite(22 * Game1.UnitX, 6.2f * Game1.UnitY, "Cost : 100 Gold", Color.Black);
 
             //Character Data
-            this.CharacterSprite = new CharacterSprites(new Vector2(4 * Game1.UnitX, 5 * Game1.UnitY), 0, 2, 0);
             this.Name = new TextSprite(15 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(16 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
             this.Endurance = new TextSprite(17 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);
@@ -63,7 +61,6 @@ namespace RythmRPG.Pages {
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "ModifyCharacter/Custom");
             this.Back.LoadContent(content, "Options/Back");
-            this.CharacterSprite.Load(content, "Spritesheet/Hero/IdleMagus", "Spritesheet/Hero/AttackingMagus", 2,4,10);
             this.Cancel.LoadContent(content, "ModifyCharacter/Cancel");
             this.Confirm.LoadContent(content, "ModifyCharacter/Confirm");
             this.UpgradeAttack.LoadContent(content, "ModifyCharacter/Upgrade");
@@ -82,6 +79,7 @@ namespace RythmRPG.Pages {
             this.Vitality.LoadContent(content, "Arial16");
         }
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+            PlayableCharacter character = Game1.characters.getSelectedCharacter();
             Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
             this.MouseRectangle = mouse;
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
@@ -93,29 +91,37 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, UpgradeVitality) && IsUpgradable()) {
                     StartMenu.EffectClick.Play();
                     this.VitalityPlus += 1;
-                    this.Vitality.Text = (this.Character.Vitality + this.VitalityPlus).ToString();
+                    this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
                     this.UsedStatPoints += 1;
-                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
-                    this.HP.Text = (this.Character.Level * (this.Character.Vitality + this.VitalityPlus)).ToString();
+                    this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
+                    this.HP.Text = (character.Level * (character.Vitality + this.VitalityPlus)).ToString();
                 }
                 else if (isOver(mouse, UpgradeAttack) && IsUpgradable()) {
                     StartMenu.EffectClick.Play();
                     this.AttackPlus += 1;
-                    this.Strength.Text = (this.Character.Attack + this.AttackPlus).ToString();
+                    this.Strength.Text = (character.Attack + this.AttackPlus).ToString();
                     this.UsedStatPoints += 1;
-                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
+                    this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
                 }
                 else if (isOver(mouse, UpgradeDefense) && IsUpgradable()) {
                     StartMenu.EffectClick.Play();
                     this.DefensePlus += 1;
-                    this.Endurance.Text = (this.Character.Defense + this.DefensePlus).ToString();
+                    this.Endurance.Text = (character.Defense + this.DefensePlus).ToString();
                     this.UsedStatPoints += 1;
-                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
+                    this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
                 }
                 else if (isOver(mouse, ResetStatsPoints)) {
                     StartMenu.EffectClick.Play();
-                    this.Character.respec();
-                    this.LoadDataCharacter(this.Character);
+
+                    if (character.respec())
+                    {
+                        this.DefensePlus = 0;
+                        this.AttackPlus = 0;
+                        this.VitalityPlus = 0;
+                        this.UsedStatPoints = 0;
+                    }
+
+                    this.LoadDataCharacter(character);
                 }
                 else if (isOver(mouse, Cancel)) {
                     StartMenu.EffectClick.Play();
@@ -123,33 +129,37 @@ namespace RythmRPG.Pages {
                     this.DefensePlus = 0;
                     this.VitalityPlus = 0;
                     this.UsedStatPoints = 0;
-                    this.Strength.Text = (this.Character.Attack + this.AttackPlus).ToString();
-                    this.Endurance.Text = (this.Character.Defense + this.DefensePlus).ToString();
-                    this.Vitality.Text = (this.Character.Vitality + this.VitalityPlus).ToString();
-                    this.StatsPoints.Text = (this.Character.statPoints - this.UsedStatPoints).ToString();
-                    this.HP.Text = (this.Character.Level * (this.Character.Vitality + this.VitalityPlus)).ToString();
+
+                    this.Strength.Text = (character.Attack + this.AttackPlus).ToString();
+                    this.Endurance.Text = (character.Defense + this.DefensePlus).ToString();
+                    this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
+                    this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
+                    this.HP.Text = (character.Level * (character.Vitality + this.VitalityPlus)).ToString();
                 }
                 else if (isOver(mouse, Confirm)) {
                     StartMenu.EffectClick.Play();
-                    this.Character.addAttack(this.AttackPlus);
-                    this.Character.addDefense(this.DefensePlus);
-                    this.Character.addVitality(this.VitalityPlus);
-                    this.Character.statPoints = this.Character.statPoints - this.UsedStatPoints;
+                    character.addAttack(this.AttackPlus);
+                    character.addDefense(this.DefensePlus);
+                    character.addVitality(this.VitalityPlus);
 
                     this.AttackPlus = 0;
                     this.DefensePlus = 0;
                     this.VitalityPlus = 0;
+                    this.UsedStatPoints = 0;
 
-                    this.LoadDataCharacter(this.Character);
+                    this.LoadDataCharacter(character);
                 }
             }
 
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+            PlayableCharacter character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
-            this.CharacterSprite.DrawFrame(spriteBatch);
+            character.setPosition(new Vector2(4 * Game1.UnitX, 5 * Game1.UnitY));
+            character.Draw(spriteBatch);
+
             this.Cancel.Draw(spriteBatch, gameTime);
             this.Confirm.Draw(spriteBatch, gameTime);
             this.UpgradeAttack.Draw(spriteBatch, gameTime);
@@ -174,7 +184,6 @@ namespace RythmRPG.Pages {
         }
 
         public void LoadDataCharacter(PlayableCharacter character) {
-            this.Character = character;
 
             this.Name.Text = character.Name;
             this.Level.Text = character.Level.ToString();
@@ -186,7 +195,7 @@ namespace RythmRPG.Pages {
             this.Gold.Text = character.gold.ToString();
         }
         public bool IsUpgradable() {
-            if ( this.UsedStatPoints < this.Character.statPoints) {
+            if ( this.UsedStatPoints < Game1.characters.getSelectedCharacter().statPoints) {
                 return true;
             }
             return false;
