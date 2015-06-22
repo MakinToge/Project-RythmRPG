@@ -20,7 +20,6 @@ namespace RythmRPG.Pages
         private NAudio.Wave.BlockAlignReductionStream stream = null;
         private NAudio.Wave.DirectSoundOut output = null;
         private NAudio.Wave.WaveStream pcm = null;
-        private double blackOut = 0;
         private bool firstUpdate = true;
 
         public static ContentManager Content { get; set; }
