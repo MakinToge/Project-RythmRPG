@@ -327,6 +327,11 @@ namespace RythmRPG {
                     stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
                 }
 
+                for (int i = 0; i < characters.NbCharacter; i++)
+                {
+                    characters.selectedCharacter = i;
+                    characters.getSelectedCharacter().prepareForMusic();
+                }
                 characters.selectedCharacter = 0;
                 format.Serialize(stream, characters);
                 stream.Close();

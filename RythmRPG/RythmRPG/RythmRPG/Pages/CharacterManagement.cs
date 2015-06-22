@@ -8,12 +8,14 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class CharacterManagement : Page{
-        //re
+        private const int NB_SKILLS = 9;
+
         public Sprite MainImage { get; set; }
         public Sprite Back { get; set; }
         public Sprite Modify { get; set; }
         public PlayableCharacter Character { get; set; }
-        
+
+        public TextSprite[] SkillList { get; set; }
         public TextSprite Name { get; set; }
         public TextSprite Level { get; set; }
         public TextSprite XPNextLevel { get; set; }
@@ -21,7 +23,6 @@ namespace RythmRPG.Pages {
         public TextSprite HP { get; set; }
         public TextSprite Vitality { get; set; }
         public TextSprite Strength { get; set; }
-        public TextSprite[] Skills { get; set; }
         public TextSprite Ability { get; set; }
         public TextSprite Xp { get; set; }
         public TextSprite StatsPoints { get; set; }
@@ -64,9 +65,13 @@ namespace RythmRPG.Pages {
                 new Sprite(23 * Game1.UnitX, 2 * Game1.UnitY, 7 * Game1.UnitX, Game1.UnitY)
             };
 
+            this.SkillList = new TextSprite[NB_SKILLS];
+            for (int i = 0; i < NB_SKILLS; i++)
+            {
+                this.SkillList[i] = new TextSprite(25 * Game1.UnitX, (7f * Game1.UnitY) + i*30, "", Color.DarkSlateGray);
+                this.SkillList[i].Text = ((Skills) i).ToString();
+            }
 
-            
-            
             this.Name = new TextSprite(15 * Game1.UnitX, 3.3f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(6 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
             this.Xp = new TextSprite(5 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
@@ -98,8 +103,11 @@ namespace RythmRPG.Pages {
             this.TabCustom[0].LoadContent(content, "CharacterManagement/Custom");
             this.TabCustom[1].LoadContent(content, "CharacterManagement/Selected/Custom");
 
-            
 
+            for (int i = 0; i < NB_SKILLS; i++)
+            {
+                this.SkillList[i].LoadContent(content, "Arial16");
+            }
             this.Name.LoadContent(content, "Arial16");
             this.Level.LoadContent(content, "Arial16");
             this.Endurance.LoadContent(content, "Arial16");
@@ -150,6 +158,17 @@ namespace RythmRPG.Pages {
                     Game1.GameState = GameState.ModifyCharacter;
                     this.ModifyCharacter.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
+                else
+                {
+                    for (int i = 0; i < NB_SKILLS; i++)
+                    {
+                        //this.SkillList[i].
+                        //if(isOver(mouse, this.SkillList[i]))
+                        {
+
+                        }
+                    }
+                }
             }
         }
 
@@ -197,6 +216,10 @@ namespace RythmRPG.Pages {
                 this.Character.Draw(spriteBatch);
             }
 
+            for (int i = 0; i < NB_SKILLS; i++)
+            {
+                this.SkillList[i].Draw(spriteBatch, gameTime);
+            }
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);
             this.Endurance.Draw(spriteBatch, gameTime);
@@ -226,9 +249,24 @@ namespace RythmRPG.Pages {
             this.Ability.Text = character.uniqueSkill.ToString();
 
             this.Xp.Text = character.xp.ToString();
-            this.XPNextLevel.Text = character.xp.ToString();
+            this.XPNextLevel.Text = character.xpToNextLevel().ToString();
             this.StatsPoints.Text = character.statPoints.ToString();
             this.Gold.Text = character.gold.ToString();
+
+            for(int i = 0; i < NB_SKILLS; i++)
+            {
+                for(int j = 0; j < character.skills.Count; j++)
+                {
+                    if(((Skills)i) == character.skills.ElementAt<Skills>(j))
+                    {
+                        this.SkillList[i].Color = Color.Black;
+                    }
+                    else
+                    {
+                        this.SkillList[i].Color = Color.DarkSlateGray;
+                    }
+                }
+            }
         }
     }
 }

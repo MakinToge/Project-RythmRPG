@@ -184,7 +184,7 @@ namespace RythmRPG.Character
             this.sprites.UpdateFrame(elapsed);
         }
 
-        public void prepareForMusic()
+        public virtual void prepareForMusic()
         {
             this.Health = this.Level * this.Vitality;
             this.sprites.resetAnimations();

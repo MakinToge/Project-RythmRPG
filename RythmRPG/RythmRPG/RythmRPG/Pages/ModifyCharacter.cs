@@ -94,7 +94,7 @@ namespace RythmRPG.Pages {
                     this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
                     this.UsedStatPoints += 1;
                     this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
-                    this.HP.Text = (character.Level * (character.Vitality + this.VitalityPlus)).ToString();
+                    this.HP.Text = (character.Level * (character.Vitality + this.VitalityPlus) + 10).ToString();
                 }
                 else if (isOver(mouse, UpgradeAttack) && IsUpgradable()) {
                     StartMenu.EffectClick.Play();
@@ -130,11 +130,11 @@ namespace RythmRPG.Pages {
                     this.VitalityPlus = 0;
                     this.UsedStatPoints = 0;
 
-                    this.Strength.Text = (character.Attack + this.AttackPlus).ToString();
-                    this.Endurance.Text = (character.Defense + this.DefensePlus).ToString();
-                    this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
-                    this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
-                    this.HP.Text = (character.Level * (character.Vitality + this.VitalityPlus)).ToString();
+                    this.Strength.Text = character.Attack.ToString();
+                    this.Endurance.Text = character.Defense.ToString();
+                    this.Vitality.Text = character.Vitality.ToString();
+                    this.StatsPoints.Text = character.statPoints.ToString();
+                    this.HP.Text = character.Health.ToString();
                 }
                 else if (isOver(mouse, Confirm)) {
                     StartMenu.EffectClick.Play();

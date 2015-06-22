@@ -315,11 +315,11 @@ namespace RythmRPG.Character
         /// <param name="skillToActivate">The skill to add</param>
         public void manageSkill(Skills skillToRemove, Skills skillToActivate)
         {
-            if (skillToRemove != null)
+            if (skillToRemove != Skills.None)
             {
                 this.skills.Remove(skillToRemove);
             }
-            if (skillToActivate != null)
+            if (skillToActivate != Skills.None)
             {
                 if (this.skills.Count < this.NbRestart)
                 {
@@ -331,6 +331,17 @@ namespace RythmRPG.Character
         public override int giveXP()
         {
             return 0;
+        }
+
+        public override void prepareForMusic()
+        {
+            base.prepareForMusic();
+            this.Health = this.Level * this.Vitality + 10;
+        }
+
+        public int xpToNextLevel()
+        {
+            return this.xpLevels[this.Level] - this.xp;
         }
     }
 }
