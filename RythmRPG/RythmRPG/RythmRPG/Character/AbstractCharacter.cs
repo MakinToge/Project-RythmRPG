@@ -37,7 +37,7 @@ namespace RythmRPG.Character
         public int Vitality {
             get { return vitality; }
             set { vitality = value;
-            this.Health = this.Level * this.Vitality;
+            this.Health = this.Level * this.Vitality + 10;
             }
         }
         
