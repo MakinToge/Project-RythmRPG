@@ -14,6 +14,9 @@ namespace RythmRPG.Pages
 {
     public class MusicPlaying : Page
     {
+        private const int NB_MOB = 2;
+        private const int NB_BOSS = 1;
+
         public static float NOTE_LIMIT_POSITIONX = 26.5f * Game1.UnitX;
 
         private Texture2D background;
@@ -232,19 +235,24 @@ namespace RythmRPG.Pages
 
             // Create monsters list
             this.Monsters = new List<AbstractCharacter>();
-            Mob mob = new Mob(this.Difficulty, new Vector2(18f * Game1.UnitX, 5.5f * Game1.UnitY), 0.75f);
-            mob.Load(Content);
-            mob.setOriginBottomRight();
-            this.Monsters.Add(mob);
-            mob = new Mob(this.Difficulty, new Vector2(18f * Game1.UnitX, 5.5f * Game1.UnitY), 0.75f);
-            mob.Load(Content);
-            mob.setOriginBottomRight();
-            this.Monsters.Add(mob);
+            Vector2 position = new Vector2(25f * Game1.UnitX, 12.5f * Game1.UnitY);
+            Mob mob;
+            Boss boss;
 
-            Boss boss = new Boss(this.Difficulty, new Vector2(18f * Game1.UnitX, 5.5f * Game1.UnitY), 0.75f);
-            boss.Load(Content);
-            boss.setOriginBottomRight();
-            this.Monsters.Add(boss);
+            for (int i = 0; i < NB_MOB; i++)
+            {
+                mob = new Mob(this.Difficulty, position, 0.75f);
+                mob.Load(Content);
+                mob.setOriginBottomRight();
+                this.Monsters.Add(mob);
+            }
+            for (int i = 0; i < NB_BOSS;i++)
+            {
+                boss = new Boss(this.Difficulty, position, 0.75f);
+                boss.Load(Content);
+                boss.setOriginBottomRight();
+                this.Monsters.Add(boss);
+            }
             
 
             //play the selected music
@@ -271,7 +279,7 @@ namespace RythmRPG.Pages
         public void KeyPressed(int pressedKey)
         {
             PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
-            AbstractCharacter c = this.Monsters.ElementAt<AbstractCharacter>(0);
+            AbstractCharacter c = this.Monsters.ElementAt<AbstractCharacter>(this.currentEnemy);
 
             if(pressedKey == 0)
             {

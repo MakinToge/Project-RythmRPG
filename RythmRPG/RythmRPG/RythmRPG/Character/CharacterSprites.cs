@@ -142,7 +142,7 @@ namespace RythmRPG.Character
         /// </summary>
         public void setOriginBottomRight()
         {
-            this.origin = new Vector2(this.position.X + (this.attackingAnimation.Width / this.frameColCount), this.position.Y + (this.attackingAnimation.Height / this.frameLineCount));
+            this.origin = this.position;
             this.bottomRight = true;
         }
 
