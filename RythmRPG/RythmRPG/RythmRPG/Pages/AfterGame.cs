@@ -39,8 +39,8 @@ namespace RythmRPG.Pages {
             this.Type = new TextSprite(17 * Game1.UnitX, 3.9f * Game1.UnitY, "", Color.Black);
             this.Name = new TextSprite(17 * Game1.UnitX, 4.9f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(17 * Game1.UnitX, 5.9f * Game1.UnitY, "", Color.Black);
-            this.Endurance = new TextSprite(16 * Game1.UnitX, 6.9f * Game1.UnitY, "", Color.Black);
-            this.HP = new TextSprite(18 * Game1.UnitX, 7.9f * Game1.UnitY, "", Color.Black);
+            this.HP = new TextSprite(16 * Game1.UnitX, 6.9f * Game1.UnitY, "", Color.Black);
+            this.Endurance = new TextSprite(18 * Game1.UnitX, 7.9f * Game1.UnitY, "", Color.Black);
             this.Strength = new TextSprite(18 * Game1.UnitX, 8.9f * Game1.UnitY, "", Color.Black);
             this.Vitality = new TextSprite(19 * Game1.UnitX, 9.9f * Game1.UnitY, "", Color.Black);
         }
@@ -128,7 +128,7 @@ namespace RythmRPG.Pages {
                 this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
             }
             this.Endurance.Text = character.Defense.ToString();
-            this.HP.Text = character.Health.ToString();
+            this.HP.Text = character.getMaxHealth().ToString();
             this.Strength.Text = character.Attack.ToString();
             this.Vitality.Text = character.Vitality.ToString();
         }

@@ -350,5 +350,10 @@ namespace RythmRPG.Character
         {
             return this.xpLevels[this.Level] - this.xp;
         }
+
+        public override int getMaxHealth()
+        {
+            return base.getMaxHealth() + 100;
+        }
     }
 }
