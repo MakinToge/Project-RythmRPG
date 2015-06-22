@@ -44,7 +44,7 @@ namespace RythmRPG.Pages
 
 
             //Character Data
-
+            
             this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
             for (int i = 0; i < SpriteCharacters.Length; i++)
             {
@@ -60,7 +60,7 @@ namespace RythmRPG.Pages
             //this.MainImage.LoadContent(content, "MusicPlaying/MusicPlaying");
             this.background = Content.Load<Texture2D>("BackgroundLevel");
             //Character Data
-
+            
             for (int i = 0; i < Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray.Length; i++)
             {
                 string name = Game1.Save.CharactersArray[Game1.Save.SelectedSave].CharacterArray[i].Name;
@@ -111,7 +111,7 @@ namespace RythmRPG.Pages
                 {
                     this.LinesNotes[i].Enqueue(new Note(SSNotes[i].Min, i));
                     SSNotes[i].Remove(SSNotes[i].Min);
-                }
+                    }
                 if (this.LinesNotes[i].Count != 0 && this.LinesNotes[i].Peek().Position.X > NOTE_LIMIT_POSITIONX)//remove note when out of the line
                 {
                     //MonsterAttack;
@@ -120,8 +120,8 @@ namespace RythmRPG.Pages
                 foreach (Note note in this.LinesNotes[i])
                 {
                     note.Update(gametime);
-                }
             }
+        }
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
@@ -160,7 +160,7 @@ namespace RythmRPG.Pages
         public void LoadDataCharacter(PlayableCharacter character)
         {
             this.HPStart = character.Health;
-
+            
             this.HP.Text = character.Health.ToString() + " / " + this.HPStart.ToString();
         }
 
@@ -204,7 +204,7 @@ namespace RythmRPG.Pages
             {
                 this.LinesNotes[i] = new Queue<Note>();
             }
-
+            
             //Circles
             this.Circles = new List<Sprite>();
             for (int i = 0; i < Chart.LaneNumber; i++)
@@ -215,7 +215,7 @@ namespace RythmRPG.Pages
             }
             //LinesSprite
             this.LinesSprite = new List<Sprite>();
-
+            
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
                 Sprite oneString = new Sprite(2 * Game1.UnitX, (12.5f + i) * Game1.UnitY, 27 * Game1.UnitX, 1);
