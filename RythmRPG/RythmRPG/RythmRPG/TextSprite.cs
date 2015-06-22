@@ -36,5 +36,14 @@ namespace RythmRPG {
             spriteBatch.DrawString(this.Font, this.Text, this.Position, this.Color);
             spriteBatch.End();
         }
+        public bool isOver(Microsoft.Xna.Framework.Input.MouseState mouse)
+        {
+            Vector2 size = this.Font.MeasureString(this.Text);
+            if (mouse.X >= this.Position.X && mouse.Y >= this.Position.Y && mouse.X <= size.X && mouse.Y <= size.Y)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -162,10 +162,10 @@ namespace RythmRPG.Pages {
                 {
                     for (int i = 0; i < NB_SKILLS; i++)
                     {
-                        //this.SkillList[i].
-                        //if(isOver(mouse, this.SkillList[i]))
+                        if(this.SkillList[i].isOver(currentMouseState))
                         {
-
+                            //Skills skill = ((Skills)this.SkillList[i].Text);
+                            
                         }
                     }
                 }

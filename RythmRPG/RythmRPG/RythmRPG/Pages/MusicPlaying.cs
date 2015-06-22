@@ -271,14 +271,14 @@ namespace RythmRPG.Pages
 
             for (int i = 0; i < NB_MOB; i++)
             {
-                mob = new Mob(this.Difficulty, position, 0.75f);
+                mob = new Mob(Game1.Difficulty, position, 0.75f);
                 mob.Load(Content);
                 mob.setOriginBottomRight();
                 this.Monsters.Add(mob);
             }
             for (int i = 0; i < NB_BOSS;i++)
             {
-                boss = new Boss(this.Difficulty, position, 0.75f);
+                boss = new Boss(Game1.Difficulty, position, 0.75f);
                 boss.Load(Content);
                 boss.setOriginBottomRight();
                 this.Monsters.Add(boss);
