@@ -7,16 +7,16 @@ namespace RythmRPG
 {
     class AudioAnalyser
     {
-        public static bool log = false;
+        private static bool log = false;
         public const int SubbandsNumber = 16;
-        public const int InstantWidth = 1024;//must be a power of 2 and a multiple of SubBandNumber
-        public const int LocalWidth = 44032;//must be a multiple of InstantWidth(best result if ~1sec of music (== SampleRate))
-        public const int LocalInstantNumber = LocalWidth / InstantWidth;
-        public static int LocalLowerBound = getLocalLowerBound();
-        public const string MusicDirectory = "musicDir";//Resampling output directory
-        public const int outRate = 44032;//SampleRate for resampling
+        private const int InstantWidth = 1024;//must be a power of 2 and a multiple of SubBandNumber
+        private const int LocalWidth = 44032;//must be a multiple of InstantWidth(best result if ~1sec of music (== SampleRate))
+        private const int LocalInstantNumber = LocalWidth / InstantWidth;
+        private static int LocalLowerBound = getLocalLowerBound();
+        private const string MusicDirectory = "musicDir";//Resampling output directory
+        private const int outRate = 44032;//SampleRate for resampling
 
-        static public double[] ComputeSubbandsLocalEnergyAverage(double[][] instantSubbandsEnergyArray, int historyIndex)//<Ei>, LocalLowBound <= historyIndex < subbandsInstantEnergyArray.Length - LocalInstantNumber/2
+        static private double[] ComputeSubbandsLocalEnergyAverage(double[][] instantSubbandsEnergyArray, int historyIndex)//<Ei>, LocalLowBound <= historyIndex < subbandsInstantEnergyArray.Length - LocalInstantNumber/2
         {
             double[] subbandsLocalEnergyAverage = new double[SubbandsNumber];
             for (int i = 0; i < SubbandsNumber; i++)
@@ -31,7 +31,7 @@ namespace RythmRPG
             return subbandsLocalEnergyAverage;
         }
 
-        static public double[] ComputeSubbandsInstantEnergy(double[] instantBuffer)//(Es)
+        static private double[] ComputeSubbandsInstantEnergy(double[] instantBuffer)//(Es)
         {
 
             double[] InstantEnergybySubband = new double[SubbandsNumber];
@@ -55,7 +55,7 @@ namespace RythmRPG
             return InstantEnergybySubband;
         }
 
-        static public double[][] ComputeSubbandsInstantEnergyArray(double[] left, double[] right)
+        static private double[][] ComputeSubbandsInstantEnergyArray(double[] left, double[] right)
         {
             Lomont.LomontFFT fftTool = new Lomont.LomontFFT();
             int totalInstant = left.Length / InstantWidth;
@@ -126,7 +126,7 @@ namespace RythmRPG
             }
             return beats;
         }
-        static public int getLocalLowerBound()
+        static private int getLocalLowerBound()
         {
             if (LocalInstantNumber % 2 == 0)
             {
@@ -137,10 +137,6 @@ namespace RythmRPG
                 return -LocalInstantNumber / 2 - 1;
             }
         }
-
-
-
-
     }
 }
 
