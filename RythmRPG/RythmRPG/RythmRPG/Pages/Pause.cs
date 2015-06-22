@@ -35,10 +35,15 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, GameMenu)) {// Clique sur GameMenu
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Play();
+                    MusicPlaying.output.Dispose();
+                    MusicPlaying.output = null;
                     Game1.GameState = GameState.GameMenu;
                 }
                 else if (isOver(mouse, Restart)) {// Clique sur Restart
                     StartMenu.EffectClick.Play();
+                    MusicPlaying musicPlaying = new MusicPlaying();
+                    musicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
+                    musicPlaying.LoadGame();
                     Game1.GameState = GameState.MusicPlaying;
                 }
             }

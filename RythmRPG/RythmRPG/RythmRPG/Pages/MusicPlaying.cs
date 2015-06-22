@@ -19,7 +19,7 @@ namespace RythmRPG.Pages
         private const int NB_BOSS = 1;
 
         private Texture2D background;
-        private NAudio.Wave.BlockAlignReductionStream stream = null;
+        
         private NAudio.Wave.WaveStream pcm = null;
         private bool firstUpdate = true;
         private int currentEnemy = 0;
@@ -49,6 +49,7 @@ namespace RythmRPG.Pages
 
         public static float LengthSpeedUnit;
         public static NAudio.Wave.DirectSoundOut output = null;
+        public static NAudio.Wave.BlockAlignReductionStream stream = null;
 
 
         public AfterGame Victory { get; set; }
@@ -121,7 +122,7 @@ namespace RythmRPG.Pages
                     SSNotes2[i].Remove(SSNotes2[i].Min);//too soon beats are discarded
 
                 }
-                else if (SSNotes2[i].Count > 0 && SSNotes2[i].Min - LengthSpeedUnit < currentSeconds + 0.015 && currentSeconds - 0.015 < SSNotes2[i].Min - LengthSpeedUnit)//add note to the line
+                else if (SSNotes2[i].Count > 0 && SSNotes2[i].Min - LengthSpeedUnit < currentSeconds + 0.02 && currentSeconds - 0.02 < SSNotes2[i].Min - LengthSpeedUnit)//add note to the line
                 {
 
                     this.LinesNotes[i].Enqueue(new Note(SSNotes2[i].Min, i));//throwing the note to the player
@@ -134,9 +135,12 @@ namespace RythmRPG.Pages
                 }
 
 
-                if (finishedLine == Chart.LaneNumber)//all line cleared
+                if (span.TotalSeconds < currentSeconds)//song finished
                 {
                     IsFinished = true;
+                    output.Stop();
+
+                    Game1.GameState = RythmRPG.GameState.Defeat;
                 }
 
 
@@ -219,8 +223,11 @@ namespace RythmRPG.Pages
 
             //AudioProcessing
             AllowedError = MusicPlaying.BASE_ALLOWED_ERROR_WIDTH + MusicPlaying.ALLOWED_ERROR_WIDTH_COEFFICIENT * (double)Game1.Difficulty;
+            
             float speed = Note.DEFAULT_BASE_SPEED + Note.DEFAULT_SPEED_COEFFICIENT * (float)Game1.Difficulty;//per millisec
             float lineLength = 25 * Game1.UnitX;
+
+            AllowedError *= speed * 1000.0;
             MusicPlaying.LengthSpeedUnit = lineLength / speed / 1000;//in second
 
             string wavFilePath = Game1.CurrentSelectedWavFile;
@@ -290,7 +297,7 @@ namespace RythmRPG.Pages
             //play the selected music
             NAudio.Wave.WaveFileReader reader = new NAudio.Wave.WaveFileReader(Game1.CurrentSelectedWavFile);
             this.pcm = new NAudio.Wave.WaveChannel32(reader);
-            this.stream = new NAudio.Wave.BlockAlignReductionStream(pcm);
+            MusicPlaying.stream = new NAudio.Wave.BlockAlignReductionStream(pcm);
             output = new NAudio.Wave.DirectSoundOut();
             output.Init(stream);
 

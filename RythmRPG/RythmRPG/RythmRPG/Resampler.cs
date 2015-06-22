@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using RythmRPG.Pages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,18 @@ namespace RythmRPG
         public const int RESAMPLING_SAMPLE_RATE = 44032;//SampleRate
         static public void Resampling(string inFilePath, string wavDirectory, int outRate, out string outFilePath)
         {
+            if(MusicPlaying.output != null){
+                MusicPlaying.output.Stop();
+                MusicPlaying.output.Dispose();
+                MusicPlaying.output = null;
+            }
+            if (MusicPlaying.stream != null)
+            {
+                MusicPlaying.stream.Dispose();
+                MusicPlaying.stream = null;
+            }
+            
+
             if (!Directory.Exists(wavDirectory))
             {
                 Directory.CreateDirectory(wavDirectory);

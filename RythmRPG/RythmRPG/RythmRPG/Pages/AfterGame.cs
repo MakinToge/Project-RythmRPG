@@ -70,6 +70,8 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, GameMenu)) {
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Play();
+                    MusicPlaying.output.Dispose();
+                    MusicPlaying.output = null;
                     Game1.GameState = GameState.GameMenu;
                 }
             }
