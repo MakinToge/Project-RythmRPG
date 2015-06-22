@@ -30,6 +30,7 @@ namespace RythmRPG.Pages {
                 if (isOver(mouse, Resume)) {// Clique sur Resume
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.MusicPlaying;
+                    MusicPlaying.output.Play();
                 }
                 else if (isOver(mouse, GameMenu)) {// Clique sur GameMenu
                     StartMenu.EffectClick.Play();
