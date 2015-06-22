@@ -117,8 +117,9 @@ namespace RythmRPG.Pages {
                     this.IsMusicChosen = false;
 
                     //Charge le jeu
-                    this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                     this.MusicPlaying.LoadGame();
+                    this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
+                    
                 }
             }
         }

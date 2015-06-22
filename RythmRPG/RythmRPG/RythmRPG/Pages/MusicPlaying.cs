@@ -226,6 +226,7 @@ namespace RythmRPG.Pages
 
             //player's charachter
             this.player = Game1.characters.getSelectedCharacter();
+            this.player.prepareForMusic();
 
             //AudioProcessing
             AllowedError = MusicPlaying.BASE_ALLOWED_ERROR_WIDTH + MusicPlaying.ALLOWED_ERROR_WIDTH_COEFFICIENT * (double)Game1.Difficulty;
