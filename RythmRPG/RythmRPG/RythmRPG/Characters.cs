@@ -21,13 +21,6 @@ namespace RythmRPG
             {
                 this.LoadDataCharacters(i);
             }
-            /*{
-                new PlayableCharacter()
-                new Character("Florizarre", CharacterType.Medium,"medium", 1,50,25,10,0,0,0,0),
-                new Character("Squirtle", CharacterType.Tank,"tank", 4,75,15,20,0,0,0,0),
-                new Character("DPS", CharacterType.DPS,"dps", 4,75,15,20,0,0,0,0),
-                new Character("Truc", CharacterType.Custom,"custom", 4,15,5,10,0,0,0,0)
-            };*/
         }
 
         public void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content, CharacterSprites[] spriteCharacters)
