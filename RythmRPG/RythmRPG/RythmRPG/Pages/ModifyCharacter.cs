@@ -8,31 +8,166 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class ModifyCharacter : Page{
+        /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
         public Sprite MainImage { get; set; }
+        /// <summary>
+        /// Gets or sets the back.
+        /// </summary>
+        /// <value>
+        /// The back.
+        /// </value>
         public Sprite Back { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public TextSprite Name { get; set; }
+        /// <summary>
+        /// Gets or sets the level.
+        /// </summary>
+        /// <value>
+        /// The level.
+        /// </value>
         public TextSprite Level { get; set; }
+        /// <summary>
+        /// Gets or sets the endurance.
+        /// </summary>
+        /// <value>
+        /// The endurance.
+        /// </value>
         public TextSprite Endurance { get; set; }
+        /// <summary>
+        /// Gets or sets the hp.
+        /// </summary>
+        /// <value>
+        /// The hp.
+        /// </value>
         public TextSprite HP { get; set; }
+        /// <summary>
+        /// Gets or sets the strength.
+        /// </summary>
+        /// <value>
+        /// The strength.
+        /// </value>
         public TextSprite Strength { get; set; }
+        /// <summary>
+        /// Gets or sets the vitality.
+        /// </summary>
+        /// <value>
+        /// The vitality.
+        /// </value>
         public TextSprite Vitality { get; set; }
+        /// <summary>
+        /// Gets or sets the stats points.
+        /// </summary>
+        /// <value>
+        /// The stats points.
+        /// </value>
         public TextSprite StatsPoints { get; set; }
+        /// <summary>
+        /// Gets or sets the gold.
+        /// </summary>
+        /// <value>
+        /// The gold.
+        /// </value>
         public TextSprite Gold { get; set; }
+        /// <summary>
+        /// Gets or sets the confirm.
+        /// </summary>
+        /// <value>
+        /// The confirm.
+        /// </value>
         public Sprite Confirm { get; set; }
+        /// <summary>
+        /// Gets or sets the cancel.
+        /// </summary>
+        /// <value>
+        /// The cancel.
+        /// </value>
         public Sprite Cancel { get; set; }
+        /// <summary>
+        /// Gets or sets the upgrade vitality.
+        /// </summary>
+        /// <value>
+        /// The upgrade vitality.
+        /// </value>
         public Sprite UpgradeVitality { get; set; }
+        /// <summary>
+        /// Gets or sets the upgrade attack.
+        /// </summary>
+        /// <value>
+        /// The upgrade attack.
+        /// </value>
         public Sprite UpgradeAttack { get; set; }
+        /// <summary>
+        /// Gets or sets the upgrade defense.
+        /// </summary>
+        /// <value>
+        /// The upgrade defense.
+        /// </value>
         public Sprite UpgradeDefense { get; set; }
+        /// <summary>
+        /// Gets or sets the reset stats points.
+        /// </summary>
+        /// <value>
+        /// The reset stats points.
+        /// </value>
         public Sprite ResetStatsPoints { get; set; }
+        /// <summary>
+        /// Gets or sets the explain reset stats.
+        /// </summary>
+        /// <value>
+        /// The explain reset stats.
+        /// </value>
         public TextSprite ExplainResetStats { get; set; }
+        /// <summary>
+        /// Gets or sets the mouse rectangle.
+        /// </summary>
+        /// <value>
+        /// The mouse rectangle.
+        /// </value>
         public Rectangle MouseRectangle { get; set; }
 
+        /// <summary>
+        /// Gets or sets the defense plus.
+        /// </summary>
+        /// <value>
+        /// The defense plus.
+        /// </value>
         public int DefensePlus { get; set; }
+        /// <summary>
+        /// Gets or sets the attack plus.
+        /// </summary>
+        /// <value>
+        /// The attack plus.
+        /// </value>
         public int AttackPlus { get; set; }
+        /// <summary>
+        /// Gets or sets the vitality plus.
+        /// </summary>
+        /// <value>
+        /// The vitality plus.
+        /// </value>
         public int VitalityPlus { get; set; }
+        /// <summary>
+        /// Gets or sets the used stat points.
+        /// </summary>
+        /// <value>
+        /// The used stat points.
+        /// </value>
         public int UsedStatPoints { get; set; }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
@@ -58,6 +193,10 @@ namespace RythmRPG.Pages {
             this.Vitality = new TextSprite(18 * Game1.UnitX, 10.2f * Game1.UnitY, "", Color.Black);
 
         }
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "ModifyCharacter/Custom");
             this.Back.LoadContent(content, "Options/Back");
@@ -78,6 +217,13 @@ namespace RythmRPG.Pages {
             this.ExplainResetStats.LoadContent(content, "Arial16");
             this.Vitality.LoadContent(content, "Arial16");
         }
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        /// <param name="previousKeyboardState">State of the previous keyboard.</param>
+        /// <param name="currentKeyboardState">State of the current keyboard.</param>
+        /// <param name="previousMouseState">State of the previous mouse.</param>
+        /// <param name="currentMouseState">State of the current mouse.</param>
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             PlayableCharacter character = Game1.characters.getSelectedCharacter();
             Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
@@ -153,6 +299,11 @@ namespace RythmRPG.Pages {
 
         }
 
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             PlayableCharacter character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
@@ -183,6 +334,10 @@ namespace RythmRPG.Pages {
             }
         }
 
+        /// <summary>
+        /// Loads the data character.
+        /// </summary>
+        /// <param name="character">The character.</param>
         public void LoadDataCharacter(PlayableCharacter character) {
 
             this.Name.Text = character.Name;
@@ -194,6 +349,10 @@ namespace RythmRPG.Pages {
             this.StatsPoints.Text = character.statPoints.ToString();
             this.Gold.Text = character.gold.ToString();
         }
+        /// <summary>
+        /// Determines whether this instance is upgradable.
+        /// </summary>
+        /// <returns></returns>
         public bool IsUpgradable() {
             if ( this.UsedStatPoints < Game1.characters.getSelectedCharacter().statPoints) {
                 return true;

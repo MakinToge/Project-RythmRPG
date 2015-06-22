@@ -8,31 +8,169 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class CharacterManagement : Page{
+        /// <summary>
+        /// The number of skills
+        /// </summary>
         private const int NB_SKILLS = 9;
 
+        /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
         public Sprite MainImage { get; set; }
+        /// <summary>
+        /// Gets or sets the back.
+        /// </summary>
+        /// <value>
+        /// The back.
+        /// </value>
         public Sprite Back { get; set; }
+        /// <summary>
+        /// Gets or sets the modify.
+        /// </summary>
+        /// <value>
+        /// The modify.
+        /// </value>
         public Sprite Modify { get; set; }
+        /// <summary>
+        /// Gets or sets the character.
+        /// </summary>
+        /// <value>
+        /// The character.
+        /// </value>
         public PlayableCharacter Character { get; set; }
 
+        /// <summary>
+        /// Gets or sets the skill list.
+        /// </summary>
+        /// <value>
+        /// The skill list.
+        /// </value>
         public TextSprite[] SkillList { get; set; }
+        /// <summary>
+        /// Gets or sets the tool tip.
+        /// </summary>
+        /// <value>
+        /// The tool tip.
+        /// </value>
         public TextSprite ToolTip { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public TextSprite Name { get; set; }
+        /// <summary>
+        /// Gets or sets the level.
+        /// </summary>
+        /// <value>
+        /// The level.
+        /// </value>
         public TextSprite Level { get; set; }
+        /// <summary>
+        /// Gets or sets the xp next level.
+        /// </summary>
+        /// <value>
+        /// The xp next level.
+        /// </value>
         public TextSprite XPNextLevel { get; set; }
+        /// <summary>
+        /// Gets or sets the endurance.
+        /// </summary>
+        /// <value>
+        /// The endurance.
+        /// </value>
         public TextSprite Endurance { get; set; }
+        /// <summary>
+        /// Gets or sets the hp.
+        /// </summary>
+        /// <value>
+        /// The hp.
+        /// </value>
         public TextSprite HP { get; set; }
+        /// <summary>
+        /// Gets or sets the vitality.
+        /// </summary>
+        /// <value>
+        /// The vitality.
+        /// </value>
         public TextSprite Vitality { get; set; }
+        /// <summary>
+        /// Gets or sets the strength.
+        /// </summary>
+        /// <value>
+        /// The strength.
+        /// </value>
         public TextSprite Strength { get; set; }
+        /// <summary>
+        /// Gets or sets the ability.
+        /// </summary>
+        /// <value>
+        /// The ability.
+        /// </value>
         public TextSprite Ability { get; set; }
+        /// <summary>
+        /// Gets or sets the xp.
+        /// </summary>
+        /// <value>
+        /// The xp.
+        /// </value>
         public TextSprite Xp { get; set; }
+        /// <summary>
+        /// Gets or sets the stats points.
+        /// </summary>
+        /// <value>
+        /// The stats points.
+        /// </value>
         public TextSprite StatsPoints { get; set; }
+        /// <summary>
+        /// Gets or sets the gold.
+        /// </summary>
+        /// <value>
+        /// The gold.
+        /// </value>
         public TextSprite Gold { get; set; }
+        /// <summary>
+        /// Gets or sets the selected character.
+        /// </summary>
+        /// <value>
+        /// The selected character.
+        /// </value>
         public int SelectedCharacter { get; set; }
+        /// <summary>
+        /// Gets or sets the tab medium.
+        /// </summary>
+        /// <value>
+        /// The tab medium.
+        /// </value>
         public Sprite[] TabMedium { get; set; }
+        /// <summary>
+        /// Gets or sets the tab tank.
+        /// </summary>
+        /// <value>
+        /// The tab tank.
+        /// </value>
         public Sprite[] TabTank { get; set; }
+        /// <summary>
+        /// Gets or sets the tab DPS.
+        /// </summary>
+        /// <value>
+        /// The tab DPS.
+        /// </value>
         public Sprite[] TabDPS { get; set; }
+        /// <summary>
+        /// Gets or sets the tab custom.
+        /// </summary>
+        /// <value>
+        /// The tab custom.
+        /// </value>
         public Sprite[] TabCustom { get; set; }
+        /// <summary>
+        /// The tab selected
+        /// </summary>
         private int tabSelected;
 	    public int TabSelected
 	    {
@@ -42,9 +180,18 @@ namespace RythmRPG.Pages {
                 this.SelectedCharacter = value;
             }
 	    }
+        /// <summary>
+        /// Gets or sets the modify character page.
+        /// </summary>
+        /// <value>
+        /// The modify character page.
+        /// </value>
         public ModifyCharacter ModifyCharacter { get; set; }
-	
 
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
@@ -90,6 +237,10 @@ namespace RythmRPG.Pages {
             this.TabSelected = 0;
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "CharacterManagement/CharacterManagement");
             this.Back.LoadContent(content, "Options/Back");
@@ -122,6 +273,13 @@ namespace RythmRPG.Pages {
             this.StatsPoints.LoadContent(content, "Arial16");
             this.Gold.LoadContent(content, "Arial16");
         }
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        /// <param name="previousKeyboardState">State of the previous keyboard.</param>
+        /// <param name="currentKeyboardState">State of the current keyboard.</param>
+        /// <param name="previousMouseState">State of the previous mouse.</param>
+        /// <param name="currentMouseState">State of the current mouse.</param>
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             this.Character = Game1.characters.getSelectedCharacter();
 
@@ -218,8 +376,13 @@ namespace RythmRPG.Pages {
             }
         }
 
-        
 
+
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.Character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
@@ -281,6 +444,10 @@ namespace RythmRPG.Pages {
             this.Gold.Draw(spriteBatch, gameTime);
         }
 
+        /// <summary>
+        /// Loads the data character.
+        /// </summary>
+        /// <param name="character">The character.</param>
         public void LoadDataCharacter(PlayableCharacter character) {
             this.Name.Text = character.Name;
             if (character.NbRestart == 0) {

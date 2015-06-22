@@ -9,44 +9,137 @@ using System.Text;
 
 namespace RythmRPG.Pages {
     public class StartMenu : Page{
+        /// <summary>
+        /// Gets or sets the main image.
+        /// </summary>
+        /// <value>
+        /// The main image.
+        /// </value>
         public Sprite MainImage { get; set; }
+        /// <summary>
+        /// Gets or sets the start.
+        /// </summary>
+        /// <value>
+        /// The start.
+        /// </value>
         public Sprite Start { get; set; }
+        /// <summary>
+        /// Gets or sets the options.
+        /// </summary>
+        /// <value>
+        /// The options.
+        /// </value>
         public Sprite Options { get; set; }
+        /// <summary>
+        /// Gets or sets the save sprites.
+        /// </summary>
+        /// <value>
+        /// The save sprites.
+        /// </value>
         public Sprite[] SaveSprites { get; set; }
+        /// <summary>
+        /// Gets or sets the left save.
+        /// </summary>
+        /// <value>
+        /// The left save.
+        /// </value>
         public Sprite LeftSave { get; set; }
+        /// <summary>
+        /// Gets or sets the right save.
+        /// </summary>
+        /// <value>
+        /// The right save.
+        /// </value>
         public Sprite RightSave { get; set; }
 
+        /// <summary>
+        /// Gets or sets the exit button.
+        /// </summary>
+        /// <value>
+        /// The exit button.
+        /// </value>
         public Sprite ExitButton { get; set; }
+        /// <summary>
+        /// Gets or sets the character.
+        /// </summary>
+        /// <value>
+        /// The character.
+        /// </value>
         public CharacterSprites Character { get; set; }
 
+        /// <summary>
+        /// The effect volume maximum
+        /// </summary>
         public const float EFFECT_VOLUME_MAX = 1f;
 
+        /// <summary>
+        /// The effect volume minimum
+        /// </summary>
         public const float EFFECT_VOLUME_MIN = 0f;
 
+        /// <summary>
+        /// The volume on
+        /// </summary>
         public const float VOLUME_ON = 0.5f;
-       
+
+        /// <summary>
+        /// The volume off
+        /// </summary>
         public const float VOLUME_OFF = 0f;
 
+        /// <summary>
+        /// The click
+        /// </summary>
         public SoundEffect Click;
 
+        /// <summary>
+        /// The effect click
+        /// </summary>
         public static SoundEffectInstance EffectClick;
 
+        /// <summary>
+        /// The back sound effect
+        /// </summary>
         public SoundEffect Back;
 
+        /// <summary>
+        /// The effect back
+        /// </summary>
         public static SoundEffectInstance EffectBack;
 
+        /// <summary>
+        /// The victory
+        /// </summary>
         public SoundEffect Victory;
 
+        /// <summary>
+        /// The effect victory
+        /// </summary>
         public static SoundEffectInstance EffectVictory;
 
+        /// <summary>
+        /// The defeat
+        /// </summary>
         public SoundEffect Defeat;
 
+        /// <summary>
+        /// The effect defeat
+        /// </summary>
         public static SoundEffectInstance EffectDefeat;
-       
+
+        /// <summary>
+        /// The song
+        /// </summary>
         public SoundEffect Song;
-      
+
+        /// <summary>
+        /// The main theme
+        /// </summary>
         public static SoundEffectInstance MainTheme;
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public override void Initialize() {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Character = new CharacterSprites(new Vector2(19 * Game1.UnitX, 5 * Game1.UnitY), 0, 2.5f, 0);
@@ -61,6 +154,10 @@ namespace RythmRPG.Pages {
             this.RightSave = new Sprite(10 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
             
         }
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
             this.MainImage.LoadContent(content, "StartMenu/StartMenu");
             this.Start.LoadContent(content, "StartMenu/Start");
@@ -98,6 +195,13 @@ namespace RythmRPG.Pages {
             MainTheme.Volume = VOLUME_ON;
             MainTheme.Play();
         }
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
+        /// <param name="previousKeyboardState">State of the previous keyboard.</param>
+        /// <param name="currentKeyboardState">State of the current keyboard.</param>
+        /// <param name="previousMouseState">State of the previous mouse.</param>
+        /// <param name="currentMouseState">State of the current mouse.</param>
         public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
                 Rectangle mouse = new Rectangle(currentMouseState.X,currentMouseState.Y ,10,10);
@@ -126,6 +230,11 @@ namespace RythmRPG.Pages {
             }
         }
 
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="gameTime">The game time.</param>
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Start.Draw(spriteBatch, gameTime);
