@@ -49,6 +49,9 @@ namespace RythmRPG.Pages
         public Timer timer;
         public static long MillisecondsSinceLoadGame = 0;
 
+        public AfterGame Victory { get; set; }
+        public AfterGame Defeat { get; set; }
+
         public override void Initialize()
         {
             this.HP = new TextSprite(5 * Game1.UnitX, 2.2f * Game1.UnitY, "", Color.White);
