@@ -34,13 +34,16 @@ namespace RythmRPG.Character
         /// </summary>
         private int vitality;
 
-        public int Vitality {
+        public int Vitality
+        {
             get { return vitality; }
-            set { vitality = value;
-            this.Health = this.Level * this.Vitality + 10;
+            set
+            {
+                vitality = value;
+                this.Health = this.Level * this.Vitality + 10;
             }
         }
-        
+
         /// <summary>
         /// The attack of the character, impact the amount of damage the character deals
         /// </summary>
@@ -150,7 +153,7 @@ namespace RythmRPG.Character
         {
             return this.Health <= 0;
         }
-        
+
         /// <summary>
         /// Remove health from the character
         /// </summary>

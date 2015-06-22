@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG {
-    public enum GameState {
+namespace RythmRPG
+{
+    public enum GameState
+    {
         /// <summary>
         /// The start menu
         /// </summary>

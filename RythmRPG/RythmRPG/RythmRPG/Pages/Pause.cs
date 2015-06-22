@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.Pages {
-    public class Pause : Page{
+namespace RythmRPG.Pages
+{
+    public class Pause : Page
+    {
         /// <summary>
         /// Gets or sets the main image.
         /// </summary>
@@ -38,7 +40,8 @@ namespace RythmRPG.Pages {
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.GameMenu = new Sprite(10 * Game1.UnitX, 12 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
             this.Restart = new Sprite(10 * Game1.UnitX, 9 * Game1.UnitY, 12 * Game1.UnitX, 2 * Game1.UnitY);
@@ -48,7 +51,8 @@ namespace RythmRPG.Pages {
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "Pause/Pause");
             this.GameMenu.LoadContent(content, "Pause/GameMenu2");
             this.Restart.LoadContent(content, "Pause/Restart");
@@ -61,23 +65,28 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
+            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
+            {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
-                if (isOver(mouse, Resume)) {// Clique sur Resume
+                if (isOver(mouse, Resume))
+                {// Clique sur Resume
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.MusicPlaying;
                     MusicPlaying.output.Play();
                 }
-                else if (isOver(mouse, GameMenu)) {// Clique sur GameMenu
+                else if (isOver(mouse, GameMenu))
+                {// Clique sur GameMenu
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Play();
                     MusicPlaying.output.Dispose();
                     MusicPlaying.output = null;
                     Game1.GameState = GameState.GameMenu;
                 }
-                else if (isOver(mouse, Restart)) {// Clique sur Restart
+                else if (isOver(mouse, Restart))
+                {// Clique sur Restart
                     StartMenu.EffectClick.Play();
                     MusicPlaying musicPlaying = new MusicPlaying();
                     musicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
@@ -92,7 +101,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.GameMenu.Draw(spriteBatch, gameTime);
             this.Restart.Draw(spriteBatch, gameTime);

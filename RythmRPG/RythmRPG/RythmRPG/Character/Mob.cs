@@ -27,7 +27,7 @@ namespace RythmRPG.Character
             int difficulty = 1;
             Random rand = new Random();
 
-            switch(diff)
+            switch (diff)
             {
                 case Difficulty.Casual:
                     difficulty = 1;
@@ -62,7 +62,7 @@ namespace RythmRPG.Character
             int damageDealt = this.Attack;
             int resistance = character.Defense;
 
-            if(character.skills.Contains(Skills.DefenseBoost))
+            if (character.skills.Contains(Skills.DefenseBoost))
             {
                 resistance += 3;
             }
@@ -70,7 +70,7 @@ namespace RythmRPG.Character
             damageDealt -= resistance;
             damageDealt += (int)Math.Floor(1.1 * this.Attack);
 
-            if(damageDealt < 0)
+            if (damageDealt < 0)
             {
                 damageDealt = 0;
             }
@@ -86,7 +86,7 @@ namespace RythmRPG.Character
         {
             Random rand = new Random();
 
-            switch(rand.Next(4))
+            switch (rand.Next(4))
             {
                 case 0:
                     this.sprites.Load(content, "Spritesheet/Mob/Mob_Witch_Idle", "Spritesheet/Mob/Mob_Witch_Attack", 2, 4, 10);
@@ -112,7 +112,7 @@ namespace RythmRPG.Character
         public override int giveXP(int nbInput, Difficulty difficulty)
         {
             int diff;
-            switch(difficulty)
+            switch (difficulty)
             {
                 case Difficulty.Casual:
                     diff = 6;

@@ -249,7 +249,7 @@ namespace RythmRPG.Pages
             string wavFilePath = Game1.CurrentSelectedWavFile;
             this.SSNotes = new SortedSet<double>[Chart.LaneNumber];//raw(not scaled)
             this.SSNotes2 = new SortedSet<double>[Chart.LaneNumber];//scaled
-            
+
             for (int i = 0; i < Chart.LaneNumber; i++)
             {
                 this.SSNotes[i] = new SortedSet<double>();

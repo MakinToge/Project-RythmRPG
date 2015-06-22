@@ -10,7 +10,6 @@ namespace RythmRPG
     [Serializable]
     public class Characters
     {
-
         /// <summary>
         /// The number max characters
         /// </summary>

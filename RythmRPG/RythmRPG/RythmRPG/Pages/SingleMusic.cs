@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RythmRPG.Pages {
-    public class SingleMusic : Page{
-
-
+namespace RythmRPG.Pages
+{
+    public class SingleMusic : Page
+    {
         /// <summary>
         /// Gets or sets the main image.
         /// </summary>
@@ -99,7 +99,8 @@ namespace RythmRPG.Pages {
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
@@ -118,7 +119,7 @@ namespace RythmRPG.Pages {
 
             this.SelectedDifficulty = 0;
 
-            this.NotPlay = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
+            this.NotPlay = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.Play = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.ChooseMusic = new Sprite(11 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.WaitPlease = new TextSprite(12 * Game1.UnitX, 6 * Game1.UnitY, "It might take some time", Color.Black);
@@ -127,7 +128,8 @@ namespace RythmRPG.Pages {
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "SingleMusic/SingleMusic");
             this.Back.LoadContent(content, "Options/Back");
 
@@ -142,7 +144,7 @@ namespace RythmRPG.Pages {
             this.Play.LoadContent(content, "SingleMusic/Play!");
             this.ChooseMusic.LoadContent(content, "SingleMusic/ChooseMusic");
             this.WaitPlease.LoadContent(content, "Arial16");
-            
+
         }
         /// <summary>
         /// Handles the input.
@@ -151,31 +153,37 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
             if (currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && previousMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
             {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
                 string choosedFile = "";
-                if (isOver(mouse, Back)) {
+                if (isOver(mouse, Back))
+                {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
-                else if (isOver(mouse, Casual[0])) {
+                else if (isOver(mouse, Casual[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 0;
                     Game1.Difficulty = Difficulty.Casual;
                 }
-                else if (isOver(mouse, Veteran[0])) {
+                else if (isOver(mouse, Veteran[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 1;
                     Game1.Difficulty = Difficulty.Veteran;
                 }
-                else if (isOver(mouse, GodLike[0])) {
+                else if (isOver(mouse, GodLike[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.SelectedDifficulty = 2;
                     Game1.Difficulty = Difficulty.GodLike;
                 }
-                else if (isOver(mouse, ChooseMusic)) {//Clique sur Choose Music
+                else if (isOver(mouse, ChooseMusic))
+                {//Clique sur Choose Music
                     StartMenu.EffectClick.Play();
 
                     OpenFileDialog open = new System.Windows.Forms.OpenFileDialog();
@@ -184,25 +192,26 @@ namespace RythmRPG.Pages {
                     if (open.ShowDialog() != DialogResult.OK) return;
                     choosedFile = open.FileName;
                     string wavFile;
-                    Resampler.Resampling(choosedFile, Game1.WavFileDirectory ,Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
+                    Resampler.Resampling(choosedFile, Game1.WavFileDirectory, Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
                     //remplace bouton play
                     this.IsMusicChosen = true;
 
                     Game1.CurrentSelectedWavFile = wavFile;
                 }
-                else if (isOver(mouse, Play)) {// Clique sur Play!
+                else if (isOver(mouse, Play))
+                {// Clique sur Play!
                     if (Game1.CurrentSelectedWavFile == "") return;
-                    
+
                     StartMenu.EffectClick.Play();
                     StartMenu.MainTheme.Stop();
                     Game1.GameState = GameState.MusicPlaying;
-                    
+
                     this.IsMusicChosen = false;
 
                     //Charge le jeu
                     this.MusicPlaying.LoadGame();
                     this.MusicPlaying.LoadDataCharacter(Game1.characters.getSelectedCharacter());
-                    
+
                 }
             }
         }
@@ -212,7 +221,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
 
@@ -220,22 +230,27 @@ namespace RythmRPG.Pages {
             this.Veteran[0].Draw(spriteBatch, gameTime);
             this.GodLike[0].Draw(spriteBatch, gameTime);
 
-            if (this.SelectedDifficulty == 0) {
+            if (this.SelectedDifficulty == 0)
+            {
                 this.Casual[1].Draw(spriteBatch, gameTime);
             }
-            else if (this.SelectedDifficulty == 1) {
+            else if (this.SelectedDifficulty == 1)
+            {
                 this.Veteran[1].Draw(spriteBatch, gameTime);
             }
-            else if (this.SelectedDifficulty == 2) {
+            else if (this.SelectedDifficulty == 2)
+            {
                 this.GodLike[1].Draw(spriteBatch, gameTime);
             }
 
             this.ChooseMusic.Draw(spriteBatch, gameTime);
 
-            if (IsMusicChosen) {
+            if (IsMusicChosen)
+            {
                 this.Play.Draw(spriteBatch, gameTime);
             }
-            else {
+            else
+            {
                 this.WaitPlease.Draw(spriteBatch, gameTime);
                 this.NotPlay.Draw(spriteBatch, gameTime);
             }
@@ -252,7 +267,7 @@ namespace RythmRPG.Pages {
                 tmp.setPosition(new Vector2(23.5f * Game1.UnitX, 4 * Game1.UnitY));
                 tmp.setScale(2);
             }
-            tmp.Draw(spriteBatch); 
+            tmp.Draw(spriteBatch);
         }
     }
 }

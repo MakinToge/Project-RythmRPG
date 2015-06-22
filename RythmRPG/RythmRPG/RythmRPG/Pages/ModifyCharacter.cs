@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.Pages {
-    public class ModifyCharacter : Page{
+namespace RythmRPG.Pages
+{
+    public class ModifyCharacter : Page
+    {
         /// <summary>
         /// Gets or sets the main image.
         /// </summary>
@@ -168,7 +170,8 @@ namespace RythmRPG.Pages {
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
@@ -197,7 +200,8 @@ namespace RythmRPG.Pages {
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "ModifyCharacter/Custom");
             this.Back.LoadContent(content, "Options/Back");
             this.Cancel.LoadContent(content, "ModifyCharacter/Cancel");
@@ -224,17 +228,21 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
             PlayableCharacter character = Game1.characters.getSelectedCharacter();
             Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
             this.MouseRectangle = mouse;
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
+            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
+            {
 
-                if (isOver(mouse, Back)) {
+                if (isOver(mouse, Back))
+                {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.CharacterManagement;
                 }
-                else if (isOver(mouse, UpgradeVitality) && IsUpgradable()) {
+                else if (isOver(mouse, UpgradeVitality) && IsUpgradable())
+                {
                     StartMenu.EffectClick.Play();
                     this.VitalityPlus += 1;
                     this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
@@ -242,21 +250,24 @@ namespace RythmRPG.Pages {
                     this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
                     this.HP.Text = (character.Level * (character.Vitality + this.VitalityPlus) + 10).ToString();
                 }
-                else if (isOver(mouse, UpgradeAttack) && IsUpgradable()) {
+                else if (isOver(mouse, UpgradeAttack) && IsUpgradable())
+                {
                     StartMenu.EffectClick.Play();
                     this.AttackPlus += 1;
                     this.Strength.Text = (character.Attack + this.AttackPlus).ToString();
                     this.UsedStatPoints += 1;
                     this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
                 }
-                else if (isOver(mouse, UpgradeDefense) && IsUpgradable()) {
+                else if (isOver(mouse, UpgradeDefense) && IsUpgradable())
+                {
                     StartMenu.EffectClick.Play();
                     this.DefensePlus += 1;
                     this.Endurance.Text = (character.Defense + this.DefensePlus).ToString();
                     this.UsedStatPoints += 1;
                     this.StatsPoints.Text = (character.statPoints - this.UsedStatPoints).ToString();
                 }
-                else if (isOver(mouse, ResetStatsPoints)) {
+                else if (isOver(mouse, ResetStatsPoints))
+                {
                     StartMenu.EffectClick.Play();
 
                     if (character.respec())
@@ -269,7 +280,8 @@ namespace RythmRPG.Pages {
 
                     this.LoadDataCharacter(character);
                 }
-                else if (isOver(mouse, Cancel)) {
+                else if (isOver(mouse, Cancel))
+                {
                     StartMenu.EffectClick.Play();
                     this.AttackPlus = 0;
                     this.DefensePlus = 0;
@@ -282,7 +294,8 @@ namespace RythmRPG.Pages {
                     this.StatsPoints.Text = character.statPoints.ToString();
                     this.HP.Text = character.Health.ToString();
                 }
-                else if (isOver(mouse, Confirm)) {
+                else if (isOver(mouse, Confirm))
+                {
                     StartMenu.EffectClick.Play();
                     character.addAttack(this.AttackPlus);
                     character.addDefense(this.DefensePlus);
@@ -304,7 +317,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             PlayableCharacter character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
@@ -328,8 +342,9 @@ namespace RythmRPG.Pages {
             this.Gold.Draw(spriteBatch, gameTime);
             this.Vitality.Draw(spriteBatch, gameTime);
 
-            
-            if (isOver(this.MouseRectangle, ResetStatsPoints)) {
+
+            if (isOver(this.MouseRectangle, ResetStatsPoints))
+            {
                 this.ExplainResetStats.Draw(spriteBatch, gameTime);
             }
         }
@@ -338,7 +353,8 @@ namespace RythmRPG.Pages {
         /// Loads the data character.
         /// </summary>
         /// <param name="character">The character.</param>
-        public void LoadDataCharacter(PlayableCharacter character) {
+        public void LoadDataCharacter(PlayableCharacter character)
+        {
 
             this.Name.Text = character.Name;
             this.Level.Text = character.Level.ToString();
@@ -353,8 +369,10 @@ namespace RythmRPG.Pages {
         /// Determines whether this instance is upgradable.
         /// </summary>
         /// <returns></returns>
-        public bool IsUpgradable() {
-            if ( this.UsedStatPoints < Game1.characters.getSelectedCharacter().statPoints) {
+        public bool IsUpgradable()
+        {
+            if (this.UsedStatPoints < Game1.characters.getSelectedCharacter().statPoints)
+            {
                 return true;
             }
             return false;

@@ -1,6 +1,7 @@
 using System;
 
-namespace RythmRPG {
+namespace RythmRPG
+{
 #if WINDOWS || XBOX
     static class Program
     {

@@ -14,11 +14,13 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace RythmRPG {
+namespace RythmRPG
+{
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game {
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
         /// <summary>
         /// The graphics
         /// </summary>
@@ -249,14 +251,15 @@ namespace RythmRPG {
         /// The modify character.
         /// </value>
         public ModifyCharacter ModifyCharacter { get; set; }
-        public Game1() {
+        public Game1()
+        {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = DEFAULT_WINDOWS_WIDTH;
             graphics.PreferredBackBufferHeight = DEFAULT_WINDOWS_HEIGHT;
             Content.RootDirectory = "Content";
             content = Content;
-            
+
 
             Width = DEFAULT_WINDOWS_WIDTH;
             Height = DEFAULT_WINDOWS_HEIGHT;
@@ -275,7 +278,8 @@ namespace RythmRPG {
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
-        protected override void Initialize() {
+        protected override void Initialize()
+        {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
             GameState = RythmRPG.GameState.StartMenu;
@@ -292,7 +296,7 @@ namespace RythmRPG {
             this.SingleMusic.Initialize();
             this.PlaylistChallenge = new PlaylistChallenge();
             this.PlaylistChallenge.Initialize();
-            this.Victory = new AfterGame("Victory","You win XX XP");
+            this.Victory = new AfterGame("Victory", "You win XX XP");
             this.Victory.Initialize();
             this.SongVictory = new SongVictory();
             this.SongVictory.Initialize();
@@ -322,7 +326,8 @@ namespace RythmRPG {
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected override void LoadContent() {
+        protected override void LoadContent()
+        {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -344,8 +349,8 @@ namespace RythmRPG {
             this.MusicPlaying.LoadContent(this.Content);
             this.ModifyCharacter.LoadContent(this.Content);
 
-            
-            
+
+
             //Inputs
             this.CurrentKeyBoardState = Keyboard.GetState();
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
@@ -357,7 +362,8 @@ namespace RythmRPG {
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
         /// </summary>
-        protected override void UnloadContent() {
+        protected override void UnloadContent()
+        {
             // TODO: Unload any non ContentManager content here
         }
 
@@ -366,7 +372,8 @@ namespace RythmRPG {
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime) {
+        protected override void Update(GameTime gameTime)
+        {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -378,7 +385,8 @@ namespace RythmRPG {
             this.CurrentKeyBoardState = Keyboard.GetState();
 
             // TODO: Add your update logic here
-            switch (GameState) {
+            switch (GameState)
+            {
                 case GameState.StartMenu:
                     this.StartMenu.HandleInput(this.PreviousKeyBoardState, this.CurrentKeyBoardState, this.PreviousMouseState, this.CurrentMouseState);
                     break;
@@ -434,7 +442,8 @@ namespace RythmRPG {
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime) {
+        protected override void Draw(GameTime gameTime)
+        {
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
@@ -442,7 +451,8 @@ namespace RythmRPG {
             this.spriteBatch.Draw(this.background, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 0.70f, SpriteEffects.None, 0);
             this.spriteBatch.End();
 
-            switch (GameState) {
+            switch (GameState)
+            {
                 case GameState.StartMenu:
                     this.StartMenu.Draw(spriteBatch, gameTime);
                     break;
@@ -492,7 +502,7 @@ namespace RythmRPG {
 
         protected override void OnExiting(object sender, EventArgs args)
         {
-            if(saveFileName != null)
+            if (saveFileName != null)
             {
                 IFormatter format = new BinaryFormatter();
                 Stream stream;
@@ -522,7 +532,7 @@ namespace RythmRPG {
 
         public static void LoadCharacters()
         {
-            
+
             IFormatter formatter = new BinaryFormatter();
             try
             {
@@ -536,7 +546,7 @@ namespace RythmRPG {
             }
 
             characters.LoadContent(content);
-            for(int i=0;i<4;i++)
+            for (int i = 0; i < 4; i++)
             {
                 string tmp = characters.characterArray[i].Name;
             }

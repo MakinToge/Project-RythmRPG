@@ -38,15 +38,16 @@ namespace RythmRPG
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="line">The line.</param>
-        public Note(double time, int line):base()
+        public Note(double time, int line)
+            : base()
         {
-            
+
             this.Time = time;
             this.Line = line;
 
             this.Direction = new Vector2(1, 0);//x = 1 (left)
-            this.Position = new Vector2(0.5f*Game1.UnitX, (12 + line) * Game1.UnitY);
-            this.Size = new Vector2(Game1.UnitX,Game1.UnitY);
+            this.Position = new Vector2(0.5f * Game1.UnitX, (12 + line) * Game1.UnitY);
+            this.Size = new Vector2(Game1.UnitX, Game1.UnitY);
             this.Speed = DEFAULT_BASE_SPEED + DEFAULT_SPEED_COEFFICIENT * (float)Game1.Difficulty;
 
             //Load png

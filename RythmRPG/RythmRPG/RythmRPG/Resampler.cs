@@ -24,7 +24,8 @@ namespace RythmRPG
         /// <param name="outFilePath">The out file path.</param>
         static public void Resampling(string inFilePath, string wavDirectory, int outRate, out string outFilePath)
         {
-            if(MusicPlaying.output != null){
+            if (MusicPlaying.output != null)
+            {
                 MusicPlaying.output.Stop();
                 MusicPlaying.output.Dispose();
                 MusicPlaying.output = null;
@@ -34,7 +35,7 @@ namespace RythmRPG
                 MusicPlaying.stream.Dispose();
                 MusicPlaying.stream = null;
             }
-            
+
 
             if (!Directory.Exists(wavDirectory))
             {
@@ -48,7 +49,7 @@ namespace RythmRPG
                 using (var resampler = new MediaFoundationResampler(reader, outFormat))
                 {
                     resampler.ResamplerQuality = 60;
-                    if(!File.Exists(outFilePath))
+                    if (!File.Exists(outFilePath))
                     {
                         WaveFileWriter.CreateWaveFile(outFilePath, resampler);
                     }

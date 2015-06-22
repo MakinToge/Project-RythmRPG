@@ -33,7 +33,7 @@ namespace RythmRPG.Character
         /// Number of frames per line
         /// </summary>
         private int frameColCount;
-        
+
         /// <summary>
         /// The idle animation
         /// </summary>
@@ -81,7 +81,8 @@ namespace RythmRPG.Character
         /// True if the character is attacking, which changes the animation
         /// </summary>
         private bool isAttacking = false;
-        public bool IsAttacking {
+        public bool IsAttacking
+        {
             get { return isAttacking; }
             set
             {
@@ -158,7 +159,7 @@ namespace RythmRPG.Character
             {
                 this.frameCol++;
 
-                if(this.frameCol == this.frameColCount)
+                if (this.frameCol == this.frameColCount)
                 {
                     this.frameCol = 0;
                     this.frameLine++;
@@ -167,7 +168,7 @@ namespace RythmRPG.Character
                     {
                         this.frameLine = 0;
 
-                        if(this.isAttacking)    // The attack animation is over
+                        if (this.isAttacking)    // The attack animation is over
                         {
                             this.IsAttacking = false;
                         }

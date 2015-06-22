@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.Pages {
-    public class CharacterManagement : Page{
+namespace RythmRPG.Pages
+{
+    public class CharacterManagement : Page
+    {
         /// <summary>
         /// The number of skills
         /// </summary>
@@ -172,14 +174,15 @@ namespace RythmRPG.Pages {
         /// The tab selected
         /// </summary>
         private int tabSelected;
-	    public int TabSelected
-	    {
-		    get { return tabSelected;}
-		    set { 
+        public int TabSelected
+        {
+            get { return tabSelected; }
+            set
+            {
                 tabSelected = value;
                 this.SelectedCharacter = value;
             }
-	    }
+        }
         /// <summary>
         /// Gets or sets the modify character page.
         /// </summary>
@@ -192,7 +195,8 @@ namespace RythmRPG.Pages {
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
@@ -216,8 +220,8 @@ namespace RythmRPG.Pages {
             this.SkillList = new TextSprite[NB_SKILLS];
             for (int i = 0; i < NB_SKILLS; i++)
             {
-                this.SkillList[i] = new TextSprite(25 * Game1.UnitX, (7f * Game1.UnitY) + i*30, "", Color.DarkSlateGray);
-                this.SkillList[i].Text = ((Skills) i).ToString();
+                this.SkillList[i] = new TextSprite(25 * Game1.UnitX, (7f * Game1.UnitY) + i * 30, "", Color.DarkSlateGray);
+                this.SkillList[i].Text = ((Skills)i).ToString();
             }
             this.ToolTip = new TextSprite(25 * Game1.UnitX, (14f * Game1.UnitY), "Left click to activate,\r\nRight click to deactivate !", Color.Black);
             this.Name = new TextSprite(15 * Game1.UnitX, 3.3f * Game1.UnitY, "", Color.Black);
@@ -232,7 +236,7 @@ namespace RythmRPG.Pages {
             this.StatsPoints = new TextSprite(8 * Game1.UnitX, 11.2f * Game1.UnitY, "", Color.Black);
             this.Gold = new TextSprite(6 * Game1.UnitX, 12.2f * Game1.UnitY, "", Color.Black);
 
-            this.Modify = new Sprite(2 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
+            this.Modify = new Sprite(2 * Game1.UnitX, 13 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
 
             this.TabSelected = 0;
         }
@@ -241,7 +245,8 @@ namespace RythmRPG.Pages {
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "CharacterManagement/CharacterManagement");
             this.Back.LoadContent(content, "Options/Back");
             this.Modify.LoadContent(content, "CharacterManagement/ModifyCharacter");
@@ -280,17 +285,21 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
             this.Character = Game1.characters.getSelectedCharacter();
 
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
+            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
+            {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
-                if (isOver(mouse, Back)) {
+                if (isOver(mouse, Back))
+                {
                     StartMenu.EffectBack.Play();
                     Game1.GameState = GameState.GameMenu;
                 }
-                else if (isOver(mouse, TabMedium[0])) {
+                else if (isOver(mouse, TabMedium[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 0;
                     Game1.characters.selectedCharacter = 0;
@@ -300,7 +309,8 @@ namespace RythmRPG.Pages {
                     }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
-                else if (isOver(mouse, TabTank[0])) {
+                else if (isOver(mouse, TabTank[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 1;
                     Game1.characters.selectedCharacter = 1;
@@ -310,7 +320,8 @@ namespace RythmRPG.Pages {
                     }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
-                else if (isOver(mouse, TabDPS[0])) {
+                else if (isOver(mouse, TabDPS[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 2;
                     Game1.characters.selectedCharacter = 2;
@@ -320,7 +331,8 @@ namespace RythmRPG.Pages {
                     }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
-                else if (isOver(mouse, TabCustom[0])) {
+                else if (isOver(mouse, TabCustom[0]))
+                {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 3;
                     Game1.characters.selectedCharacter = 3;
@@ -330,7 +342,8 @@ namespace RythmRPG.Pages {
                     }
                     this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
-                else if (isOver(mouse, Modify)) {
+                else if (isOver(mouse, Modify))
+                {
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.ModifyCharacter;
                     this.ModifyCharacter.LoadDataCharacter(Game1.characters.getSelectedCharacter());
@@ -339,7 +352,7 @@ namespace RythmRPG.Pages {
                 {
                     for (int i = 0; i < NB_SKILLS; i++)
                     {
-                        if(this.SkillList[i].isOver(currentMouseState))
+                        if (this.SkillList[i].isOver(currentMouseState))
                         {
                             for (int j = 0; j < NB_SKILLS; j++)
                             {
@@ -383,7 +396,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.Character = Game1.characters.getSelectedCharacter();
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Back.Draw(spriteBatch, gameTime);
@@ -395,16 +409,20 @@ namespace RythmRPG.Pages {
             this.TabCustom[0].Draw(spriteBatch, gameTime);
 
             int tab = this.TabSelected;
-            if (tab == 0) {
+            if (tab == 0)
+            {
                 this.TabMedium[1].Draw(spriteBatch, gameTime);
             }
-            else if (tab == 1) {
+            else if (tab == 1)
+            {
                 this.TabTank[1].Draw(spriteBatch, gameTime);
             }
-            else if (tab == 2) {
+            else if (tab == 2)
+            {
                 this.TabDPS[1].Draw(spriteBatch, gameTime);
             }
-            else if (tab == 3) {
+            else if (tab == 3)
+            {
                 this.TabCustom[1].Draw(spriteBatch, gameTime);
                 this.Modify.Draw(spriteBatch, gameTime);
             }
@@ -448,12 +466,15 @@ namespace RythmRPG.Pages {
         /// Loads the data character.
         /// </summary>
         /// <param name="character">The character.</param>
-        public void LoadDataCharacter(PlayableCharacter character) {
+        public void LoadDataCharacter(PlayableCharacter character)
+        {
             this.Name.Text = character.Name;
-            if (character.NbRestart == 0) {
+            if (character.NbRestart == 0)
+            {
                 this.Level.Text = character.Level.ToString();
             }
-            else {
+            else
+            {
                 this.Level.Text = string.Format("{0} ({1})", character.Level, character.NbRestart);
             }
             this.Endurance.Text = character.Defense.ToString();

@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.Pages {
-    public class PlaylistDefeat : AfterGame{
+namespace RythmRPG.Pages
+{
+    public class PlaylistDefeat : AfterGame
+    {
         /// <summary>
         /// Gets or sets the skip.
         /// </summary>
@@ -29,22 +31,25 @@ namespace RythmRPG.Pages {
         /// <param name="assetNameMainImage">The asset name main image.</param>
         /// <param name="message">The message.</param>
         public PlaylistDefeat(string assetNameMainImage, string message)
-            : base(assetNameMainImage, message) {
+            : base(assetNameMainImage, message)
+        {
         }
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             base.Initialize();
             this.Skip = new Sprite(22 * Game1.UnitX, 12 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.Retry = new Sprite(22 * Game1.UnitX, 6 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
-            
+
         }
         /// <summary>
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             base.LoadContent(content);
             this.Skip.LoadContent(content, "AfterGame/SkipMusic");
             this.Retry.LoadContent(content, "AfterGame/RetryMusic");
@@ -56,7 +61,8 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
             base.HandleInput(previousKeyboardState, currentKeyboardState, previousMouseState, currentMouseState);
         }
 
@@ -65,7 +71,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.GameMenu.Draw(spriteBatch, gameTime);
             this.Xp.Draw(spriteBatch, gameTime);

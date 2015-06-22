@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.Pages {
-    public class AfterGame : Page{
+namespace RythmRPG.Pages
+{
+    public class AfterGame : Page
+    {
         /// <summary>
         /// Gets or sets the main image.
         /// </summary>
@@ -50,7 +52,7 @@ namespace RythmRPG.Pages {
         /// The game menu.
         /// </value>
         public Sprite GameMenu { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
@@ -106,14 +108,16 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="assetNameMainImage">The asset name main image.</param>
         /// <param name="message">The message.</param>
-        public AfterGame(string assetNameMainImage, string message) {
+        public AfterGame(string assetNameMainImage, string message)
+        {
             this.AssetNameMainImage = assetNameMainImage;
             this.Message = message;
         }
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.PlayAgain = new Sprite(22 * Game1.UnitX, 6 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.GameMenu = new Sprite(22 * Game1.UnitX, 9 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
@@ -131,7 +135,8 @@ namespace RythmRPG.Pages {
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "AfterGame/" + this.AssetNameMainImage);
             this.PlayAgain.LoadContent(content, "AfterGame/PlayAgain");
             this.GameMenu.LoadContent(content, "AfterGame/GameMenu");
@@ -152,8 +157,10 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
+            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
+            {
                 Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
                 if (isOver(mouse, PlayAgain))
@@ -187,7 +194,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.PlayAgain.Draw(spriteBatch, gameTime);
             this.GameMenu.Draw(spriteBatch, gameTime);
@@ -220,7 +228,8 @@ namespace RythmRPG.Pages {
         /// Loads the data character.
         /// </summary>
         /// <param name="character">The character.</param>
-        public void LoadDataCharacter(PlayableCharacter character) {
+        public void LoadDataCharacter(PlayableCharacter character)
+        {
             this.Type.Text = character.Name;
             this.Name.Text = character.Name;
             if (character.NbRestart == 0)

@@ -61,9 +61,9 @@ namespace RythmRPG
         /// <value>
         /// The lane number.
         /// </value>
-        public static  int LaneNumber
+        public static int LaneNumber
         {
-            get { return 3+(int)Game1.Difficulty; }
+            get { return 3 + (int)Game1.Difficulty; }
         }
 
 
@@ -115,7 +115,7 @@ namespace RythmRPG
                 AddBeatsToLane(sSBeats, 0, beats, 0, EASY_LANE0_SUBBAND_UPPERLIMIT);
                 AddBeatsToLane(sSBeats, 1, beats, EASY_LANE0_SUBBAND_UPPERLIMIT, EASY_LANE1_SUBBAND_UPPERLIMIT);
                 AddBeatsToLane(sSBeats, 2, beats, EASY_LANE1_SUBBAND_UPPERLIMIT, AudioAnalyser.SubbandsNumber);
-                
+
             }
             else if (difficulty == Difficulty.Veteran)
             {

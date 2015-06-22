@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG.Pages {
-    public class StartMenu : Page{
+namespace RythmRPG.Pages
+{
+    public class StartMenu : Page
+    {
         /// <summary>
         /// Gets or sets the main image.
         /// </summary>
@@ -140,33 +142,37 @@ namespace RythmRPG.Pages {
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             this.MainImage = new Sprite(0, 0, Game1.Width, Game1.Height);
             this.Character = new CharacterSprites(new Vector2(19 * Game1.UnitX, 5 * Game1.UnitY), 0, 2.5f, 0);
             this.Start = new Sprite(3 * Game1.UnitX, 3 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
             this.ExitButton = new Sprite(3 * Game1.UnitX, 6 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
-            this.Options = new Sprite(3 * Game1.UnitX, 9 * Game1.UnitY, Game1.ButtonWidth, 2* Game1.ButtonHeight);
+            this.Options = new Sprite(3 * Game1.UnitX, 9 * Game1.UnitY, Game1.ButtonWidth, 2 * Game1.ButtonHeight);
             this.SaveSprites = new Sprite[Save.NB_SAVE];
-            for (int i = 0; i < Save.NB_SAVE; i++) {
+            for (int i = 0; i < Save.NB_SAVE; i++)
+            {
                 this.SaveSprites[i] = new Sprite(5 * Game1.UnitX, 13 * Game1.UnitY, 4 * Game1.UnitX, Game1.UnitY);
             }
             this.LeftSave = new Sprite(3 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
             this.RightSave = new Sprite(10 * Game1.UnitX, 13 * Game1.UnitY, Game1.UnitX, Game1.UnitY);
-            
+
         }
         /// <summary>
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
+        public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
+        {
             this.MainImage.LoadContent(content, "StartMenu/StartMenu");
             this.Start.LoadContent(content, "StartMenu/Start");
             this.ExitButton.LoadContent(content, "StartMenu/Exit");
             this.Options.LoadContent(content, "StartMenu/Options");
             this.LeftSave.LoadContent(content, "Options/ArrowLeft");
             this.RightSave.LoadContent(content, "Options/ArrowRight");
-            for (int i = 0; i < Save.NB_SAVE; i++) {
-                this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i+1));
+            for (int i = 0; i < Save.NB_SAVE; i++)
+            {
+                this.SaveSprites[i].LoadContent(content, "StartMenu/Save" + (i + 1));
             }
             string name = "Knight";
             this.Character.Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
@@ -202,28 +208,35 @@ namespace RythmRPG.Pages {
         /// <param name="currentKeyboardState">State of the current keyboard.</param>
         /// <param name="previousMouseState">State of the previous mouse.</param>
         /// <param name="currentMouseState">State of the current mouse.</param>
-        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState) {
-            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) {
-                Rectangle mouse = new Rectangle(currentMouseState.X,currentMouseState.Y ,10,10);
+        public override void HandleInput(Microsoft.Xna.Framework.Input.KeyboardState previousKeyboardState, Microsoft.Xna.Framework.Input.KeyboardState currentKeyboardState, Microsoft.Xna.Framework.Input.MouseState previousMouseState, Microsoft.Xna.Framework.Input.MouseState currentMouseState)
+        {
+            if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
+            {
+                Rectangle mouse = new Rectangle(currentMouseState.X, currentMouseState.Y, 10, 10);
 
-                if (isOver(mouse, Options)) {
+                if (isOver(mouse, Options))
+                {
                     EffectClick.Play();
                     Game1.GameState = GameState.Options;
                 }
-                else if (isOver(mouse, Start)) {
+                else if (isOver(mouse, Start))
+                {
                     EffectClick.Play();
                     Game1.GameState = GameState.GameMenu;
                     Game1.saveFileName = string.Format("save{0}.sav", Game1.Save.SelectedSave);
                     Game1.LoadCharacters();
                 }
-                else if (isOver(mouse, ExitButton)) {
+                else if (isOver(mouse, ExitButton))
+                {
                     Game1.GameState = GameState.Exit;
                 }
-                else if (isOver(mouse, LeftSave) && Game1.Save.SelectedSave > 0) {
+                else if (isOver(mouse, LeftSave) && Game1.Save.SelectedSave > 0)
+                {
                     EffectClick.Play();
                     Game1.Save.SelectedSave -= 1;
                 }
-                else if (isOver(mouse, RightSave) && Game1.Save.SelectedSave < Save.NB_SAVE - 1) {
+                else if (isOver(mouse, RightSave) && Game1.Save.SelectedSave < Save.NB_SAVE - 1)
+                {
                     EffectClick.Play();
                     Game1.Save.SelectedSave += 1;
                 }
@@ -235,7 +248,8 @@ namespace RythmRPG.Pages {
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
         /// <param name="gameTime">The game time.</param>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime) {
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.GameTime gameTime)
+        {
             this.MainImage.Draw(spriteBatch, gameTime);
             this.Start.Draw(spriteBatch, gameTime);
             this.ExitButton.Draw(spriteBatch, gameTime);

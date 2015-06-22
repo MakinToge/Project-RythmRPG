@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RythmRPG {
-    public class Save {
+namespace RythmRPG
+{
+    public class Save
+    {
         /// <summary>
         /// The number of save
         /// </summary>
@@ -27,9 +29,11 @@ namespace RythmRPG {
         /// <summary>
         /// Initializes a new instance of the <see cref="Save"/> class.
         /// </summary>
-        public Save() {
+        public Save()
+        {
             CharactersArray = new Characters[NB_SAVE];
-            for (int i = 0; i < NB_SAVE; i++) {
+            for (int i = 0; i < NB_SAVE; i++)
+            {
                 this.CharactersArray[i] = new Characters();
             }
             this.SelectedSave = 0;

@@ -119,8 +119,8 @@ namespace RythmRPG.Character
             int damageDealt = this.Attack;
             int resistance = character.Defense;
             this.hitCombo++;
-            
-            if(this.uniqueSkill == UniqueSkill.Templar)
+
+            if (this.uniqueSkill == UniqueSkill.Templar)
             {
                 damageDealt = this.Defense;
             }
@@ -140,17 +140,17 @@ namespace RythmRPG.Character
             {
                 Boss boss = (Boss)character;
 
-                if(this.skills.Contains(Skills.AttackMegaBoost))
+                if (this.skills.Contains(Skills.AttackMegaBoost))
                 {
                     damageDealt += 3;
                 }
             }
-            catch(InvalidCastException e)
+            catch (InvalidCastException e)
             {
                 // It's not a boss, nothing more to do
             }
-            
-            if(character.skills.Contains(Skills.DefenseBoost))
+
+            if (character.skills.Contains(Skills.DefenseBoost))
             {
                 resistance += 3;
             }
@@ -162,7 +162,7 @@ namespace RythmRPG.Character
                 damageDealt = 1;
             }
 
-            if(this.uniqueSkill == UniqueSkill.FatalBlow)
+            if (this.uniqueSkill == UniqueSkill.FatalBlow)
             {
                 Random rand = new Random();
                 if (rand.Next(100) <= 5)
@@ -179,7 +179,7 @@ namespace RythmRPG.Character
         /// </summary>
         public override void levelUp()
         {
-            if(this.Level < LEVEL_MAX)  // Prevents going higher than permitted
+            if (this.Level < LEVEL_MAX)  // Prevents going higher than permitted
             {
                 base.levelUp();
 
@@ -188,7 +188,7 @@ namespace RythmRPG.Character
                 this.Attack += this.levelUpStats[this.Level % 3, 1];
                 this.Defense += this.levelUpStats[this.Level % 3, 2];
 
-                if(this.uniqueSkill == UniqueSkill.GoldDigger)  // i.e. the custom character
+                if (this.uniqueSkill == UniqueSkill.GoldDigger)  // i.e. the custom character
                 {
                     this.statPoints += 3;
                 }
@@ -202,7 +202,7 @@ namespace RythmRPG.Character
         /// <param name="nbPoints">Number of points to add</param>
         public override void addVitality(int nbPoints)
         {
-            if(this.statPoints >= nbPoints)
+            if (this.statPoints >= nbPoints)
             {
                 this.Vitality += nbPoints;
                 this.statPoints -= nbPoints;
@@ -243,11 +243,11 @@ namespace RythmRPG.Character
         /// <param name="xp">Amount of experience the player earned</param>
         public void gainXP(int xp)
         {
-            if(this.Level < LEVEL_MAX)
+            if (this.Level < LEVEL_MAX)
             {
                 this.xp += xp;
 
-                if(this.xp > xpLevels[LEVEL_MAX - 2])   // Prevents from going higher than the limit (360 000)
+                if (this.xp > xpLevels[LEVEL_MAX - 2])   // Prevents from going higher than the limit (360 000)
                 {
                     this.xp = xpLevels[LEVEL_MAX - 2];
                 }
@@ -265,7 +265,7 @@ namespace RythmRPG.Character
         /// <returns>True if the character restarted, false if not permitted</returns>
         public bool restart()
         {
-            if(this.Level == LEVEL_MAX)
+            if (this.Level == LEVEL_MAX)
             {
                 this.NbRestart++;
 
