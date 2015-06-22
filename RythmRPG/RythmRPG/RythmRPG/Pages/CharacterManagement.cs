@@ -113,27 +113,31 @@ namespace RythmRPG.Pages {
                 else if (isOver(mouse, TabMedium[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 0;
-                    this.LoadDataCharacter(this.Character);
+                    Game1.characters.selectedCharacter = 0;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabTank[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 1;
-                    this.LoadDataCharacter(this.Character);
+                    Game1.characters.selectedCharacter = 1;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabDPS[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 2;
-                    this.LoadDataCharacter(this.Character);
+                    Game1.characters.selectedCharacter = 2;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, TabCustom[0])) {
                     StartMenu.EffectClick.Play();
                     this.TabSelected = 3;
-                    this.LoadDataCharacter(this.Character);
+                    Game1.characters.selectedCharacter = 3;
+                    this.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
                 else if (isOver(mouse, Modify)) {
                     StartMenu.EffectClick.Play();
                     Game1.GameState = GameState.ModifyCharacter;
-                    this.ModifyCharacter.LoadDataCharacter(this.Character);
+                    this.ModifyCharacter.LoadDataCharacter(Game1.characters.getSelectedCharacter());
                 }
             }
         }
@@ -167,12 +171,20 @@ namespace RythmRPG.Pages {
             }
 
             //Character Data
-            //this.SpriteCharacters[this.SelectedCharacter].DrawFrame(spriteBatch);
             this.LoadDataCharacter(this.Character);
 
-            this.Character.setPosition(new Vector2(12 * Game1.UnitX, 5 * Game1.UnitY));
-            this.Character.setScale(2);
-            this.Character.Draw(spriteBatch);
+            if (this.Character.Name == "Barbarian")
+            {
+                this.Character.setPosition(new Vector2(12 * Game1.UnitX, 5 * Game1.UnitY));
+                this.Character.setScale(2);
+                this.Character.Draw(spriteBatch);
+            }
+            else
+            {
+                this.Character.setPosition(new Vector2(14 * Game1.UnitX, 5 * Game1.UnitY));
+                this.Character.setScale(2);
+                this.Character.Draw(spriteBatch);
+            }
 
             this.Name.Draw(spriteBatch, gameTime);
             this.Level.Draw(spriteBatch, gameTime);

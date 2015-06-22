@@ -49,7 +49,7 @@ namespace RythmRPG.Pages {
             this.ExplainResetStats = this.HP = new TextSprite(22 * Game1.UnitX, 6.2f * Game1.UnitY, "Cost : 100 Gold", Color.Black);
 
             //Character Data
-            this.CharacterSprite = new CharacterSprites(new Vector2(2 * Game1.UnitX, 5 * Game1.UnitY), 0, 2, 0);
+            this.CharacterSprite = new CharacterSprites(new Vector2(4 * Game1.UnitX, 5 * Game1.UnitY), 0, 2, 0);
             this.Name = new TextSprite(15 * Game1.UnitX, 4.2f * Game1.UnitY, "", Color.Black);
             this.Level = new TextSprite(16 * Game1.UnitX, 5.2f * Game1.UnitY, "", Color.Black);
             this.Endurance = new TextSprite(17 * Game1.UnitX, 9.2f * Game1.UnitY, "", Color.Black);

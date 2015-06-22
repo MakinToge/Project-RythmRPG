@@ -312,7 +312,7 @@ namespace RythmRPG {
         {
             if(saveFileName != null)
             {
-                IFormatter format = new BinaryFormatter();
+                /*IFormatter format = new BinaryFormatter();
                 Stream stream;
 
                 try
@@ -326,7 +326,7 @@ namespace RythmRPG {
                 }
 
                 format.Serialize(stream, characters);
-                stream.Close();
+                stream.Close();*/
             }
 
             base.OnExiting(sender, args);

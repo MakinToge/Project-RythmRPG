@@ -119,8 +119,17 @@ namespace RythmRPG.Pages {
 
             PlayableCharacter tmp = Game1.characters.getSelectedCharacter();
             this.LoadDataCharacter(tmp);
-            tmp.setPosition(new Vector2(16 * Game1.UnitX, 5 * Game1.UnitY));
-            tmp.setScale(2);
+
+            if(tmp.Name == "Barbarian")
+            {
+                tmp.setPosition(new Vector2(13 * Game1.UnitX, 5 * Game1.UnitY));
+                tmp.setScale(2);
+            }
+            else
+            {
+                tmp.setPosition(new Vector2(16 * Game1.UnitX, 5 * Game1.UnitY));
+                tmp.setScale(2);
+            }
             tmp.Draw(spriteBatch);
 
             this.Type.Draw(spriteBatch, gameTime);
