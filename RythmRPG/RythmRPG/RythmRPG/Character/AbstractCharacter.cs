@@ -183,5 +183,16 @@ namespace RythmRPG.Character
         {
             this.sprites.UpdateFrame(elapsed);
         }
+
+        public void prepareForMusic()
+        {
+            this.Health = this.Level * this.Vitality;
+            this.sprites.resetAnimations();
+        }
+
+        public void setOriginBottomLeft()
+        {
+            this.sprites.setOriginBottomLeft();
+        }
     }
 }
