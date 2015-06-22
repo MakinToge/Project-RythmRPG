@@ -195,26 +195,6 @@ namespace RythmRPG {
             this.PreviousKeyBoardState = this.CurrentKeyBoardState;
             this.CurrentKeyBoardState = Keyboard.GetState();
 
-            //A Supprimer (Juste pour tester les pages)
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.A)) {
-                Game1.GameState = RythmRPG.GameState.Defeat;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Z)) {
-                Game1.GameState = RythmRPG.GameState.PlaylistDefeat;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.E)) {
-                Game1.GameState = RythmRPG.GameState.PlaylistVictory;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.R)) {
-                Game1.GameState = RythmRPG.GameState.SongVictory;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.T)) {
-                Game1.GameState = RythmRPG.GameState.Victory;
-            }
-            if (this.CurrentKeyBoardState.IsKeyDown(Keys.Y)) {
-                Game1.GameState = RythmRPG.GameState.Pause;
-            }
-
             // TODO: Add your update logic here
             switch (GameState) {
                 case GameState.StartMenu:

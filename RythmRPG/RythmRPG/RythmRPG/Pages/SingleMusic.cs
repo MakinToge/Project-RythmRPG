@@ -19,6 +19,7 @@ namespace RythmRPG.Pages {
         public Sprite[] GodLike { get; set; }
         public int SelectedDifficulty { get; set; }
         public Sprite Play { get; set; }
+        public Sprite NotPlay { get; set; }
         public Sprite ChooseMusic { get; set; }
         public MusicPlaying MusicPlaying { get; set; }
 
@@ -27,8 +28,16 @@ namespace RythmRPG.Pages {
             this.Back = new Sprite(26 * Game1.UnitX, 16 * Game1.UnitY, 6 * Game1.UnitX, 2 * Game1.UnitY);
 
             this.SpriteCharacters = new CharacterSprites[Characters.NB_MAX_CHARACTERS];
-            for (int i = 0; i < SpriteCharacters.Length; i++) {
-                this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), 0,1.75f,0);
+            for (int i = 0; i < SpriteCharacters.Length; i++)
+            {
+                if (i != 0)
+                {
+                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(23.5f * Game1.UnitX, 4 * Game1.UnitY), 0, 2, 0);
+                }
+                else
+                {
+                    this.SpriteCharacters[i] = new CharacterSprites(new Vector2(21 * Game1.UnitX, 5 * Game1.UnitY), 0, 1.75f, 0);
+                }
             }
 
             this.Casual = new Sprite[2] {
@@ -47,6 +56,7 @@ namespace RythmRPG.Pages {
             this.SelectedDifficulty = 0;
 
             this.Play = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2*Game1.UnitY);
+            this.NotPlay = new Sprite(11 * Game1.UnitX, 14 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
             this.ChooseMusic = new Sprite(11 * Game1.UnitX, 4 * Game1.UnitY, 7 * Game1.UnitX, 2 * Game1.UnitY);
         }
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content) {
@@ -60,6 +70,7 @@ namespace RythmRPG.Pages {
             this.GodLike[0].LoadContent(content, "SingleMusic/GodLike");
             this.GodLike[1].LoadContent(content, "SingleMusic/Selected/GodLike");
 
+            this.NotPlay.LoadContent(content, "SingleMusic/Play!2");
             this.Play.LoadContent(content, "SingleMusic/Play!");
             this.ChooseMusic.LoadContent(content, "SingleMusic/ChooseMusic");
 
@@ -103,6 +114,8 @@ namespace RythmRPG.Pages {
                     choosedFile = open.FileName;
                     string wavFile;
                     Resampler.Resampling(choosedFile, Game1.WavFileDirectory ,Resampler.RESAMPLING_SAMPLE_RATE, out wavFile);
+                    //remplace bouton play
+
                     Game1.CurrentSelectedWavFile = wavFile;
                 }
                 else if (isOver(mouse, Play)) {// Clique sur Play!
@@ -142,7 +155,9 @@ namespace RythmRPG.Pages {
             }
 
             this.ChooseMusic.Draw(spriteBatch, gameTime);
+            
             this.Play.Draw(spriteBatch, gameTime);
+            this.NotPlay.Draw(spriteBatch, gameTime);
 
             this.SpriteCharacters[Game1.Save.CharactersArray[Game1.Save.SelectedSave].SelectCharacter].DrawFrame(spriteBatch);
         }
