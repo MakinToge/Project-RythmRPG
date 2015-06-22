@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RythmRPG.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,15 +19,20 @@ namespace RythmRPG
         private const int HARD_LANE1_SUBBAND_UPPERLIMIT = 6;//3
         private const int HARD_LANE2_SUBBAND_UPPERLIMIT = 9;//3
         private const int HARD_LANE3_SUBBAND_UPPERLIMIT = 12;//4//4
-        static private double minimumTimeInterval = 0.5;
-        static public int LaneNumber = 3;
+        private static double minimumTimeInterval = 0.5;
+        private static int laneNumber;
 
+        public static  int LaneNumber
+        {
+            get { return 3+(int)Game1.Difficulty; }
+        }
+        
 
         static private void AddBeatsToLane(SortedSet<double>[] sSBeats, int laneIndex, List<double>[] beats, int subbandIndexStart, int subbandIndexStop)
         {
 
             int i = subbandIndexStart;
-            double lastTime = 1;
+            double lastTime = 1 + MusicPlaying.LengthSpeedUnit;
             while (i < subbandIndexStop)
             {
                 foreach (double beat in beats[i])
@@ -44,7 +50,6 @@ namespace RythmRPG
         }
         static public SortedSet<double>[] getSetArray(List<double>[] beats, Difficulty difficulty)
         {
-            LaneNumber = (int)Game1.Difficulty + 3;
             minimumTimeInterval = (5 - (int)difficulty) / 8.0;
             SortedSet<double>[] sSBeats = new SortedSet<double>[LaneNumber];
             for (int i = 0; i < LaneNumber; i++)
