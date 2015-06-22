@@ -115,6 +115,8 @@ namespace RythmRPG.Pages {
             foreach (Sprite item in this.Strings) {
                 item.Draw(spriteBatch, gameTime);
             }
+
+            //Console.WriteLine(gameTime.TotalGameTime.TotalMilliseconds);
         }
 
         public void LoadDataCharacter(PlayableCharacter character) {
@@ -201,7 +203,9 @@ namespace RythmRPG.Pages {
         // Specify what you want to happen when the Elapsed event is raised.
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("{0}");
         }
+
+        // gametime.ElapsedGameTime.TotalMilliseconds
     }
 }

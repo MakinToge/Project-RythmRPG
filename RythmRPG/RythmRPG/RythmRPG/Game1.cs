@@ -26,8 +26,8 @@ namespace RythmRPG {
         //Options
         public static GameState GameState;
         public static int SelectedTheme;
-        public static int VolumeMusic = 4;
-        public static int VolumeSound = 4;
+        public static int VolumeMusic = 10;
+        public static int VolumeSound = 10;
         public static int VolumeMenu = 5;
         public static Save Save;
         public static Difficulty Difficulty;

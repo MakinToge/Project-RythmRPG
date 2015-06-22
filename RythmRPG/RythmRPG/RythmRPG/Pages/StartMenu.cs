@@ -19,17 +19,29 @@ namespace RythmRPG.Pages {
         public Sprite ExitButton { get; set; }
         public CharacterSprites Character { get; set; }
 
+        public const float EFFECT_VOLUME_MAX = 1f;
+
+        public const float EFFECT_VOLUME_MIN = 0f;
+
         public const float VOLUME_ON = 0.5f;
        
         public const float VOLUME_OFF = 0f;
 
-        public static SoundEffect EffectClick;
+        public SoundEffect Click;
 
-        public static SoundEffect EffectBack;
+        public static SoundEffectInstance EffectClick;
 
-        public static SoundEffect EffectVictory;
+        public SoundEffect Back;
 
-        public static SoundEffect EffectDefeat;
+        public static SoundEffectInstance EffectBack;
+
+        public SoundEffect Victory;
+
+        public static SoundEffectInstance EffectVictory;
+
+        public SoundEffect Defeat;
+
+        public static SoundEffectInstance EffectDefeat;
        
         public SoundEffect Song;
       
@@ -63,8 +75,21 @@ namespace RythmRPG.Pages {
             this.Character.Load(content, "Spritesheet/Hero/Idle" + name, "Spritesheet/Hero/Attacking" + name, 2, 4, 10);
 
             //Sounds
-            EffectClick = content.Load<SoundEffect>("Sound/click");
-            EffectBack = content.Load<SoundEffect>("Sound/negative-soft");
+            Click = content.Load<SoundEffect>("Sound/click");
+            EffectClick = Click.CreateInstance();
+            EffectClick.Volume = EFFECT_VOLUME_MAX;
+
+            Back = content.Load<SoundEffect>("Sound/negative-soft");
+            EffectBack = Back.CreateInstance();
+            EffectBack.Volume = EFFECT_VOLUME_MAX;
+
+            Victory = content.Load<SoundEffect>("Sound/Victory");
+            EffectVictory = Victory.CreateInstance();
+            EffectVictory.Volume = EFFECT_VOLUME_MAX;
+
+            Defeat = content.Load<SoundEffect>("Sound/Defeat");
+            EffectDefeat = Defeat.CreateInstance();
+            EffectDefeat.Volume = EFFECT_VOLUME_MAX;
 
             //Music
             Song = content.Load<SoundEffect>("Sound/Dust");

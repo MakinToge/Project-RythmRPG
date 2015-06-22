@@ -88,31 +88,43 @@ namespace RythmRPG.Pages {
                 }
                     //Music Volume
                 else if (isOver(mouse, this.LeftMusic) && Game1.VolumeMusic > 0) {
-                    StartMenu.EffectClick.Play();
                     Game1.VolumeMusic -= 2;
-                }
-                else if (isOver(mouse, this.RightMusic) && Game1.VolumeMusic < 10) {
+                    StartMenu.MainTheme.Volume -= 0.1f;
                     StartMenu.EffectClick.Play();
+                }
+                else if (isOver(mouse, this.RightMusic) && Game1.VolumeMusic < 10) {           
                     Game1.VolumeMusic += 2;
+                    StartMenu.MainTheme.Volume += 0.1f;
+                    StartMenu.EffectClick.Play();
                 }
                     //Sound Volume
                 else if (isOver(mouse, this.LeftSound) && Game1.VolumeSound > 0) {
-                    StartMenu.EffectClick.Play();
                     Game1.VolumeSound -= 2;
+                    StartMenu.EffectBack.Volume -= 0.2f;
+                    StartMenu.EffectClick.Volume -= 0.2f;
+                    StartMenu.EffectVictory.Volume -= 0.2f;
+                    StartMenu.EffectDefeat.Volume -= 0.2f;
+                    StartMenu.EffectClick.Play();
                 }
                 else if (isOver(mouse, this.RightSound) && Game1.VolumeSound < 10) {
-                    StartMenu.EffectClick.Play();
                     Game1.VolumeSound += 2;
+                    StartMenu.EffectBack.Volume += 0.2f;
+                    StartMenu.EffectClick.Volume += 0.2f;
+                    StartMenu.EffectVictory.Volume += 0.2f;
+                    StartMenu.EffectDefeat.Volume += 0.2f;
+                    StartMenu.EffectClick.Play();
                 }
                 //Menu Volume
                 else if (isOver(mouse, this.MuteMenu)) {
                     if (Game1.VolumeMenu == 0) {
                         Game1.VolumeMenu = 5;
-                        StartMenu.MainTheme.Volume = 0.5f;
+                        Game1.VolumeMusic = 10;
+                        StartMenu.MainTheme.Volume = StartMenu.VOLUME_ON;
                     }
                     else {
                         Game1.VolumeMenu = 0;
-                        StartMenu.MainTheme.Volume = 0;
+                        Game1.VolumeMusic = 0;
+                        StartMenu.MainTheme.Volume = StartMenu.VOLUME_OFF;
                     }
                     
                 }
