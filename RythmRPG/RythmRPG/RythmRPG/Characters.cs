@@ -69,10 +69,10 @@ namespace RythmRPG
         /// </summary>
         public void CreateDataCharacters()
         {
-            characterArray[0] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Barbarian");
-            characterArray[1] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Knight");
+            characterArray[0] = new PlayableCharacter(25, 26,26,26, UniqueSkill.Survivor, new int[,] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 12, 300000, 0, 4, 0, Vector2.Zero, 1, "Barbarian");
+            characterArray[1] = new PlayableCharacter(14, 19, 5, 18, UniqueSkill.Templar, new int[,] { { 2, 0, 1 }, { 1, 0, 2 }, { 1, 1, 1 } }, 12, 91547, 0, 2, 0, Vector2.Zero, 1, "Knight");
             characterArray[2] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.FatalBlow, new int[,] { { 0, 3, 0 }, { 1, 2, 0 }, { 0, 2, 1 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Ninja");
-            characterArray[3] = new PlayableCharacter(1, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 0, 0, 0, 0, Vector2.Zero, 1, "Magus");
+            characterArray[3] = new PlayableCharacter(19, 1, 1, 1, UniqueSkill.GoldDigger, new int[,] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, 12, 190397, 54, 0, 1337, Vector2.Zero, 1, "Magus");
         }
 
         /// <summary>

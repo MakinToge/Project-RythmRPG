@@ -307,11 +307,7 @@ namespace RythmRPG.Pages
                     this.VitalityPlus = 0;
                     this.UsedStatPoints = 0;
 
-                    this.Strength.Text = character.Attack.ToString();
-                    this.Endurance.Text = character.Defense.ToString();
-                    this.Vitality.Text = character.Vitality.ToString();
-                    this.StatsPoints.Text = character.statPoints.ToString();
-                    this.HP.Text = character.Health.ToString();
+                    this.LoadDataCharacter(character);
                 }
                 else if (isOver(mouse, Confirm))
                 {
@@ -377,7 +373,7 @@ namespace RythmRPG.Pages
             this.Level.Text = character.Level.ToString();
             this.Endurance.Text = (character.Defense + this.DefensePlus).ToString();
             this.Vitality.Text = (character.Vitality + this.VitalityPlus).ToString();
-            this.HP.Text = character.Health.ToString();
+            this.HP.Text = character.getMaxHealth().ToString();
             this.Strength.Text = (character.Attack + this.AttackPlus).ToString();
             this.StatsPoints.Text = character.statPoints.ToString();
             this.Gold.Text = character.gold.ToString();

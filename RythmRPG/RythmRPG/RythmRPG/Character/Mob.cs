@@ -67,12 +67,12 @@ namespace RythmRPG.Character
                 resistance += 3;
             }
 
-            damageDealt -= resistance;
+            damageDealt -= (int)Math.Floor(0.8 * resistance);
             damageDealt += (int)Math.Floor(1.1 * this.Attack);
 
-            if (damageDealt < 0)
+            if (damageDealt <= 0)
             {
-                damageDealt = 0;
+                damageDealt = 1;
             }
 
             character.takeDamage(damageDealt);

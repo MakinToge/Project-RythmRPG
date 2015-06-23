@@ -361,7 +361,10 @@ namespace RythmRPG.Character
         /// <returns>The amount of experience needed</returns>
         public int xpToNextLevel()
         {
-            return this.xpLevels[this.Level - 1] - this.xp;
+            if (this.Level < 25)
+                return this.xpLevels[this.Level - 1] - this.xp;
+            else
+                return 0;
         }
 
         /// <summary>

@@ -99,6 +99,10 @@ namespace RythmRPG.Pages
             {
                 if ((int)Game1.Difficulty > 1) KeyPressed(4);
             }
+            else if (currentKeyboardState.IsKeyDown(Keys.G) && previousKeyboardState.IsKeyUp(Keys.G))   // Key G
+            {
+                this.Monsters.ElementAt<AbstractCharacter>(this.currentEnemy).attackCharacter(this.player);
+            }
         }
 
         public override void Update(GameTime gametime)
@@ -141,7 +145,7 @@ namespace RythmRPG.Pages
                 {
                     IsFinished = true;
                     output.Stop();
-                    this.Victory.Xp.Text = string.Format("You survived !\r\n you won {0} XP", this.xpToDisplay);
+                    this.Victory.Xp.Text = string.Format("Congratulations, you survived !\r\nYou managed to win {0} XP", this.xpToDisplay);
                     this.Victory.LoadDataCharacter(this.player);
                     this.player.gainXP(this.earnedXP);
                     this.earnedXP = 0;
@@ -292,7 +296,7 @@ namespace RythmRPG.Pages
 
             // Create monsters list
             this.Monsters = new List<AbstractCharacter>();
-            Vector2 position = new Vector2(25f * Game1.UnitX, 12.5f * Game1.UnitY);
+            Vector2 position = new Vector2(25f * Game1.UnitX, 12f * Game1.UnitY);
             Mob mob;
             Boss boss;
 
@@ -305,6 +309,7 @@ namespace RythmRPG.Pages
             }
             for (int i = 0; i < NB_BOSS; i++)
             {
+                position.Y = 13.5f * Game1.UnitY;
                 boss = new Boss(Game1.Difficulty, position, 0.75f);
                 boss.Load(Content);
                 boss.setOriginBottomRight();

@@ -152,14 +152,6 @@ namespace RythmRPG.Pages
         public TextSprite Gold { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected character.
-        /// </summary>
-        /// <value>
-        /// The selected character.
-        /// </value>
-        public int SelectedCharacter { get; set; }
-
-        /// <summary>
         /// Gets or sets the tab medium.
         /// </summary>
         /// <value>
@@ -201,7 +193,6 @@ namespace RythmRPG.Pages
             set
             {
                 tabSelected = value;
-                this.SelectedCharacter = value;
             }
         }
 

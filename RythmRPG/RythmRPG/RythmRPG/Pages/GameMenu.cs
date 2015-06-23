@@ -226,7 +226,6 @@ namespace RythmRPG.Pages
                 else if (isOver(mouse, CharacterManagement))
                 {
                     StartMenu.EffectClick.Play();
-                    Game1.characters.selectedCharacter = 0;
                     Game1.GameState = GameState.CharacterManagement;
                 }
                 else if (isOver(mouse, LeftCharacter) && Game1.characters.selectedCharacter > 0)
