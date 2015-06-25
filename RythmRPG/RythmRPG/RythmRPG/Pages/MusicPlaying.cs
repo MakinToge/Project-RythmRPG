@@ -79,29 +79,25 @@ namespace RythmRPG.Pages
                 StartMenu.EffectClick.Play();
                 Game1.GameState = GameState.Pause;
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.A) && previousKeyboardState.IsKeyUp(Keys.A))   // Key A
+            if (currentKeyboardState.IsKeyDown(Keys.A) && previousKeyboardState.IsKeyUp(Keys.A))   // Key A
             {
                 KeyPressed(0);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.Z) && previousKeyboardState.IsKeyUp(Keys.Z))   // Key Z
+            if (currentKeyboardState.IsKeyDown(Keys.Z) && previousKeyboardState.IsKeyUp(Keys.Z))   // Key Z
             {
                 KeyPressed(1);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.E) && previousKeyboardState.IsKeyUp(Keys.E))   // Key E
+            if (currentKeyboardState.IsKeyDown(Keys.E) && previousKeyboardState.IsKeyUp(Keys.E))   // Key E
             {
                 KeyPressed(2);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.R) && previousKeyboardState.IsKeyUp(Keys.R))   // Key R
+            if (currentKeyboardState.IsKeyDown(Keys.R) && previousKeyboardState.IsKeyUp(Keys.R))   // Key R
             {
                 if ((int)Game1.Difficulty > 0) KeyPressed(3);
             }
-            else if (currentKeyboardState.IsKeyDown(Keys.T) && previousKeyboardState.IsKeyUp(Keys.T))   // Key T
+            if (currentKeyboardState.IsKeyDown(Keys.T) && previousKeyboardState.IsKeyUp(Keys.T))   // Key T
             {
                 if ((int)Game1.Difficulty > 1) KeyPressed(4);
-            }
-            else if (currentKeyboardState.IsKeyDown(Keys.G) && previousKeyboardState.IsKeyUp(Keys.G))   // Key G
-            {
-                this.Monsters.ElementAt<AbstractCharacter>(this.currentEnemy).attackCharacter(this.player);
             }
         }
 
@@ -151,14 +147,15 @@ namespace RythmRPG.Pages
                     this.earnedXP = 0;
                     StartMenu.EffectVictory.Play();
                     Game1.GameState = RythmRPG.GameState.Victory;
+                    Game1.save();
                 }
 
 
                 if (this.LinesNotes[i].Count != 0 && this.LinesNotes[i].Peek().Position.X > noteLimitPositionX) // Remove note when out of the line
                 {
-                    AbstractCharacter monster = this.Monsters.ElementAt<AbstractCharacter>(0);
+                    AbstractCharacter monster = this.Monsters.ElementAt<AbstractCharacter>(this.currentEnemy);
                     monster.attackCharacter(this.player);
-
+                    
                     this.HP.Text = player.Health.ToString() + " / " + this.HPStart.ToString();
 
                     if (this.player.isDead())

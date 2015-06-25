@@ -102,6 +102,13 @@ namespace RythmRPG.Character
             this.statPoints = statPoints;
             this.gold = gold;
 
+            if (this.uniqueSkill == UniqueSkill.Survivor)
+            {
+                this.Vitality += this.NbRestart;
+                this.Defense += this.NbRestart;
+                this.Attack += this.NbRestart;
+            }
+
             this.Health = this.Level * this.Vitality + 100;
 
             this.skills = new List<Skills>(this.NbRestart);
@@ -171,6 +178,7 @@ namespace RythmRPG.Character
                 }
             }
 
+            this.hitCombo %= this.Combo;
             character.takeDamage(damageDealt);
         }
 

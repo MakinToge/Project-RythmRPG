@@ -498,6 +498,7 @@ namespace RythmRPG
                     this.GameMenu.Draw(spriteBatch, gameTime);
                     break;
                 case RythmRPG.GameState.CharacterManagement:
+                    this.CharacterManagement.TabSelected = characters.selectedCharacter;
                     this.CharacterManagement.Draw(spriteBatch, gameTime);
                     break;
                 case RythmRPG.GameState.SingleMusic:
@@ -542,30 +543,7 @@ namespace RythmRPG
         /// <param name="args"></param>
         protected override void OnExiting(object sender, EventArgs args)
         {
-            if (saveFileName != null)
-            {
-                IFormatter format = new BinaryFormatter();
-                Stream stream;
-
-                try
-                {
-                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
-                }
-                catch (DirectoryNotFoundException e)
-                {
-                    DirectoryInfo di = Directory.CreateDirectory("./Save");
-                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
-                }
-
-                for (int i = 0; i < characters.NbCharacter; i++)
-                {
-                    characters.selectedCharacter = i;
-                    characters.getSelectedCharacter().prepareForMusic();
-                }
-                characters.selectedCharacter = 0;
-                format.Serialize(stream, characters);
-                stream.Close();
-            }
+            Game1.save();
 
             base.OnExiting(sender, args);
         }
@@ -595,6 +573,34 @@ namespace RythmRPG
             }
 
             characters.selectedCharacter = 0;
+        }
+
+        public static void save()
+        {
+            if (saveFileName != null)
+            {
+                IFormatter format = new BinaryFormatter();
+                Stream stream;
+
+                try
+                {
+                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                }
+                catch (DirectoryNotFoundException e)
+                {
+                    DirectoryInfo di = Directory.CreateDirectory("./Save");
+                    stream = new FileStream("./Save/" + saveFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                }
+
+                for (int i = 0; i < characters.NbCharacter; i++)
+                {
+                    characters.selectedCharacter = i;
+                    characters.getSelectedCharacter().prepareForMusic();
+                }
+                characters.selectedCharacter = 0;
+                format.Serialize(stream, characters);
+                stream.Close();
+            }
         }
     }
 }
